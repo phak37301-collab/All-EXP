@@ -14,7 +14,7 @@ body{margin:0;color:var(--ink);font:15px/1.5 Prompt,system-ui,sans-serif;backgro
 #side .lg{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ac2));margin-bottom:10px}
 #side button{width:44px;height:44px;border:0;border-radius:14px;background:none;color:var(--mut);font-size:20px;cursor:pointer}
 #side button.on{background:#eceeff;color:var(--ac)}
-main{margin-left:98px;padding:18px 22px 40px;max-width:1100px}
+main{margin-left:98px;padding:18px 22px 40px}
 .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}.top h2{margin:0;font-size:24px;flex:1}.mut{color:var(--mut);font-size:14px}
 .pillbtn{border:0;background:var(--card);box-shadow:var(--sh);padding:8px 16px;border-radius:99px;font:inherit;cursor:pointer;color:var(--ink)}
 .card{background:var(--card);border-radius:20px;box-shadow:var(--sh);padding:18px;margin-bottom:14px}.card h3{margin:0 0 8px;font-size:16px}
@@ -65,7 +65,7 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
  <div class="card hero k"><span id="k1t"></span><b id="k1"></b><small id="k1s"></small></div>
  <div class="card k"><span class="mut">จำนวนล็อตทั้งหมด</span><b id="k2"></b></div>
  <div class="card k"><span class="mut">จำนวนชิ้นรวม</span><b id="k3"></b></div>
- <div class="card wide"><h3>หมดอายุรายเดือน (ชิ้น)</h3><svg id="bars" viewBox="0 0 360 160" width="100%"></svg></div>
+ <div class="card wide"><h3>หมดอายุรายเดือน (ชิ้น)</h3><div id="bars" style="display:flex;gap:2.5%;height:210px"></div></div>
  <div class="card"><h3>แยกตามสถานะ</h3><svg id="dn" viewBox="0 0 100 100" width="150" style="display:block;margin:auto"></svg><div id="lg2" style="margin-top:8px"></div></div>
  <div class="card"><h3>ใกล้หมดอายุมากที่สุด (ชิ้น)</h3><div id="tp5"></div></div><div class="card wide"><h3>ต้องจัดการก่อน</h3><div class="dsk" style="overflow-x:auto"><table id="top"></table></div><div class="mob" id="topc"></div></div>
 </div></section>
@@ -107,6 +107,7 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
 const $=id=>document.getElementById(id),API=(window.APP_CONFIG||{}).apiUrl||'',ls=k=>localStorage.getItem(k)||'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fd=s=>s?s.split('-').reverse().join('/'):'-',COL=['#ff6b81','#ffa94d','#ffd43b','#74b9ff','#51cf9a'];
+const APPN=(window.APP_CONFIG||{}).appName||'สต็อกวันหมดอายุ';document.title=APPN;
 let BR=ls('br'),CODE=ls('code'),BRN=ls('brn'),AD='',D={entries:[],db:{}},editing=null,flt=-1,TH=JSON.parse(ls('th')||'[7,30,60]');
 const NM=()=>['หมดอายุ / ตัดเบิก','ภายใน '+TH[0]+' วัน','ภายใน '+TH[1]+' วัน','ภายใน '+TH[2]+' วัน','ปกติ'];
 const lv=d=>d<=0?0:d<=TH[0]?1:d<=TH[1]?2:d<=TH[2]?3:4;
@@ -127,7 +128,7 @@ async function login(){
   BR=k;CODE=$('pw').value;BRN=$('brSel').selectedOptions[0].text;localStorage.setItem('br',BR);localStorage.setItem('code',CODE);localStorage.setItem('brn',BRN);
   $('pw').value='';$('lg').close();D=r;drawAll();toast('เข้าสาขา '+BRN+' แล้ว')}catch(e){toast(e.message)}}
 async function load(){try{D=await api({action:'list'});drawAll()}catch(e){toast(e.message)}}
-function drawAll(){$('brBtn').textContent=BRN||'เลือกสาขา';$('hi').textContent='สวัสดี, '+(BRN||'');$('sub').textContent='สรุปสต็อกและวันหมดอายุของสาขานี้';drawHome();drawList();drawRep();drawExtra();lookup()}
+function drawAll(){$('brBtn').textContent=BRN||'เลือกสาขา';$('hi').textContent='สวัสดี'+(BRN?', '+BRN:'');$('sub').textContent=APPN+' · สรุปสต็อกและวันหมดอายุ';drawHome();drawList();drawRep();drawExtra();lookup()}
 function drawHome(){
  const E=D.entries,near=E.filter(e=>days(e.due)<=TH[1]),sum=a=>a.reduce((s,e)=>s+e.qty,0);
  $('k1t').textContent='ใกล้หมดอายุ (ภายใน '+TH[1]+' วัน)';$('k1').textContent=near.length;$('k1s').textContent='ล็อต · รวม '+sum(near)+' ชิ้น';
@@ -135,7 +136,7 @@ function drawHome(){
  const now=new Date(),M=[...Array(6)].map((_,i)=>{const d=new Date(now.getFullYear(),now.getMonth()+i,1);return{k:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'),n:d.toLocaleDateString('th-TH',{month:'short'}),v:0}});
  E.forEach(e=>{const m=M.find(x=>x.k==e.due.slice(0,7));if(m)m.v+=e.qty});
  const mx=Math.max(1,...M.map(m=>m.v));
- $('bars').innerHTML=M.map((m,i)=>{const h=m.v/mx*100,x=12+i*58;return `<rect x="${x}" y="${125-h}" width="38" height="${Math.max(h,2)}" rx="8" fill="${i?'#8f8cf7':'#5b5bf0'}"/><text x="${x+19}" y="${119-h}" font-size="11" text-anchor="middle" fill="#1c2240">${m.v||''}</text><text x="${x+19}" y="148" font-size="11" text-anchor="middle" fill="#7a84a6">${m.n}</text>`}).join('');
+ $('bars').innerHTML=M.map((m,i)=>`<div style="flex:1;display:flex;flex-direction:column;text-align:center;min-width:0"><small style="color:#1c2240">${m.v||''}</small><div style="flex:1;display:flex;align-items:flex-end"><i style="display:block;width:100%;max-width:64px;margin:0 auto;height:${Math.max(m.v/mx*100,2)}%;border-radius:10px;background:${i?'#8f8cf7':'#5b5bf0'}"></i></div><small class="mut">${m.n}</small></div>`).join('');
  const c=[0,0,0,0,0];E.forEach(e=>c[lv(days(e.due))]++);let off=0;const tot=E.length||1;
  $('dn').innerHTML=c.map((n,i)=>{const l=n/tot*251.3,s=`<circle cx="50" cy="50" r="40" fill="none" stroke="${COL[i]}" stroke-width="14" stroke-dasharray="${l} 251.3" stroke-dashoffset="${-off}" transform="rotate(-90 50 50)"/>`;off+=l;return s}).join('')+`<text x="50" y="55" text-anchor="middle" font-size="16" font-weight="600" fill="#1c2240">${E.length}</text>`;
  $('lg2').innerHTML=NM().map((n,i)=>`<div class="mut"><span class="pill" style="--c:${COL[i]};padding:0 8px"></span> ${n} <b style="float:right;color:#1c2240">${c[i]}</b></div>`).join('');
@@ -214,7 +215,7 @@ async function admLoad(){AD=$('adm').value;let r=await adm('adminList');
  if(r.needInit){if(AD.length<4)return toast('ตั้งรหัสแอดมินอย่างน้อย 4 ตัว');r=await adm('adminInit');if(!r.ok)return toast(r.error);toast('ตั้งรหัสแอดมินแล้ว');r=await adm('adminList')}
  if(!r.ok)return toast(r.error);drawAdm(r.list)}
 function drawAdm(l){$('brs').innerHTML=l.map(b=>brCard(b)).join('')+'<button class="btn alt big" onclick="this.insertAdjacentHTML(\'beforebegin\',brCard({key:\'\',name:\'\',id:\'\'}))">＋ เพิ่มสาขา</button>'+'<div class="row" style="margin-top:14px"><input id="npw" type="password" placeholder="รหัสแอดมินใหม่"><button class="btn alt fit" onclick="admPw()">เปลี่ยนรหัสแอดมิน</button></div>'}
-const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>รหัสสาขา ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':''}</label><input class="bc2" type="password" autocomplete="off"><div class="row" style="margin-top:10px"><button class="btn sm" onclick="svBr(this)">บันทึก</button><button class="btn del sm" onclick="dlBr(this)">ลบสาขา</button></div></div>`;
+const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>รหัสสาขา ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':'(ยังไม่ได้ตั้ง ต้องใส่)'}</label><input class="bc2" type="password" autocomplete="off"><div class="row" style="margin-top:10px"><button class="btn sm" onclick="svBr(this)">บันทึก</button><button class="btn del sm" onclick="dlBr(this)">ลบสาขา</button></div></div>`;
 async function svBr(el){const c=el.closest('[data-k]'),m=c.querySelector('.bi').value.match(/\/d\/([\w-]+)/);
  const r=await adm('adminSave',{key:c.dataset.k,name:c.querySelector('.bn').value,id:m?m[1]:c.querySelector('.bi').value.trim(),code:c.querySelector('.bc2').value});
  if(!r.ok)return toast(r.error);toast('บันทึกสาขาแล้ว');drawAdm(r.list)}
