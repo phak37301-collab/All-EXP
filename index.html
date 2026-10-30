@@ -53,13 +53,23 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
 .card{padding:14px;border-radius:18px}
 .scan{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0}.vw video{aspect-ratio:auto;height:58vh}
 }
+#bar{position:fixed;top:0;left:0;right:0;height:4px;z-index:30;display:none;background:linear-gradient(90deg,transparent,var(--ac2),var(--ac),transparent) no-repeat;background-size:40% 100%;animation:bar 1s linear infinite}
+body.busy #bar{display:block}@keyframes bar{from{background-position:-40% 0}to{background-position:140% 0}}
+.spin{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:7px}@keyframes sp{to{transform:rotate(360deg)}}
+button.ld{pointer-events:none;opacity:.8}
+body.ldg :is(.k b,#bars,#dn,#tp5,#top,#topc,#lv,#tbl,#cards){min-height:44px;border-radius:12px;color:transparent!important;background:linear-gradient(90deg,#e9edf7 25%,#f6f8fd 50%,#e9edf7 75%) 0 0/200% 100%;animation:shm 1.2s linear infinite}
+body.ldg .hero b{background:linear-gradient(90deg,#ffffff30 25%,#ffffff55 50%,#ffffff30 75%) 0 0/200% 100%}
+body.ldg :is(#bars,#dn,#tp5,#top,#topc,#lv,#tbl,#cards)>*{visibility:hidden}
+body.ldg :is(#bars,#tp5){min-height:150px}@keyframes shm{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){#bar,body.ldg *{animation:none!important}}
 @media print{#side,.top,.noprint{display:none!important}main{margin:0}body{background:#fff}.card{box-shadow:none}}
 </style>
 </head>
 <body>
+<div id="bar"></div>
 <nav id="side"><div class="lg"></div><button data-p="home" data-l="ภาพรวม" class="on" title="ภาพรวม">▦</button><button data-p="list" data-l="รายการ" title="รายการ">☰</button><button class="fab" data-l="สแกน" onclick="scan()" title="สแกน">▣</button><button data-p="add" data-l="เพิ่ม" title="เพิ่มสินค้า">＋</button><button data-p="rep" data-l="รายงาน" title="รายงาน">▤</button><button data-p="set" data-l="ตั้งค่า" title="ตั้งค่า">⚙</button></nav>
 <main>
-<div class="top"><div style="flex:1"><h2 id="hi">สวัสดี</h2><div class="mut" id="sub"></div></div><button class="pillbtn dsk" onclick="scan()">▣ สแกน</button><button class="pillbtn" id="brBtn" onclick="openBr()">เลือกสาขา</button><button class="pillbtn" onclick="load()">รีเฟรช</button></div>
+<div class="top"><div style="flex:1"><h2 id="hi">สวัสดี</h2><div class="mut" id="sub"></div></div><button class="pillbtn dsk" onclick="scan()">▣ สแกน</button><button class="pillbtn" id="brBtn" onclick="openBr()">เลือกสาขา</button><button class="pillbtn" onclick="W(this,load)">รีเฟรช</button></div>
 
 <section id="home"><div class="g">
  <div class="card hero k"><span id="k1t"></span><b id="k1"></b><small id="k1s"></small></div>
@@ -81,7 +91,7 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
  <div class="nm" id="nm"></div><div class="mut" id="lots"></div>
  <input id="nmIn" class="hide" placeholder="ไม่พบในฐานข้อมูล พิมพ์ชื่อสินค้าใหม่">
  <div class="row"><div><label for="qty">จำนวน</label><input id="qty" type="number" inputmode="numeric" min="1"></div><div><label for="due">วันหมดอายุ</label><input id="due" type="date"></div></div>
- <button class="btn big" onclick="add()">บันทึกเข้าชีต</button></div></section>
+ <button class="btn big" onclick="W(this,add)">บันทึกเข้าชีต</button></div></section>
 
 <section id="rep" class="hide">
  <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" onclick="csv()">CSV</button><button class="btn fit" onclick="print()">พิมพ์ / PDF</button></div>
@@ -93,14 +103,14 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
   <div class="row"><div><label>เตือนด่วน ≤</label><input id="t0" type="number" min="1"></div><div><label>เฝ้าระวัง ≤</label><input id="t1" type="number" min="1"></div><div><label>ติดตาม ≤</label><input id="t2" type="number" min="1"></div></div>
   <button class="btn big" onclick="saveTh()">บันทึกเกณฑ์</button></div>
  <div class="card" style="max-width:560px"><h3>จัดการสาขา (แอดมิน)</h3>
-  <div class="row"><input id="adm" type="password" placeholder="รหัสแอดมิน (ครั้งแรก: ตั้งรหัสใหม่ 4 ตัวขึ้นไป)" autocomplete="off"><button class="btn fit" onclick="admLoad()">เข้าสู่โหมดแอดมิน</button></div>
+  <div class="row"><input id="adm" type="password" placeholder="รหัสแอดมิน (ครั้งแรก: ตั้งรหัสใหม่ 4 ตัวขึ้นไป)" autocomplete="off"><button class="btn fit" onclick="W(this,admLoad)">เข้าสู่โหมดแอดมิน</button></div>
   <div id="brs"></div></div>
 </section>
 </main>
 
 <dialog id="ed"><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date">
- <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="saveEdit()">บันทึกการแก้ไข</button></div></dialog>
-<dialog id="lg"><b>เลือกสาขา</b><label for="brSel">สาขา</label><select id="brSel"></select><label for="pw">รหัสสาขา (ขอจากแอดมิน)</label><input id="pw" type="password" autocomplete="off"><button class="btn big" onclick="login()">เข้าใช้งาน</button><button class="btn alt big" style="margin-top:8px" onclick="lg.close();go('set')">ตั้งค่าแอดมิน</button></dialog>
+ <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
+<dialog id="lg"><b>เลือกสาขา</b><label for="brSel">สาขา</label><select id="brSel"></select><label for="pw">รหัสสาขา (ขอจากแอดมิน)</label><input id="pw" type="password" autocomplete="off"><button class="btn big" onclick="W(this,login)">เข้าใช้งาน</button><button class="btn alt big" style="margin-top:8px" onclick="lg.close();go('set')">ตั้งค่าแอดมิน</button></dialog>
 <dialog id="sc" class="scan"><div class="seg"><button data-m="add" class="on" onclick="setMode('add')">เพิ่มสินค้า</button><button data-m="find" onclick="setMode('find')">ค้นหา</button></div><div class="vw"><video id="vid" playsinline muted autoplay></video><i class="frame"></i></div><div class="mut" id="scmsg" style="margin:8px 0;min-height:42px"></div><div class="row"><button id="tq" class="btn alt hide" onclick="torch()">ไฟฉาย</button><label class="btn alt" for="pic" style="text-align:center">ถ่ายรูปแทน</label><button class="btn" onclick="stopScan()">ปิด</button></div><input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
 <div id="toast"></div>
 <script>
@@ -114,20 +124,27 @@ const lv=d=>d<=0?0:d<=TH[0]?1:d<=TH[1]?2:d<=TH[2]?3:4;
 function days(s){const a=new Date();a.setHours(0,0,0,0);return Math.round((new Date(s+'T00:00:00')-a)/864e5)}
 const pill=d=>{const l=lv(d);return `<span class="pill" style="--c:${COL[l]}">${d<=0?'หมดอายุ ตัดเบิก':'เหลือ '+d+' วัน'}</span>`};
 function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t._);t._=setTimeout(()=>t.style.display='none',2600)}
-const post=b=>fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)}).then(r=>r.json());
+let PEND=0,loaded=0;
+async function post(b){PEND++;document.body.classList.add('busy');
+ try{return await (await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)})).json()}
+ catch(e){throw new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจอินเทอร์เน็ตหรือ apiUrl ใน config.js')}
+ finally{if(!--PEND)document.body.classList.remove('busy')}}
+// ปุ่มที่ทำงานนาน: แสดงวงกลมหมุนและกันกดซ้ำ
+async function W(b,f){if(b.classList.contains('ld'))return;const h=b.innerHTML;b.classList.add('ld');b.innerHTML='<i class="spin"></i>'+h;
+ try{await f()}catch(e){toast(e.message)}finally{b.classList.remove('ld');b.innerHTML=h}}
 async function api(b){
  if(!BR||!CODE){openBr();throw new Error('เลือกสาขาและใส่รหัสก่อน')}
  const r=await post({branch:BR,code:CODE,...b});
  if(!r.ok){if(r.auth){CODE='';localStorage.removeItem('code');openBr()}throw new Error(r.error)}return r}
 async function openBr(){
- $('lg').showModal();
+ $('lg').showModal();$('brSel').innerHTML='<option>กำลังโหลดสาขา...</option>';
  try{const r=await post({action:'branches'});$('brSel').innerHTML=r.branches.map(x=>`<option value="${esc(x.key)}">${esc(x.name)}</option>`).join('');if(BR)$('brSel').value=BR}catch(e){toast('เชื่อมต่อระบบไม่ได้ ตรวจ apiUrl ใน config.js')}}
 async function login(){
  const k=$('brSel').value;
  try{const r=await post({branch:k,code:$('pw').value,action:'list'});if(!r.ok)throw new Error(r.error);
   BR=k;CODE=$('pw').value;BRN=$('brSel').selectedOptions[0].text;localStorage.setItem('br',BR);localStorage.setItem('code',CODE);localStorage.setItem('brn',BRN);
-  $('pw').value='';$('lg').close();D=r;drawAll();toast('เข้าสาขา '+BRN+' แล้ว')}catch(e){toast(e.message)}}
-async function load(){try{D=await api({action:'list'});drawAll()}catch(e){toast(e.message)}}
+  $('pw').value='';$('lg').close();D=r;loaded=1;drawAll();toast('เข้าสาขา '+BRN+' แล้ว')}catch(e){toast(e.message)}}
+async function load(){if(!loaded)document.body.classList.add('ldg');try{D=await api({action:'list'});loaded=1;drawAll()}catch(e){toast(e.message)}finally{document.body.classList.remove('ldg')}}
 function drawAll(){$('brBtn').textContent=BRN||'เลือกสาขา';$('hi').textContent='สวัสดี'+(BRN?', '+BRN:'');$('sub').textContent=APPN+' · สรุปสต็อกและวันหมดอายุ';drawHome();drawList();drawRep();drawExtra();lookup()}
 function drawHome(){
  const E=D.entries,near=E.filter(e=>days(e.due)<=TH[1]),sum=a=>a.reduce((s,e)=>s+e.qty,0);
@@ -145,7 +162,7 @@ function drawList(){
  const c=[0,0,0,0,0];D.entries.forEach(e=>c[lv(days(e.due))]++);
  $('lv').innerHTML=NM().map((n,i)=>`<button style="--c:${COL[i]}" class="${flt==i?'on':''}" onclick="flt=flt==${i}?-1:${i};drawList()">${n}<b>${c[i]}</b></button>`).join('');
  const q=$('q').value.toLowerCase(),a=D.entries.filter(e=>(flt<0||lv(days(e.due))==flt)&&(e.item+e.barcode).toLowerCase().includes(q)).sort((x,y)=>x.due<y.due?-1:1);
- $('tbl').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th></th></tr>'+(a.map(e=>`<tr><td>${e.barcode}</td><td>${esc(e.item||D.db[e.barcode]||'')}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td style="white-space:nowrap"><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="del(${e.row})">ลบ</button></td></tr>`).join('')||'<tr><td colspan="6" class="mut">ไม่พบรายการ</td></tr>');$('cards').innerHTML=a.map(e=>lc(e.item||D.db[e.barcode]||'(ไม่มีชื่อ)',e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)),`<div><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="del(${e.row})">ลบ</button></div>`)).join('')||'<p class="mut">ไม่พบรายการ</p>'}
+ $('tbl').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th></th></tr>'+(a.map(e=>`<tr><td>${e.barcode}</td><td>${esc(e.item||D.db[e.barcode]||'')}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td style="white-space:nowrap"><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></td></tr>`).join('')||'<tr><td colspan="6" class="mut">ไม่พบรายการ</td></tr>');$('cards').innerHTML=a.map(e=>lc(e.item||D.db[e.barcode]||'(ไม่มีชื่อ)',e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)),`<div><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></div>`)).join('')||'<p class="mut">ไม่พบรายการ</p>'}
 function group(f){const m={};D.entries.filter(e=>f<0||lv(days(e.due))==f).forEach(e=>{const k=e.barcode+'|'+e.due;(m[k]=m[k]||{...e,qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>a.due<b.due?-1:1)}
 function drawRep(){
  const s=$('f2'),v=s.value||-1;s.innerHTML='<option value="-1">ทุกสถานะ</option>'+NM().map((n,i)=>`<option value="${i}">${n}</option>`).join('');s.value=v;
@@ -181,7 +198,7 @@ const zxLoad=()=>window.ZXing?0:new Promise((ok,no)=>{const s=document.createEle
 const hints=()=>{const h=new Map(),F=ZXing.BarcodeFormat;h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E,F.CODE_128,F.CODE_39]);h.set(ZXing.DecodeHintType.TRY_HARDER,true);return h};
 function setMode(m){SM=m;document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m==m))}
 async function scan(m){
- setMode(m||(CUR=='add'?'add':CUR=='list'?'find':SM));busy=0;$('sc').showModal();$('scmsg').textContent='กำลังเปิดกล้อง...';
+ setMode(m||(CUR=='add'?'add':CUR=='list'?'find':SM));busy=0;$('sc').showModal();$('scmsg').innerHTML='<i class="spin"></i>กำลังเปิดกล้อง...';
  try{
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw 0;
   stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});
@@ -191,7 +208,7 @@ async function scan(m){
   if('BarcodeDetector' in window&&(await BarcodeDetector.getSupportedFormats()).includes('ean_13')){
    const det=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39']});
    loop=setInterval(async()=>{const r=await det.detect(v).catch(()=>[]);if(r[0])got(r[0].rawValue)},250);
-  }else{await zxLoad();zx=new ZXing.BrowserMultiFormatReader(hints(),250);zx.decodeFromStream(stream,v,r=>{if(r)got(r.getText())})}
+  }else{$('scmsg').innerHTML='<i class="spin"></i>กำลังโหลดตัวอ่านบาร์โค้ด...';await zxLoad();$('scmsg').textContent='เล็งบาร์โค้ดให้อยู่ในกรอบ';zx=new ZXing.BrowserMultiFormatReader(hints(),250);zx.decodeFromStream(stream,v,r=>{if(r)got(r.getText())})}
  }catch(e){stopStream();$('scmsg').textContent=/Line|FBAN|FBAV|Instagram/i.test(navigator.userAgent)?'เปิดกล้องไม่ได้ในแอปนี้ ให้เปิดลิงก์ด้วย Safari/Chrome หรือกด "ถ่ายรูปแทน"':'เปิดกล้องไม่ได้ (ต้องเปิดผ่าน https และอนุญาตกล้อง) ลองกด "ถ่ายรูปแทน" หรือพิมพ์บาร์โค้ดเอง'}}
 function stopStream(){clearInterval(loop);try{zx&&zx.reset()}catch(e){}if(stream)stream.getTracks().forEach(t=>t.stop());stream=zx=null;$('vid').srcObject=null}
 function stopScan(){stopStream();if($('sc').open)$('sc').close()}
@@ -203,7 +220,7 @@ function got(c){
  const n=D.entries.filter(e=>e.barcode==c).length;
  if(n)toast('พบ '+n+' ล็อต');else if(confirm('ไม่พบบาร์โค้ด '+c+' ในสต็อก\nเพิ่มเป็นสินค้าใหม่ไหม?')){go('add');$('bc').value=c;lookup();$('qty').focus()}}
 async function scanPic(i){
- const f=i.files[0];i.value='';if(!f)return;$('scmsg').textContent='กำลังอ่านรูป...';
+ const f=i.files[0];i.value='';if(!f)return;$('scmsg').innerHTML='<i class="spin"></i>กำลังอ่านรูป...';
  try{let c;
   if('BarcodeDetector' in window){const r=await new BarcodeDetector().detect(await createImageBitmap(f)).catch(()=>[]);if(r[0])c=r[0].rawValue}
   if(!c){await zxLoad();c=(await new ZXing.BrowserMultiFormatReader(hints()).decodeFromImageUrl(URL.createObjectURL(f))).getText()}
@@ -214,8 +231,8 @@ const adm=(a,b)=>post({action:a,admin:AD,...b});
 async function admLoad(){AD=$('adm').value;let r=await adm('adminList');
  if(r.needInit){if(AD.length<4)return toast('ตั้งรหัสแอดมินอย่างน้อย 4 ตัว');r=await adm('adminInit');if(!r.ok)return toast(r.error);toast('ตั้งรหัสแอดมินแล้ว');r=await adm('adminList')}
  if(!r.ok)return toast(r.error);drawAdm(r.list)}
-function drawAdm(l){$('brs').innerHTML=l.map(b=>brCard(b)).join('')+'<button class="btn alt big" onclick="this.insertAdjacentHTML(\'beforebegin\',brCard({key:\'\',name:\'\',id:\'\'}))">＋ เพิ่มสาขา</button>'+'<div class="row" style="margin-top:14px"><input id="npw" type="password" placeholder="รหัสแอดมินใหม่"><button class="btn alt fit" onclick="admPw()">เปลี่ยนรหัสแอดมิน</button></div>'}
-const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>รหัสสาขา ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':'(ยังไม่ได้ตั้ง ต้องใส่)'}</label><input class="bc2" type="password" autocomplete="off"><div class="row" style="margin-top:10px"><button class="btn sm" onclick="svBr(this)">บันทึก</button><button class="btn del sm" onclick="dlBr(this)">ลบสาขา</button></div></div>`;
+function drawAdm(l){$('brs').innerHTML=l.map(b=>brCard(b)).join('')+'<button class="btn alt big" onclick="this.insertAdjacentHTML(\'beforebegin\',brCard({key:\'\',name:\'\',id:\'\'}))">＋ เพิ่มสาขา</button>'+'<div class="row" style="margin-top:14px"><input id="npw" type="password" placeholder="รหัสแอดมินใหม่"><button class="btn alt fit" onclick="W(this,admPw)">เปลี่ยนรหัสแอดมิน</button></div>'}
+const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>รหัสสาขา ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':'(ยังไม่ได้ตั้ง ต้องใส่)'}</label><input class="bc2" type="password" autocomplete="off"><div class="row" style="margin-top:10px"><button class="btn sm" onclick="W(this,()=>svBr(this))">บันทึก</button><button class="btn del sm" onclick="W(this,()=>dlBr(this))">ลบสาขา</button></div></div>`;
 async function svBr(el){const c=el.closest('[data-k]'),m=c.querySelector('.bi').value.match(/\/d\/([\w-]+)/);
  const r=await adm('adminSave',{key:c.dataset.k,name:c.querySelector('.bn').value,id:m?m[1]:c.querySelector('.bi').value.trim(),code:c.querySelector('.bc2').value});
  if(!r.ok)return toast(r.error);toast('บันทึกสาขาแล้ว');drawAdm(r.list)}
