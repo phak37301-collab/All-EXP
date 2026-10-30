@@ -2,6 +2,6 @@
  * apiUrl  URL ของ Apps Script Web App (ลงท้าย /exec)
  * appName ชื่อระบบ */
 window.APP_CONFIG = {
-  apiUrl: 'PASTE_WEB_APP_URL_HERE',
-  appName: 'สต็อกวันหมดอายุ'
+  apiUrl: 'https://script.google.com/macros/s/AKfycbyCkIb5xUJI3tqWPJpzC-g_fj1wiOl4sXdPLBuiyiIUUqmyKddFxZH_88Og4cukd81J/exec',
+  appName: 'ระบบจัดการสินค้าหมดอายุ'
 };
