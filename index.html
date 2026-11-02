@@ -241,6 +241,57 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
 .ai{flex-wrap:wrap;cursor:default}.ai:hover{background:none}.ai .ax{flex-basis:100%;display:flex;gap:8px;padding:2px 0 6px 66px}
 #prn{display:none}
 @media print{body.prnm #shell,body.prnm #toast,body.prnm #bar,body.prnm dialog,body.prnm .bell{display:none!important}body.prnm #prn{display:block}body.prnm{background:#fff}#prn{-webkit-print-color-adjust:exact;print-color-adjust:exact}#prn h1{font-size:20px;margin:0 0 4px}#prn .pm{color:#555;font-size:12px;margin-bottom:10px}#prn table{font-size:11px;width:100%;border-collapse:collapse}#prn th,#prn td{border:1px solid #bbb;padding:4px 6px}#prn tr{page-break-inside:avoid}#prn th{background:#eee}}
+
+/* ===== UI v6: colorful / compact list / centered scan / quick save ===== */
+:root{--ac:#5b5bf0;--ac2:#8b5cf6;--s1:#4338ca;--s2:#7c3aed;--tint:#eef0ff;--ink:#1c2240;--mut:#6f7a99;--ln:#e6e9f5}
+body{background:radial-gradient(60% 45% at 95% -5%,#c4b5fd88,transparent 65%),radial-gradient(50% 45% at -5% 100%,#93c5fd77,transparent 65%),radial-gradient(35% 30% at 60% 45%,#fbcfe855,transparent 70%),#f4f5fc}
+#shell{box-shadow:0 20px 50px #4f46e51f}
+#nav{background:linear-gradient(180deg,var(--s1),var(--s2));border-radius:28px 0 0 28px}
+#nav .lgb{background:#fff;color:var(--s1)}
+#nav button[data-p]{color:#ffffffc4}#nav button[data-p].on{background:#fff;color:var(--ac)}
+.btn{background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 6px 16px #5b5bf033}
+.btn.alt{background:var(--tint);color:var(--ac);box-shadow:none}.btn.del{background:#ffe3e8;color:#d6336c;box-shadow:none}.btn.dng{background:#c8102e}
+.ph h1,.hdr h1{background:linear-gradient(90deg,var(--s1),var(--ac2) 70%,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tab.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.srch .sb{background:linear-gradient(135deg,var(--ac),var(--ac2))}
+.stepc{border:1px solid var(--ln);border-top:4px solid var(--c,var(--ac));box-shadow:0 8px 22px #4f46e510}
+.stepc:nth-of-type(1){--c:#6366f1}.stepc:nth-of-type(2){--c:#f59e0b}.stepc:nth-of-type(3){--c:#10b981}
+.sh i{background:var(--c,var(--ac))}
+.chip.rcb{background:color-mix(in srgb,var(--c,#6366f1) 14%,#fff)}
+/* list rows: cleaner */
+.grp{margin:18px 0 8px;padding:0 4px;align-items:center}.grp b{display:flex;align-items:center;gap:8px;font-size:15px}
+.grp b:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+.rw{background:#fff;border:1px solid var(--ln);border-left:5px solid var(--c,#ddd);margin-bottom:8px;box-shadow:0 4px 12px #4f46e50c;transition:transform .12s}
+.rw:hover{background:#fff;transform:translateY(-1px)}.rw.on{background:var(--tint)}
+.dn{background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);border-radius:14px;padding:8px 0 6px}
+.dn small{display:block;font-size:11px;font-weight:500;margin-top:3px;opacity:.85}
+.rw{border-left-color:var(--c)}
+.nm2 .mcs{margin-top:4px}
+.acts{display:grid;grid-template-columns:1.3fr 1fr;gap:10px}.acts .btn{margin:0}
+#qbar{position:fixed;z-index:7;left:120px;right:24px;bottom:24px;max-width:520px;display:flex;align-items:center;gap:10px;background:#1c2240;color:#fff;border-radius:99px;padding:8px 8px 8px 18px;box-shadow:0 14px 34px #1c224077}
+#qbar.hide{display:none}
+#qbar .qi{flex:1;min-width:0;text-align:left;border:0;background:none;color:#fff;font:inherit;cursor:pointer;padding:0}
+#qbar .qi b{display:block;font-size:14px}#qbar .qi small{opacity:.75;font-size:12px}
+#qbar .btn{flex:none;padding:11px 20px;background:linear-gradient(135deg,#34d399,#10b981);box-shadow:none}
+#add{padding-bottom:90px}
+@media(max-width:820px){
+ #nav{border-radius:99px;background:linear-gradient(90deg,var(--s1),var(--s2))}
+ #nav button[data-p]{color:#ffffffc4}#nav button[data-p].on{color:var(--ac)}
+ #qbar{left:14px;right:14px;bottom:calc(92px + env(safe-area-inset-bottom));max-width:none}
+ #add{padding-bottom:150px}
+ .qcard{order:0!important}#ql{max-height:none}#qs{position:static!important;box-shadow:none!important}
+ /* list rows on phone: tile + name + date, hide barcode/bar */
+ .rw{grid-template-columns:54px minmax(0,1fr) auto;grid-template-areas:"dn nm qt" "dn dt qt";gap:2px 12px;padding:10px 12px}
+ .bar2,.bcx{display:none}.dt2{display:block;grid-area:dt;font-size:13px;color:var(--mut)}
+ .dn{font-size:26px}
+ /* scan popup: center of the screen */
+ dialog.scan{width:calc(100vw - 24px);max-width:460px;margin:auto;border-radius:26px;padding:14px;max-height:92dvh;overflow:auto}
+}
+/* v6.1: every popup centered on phone (branch picker, menu, edit, confirm, alerts, detail) */
+@media(max-width:820px){
+ dialog:not(.scan){width:calc(100vw - 24px);max-width:420px;margin:auto;border-radius:24px;max-height:88dvh;overflow:auto}
+ .in{padding:22px}
+}
 </style>
 </head>
 <body>
@@ -268,7 +319,8 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
   <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb" onclick="$('qty').value=48">48</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
- <button class="btn big" style="margin-top:0" onclick="queue()">＋ เข้าคิว</button></div>
+ <div class="acts"><button class="btn big" id="qnow" onclick="W(this,saveNow)">✓ บันทึกเลย</button><button class="btn alt big" onclick="queue()">＋ เข้าคิว</button></div>
+ <div class="mut hint" style="text-align:center">รายการเดียว กด "บันทึกเลย" ได้ทันที · หลายรายการ กด "เข้าคิว" แล้วค่อยบันทึกรวม</div></div>
  <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveQ)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
 <section id="stat" class="hide"><div class="ph"><h1>สถิติและรายงาน</h1><div class="mut">ภาพรวมสต็อกและรายงานตามวันหมดอายุ</div></div>
 <div id="bn" class="hide"><b id="bn1"></b><i id="bn2"></i><i id="bnA"></i></div><div class="kp">
@@ -318,6 +370,7 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
 <dialog id="dt"><div id="dtb"></div><button class="btn big" onclick="$('dt').close()">ปิด</button></dialog>
 <dialog id="cf" class="cfd"><div class="in"><div class="cfI" id="cfI">❓</div><h3 id="cfT"></h3><div class="mut" id="cfB"></div><div class="cfb" id="cfBtns"></div></div></dialog>
 <dialog id="al" class="pop"><div class="in"><div class="alh"><b id="alT"></b><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><button class="btn alt big" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
+<div id="qbar" class="hide"><button class="qi" onclick="toQ()"><b>🧾 คิวรอบันทึก</b><small id="qbn"></small></button><button class="btn" onclick="W(this,saveQ)">บันทึกทั้งหมด</button></div>
 <div id="toast"></div>
 <script>
 const $=id=>document.getElementById(id),API=(window.APP_CONFIG||{}).apiUrl||'',ls=k=>localStorage.getItem(k)||'';
@@ -407,9 +460,9 @@ function drawList(){
  E.filter(e=>tabOk(TAB2,e)&&okF(e)&&((e.item||D.db[e.barcode]||'')+e.barcode).toLowerCase().includes(q)).forEach(e=>(m[e.barcode]=m[e.barcode]||{b:e.barcode,n:e.item||D.db[e.barcode]||e.barcode,l:[]}).l.push(e));
  GP=Object.values(m).map(p=>{p.l.sort(byDue);p.d=days(p.l[0].due);p.q=p.l.reduce((a,e)=>a+e.qty,0);p.k=isNaN(p.d)?8:BK.findIndex(x=>x[0](p.d));return p}).sort((x,y)=>x.k-y.k||x.d-y.d||x.n.localeCompare(y.n));
  const n={};GP.forEach(p=>n[p.k]=(n[p.k]||0)+1);let last=-1,h='';
- GP.forEach((p,i)=>{if(p.k!=last){last=p.k;h+=`<div class="grp"><b>${NMB[p.k]}</b><span>${n[p.k]} รายการ</span></div>`}
+ GP.forEach((p,i)=>{if(p.k!=last){last=p.k;h+=`<div class="grp" style="--c:${dc(p.d)}"><b>${NMB[p.k]}</b><span>${n[p.k]} รายการ</span></div>`}
   const cls=[...new Set(p.l.map(e=>e.claim).filter(x=>x&&x!='-'))];
-  h+=`<button class="rw ${SELB==p.b?'on':''}" onclick="pickP(${i})"><div class="dn" style="color:${dc(p.d)}">${isNaN(p.d)?'–':p.d}</div><div class="nm2"><b>${esc(p.n)}</b><small>${esc(p.b)} · ${p.l.length} ล็อต</small>${cls.length?'<div class="mcs">'+cls.map(x=>clPill(x)).join('')+'</div>':''}</div><div class="bar2"><i style="width:${isNaN(p.d)?0:Math.max(4,Math.min(Math.max(p.d,0),30)/30*100)}%;background:${dc(p.d)}"></i></div><div class="dt2">${fd(p.l[0].due)}</div><div class="qt"><b>${p.q}</b><small>ชิ้น</small></div></button>`});
+  h+=`<button class="rw ${SELB==p.b?'on':''}" onclick="pickP(${i})"><div class="dn" style="--c:${dc(p.d)}">${isNaN(p.d)?'–':p.d}<small>วัน</small></div><div class="nm2"><b>${esc(p.n)}</b><small><span class="bcx">${esc(p.b)} · </span>${p.l.length} ล็อต</small>${cls.length?'<div class="mcs">'+cls.map(x=>clPill(x)).join('')+'</div>':''}</div><div class="bar2"><i style="width:${isNaN(p.d)?0:Math.max(4,Math.min(Math.max(p.d,0),30)/30*100)}%;background:${dc(p.d)}"></i></div><div class="dt2">${fd(p.l[0].due)}</div><div class="qt"><b>${p.q}</b><small>ชิ้น</small></div></button>`});
  $('lst').innerHTML=h||`<div class="mut" style="padding:36px 0;text-align:center">${!loaded?(BR?'กำลังโหลดข้อมูล…':'เลือกสาขาเพื่อเริ่มใช้งาน'):'ไม่พบรายการ'}</div>`;drawDetail()}
 function pickP(i){SELB=GP[i].b;drawList();if(!wide())$('dt').showModal()}
 let AL=[],ALBACK=0;
@@ -488,7 +541,7 @@ const chipsH=(sel,fn,m)=>CL.map((c,i)=>`<button type="button" class="chip ${(m?s
 const tabs=()=>D.tabs||[],ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 function drawAdd(){$('cl').innerHTML=chipsH(CLV,'setCl');const v=$('tabSel').value;$('tabSel').innerHTML=tabs().map(t=>`<option ${t==v?'selected':''}>${esc(t)}</option>`).join('');$('tabRow').classList.toggle('hide',tabs().length<2)}
 const setCl=i=>{CLV=CL[i][0];drawAdd()};
-function drawQ(){localStorage.setItem('Q',JSON.stringify(Q));$('qn').textContent=Q.length?Q.length+' รายการ · '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น':'';$('qs').classList.toggle('hide',!Q.length);$('qcard').classList.toggle('e0',!Q.length);
+function drawQ(){qLbl();localStorage.setItem('Q',JSON.stringify(Q));$('qn').textContent=Q.length?Q.length+' รายการ · '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น':'';$('qs').classList.toggle('hide',!Q.length);$('qcard').classList.toggle('e0',!Q.length);
  $('ql').innerHTML=Q.map((x,i)=>`<div class="lc" style="--c:${clr(x.claim)[1]}"><div class="t"><b>${esc(x.item)}</b><span class="mut">${esc(x.barcode)}${tabs().length>1?' · '+esc(x.tab):''}</span><div class="mcs">${pill(days(x.due))}<span class="mut" style="font-size:12px">${fd(x.due)}</span>${(x.claim&&x.claim!='-')?clPill(x.claim):''}</div></div><div class="r"><div class="qs3"><button onclick="qq(${i},-1)" aria-label="ลด">−</button><b>${x.qty}</b><button onclick="qq(${i},1)" aria-label="เพิ่ม">＋</button></div><button class="btn del sm" onclick="Q.splice(${i},1);drawQ()">ลบ</button></div></div>`).join('')||'<p class="mut">ยังไม่มีรายการ สแกนหรือกรอกด้านซ้าย แล้วกด "เข้าคิว"</p>'}
 function queue(again){let b,item;
  if(SEL){b=SEL.b;item=SEL.n}else{const n=$('nmIn'),c=$('nbc');if(!n)return toast('พิมพ์ค้นหา แล้วเลือกสินค้าจากรายการ');item=n.value.trim();if(!item)return toast('ใส่ชื่อสินค้าใหม่');b=c.value.trim()||'NB'+Date.now().toString().slice(-9)}
@@ -496,7 +549,11 @@ function queue(again){let b,item;
  if(!(q>0))return toast('ใส่จำนวน');if(!d)return toast('ใส่วันหมดอายุให้ถูกต้อง เช่น 14.2.26');
  Q.push({barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
  $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();drawQ();toast('เข้าคิวแล้ว ('+Q.length+') '+item);
- $('bc').focus()}
+ $('bc').focus();return true}
+function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if(b)b.textContent=n?'✓ บันทึกทั้งหมด ('+(n+1)+')':'✓ บันทึกเลย';
+ if(bar){bar.classList.toggle('hide',!n||CUR!='add');$('qbn').textContent=n+' รายการ · '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น'}}
+async function saveNow(){if(!queue())return;await saveQ()}
+function toQ(){const c=$('qcard');if(c)c.scrollIntoView({behavior:'smooth',block:'center'})}
 async function saveQ(){
  if(Q.some(x=>x.br&&x.br!==BR))return toast('ในคิวมีรายการของสาขาอื่น กรุณาลบออกหรือสลับไปสาขาเดิมก่อนบันทึก');
  const add=[],up=new Map();
@@ -660,7 +717,7 @@ async function svBr(el){const c=el.closest('[data-k]'),pin0=c.querySelector('.bc
 async function unlockBr(el){const c=el.closest('[data-k]'),r=await adm('adminUnlock',{key:c.dataset.k});if(!r.ok)return toast(r.error);toast('ปลดล็อกแล้ว ใส่ PIN ได้ใหม่ทันที')}
 async function dlBr(el){const c=el.closest('[data-k]');if(!c.dataset.k)return c.remove();if(!await ask({t:'ลบสาขานี้?',b:'ข้อมูลในชีตจะไม่ถูกลบ แต่สาขานี้จะเข้าใช้งานไม่ได้อีก',ok:'ลบสาขา',danger:1}))return;const r=await adm('adminDel',{key:c.dataset.k});if(!r.ok)return toast(r.error);drawAdm(r.list)}
 async function admPw(){const r=await adm('adminPw',{newAdmin:$('npw').value});if(!r.ok)return toast(r.error);AD=$('npw').value;$('adm').value=AD;$('npw').value='';toast('เปลี่ยนรหัสแอดมินแล้ว')}
-let CUR='list';function go(p){CUR=p;scrollTo(0,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
+let CUR='list';function go(p){CUR=p;scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
 document.querySelectorAll('#nav button[data-p]').forEach(b=>b.onclick=()=>go(b.dataset.p));
 ['cf','al'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close()}));
 drawSet();
