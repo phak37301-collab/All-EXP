@@ -264,7 +264,7 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
   <div id="sug"></div><div id="pk" class="pk hide"></div><div id="rc"></div></div>
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
   <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
-  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" inputmode="decimal" autocomplete="off" placeholder="14.2.26" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
+  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" inputmode="decimal" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
   <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb" onclick="$('qty').value=48">48</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
@@ -289,7 +289,7 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
  <div id="setb" class="sgrid"></div>
  <div class="card" style="margin-top:14px"><h3>🔐 จัดการสาขา (แอดมิน)</h3>
   <div class="row"><input id="adm" type="password" placeholder="รหัสแอดมิน (ครั้งแรก: ตั้งรหัสใหม่ 4 ตัวขึ้นไป)" autocomplete="off"><button class="btn fit" onclick="W(this,admLoad)">เข้าสู่โหมดแอดมิน</button></div>
-  <div class="mut" style="margin-top:8px;font-size:13px">ลืมรหัสแอดมิน: เปิด Apps Script เลือกฟังก์ชัน resetAdminPassword แล้วกด Run จากนั้นกลับมากรอกรหัสใหม่ที่ช่องนี้</div><div id="brs"></div></div>
+  <div class="mut" style="margin-top:8px;font-size:13px">ลืมรหัสแอดมิน: เข้าหน้าระบบ จากนั้นกลับมากรอกรหัสใหม่ที่ช่องนี้</div><div id="brs"></div></div>
 </section>
 </div></div>
 
