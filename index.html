@@ -51,7 +51,7 @@ main{margin:0;padding:12px 12px calc(96px + env(safe-area-inset-bottom))}
 .top{flex-wrap:wrap}.top h2{font-size:20px}
 .g{grid-template-columns:1fr 1fr}.hero,.wide{grid-column:1/-1}.k b{font-size:30px}
 .card{padding:14px;border-radius:18px}
-.scan{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0}.vw video{aspect-ratio:auto;height:58vh}
+
 }
 #bar{position:fixed;top:0;left:0;right:0;height:4px;z-index:30;display:none;background:linear-gradient(90deg,transparent,var(--ac2),var(--ac),transparent) no-repeat;background-size:40% 100%;animation:bar 1s linear infinite}
 body.busy #bar{display:block}@keyframes bar{from{background-position:-40% 0}to{background-position:140% 0}}
@@ -62,19 +62,60 @@ body.ldg .hero b{background:linear-gradient(90deg,#ffffff30 25%,#ffffff55 50%,#f
 body.ldg :is(#bars,#dn,#tp5,#top,#topc,#lv,#tbl,#cards)>*{visibility:hidden}
 body.ldg :is(#bars,#tp5){min-height:150px}@keyframes shm{to{background-position:-200% 0}}
 @media(prefers-reduced-motion:reduce){#bar,body.ldg *{animation:none!important}}
+body{background:radial-gradient(60% 50% at 95% -5%,#c4b5fd88,transparent 65%),radial-gradient(50% 45% at -5% 100%,#93c5fd77,transparent 65%),radial-gradient(35% 30% at 60% 45%,#fbcfe855,transparent 70%),#f4f5fc}
+#side{background:linear-gradient(180deg,#4338ca,#7c3aed);box-shadow:0 14px 34px #4f46e555}
+#side button{color:#ffffffb8}#side button:hover{background:#ffffff22}#side button.on{background:#fff;color:#4f46e5;box-shadow:0 6px 16px #0003}
+#side .lg{background:#fff;display:grid;place-items:center;font-size:22px}#side button.fab{background:linear-gradient(135deg,#ff9a62,#ff5e7e);color:#fff;box-shadow:0 8px 20px #ff5e7e66}
+.card{border:1px solid #fff;box-shadow:0 10px 30px #4f46e514}
+.top h2{font-size:26px;font-weight:600}.pillbtn{transition:transform .15s}.pillbtn:hover{transform:translateY(-2px)}
+.banner{position:relative;overflow:hidden;border-radius:26px;padding:26px 30px;margin-bottom:14px;color:#fff;background:linear-gradient(120deg,#4f46e5,#8b5cf6 60%,#c084fc);box-shadow:0 18px 40px #6d4af066;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.banner.hot{background:linear-gradient(120deg,#f43f5e,#fb7185 55%,#fb923c);box-shadow:0 18px 40px #f43f5e55}
+.banner:before,.banner:after{content:"";position:absolute;border-radius:50%;background:#ffffff1f}.banner:before{width:260px;height:260px;right:-60px;top:-110px}.banner:after{width:160px;height:160px;right:150px;bottom:-95px}
+.banner>*{position:relative;z-index:1}.banner h3{margin:0;font-size:25px;line-height:1.3;font-weight:600}.banner p{margin:4px 0 14px;opacity:.92}
+.banner .art{font-size:80px;animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px) rotate(4deg)}}
+.banner .btn{background:#fff;color:#4f46e5}.banner .btn.o{background:#ffffff33;color:#fff}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}.kp .card{margin:0;position:relative;overflow:hidden;transition:transform .2s}.kp .card:hover{transform:translateY(-3px)}
+.kp .k b{font-size:36px}.kp .hero{background:linear-gradient(135deg,#ff9a62,#ff5e7e)}
+.ic{position:absolute;right:14px;top:14px;width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:24px;font-style:normal;background:color-mix(in srgb,var(--c) 16%,#fff)}.kp .hero .ic{background:#ffffff38}
+.bar{transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*70ms)}@keyframes grow{from{transform:scaleY(0)}}
+#dn{animation:pop .8s cubic-bezier(.2,.8,.2,1)}@keyframes pop{from{transform:scale(.8) rotate(-40deg);opacity:0}}
+.pill{font-weight:500;background:color-mix(in srgb,var(--c) 30%,#fff)}.pill:before{display:none}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:6px}
+tr[style*="--c"] td:first-child{box-shadow:inset 4px 0 0 var(--c)}tr[style*="--c"]:hover td{background:#f5f6ff}
+.lc{border-left:5px solid var(--c,#ddd)}
+.lv button{position:relative;overflow:hidden;transition:transform .15s}.lv button:hover{transform:translateY(-3px)}.em{position:absolute;right:10px;top:8px;font-size:30px}
+.addg{display:grid;grid-template-columns:1fr 1.2fr;gap:14px;max-width:980px}.addg .card{margin:0}
+.scanbox{text-align:center;background:linear-gradient(160deg,#e9ecff,#fff 65%)}
+.pulse{width:112px;height:112px;border-radius:50%;border:0;color:#fff;font-size:46px;cursor:pointer;margin:10px 0;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 0 0 0 #7f5cff77;animation:pulse 2s infinite}@keyframes pulse{70%{box-shadow:0 0 0 28px #7f5cff00}100%{box-shadow:0 0 0 0 #7f5cff00}}
+@media(max-width:760px){.kp{grid-template-columns:1fr 1fr}.kp .k b{font-size:28px}.banner{padding:18px}.banner h3{font-size:19px}.banner .art{font-size:46px}.addg{grid-template-columns:1fr}.pulse{width:84px;height:84px;font-size:34px}
+#side{background:linear-gradient(90deg,#4338ca,#7c3aed)}}
+@media(prefers-reduced-motion:reduce){.banner .art,.pulse,.bar,#dn{animation:none}}
+.scan{width:min(96vw,460px)}
+.ib{width:40px;height:40px;border:0;border-radius:50%;background:#eceeff;font-size:18px;cursor:pointer;flex:none}.ib.on{background:var(--ac);color:#fff}
+.vw{aspect-ratio:2/1;transition:box-shadow .2s;box-shadow:0 0 0 2px #7f5cff55}.vw.hit{box-shadow:0 0 0 3px #22c7a1,0 0 30px #22c7a199}
+.vw video{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+.cn{position:absolute;width:28px;height:28px;border:0 solid #7f5cff;pointer-events:none}.vw.hit .cn{border-color:#22c7a1}
+.cn.a{left:8px;top:8px;border-left-width:3px;border-top-width:3px;border-radius:12px 0 0 0}.cn.b{right:8px;top:8px;border-right-width:3px;border-top-width:3px;border-radius:0 12px 0 0}
+.cn.c{left:8px;bottom:8px;border-left-width:3px;border-bottom-width:3px;border-radius:0 0 0 12px}.cn.d{right:8px;bottom:8px;border-right-width:3px;border-bottom-width:3px;border-radius:0 0 12px 0}
+.sl{position:absolute;left:16px;right:16px;top:50%;height:2px;background:#7f5cff;box-shadow:0 0 14px #7f5cff;pointer-events:none;animation:scn 1.4s ease-in-out infinite alternate}@keyframes scn{from{opacity:.35}to{opacity:1}}.vw.hit .sl{display:none}
+.fr{position:absolute;width:56px;height:56px;border:2px solid #fff;border-radius:50%;opacity:0;pointer-events:none}.fr.go{animation:fr .6s}@keyframes fr{from{opacity:1;transform:translate(-50%,-50%) scale(1.5)}to{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
+.zb{min-width:54px;padding:8px 14px;border:0;border-radius:99px;background:#eceeff;color:var(--mut);font:600 14px Prompt,sans-serif;cursor:pointer;flex:none}.zb.on{background:var(--ac);color:#fff}
+@media(prefers-reduced-motion:reduce){.sl{animation:none}}
 @media print{#side,.top,.noprint{display:none!important}main{margin:0}body{background:#fff}.card{box-shadow:none}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<nav id="side"><div class="lg"></div><button data-p="home" data-l="ภาพรวม" class="on" title="ภาพรวม">▦</button><button data-p="list" data-l="รายการ" title="รายการ">☰</button><button class="fab" data-l="สแกน" onclick="scan()" title="สแกน">▣</button><button data-p="add" data-l="เพิ่ม" title="เพิ่มสินค้า">＋</button><button data-p="rep" data-l="รายงาน" title="รายงาน">▤</button><button data-p="set" data-l="ตั้งค่า" title="ตั้งค่า">⚙</button></nav>
+<nav id="side"><div class="lg">📦</div><button data-p="home" data-l="ภาพรวม" class="on" title="ภาพรวม">▦</button><button data-p="list" data-l="รายการ" title="รายการ">☰</button><button class="fab" data-l="สแกน" onclick="scan()" title="สแกน">▣</button><button data-p="add" data-l="เพิ่ม" title="เพิ่มสินค้า">＋</button><button data-p="rep" data-l="รายงาน" title="รายงาน">▤</button><button data-p="set" data-l="ตั้งค่า" title="ตั้งค่า">⚙</button></nav>
 <main>
 <div class="top"><div style="flex:1"><h2 id="hi">สวัสดี</h2><div class="mut" id="sub"></div></div><button class="pillbtn dsk" onclick="scan()">▣ สแกน</button><button class="pillbtn" id="brBtn" onclick="openBr()">เลือกสาขา</button><button class="pillbtn" onclick="W(this,load)">รีเฟรช</button></div>
 
-<section id="home"><div class="g">
- <div class="card hero k"><span id="k1t"></span><b id="k1"></b><small id="k1s"></small></div>
- <div class="card k"><span class="mut">จำนวนล็อตทั้งหมด</span><b id="k2"></b></div>
- <div class="card k"><span class="mut">จำนวนชิ้นรวม</span><b id="k3"></b></div>
+<section id="home"><div class="banner" id="bn"><div><h3 id="bn1">กำลังโหลดข้อมูล…</h3><p id="bn2"></p><div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn fit" onclick="scan('add')">▣ สแกนเพิ่มสินค้า</button><button class="btn o fit" onclick="go('list')">ดูรายการ</button></div></div><div class="art" id="bnA">📦</div></div>
+<div class="kp">
+ <div class="card hero k"><i class="ic">⏳</i><span id="k1t"></span><b id="k1"></b><small id="k1s"></small></div>
+ <div class="card k"><i class="ic" style="--c:#ef4444">🚨</i><span class="mut">หมดอายุแล้ว / ตัดเบิก</span><b id="k4"></b><small class="mut" id="k4s"></small></div>
+ <div class="card k"><i class="ic" style="--c:#6366f1">📦</i><span class="mut">จำนวนล็อตทั้งหมด</span><b id="k2"></b></div>
+ <div class="card k"><i class="ic" style="--c:#22c7a1">🧮</i><span class="mut">จำนวนชิ้นรวม</span><b id="k3"></b></div>
+</div><div class="g">
  <div class="card wide"><h3>หมดอายุรายเดือน (ชิ้น)</h3><div id="bars" style="display:flex;gap:2.5%;height:210px"></div></div>
  <div class="card"><h3>แยกตามสถานะ</h3><svg id="dn" viewBox="0 0 100 100" width="150" style="display:block;margin:auto"></svg><div id="lg2" style="margin-top:8px"></div></div>
  <div class="card"><h3>ใกล้หมดอายุมากที่สุด (ชิ้น)</h3><div id="tp5"></div></div><div class="card wide"><h3>ต้องจัดการก่อน</h3><div class="dsk" style="overflow-x:auto"><table id="top"></table></div><div class="mob" id="topc"></div></div>
@@ -85,13 +126,13 @@ body.ldg :is(#bars,#tp5){min-height:150px}@keyframes shm{to{background-position:
  <div class="card"><div class="row" style="margin-bottom:10px"><input id="q" placeholder="ค้นหาชื่อหรือบาร์โค้ด" oninput="drawList()"><button class="btn fit" onclick="scan('find')">▣ สแกน</button></div><div class="dsk" style="overflow-x:auto"><table id="tbl"></table></div><div class="mob" id="cards"></div></div>
 </section>
 
-<section id="add" class="hide"><div class="card" style="max-width:560px">
+<section id="add" class="hide"><div class="addg"><div class="card scanbox"><button class="pulse" onclick="scan('add')" aria-label="สแกนบาร์โค้ด">▣</button><h3>สแกนบาร์โค้ดสินค้า</h3><p class="mut">กดสแกนแล้วเล็งที่บาร์โค้ด ระบบจะดึงชื่อสินค้าให้เอง เหลือกรอกแค่จำนวนและวันหมดอายุ</p></div><div class="card">
  <label for="bc">บาร์โค้ด (พิมพ์ ยิงด้วยเครื่องสแกน หรือกดสแกนด้วยกล้อง)</label>
  <div class="row"><input id="bc" inputmode="numeric" autocomplete="off"><button class="btn fit" onclick="scan('add')">สแกนกล้อง</button></div>
  <div class="nm" id="nm"></div><div class="mut" id="lots"></div>
  <input id="nmIn" class="hide" placeholder="ไม่พบในฐานข้อมูล พิมพ์ชื่อสินค้าใหม่">
  <div class="row"><div><label for="qty">จำนวน</label><input id="qty" type="number" inputmode="numeric" min="1"></div><div><label for="due">วันหมดอายุ</label><input id="due" type="date"></div></div>
- <button class="btn big" onclick="W(this,add)">บันทึกเข้าชีต</button></div></section>
+ <button class="btn big" onclick="W(this,add)">บันทึกเข้าชีต</button></div></div></section>
 
 <section id="rep" class="hide">
  <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" onclick="csv()">CSV</button><button class="btn fit" onclick="print()">พิมพ์ / PDF</button></div>
@@ -111,18 +152,28 @@ body.ldg :is(#bars,#tp5){min-height:150px}@keyframes shm{to{background-position:
 <dialog id="ed"><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date">
  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
 <dialog id="lg"><b>เลือกสาขา</b><label for="brSel">สาขา</label><select id="brSel"></select><label for="pw">รหัสสาขา (ขอจากแอดมิน)</label><input id="pw" type="password" autocomplete="off"><button class="btn big" onclick="W(this,login)">เข้าใช้งาน</button><button class="btn alt big" style="margin-top:8px" onclick="lg.close();go('set')">ตั้งค่าแอดมิน</button></dialog>
-<dialog id="sc" class="scan"><div class="seg"><button data-m="add" class="on" onclick="setMode('add')">เพิ่มสินค้า</button><button data-m="find" onclick="setMode('find')">ค้นหา</button></div><div class="vw"><video id="vid" playsinline muted autoplay></video><i class="frame"></i></div><div class="mut" id="scmsg" style="margin:8px 0;min-height:42px"></div><div class="row"><button id="tq" class="btn alt hide" onclick="torch()">ไฟฉาย</button><label class="btn alt" for="pic" style="text-align:center">ถ่ายรูปแทน</label><button class="btn" onclick="stopScan()">ปิด</button></div><input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
+<dialog id="sc" class="scan">
+ <div class="row" style="margin-bottom:10px"><div style="font-weight:600"><i class="dot" id="sdot" style="--c:#7f5cff"></i><span id="sst">กำลังสแกน</span></div>
+  <button class="ib fit" id="bp" onclick="toggleBeep()" aria-label="เปิดปิดเสียงบี๊บ">🔊</button><button class="ib fit hide" id="tq" onclick="torch()" aria-label="ไฟฉาย">🔦</button><button class="ib fit" onclick="stopScan()" aria-label="ปิดกล้อง">✕</button></div>
+ <div class="seg"><button data-m="add" class="on" onclick="setMode('add')">เพิ่มสินค้า</button><button data-m="find" onclick="setMode('find')">ค้นหา</button></div>
+ <div class="vw" id="vw" onclick="focusTap(event)"><video id="vid" playsinline muted autoplay></video><b class="cn a"></b><b class="cn b"></b><b class="cn c"></b><b class="cn d"></b><i class="sl"></i><i class="fr" id="fr"></i></div>
+ <div class="row" id="zm" style="justify-content:center;margin-top:10px"></div>
+ <div class="mut" id="scmsg" style="margin:8px 0;min-height:42px;text-align:center"></div>
+ <div class="row"><label class="btn alt" for="pic" style="text-align:center">ถ่ายรูปแทน</label><button class="btn hide" id="addNew">เพิ่มสินค้านี้</button></div>
+ <div class="mut" style="text-align:center;font-size:12px;margin-top:8px">แตะที่ภาพเพื่อโฟกัส · ใช้ซูมช่วยถ้าบาร์โค้ดเล็ก</div>
+ <input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
 <div id="toast"></div>
 <script>
 const $=id=>document.getElementById(id),API=(window.APP_CONFIG||{}).apiUrl||'',ls=k=>localStorage.getItem(k)||'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fd=s=>s?s.split('-').reverse().join('/'):'-',COL=['#ff6b81','#ffa94d','#ffd43b','#74b9ff','#51cf9a'];
+const fd=s=>s?s.split('-').reverse().join('/'):'-',COL=['#ff6b81','#ffa94d','#ffd43b','#74b9ff','#51cf9a','#a0a7bd'];
 const APPN=(window.APP_CONFIG||{}).appName||'สต็อกวันหมดอายุ';document.title=APPN;
 let BR=ls('br'),CODE=ls('code'),BRN=ls('brn'),AD='',D={entries:[],db:{}},editing=null,flt=-1,TH=JSON.parse(ls('th')||'[7,30,60]');
-const NM=()=>['หมดอายุ / ตัดเบิก','ภายใน '+TH[0]+' วัน','ภายใน '+TH[1]+' วัน','ภายใน '+TH[2]+' วัน','ปกติ'];
-const lv=d=>d<=0?0:d<=TH[0]?1:d<=TH[1]?2:d<=TH[2]?3:4;
+const NM=()=>['หมดอายุ / ตัดเบิก','ภายใน '+TH[0]+' วัน','ภายใน '+TH[1]+' วัน','ภายใน '+TH[2]+' วัน','ปกติ','ไม่ระบุวันที่'];
+const lv=d=>isNaN(d)?5:d<=0?0:d<=TH[0]?1:d<=TH[1]?2:d<=TH[2]?3:4;
 function days(s){const a=new Date();a.setHours(0,0,0,0);return Math.round((new Date(s+'T00:00:00')-a)/864e5)}
-const pill=d=>{const l=lv(d);return `<span class="pill" style="--c:${COL[l]}">${d<=0?'หมดอายุ ตัดเบิก':'เหลือ '+d+' วัน'}</span>`};
+const EM=['🚨','⚠️','⏳','📅','✅','❔'];
+const pill=d=>{const l=lv(d);return `<span class="pill" style="--c:${COL[l]}">${EM[l]} ${isNaN(d)?'ไม่ระบุวันที่':d<=0?'หมดอายุ ตัดเบิก':'เหลือ '+d+' วัน'}</span>`};
 function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t._);t._=setTimeout(()=>t.style.display='none',2600)}
 let PEND=0,loaded=0;
 async function post(b){PEND++;document.body.classList.add('busy');
@@ -148,27 +199,27 @@ async function load(){if(!loaded)document.body.classList.add('ldg');try{D=await 
 function drawAll(){$('brBtn').textContent=BRN||'เลือกสาขา';$('hi').textContent='สวัสดี'+(BRN?', '+BRN:'');$('sub').textContent=APPN+' · สรุปสต็อกและวันหมดอายุ';drawHome();drawList();drawRep();drawExtra();lookup()}
 function drawHome(){
  const E=D.entries,near=E.filter(e=>days(e.due)<=TH[1]),sum=a=>a.reduce((s,e)=>s+e.qty,0);
- $('k1t').textContent='ใกล้หมดอายุ (ภายใน '+TH[1]+' วัน)';$('k1').textContent=near.length;$('k1s').textContent='ล็อต · รวม '+sum(near)+' ชิ้น';
- $('k2').textContent=E.length;$('k3').textContent=sum(E);
+ $('k1t').textContent='ใกล้หมดอายุ (ภายใน '+TH[1]+' วัน)';cnt('k1',near.length);$('k1s').textContent='ล็อต · รวม '+sum(near)+' ชิ้น';
+ cnt('k2',E.length);cnt('k3',sum(E));
  const now=new Date(),M=[...Array(6)].map((_,i)=>{const d=new Date(now.getFullYear(),now.getMonth()+i,1);return{k:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'),n:d.toLocaleDateString('th-TH',{month:'short'}),v:0}});
  E.forEach(e=>{const m=M.find(x=>x.k==e.due.slice(0,7));if(m)m.v+=e.qty});
  const mx=Math.max(1,...M.map(m=>m.v));
- $('bars').innerHTML=M.map((m,i)=>`<div style="flex:1;display:flex;flex-direction:column;text-align:center;min-width:0"><small style="color:#1c2240">${m.v||''}</small><div style="flex:1;display:flex;align-items:flex-end"><i style="display:block;width:100%;max-width:64px;margin:0 auto;height:${Math.max(m.v/mx*100,2)}%;border-radius:10px;background:${i?'#8f8cf7':'#5b5bf0'}"></i></div><small class="mut">${m.n}</small></div>`).join('');
- const c=[0,0,0,0,0];E.forEach(e=>c[lv(days(e.due))]++);let off=0;const tot=E.length||1;
+ $('bars').innerHTML=M.map((m,i)=>`<div style="flex:1;display:flex;flex-direction:column;text-align:center;min-width:0"><small style="color:#1c2240">${m.v||''}</small><div style="flex:1;display:flex;align-items:flex-end"><i class="bar" style="--i:${i};display:block;width:100%;max-width:64px;margin:0 auto;height:${Math.max(m.v/mx*100,2)}%;border-radius:10px;background:${i?'linear-gradient(180deg,#a78bfa,#6366f1)':'linear-gradient(180deg,#ffb36b,#ff6b6b)'}"></i></div><small class="mut">${m.n}</small></div>`).join('');
+ const c=[0,0,0,0,0,0];E.forEach(e=>c[lv(days(e.due))]++);let off=0;const tot=E.length||1;
  $('dn').innerHTML=c.map((n,i)=>{const l=n/tot*251.3,s=`<circle cx="50" cy="50" r="40" fill="none" stroke="${COL[i]}" stroke-width="14" stroke-dasharray="${l} 251.3" stroke-dashoffset="${-off}" transform="rotate(-90 50 50)"/>`;off+=l;return s}).join('')+`<text x="50" y="55" text-anchor="middle" font-size="16" font-weight="600" fill="#1c2240">${E.length}</text>`;
- $('lg2').innerHTML=NM().map((n,i)=>`<div class="mut"><span class="pill" style="--c:${COL[i]};padding:0 8px"></span> ${n} <b style="float:right;color:#1c2240">${c[i]}</b></div>`).join('');
- $('top').innerHTML='<tr><th>สินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th></tr>'+[...E].sort((a,b)=>a.due<b.due?-1:1).slice(0,6).map(e=>`<tr><td>${esc(e.item||D.db[e.barcode]||e.barcode)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td></tr>`).join('')}
+ $('lg2').innerHTML=NM().map((n,i)=>`<div class="mut"><i class="dot" style="--c:${COL[i]}"></i> ${n} <b style="float:right;color:#1c2240">${c[i]}</b></div>`).join('');
+ $('top').innerHTML='<tr><th>สินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th></tr>'+[...E].sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1).slice(0,6).map(e=>`<tr style="--c:${COL[lv(days(e.due))]}"><td>${esc(e.item||D.db[e.barcode]||e.barcode)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td></tr>`).join('')}
 function drawList(){
- const c=[0,0,0,0,0];D.entries.forEach(e=>c[lv(days(e.due))]++);
- $('lv').innerHTML=NM().map((n,i)=>`<button style="--c:${COL[i]}" class="${flt==i?'on':''}" onclick="flt=flt==${i}?-1:${i};drawList()">${n}<b>${c[i]}</b></button>`).join('');
- const q=$('q').value.toLowerCase(),a=D.entries.filter(e=>(flt<0||lv(days(e.due))==flt)&&(e.item+e.barcode).toLowerCase().includes(q)).sort((x,y)=>x.due<y.due?-1:1);
- $('tbl').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th></th></tr>'+(a.map(e=>`<tr><td>${e.barcode}</td><td>${esc(e.item||D.db[e.barcode]||'')}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td style="white-space:nowrap"><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></td></tr>`).join('')||'<tr><td colspan="6" class="mut">ไม่พบรายการ</td></tr>');$('cards').innerHTML=a.map(e=>lc(e.item||D.db[e.barcode]||'(ไม่มีชื่อ)',e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)),`<div><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></div>`)).join('')||'<p class="mut">ไม่พบรายการ</p>'}
-function group(f){const m={};D.entries.filter(e=>f<0||lv(days(e.due))==f).forEach(e=>{const k=e.barcode+'|'+e.due;(m[k]=m[k]||{...e,qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>a.due<b.due?-1:1)}
+ const c=[0,0,0,0,0,0];D.entries.forEach(e=>c[lv(days(e.due))]++);
+ $('lv').innerHTML=NM().map((n,i)=>`<button style="--c:${COL[i]}" class="${flt==i?'on':''}" onclick="flt=flt==${i}?-1:${i};drawList()"><span class="em">${EM[i]}</span>${n}<b>${c[i]}</b></button>`).join('');
+ const q=$('q').value.toLowerCase(),a=D.entries.filter(e=>(flt<0||lv(days(e.due))==flt)&&(e.item+e.barcode).toLowerCase().includes(q)).sort((x,y)=>(x.due||'9')<(y.due||'9')?-1:1);
+ $('tbl').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th></th></tr>'+(a.map(e=>`<tr style="--c:${COL[lv(days(e.due))]}"><td>${e.barcode}</td><td>${esc(e.item||D.db[e.barcode]||'')}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td style="white-space:nowrap"><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></td></tr>`).join('')||'<tr><td colspan="6" class="mut">ไม่พบรายการ</td></tr>');$('cards').innerHTML=a.map(e=>lc(e.item||D.db[e.barcode]||'(ไม่มีชื่อ)',e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)),`<div><button class="btn alt sm" onclick="openEdit(${e.row})">แก้ไข</button> <button class="btn del sm" onclick="W(this,()=>del(${e.row}))">ลบ</button></div>`)).join('')||'<p class="mut">ไม่พบรายการ</p>'}
+function group(f){const m={};D.entries.filter(e=>f<0||lv(days(e.due))==f).forEach(e=>{const k=e.barcode+'|'+e.due;(m[k]=m[k]||{...e,qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1)}
 function drawRep(){
  const s=$('f2'),v=s.value||-1;s.innerHTML='<option value="-1">ทุกสถานะ</option>'+NM().map((n,i)=>`<option value="${i}">${n}</option>`).join('');s.value=v;
  const g=group(+s.value);
  $('sum').innerHTML=`<b>${g.length} รายการ / ${g.reduce((a,e)=>a+e.qty,0)} ชิ้น</b>`;
- $('tb').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th></tr>'+g.map(e=>`<tr><td>${e.barcode}</td><td>${esc(e.item)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td></tr>`).join('')}
+ $('tb').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th></tr>'+g.map(e=>`<tr style="--c:${COL[lv(days(e.due))]}"><td>${e.barcode}</td><td>${esc(e.item)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td></tr>`).join('')}
 function csv(){const g=group(+$('f2').value),r=[['บาร์โค้ด','ชื่อสินค้า','จำนวน','วันหมดอายุ','เหลือ(วัน)']].concat(g.map(e=>[e.barcode,e.item,e.qty,fd(e.due),days(e.due)]));
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r.map(x=>x.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\r\n')],{type:'text/csv'}));a.download='รายงานสต็อก_'+new Date().toISOString().slice(0,10)+'.csv';a.click()}
 function lookup(){const b=$('bc').value.trim(),n=D.db[b],l=D.entries.filter(e=>e.barcode==b);
@@ -182,49 +233,90 @@ async function add(){
   else await api({action:'add',barcode:b,item,qty:q,due:d});
   toast('บันทึกแล้ว');['bc','qty','due','nmIn'].forEach(i=>$(i).value='');await load();$('bc').focus()}catch(e){toast(e.message)}}
 function openEdit(r){editing=D.entries.find(e=>e.row==r);$('edN').textContent=editing.item;$('edQ').value=editing.qty;$('edD').value=editing.due;$('ed').showModal()}
-async function saveEdit(){try{await api({action:'update',row:editing.row,barcode:editing.barcode,qty:+$('edQ').value,due:$('edD').value});$('ed').close();toast('แก้ไขแล้ว');load()}catch(e){toast(e.message)}}
+async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');try{await api({action:'update',row:editing.row,barcode:editing.barcode,qty:+$('edQ').value,due:$('edD').value});$('ed').close();toast('แก้ไขแล้ว');load()}catch(e){toast(e.message)}}
 async function del(r){const e=D.entries.find(x=>x.row==r);if(!confirm('ลบ '+e.item+'\nจำนวน '+e.qty+' หมดอายุ '+fd(e.due)+' ?'))return;try{await api({action:'delete',row:r,barcode:e.barcode});toast('ลบแล้ว');load()}catch(x){toast(x.message)}}
-const lc=(n,sub,right,ph,act)=>`<div class="lc"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
+const lc=(n,sub,right,ph,act)=>`<div class="lc" style="--c:${(ph.match(/--c:([^">;]+)/)||[])[1]||'#ddd'}"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
+function cnt(id,to){const el=$(id);if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=to;return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/700);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
 function drawExtra(){
- const E=[...D.entries].sort((a,b)=>a.due<b.due?-1:1);
+ const E0=D.entries,ex=E0.filter(e=>e.due&&days(e.due)<=0),u7=E0.filter(e=>e.due&&days(e.due)>0&&days(e.due)<=TH[0]),hot=ex.length+u7.length;
+ cnt('k4',ex.length);$('k4s').textContent=ex.length?'รวม '+ex.reduce((a,e)=>a+e.qty,0)+' ชิ้น':'ไม่มีรายการ';
+ $('bn').classList.toggle('hot',hot>0);$('bnA').textContent=!BR||!E0.length?'📦':hot?'🚨':'✅';
+ $('bn1').textContent=!BR?'เลือกสาขาเพื่อเริ่มใช้งาน':!E0.length?'ยังไม่มีข้อมูลในสาขานี้':hot?'มี '+hot+' ล็อตที่ต้องจัดการด่วน':'สต็อกปกติดี ไม่มีของหมดอายุเร่งด่วน';
+ $('bn2').textContent=E0.length?(hot?'หมดอายุแล้ว '+ex.length+' ล็อต · หมดภายใน '+TH[0]+' วัน '+u7.length+' ล็อต':'ติดตามต่อได้ในหน้ารายการ (ล็อตทั้งหมด '+E0.length+')'):'กดสแกนหรือเพิ่มสินค้าเพื่อเริ่มต้น';
+ const E=[...D.entries].sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1);
  $('topc').innerHTML=E.slice(0,6).map(e=>lc(e.item||D.db[e.barcode]||e.barcode,fd(e.due),e.qty+' ชิ้น',pill(days(e.due)))).join('');
  const m={};E.filter(e=>days(e.due)<=TH[1]).forEach(e=>m[e.barcode]=(m[e.barcode]||0)+e.qty);
  const t=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,5),mx=t[0]?t[0][1]:1;
  $('tp5').innerHTML=t.map(([b,v])=>`<div style="margin:9px 0"><div class="mut" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(D.db[b]||b)}</span><b style="color:#1c2240">${v}</b></div><div style="height:8px;border-radius:9px;background:#eceeff"><i style="display:block;height:100%;width:${v/mx*100}%;border-radius:9px;background:linear-gradient(90deg,#5b5bf0,#7f5cff)"></i></div></div>`).join('')||'<div class="mut">ไม่มีสินค้าใกล้หมดอายุ</div>';
  $('tbc').innerHTML=group(+$('f2').value).map(e=>lc(e.item,e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)))).join('')}
-// สแกนบาร์โค้ด: Android/Chrome ใช้ BarcodeDetector, iPhone/Safari ใช้ ZXing, ถ้าเปิดกล้องไม่ได้ให้ถ่ายรูปแทน
-let stream,loop,zx,SM='add',busy=0;
+// สแกนบาร์โค้ดแบบเร็ว: ตัดเฉพาะกรอบกลาง ย่อเหลือ ~720px สลับหมุน 90° (สำหรับบาร์โค้ดแนวตั้ง) ใช้ BarcodeDetector ถ้ามี ไม่งั้น ZXing
+let stream,tmr,ztrack,zr,SM='add',paused=0,inTick=0,rot=0,last={c:'',t:0},AC,cv,cx,rd,det,beepOn=localStorage.getItem('beep')!=='0';
+const spin='<i class="spin"></i>';
+const strip=r=>String(r||'').replace(/[\x00-\x1f\x7f]/g,'').trim().replace(/^\][A-Za-z][A-Za-z0-9]/,'').trim();
 const zxLoad=()=>window.ZXing?0:new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)});
-const hints=()=>{const h=new Map(),F=ZXing.BarcodeFormat;h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E,F.CODE_128,F.CODE_39]);h.set(ZXing.DecodeHintType.TRY_HARDER,true);return h};
+const hints=()=>{const h=new Map(),F=ZXing.BarcodeFormat;h.set(ZXing.DecodeHintType.TRY_HARDER,true);h.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[F.EAN_8,F.EAN_13,F.CODE_128,F.UPC_A,F.UPC_E]);return h};
+const mkRd=()=>{rd=new ZXing.MultiFormatReader();rd.setHints(hints())};
 function setMode(m){SM=m;document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m==m))}
+function toggleBeep(){beepOn=!beepOn;localStorage.setItem('beep',beepOn?'1':'0');$('bp').textContent=beepOn?'🔊':'🔇'}
+function beep(){if(!beepOn||!AC)return;try{AC.resume&&AC.resume();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type='sine';o.frequency.setValueAtTime(1200,t);o.frequency.exponentialRampToValueAtTime(600,t+.15);g.gain.setValueAtTime(.3,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+.22)}catch(e){}}
+function status(hit){$('vw').classList.toggle('hit',!!hit);$('sst').textContent=hit?'อ่านได้แล้ว':'กำลังสแกน';$('sdot').style.setProperty('--c',hit?'#22c7a1':'#7f5cff')}
+async function openCam(){
+ const V=[{video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720},frameRate:{ideal:30,max:30}},audio:false},{video:{facingMode:{ideal:'environment'},width:{ideal:640},height:{ideal:480},frameRate:{ideal:30,max:30}},audio:false},{video:{facingMode:{ideal:'environment'}},audio:false}];
+ let er;for(const c of V){try{return await navigator.mediaDevices.getUserMedia(c)}catch(e){er=e}}throw er}
+function drawROI(v,rotated){
+ const vw=v.videoWidth,vh=v.videoHeight,rw=Math.round(vw*.9),rh=Math.round(vh*.45),sx=Math.round((vw-rw)/2),sy=Math.round((vh-rh)/2),k=Math.min(1,720/rw),dw=Math.max(1,Math.round(rw*k)),dh=Math.max(1,Math.round(rh*k));
+ if(rotated){cv.width=dh;cv.height=dw;cx.save();cx.translate(dh/2,dw/2);cx.rotate(Math.PI/2);cx.drawImage(v,sx,sy,rw,rh,-dw/2,-dh/2,dw,dh);cx.restore()}
+ else{cv.width=dw;cv.height=dh;cx.drawImage(v,sx,sy,rw,rh,0,0,dw,dh)}}
+async function tick(){
+ if(inTick||paused||!stream)return;const v=$('vid');if(v.readyState<2||!v.videoWidth)return;inTick=1;
+ try{const rotated=det?false:rot;rot=!rot;drawROI(v,rotated);
+  if(det){try{const r=await det.detect(cv),x=r[0]&&(r[0].rawValue||r[0].displayValue);if(x){emit(x);return}}catch(e){det=null;zxLoad().then(mkRd)}}
+  if(rd){try{const res=rd.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(cv))));if(res)emit(res.getText())}catch(e){}}
+ }catch(e){}finally{inTick=0}}
+function emit(raw){const c=strip(raw),n=Date.now();if(!c||paused)return;if(last.c===c&&n-last.t<1800)return;last={c,t:n};paused=1;navigator.vibrate&&navigator.vibrate(50);beep();status(1);got(c)}
 async function scan(m){
- setMode(m||(CUR=='add'?'add':CUR=='list'?'find':SM));busy=0;$('sc').showModal();$('scmsg').innerHTML='<i class="spin"></i>กำลังเปิดกล้อง...';
+ setMode(m||(CUR=='add'?'add':CUR=='list'?'find':SM));paused=0;last={c:'',t:0};status(0);$('addNew').classList.add('hide');
+ try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume&&AC.resume()}catch(e){}
+ $('bp').textContent=beepOn?'🔊':'🔇';$('zm').innerHTML='';$('sc').showModal();$('scmsg').innerHTML=spin+'กำลังเปิดกล้อง...';
  try{
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw 0;
-  stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});
-  const v=$('vid');v.srcObject=stream;v.setAttribute('playsinline','');v.muted=true;await v.play();
-  const tr=stream.getVideoTracks()[0],cp=tr.getCapabilities?tr.getCapabilities():{};$('tq').classList.toggle('hide',!cp.torch);
-  $('scmsg').textContent='เล็งบาร์โค้ดให้อยู่ในกรอบ';
-  if('BarcodeDetector' in window&&(await BarcodeDetector.getSupportedFormats()).includes('ean_13')){
-   const det=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39']});
-   loop=setInterval(async()=>{const r=await det.detect(v).catch(()=>[]);if(r[0])got(r[0].rawValue)},250);
-  }else{$('scmsg').innerHTML='<i class="spin"></i>กำลังโหลดตัวอ่านบาร์โค้ด...';await zxLoad();$('scmsg').textContent='เล็งบาร์โค้ดให้อยู่ในกรอบ';zx=new ZXing.BrowserMultiFormatReader(hints(),250);zx.decodeFromStream(stream,v,r=>{if(r)got(r.getText())})}
+  stream=await openCam();const v=$('vid');v.srcObject=stream;v.muted=true;v.setAttribute('playsinline','');await v.play().catch(()=>{});
+  const tr=ztrack=stream.getVideoTracks()[0],cp=(tr.getCapabilities&&tr.getCapabilities())||{};
+  $('tq').classList.toggle('hide',!cp.torch);$('tq').classList.remove('on');
+  if(cp.zoom&&cp.zoom.max){zr=cp.zoom;const tg=Math.min(Math.max(+(localStorage.getItem('zoom')||1),zr.min),zr.max),ap=()=>tr.applyConstraints({advanced:[{zoom:tg}]}).catch(()=>{});
+   $('zm').innerHTML=[1,2,3,5].filter(p=>p<=zr.max+.01).map(p=>`<button class="zb" data-z="${p}" onclick="applyZoom(${p})">${p}x</button>`).join('');setZ(tg);await ap();setTimeout(ap,400)}else zr=null;
+  const adv=[];['focusMode','exposureMode','whiteBalanceMode'].forEach(k=>{if(cp[k]&&cp[k].includes('continuous'))adv.push({[k]:'continuous'})});
+  if(adv.length)try{await tr.applyConstraints({advanced:adv})}catch(e){}
+  cv=document.createElement('canvas');cx=cv.getContext('2d',{willReadFrequently:true});det=null;rd=null;
+  if('BarcodeDetector' in window){try{det=new BarcodeDetector({formats:['ean_8','ean_13','code_128','upc_a','upc_e']})}catch(e){}}
+  if(!det){$('scmsg').innerHTML=spin+'กำลังโหลดตัวอ่านบาร์โค้ด...';await zxLoad();mkRd()}
+  $('scmsg').textContent='เล็งบาร์โค้ดให้อยู่ในกรอบ';tmr=setInterval(tick,60);
  }catch(e){stopStream();$('scmsg').textContent=/Line|FBAN|FBAV|Instagram/i.test(navigator.userAgent)?'เปิดกล้องไม่ได้ในแอปนี้ ให้เปิดลิงก์ด้วย Safari/Chrome หรือกด "ถ่ายรูปแทน"':'เปิดกล้องไม่ได้ (ต้องเปิดผ่าน https และอนุญาตกล้อง) ลองกด "ถ่ายรูปแทน" หรือพิมพ์บาร์โค้ดเอง'}}
-function stopStream(){clearInterval(loop);try{zx&&zx.reset()}catch(e){}if(stream)stream.getTracks().forEach(t=>t.stop());stream=zx=null;$('vid').srcObject=null}
+function setZ(v){document.querySelectorAll('.zb').forEach(b=>b.classList.toggle('on',Math.abs(v-+b.dataset.z)<.15))}
+async function applyZoom(p){if(!ztrack||!zr)return;const v=Math.min(Math.max(p,zr.min),zr.max);try{await ztrack.applyConstraints({advanced:[{zoom:v}]});setZ(v);localStorage.setItem('zoom',v)}catch(e){}}
+async function focusTap(e){
+ const t=ztrack;if(!t)return;const r=$('vw').getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,cp=(t.getCapabilities&&t.getCapabilities())||{},f=$('fr');
+ f.style.left=x*100+'%';f.style.top=y*100+'%';f.classList.remove('go');void f.offsetWidth;f.classList.add('go');
+ const adv=[],fm=cp.focusMode||[];if(fm.includes('single-shot'))adv.push({focusMode:'single-shot'});else if(fm.includes('manual'))adv.push({focusMode:'manual'});
+ if(cp.pointsOfInterest!==undefined)adv.push({pointsOfInterest:[{x,y}]});
+ if(!adv.length)return;try{await t.applyConstraints({advanced:adv});setTimeout(()=>{if(fm.includes('continuous'))t.applyConstraints({advanced:[{focusMode:'continuous'}]}).catch(()=>{})},1500)}catch(e){}}
+function stopStream(){clearInterval(tmr);if(stream)stream.getTracks().forEach(t=>t.stop());stream=ztrack=null;$('vid').srcObject=null}
 function stopScan(){stopStream();if($('sc').open)$('sc').close()}
-async function torch(){const t=stream&&stream.getVideoTracks()[0];if(!t)return;t._on=!t._on;try{await t.applyConstraints({advanced:[{torch:t._on}]})}catch(e){}}
+async function torch(){const t=ztrack;if(!t)return;t._on=!t._on;try{await t.applyConstraints({advanced:[{torch:t._on}]});$('tq').classList.toggle('on',t._on)}catch(e){t._on=!t._on}}
+function toAdd(c){stopScan();go('add');$('bc').value=c;lookup();$('qty').focus()}
 function got(c){
- if(busy)return;busy=1;c=String(c).trim();navigator.vibrate&&navigator.vibrate(80);stopScan();
- if(SM=='add'){go('add');$('bc').value=c;lookup();$('qty').focus();return}
- go('list');flt=-1;$('q').value=c;drawList();
+ if(SM=='add')return toAdd(c);
  const n=D.entries.filter(e=>e.barcode==c).length;
- if(n)toast('พบ '+n+' ล็อต');else if(confirm('ไม่พบบาร์โค้ด '+c+' ในสต็อก\nเพิ่มเป็นสินค้าใหม่ไหม?')){go('add');$('bc').value=c;lookup();$('qty').focus()}}
+ if(n){stopScan();go('list');flt=-1;$('q').value=c;drawList();toast('พบ '+n+' ล็อต');return}
+ // ไม่พบ: เปิดกล้องค้างไว้ สแกนตัวต่อไปได้เลย
+ $('scmsg').textContent='ไม่พบ '+c+' ในสต็อก (สแกนตัวต่อไปได้เลย)';const b=$('addNew');b.classList.remove('hide');b.onclick=()=>toAdd(c);
+ setTimeout(()=>{paused=0;status(0)},1200)}
 async function scanPic(i){
- const f=i.files[0];i.value='';if(!f)return;$('scmsg').innerHTML='<i class="spin"></i>กำลังอ่านรูป...';
+ const f=i.files[0];i.value='';if(!f)return;$('scmsg').innerHTML=spin+'กำลังอ่านรูป...';
  try{let c;
   if('BarcodeDetector' in window){const r=await new BarcodeDetector().detect(await createImageBitmap(f)).catch(()=>[]);if(r[0])c=r[0].rawValue}
   if(!c){await zxLoad();c=(await new ZXing.BrowserMultiFormatReader(hints()).decodeFromImageUrl(URL.createObjectURL(f))).getText()}
-  got(c)}catch(e){$('scmsg').textContent='อ่านบาร์โค้ดจากรูปไม่ได้ ลองถ่ายให้ใกล้และชัดขึ้น'}}
+  c=strip(c);paused=1;beep();status(1);got(c)}catch(e){$('scmsg').textContent='อ่านบาร์โค้ดจากรูปไม่ได้ ลองถ่ายให้ใกล้และชัดขึ้น'}}
 // ตั้งค่า
 function saveTh(){const t=[0,1,2].map(i=>+$('t'+i).value);if(!(t[0]>0&&t[1]>t[0]&&t[2]>t[1]))return toast('ต้องเรียงจากน้อยไปมาก เช่น 7 / 30 / 60');TH=t;localStorage.setItem('th',JSON.stringify(t));drawAll();toast('บันทึกเกณฑ์แล้ว')}
 const adm=(a,b)=>post({action:a,admin:AD,...b});
