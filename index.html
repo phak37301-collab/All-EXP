@@ -642,6 +642,29 @@ body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;c
 #prn .rp .bx{display:inline-block;width:14px;height:14px;border:1.5px solid #8a92a3;border-radius:3px}
 #prn .rp .rf{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:34px;color:#444;font-size:12px;break-inside:avoid}
 }
+
+/* ===== v10: cat loader (round card, full cat, clear text) + compact stock status ===== */
+.ldrSub{display:none}
+#ldr.big .ldrBox{border-radius:40px;padding:26px 34px 22px;gap:8px;min-width:270px;text-align:center}
+#ldr.big .ldrTrack{width:220px;height:88px;border-radius:99px}
+#ldr.big .ldrCat{font-size:52px;bottom:9px;left:10px;animation:ldrWalkBig var(--T,2.2s) ease-in-out infinite}
+#ldr.big .ldrP{font-size:17px;bottom:14px}
+@keyframes ldrWalkBig{0%{left:10px;opacity:0}14%{opacity:1}84%{opacity:1}100%{left:calc(100% - 66px);opacity:0}}
+#ldr.big .ldrTx{font-size:19px;font-weight:600;line-height:1.35;margin-top:4px}
+#ldr.big .ldrSub{display:block;font-size:13px;color:var(--mut);font-weight:400}
+.ldrBox .ldrTx{white-space:nowrap}
+@media(prefers-reduced-motion:reduce){#ldr.big .ldrCat{left:84px;opacity:1}}
+/* stock status: no percent, 2-column tiles that fit a phone */
+.stBar{height:16px}
+.stLg{grid-template-columns:1fr 1fr;gap:8px}
+.stl{grid-template-columns:1fr auto;grid-template-areas:"n" "b" "s";grid-template-columns:minmax(0,1fr);align-items:baseline;gap:2px;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--c) 16%,#fff);border-left:6px solid color-mix(in srgb,var(--c) 78%,#4b5563);min-width:0}
+.stl:hover{background:color-mix(in srgb,var(--c) 26%,#fff)}
+.stl.z{opacity:.5}
+.stl .stn{grid-area:n;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:var(--ink);min-width:0}
+.stl .stn .dot{flex:none;margin:0;width:9px;height:9px}
+.stl b{grid-area:b;font-size:26px;line-height:1.05;font-weight:700}
+.stl b u{text-decoration:none;font-size:12px;font-weight:500;color:var(--mut);margin-left:4px}
+.stl small{grid-area:s;font-size:13px;color:var(--mut);text-align:left;min-width:0;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -723,7 +746,7 @@ body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;c
 <dialog id="al" class="pop"><div class="in"><div class="alh"><i class="alI">🔔</i><div class="alTt"><b id="alT"></b><small id="alS2"></small></div><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><button class="btn alt big" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
 <div id="qbar" class="hide"><button class="qi" onclick="toQ()" aria-label="เปิดดูคิวทั้งหมด"><span class="qcnt" id="qcnt">0</span><span class="qtx"><b>คิวรอบันทึก <em>แตะเพื่อดู ▴</em></b><small id="qbn"></small></span></button><button class="btn" onclick="W(this,saveQ)">บันทึกทั้งหมด</button></div>
 <dialog id="qd" class="qsheet"><div class="qgrab"></div><div class="qdh"><b>🧾 คิวรอบันทึก <small id="qdn"></small></b><button class="ib fit" onclick="$('qd').close()" aria-label="ปิด">✕</button></div><div id="qdl"></div><div class="qdf"><button class="btn alt" onclick="$('qd').close()">＋ เพิ่มชิ้นถัดไป</button><button class="btn" onclick="W(this,async()=>{await saveQ();if(!Q.length&&$('qd').open)$('qd').close()})">บันทึกทั้งหมด</button></div></dialog>
-<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrTrack" aria-hidden="true"><span class="ldrP p1">🐾</span><span class="ldrP p2">🐾</span><span class="ldrP p3">🐾</span><span class="ldrP p4">🐾</span><span class="ldrCat"><i>🐈</i></span></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div></div></div>
+<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrTrack" aria-hidden="true"><span class="ldrP p1">🐾</span><span class="ldrP p2">🐾</span><span class="ldrP p3">🐾</span><span class="ldrP p4">🐾</span><span class="ldrCat"><i>🐈</i></span></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
 <div id="toast"></div>
 <script>
 (()=>{ // iPhone: กันแตะสองทีซูม + กันบีบนิ้วซูมทั้งหน้า (ช่องกรอกยังเลือกข้อความได้)
@@ -824,7 +847,7 @@ function drawHome(){
  $('kp2').innerHTML=[['urg','🚨','#ef4444','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#f59e0b','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#c8102e','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
  const c=[0,0,0,0,0,0],q=[0,0,0,0,0,0];E.forEach(e=>{const l=lv(d(e));c[l]++;q[l]+=e.qty});const tot=E.length||1;
  $('stBar').innerHTML=c.map((n,i)=>n?`<button style="flex:${n};background:${COL[i]}" onclick="jumpList('L${i}')" title="${NM()[i]}: ${n} ล็อต" aria-label="${NM()[i]}"></button>`:'').join('')||'<i class="stE">ยังไม่มีข้อมูล</i>';
- $('stLg').innerHTML=NM().map((n,i)=>`<button class="stl ${c[i]?'':'z'}" onclick="jumpList('L${i}')"><i class="dot" style="--c:${COL[i]}"></i><span>${n}</span><b>${c[i]}</b><small>${Math.round(c[i]/tot*100)}% · ${n0(q[i])} ชิ้น</small><em>›</em></button>`).join('');
+ $('stLg').innerHTML=NM().map((n,i)=>`<button class="stl ${c[i]?'':'z'}" style="--c:${COL[i]}" onclick="jumpList('L${i}')"><span class="stn"><i class="dot"></i>${n}</span><b>${c[i]}<u>ล็อต</u></b><small>${n0(q[i])} ชิ้น</small></button>`).join('');
  const now=new Date(),M=[{k:'<',n:'เลยกำหนด',v:0,red:1}].concat([...Array(6)].map((_,i)=>{const dt=new Date(now.getFullYear(),now.getMonth()+i,1);return{k:dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0'),n:dt.toLocaleDateString('th-TH',{month:'short'}),v:0}})),cur=M[1].k;
  E.forEach(e=>{if(!e.due)return;const k=e.due.slice(0,7),m=k<cur?M[0]:M.find(x=>x.k==k);if(m)m.v+=e.qty});
  const mx=Math.max(1,...M.map(m=>m.v));
