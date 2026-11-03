@@ -651,29 +651,7 @@ body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;c
 .stl small{grid-area:s;font-size:13px;color:var(--mut);text-align:left;min-width:0;white-space:nowrap}
 
 /* ===== v11: report for management · stats fits every screen · Logo.gif loader ===== */
-@page{size:A4;margin:12mm 11mm 14mm}
-#prn .rp{font:13px/1.5 Prompt,"IBM Plex Sans Thai",sans-serif;color:#1c2240;width:100%;max-width:100%;text-align:center}
-#prn .rp *{box-sizing:border-box}
-#prn .rp .rh{padding:18px 16px 14px;margin-bottom:14px;border-radius:16px;color:#fff;background:linear-gradient(120deg,#1c2240,#3b3f8f)}
-#prn .rp h1{font-size:25px;line-height:1.25;margin:0;font-weight:600;color:#fff}
-#prn .rp .rsub{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:8px}
-#prn .rp .rsub span{background:#ffffff26;border-radius:99px;padding:2px 14px;font-size:13px}
-#prn .rp .rdt{margin-top:8px;font-size:12px;color:#ffffffcc}
-#prn .rp .rts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:6px}
-#prn .rp .rt{border:1px solid #e1e5ee;border-top:5px solid var(--c);border-radius:12px;padding:10px 6px 8px;background:#fff}
-#prn .rp .rt b{display:block;font-size:24px;line-height:1.15;color:var(--c);font-weight:700}
-#prn .rp .rt span{font-size:11.5px;color:#555}
-#prn .rp .rs{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:18px 0 6px;padding:8px 14px;border-radius:10px;background:color-mix(in srgb,var(--c) 24%,#fff);border-left:7px solid var(--c);break-after:avoid;page-break-after:avoid;text-align:left}
-#prn .rp .rs b{font-size:15px}#prn .rp .rs i{font-style:normal;color:#333;font-size:12.5px}
-#prn .rp .rtb{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
-#prn .rp .rtb th{background:#eef0f7;color:#3a3f55;font-weight:600;text-align:center;padding:7px 6px;border:0;border-bottom:2px solid #c9ced8;font-size:11.5px}
-#prn .rp .rtb td{padding:8px 6px;border:0;border-bottom:1px solid #e6e9ef;vertical-align:middle;text-align:center;overflow-wrap:anywhere}
-#prn .rp .rtb tbody tr:nth-child(even) td{background:#f8f9fc}
-#prn .rp .rtb thead{display:table-header-group}#prn .rp .rtb tr{break-inside:avoid;page-break-inside:avoid}
-#prn .rp .rtb td b{font-weight:600}
-#prn .rp .rtb td small{display:block;color:#7a8190;font-size:10.5px;letter-spacing:.2px}
-#prn .rp .dd{display:inline-block;min-width:62px;padding:1px 10px;border-radius:99px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff)}
-#prn .rp .rf{margin-top:18px;padding-top:10px;border-top:1px solid #e1e5ee;color:#7a8190;font-size:11.5px}
+
 
 /* stats page: never wider than the screen, scales from small phones to desktop */
 #stat,#stat>*{min-width:0;max-width:100%}
@@ -701,13 +679,69 @@ body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;c
 .ldrCat i{--fx:1}
 .ldrCat img{display:block;width:1.2em;height:1.2em;object-fit:contain;-webkit-user-drag:none;pointer-events:none}
 #ldr.big .ldrCat{font-size:56px}
+
+/* report: A4 landscape, formal + easy to scan */
+@page{size:A4 landscape;margin:10mm 12mm 12mm;@bottom-right{content:"หน้า " counter(page) " / " counter(pages);font:10px Prompt,sans-serif;color:#7a8190}}
+#prn .rp{font:12.5px/1.45 Prompt,"IBM Plex Sans Thai",sans-serif;color:#1c2240;width:100%;max-width:100%;overflow:hidden;text-align:center}
+#prn .rp *{box-sizing:border-box}
+#prn .rp .rh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:10px;margin-bottom:12px;border-bottom:3px solid #1c2240;text-align:left}
+#prn .rp .rl small{display:block;font-size:10.5px;letter-spacing:2px;color:#7a8190;font-weight:500}
+#prn .rp h1{font-size:25px;line-height:1.25;margin:2px 0 0;font-weight:600;color:#1c2240}
+#prn .rp .rm{display:flex;gap:24px;text-align:right}
+#prn .rp .rm span{display:block;font-size:10.5px;color:#7a8190}#prn .rp .rm b{font-size:13px;font-weight:600;color:#1c2240}
+#prn .rp .rts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+#prn .rp .rt{border:1px solid #dfe3ec;border-top:4px solid var(--c);border-radius:8px;padding:8px 6px 6px;background:#fff}
+#prn .rp .rt b{display:block;font-size:24px;line-height:1.15;color:var(--c);font-weight:700}
+#prn .rp .rt span{font-size:11.5px;color:#555}
+#prn .rp .rlg{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;margin:10px 0 2px;font-size:11.5px;color:#444}
+#prn .rp .rlg i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:-1px;box-shadow:0 0 0 1px #0002}
+#prn .rp .rlg b{font-weight:700;margin-left:2px}
+#prn .rp .rsec{margin-top:16px}
+#prn .rp .rs{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 12px;background:color-mix(in srgb,var(--c) 20%,#fff);border-left:6px solid var(--c);break-after:avoid;page-break-after:avoid;text-align:left}
+#prn .rp .rs b{font-size:14px}#prn .rp .rs i{font-style:normal;color:#333;font-size:12px}
+#prn .rp .rtb{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+#prn .rp .rtb th{background:#1c2240;color:#fff;font-weight:500;text-align:center;padding:6px 6px;border:0;font-size:11.5px}
+#prn .rp .rtb td{padding:6px 6px;border:0;border-bottom:1px solid #e3e6ee;vertical-align:middle;text-align:center;overflow-wrap:anywhere}
+#prn .rp .rtb tbody tr:nth-child(even) td{background:#f6f7fb}
+#prn .rp .rtb thead{display:table-header-group}#prn .rp .rtb tr{break-inside:avoid;page-break-inside:avoid}
+#prn .rp .rtb td.rno{color:#7a8190}#prn .rp .rtb td.rnm{font-weight:600}
+#prn .rp .rtb td.rbc{color:#6b7385;font-size:11px;letter-spacing:.3px}
+#prn .rp .dd{display:inline-block;min-width:58px;padding:0 10px;border-radius:99px;font-weight:700;font-size:11.5px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff)}
+#prn .rp .rf{margin-top:16px;padding-top:8px;border-top:1px solid #dfe3ec;color:#7a8190;font-size:11px}
+
+/* ===== v12: side menu = sticky + slide in/out + settings button ===== */
+#navTab{display:none}
+@media print{#navTab{display:none!important}}
+@media(min-width:821px){
+ #nav{display:block;padding:0}
+ .navin{position:sticky;top:12px;display:flex;flex-direction:column;align-items:center;gap:8px;width:96px;height:calc(100vh - 24px);padding:22px 0 18px;overflow-y:auto;scrollbar-width:none}
+ .navin::-webkit-scrollbar{display:none}
+ #nav .nset{margin-top:auto}
+ #nav .ncl{flex:none;width:50px;height:34px;border:0;border-radius:12px;background:#ffffff1f;color:#ffffffc4;cursor:pointer;display:grid;place-items:center;padding:0}
+ #nav .ncl:hover{background:#ffffff33}#nav .ncl svg{width:20px;height:20px}
+ html.navanim #shell{transition:grid-template-columns .34s cubic-bezier(.2,.8,.2,1)}
+ html.navanim #nav{transition:transform .34s cubic-bezier(.2,.8,.2,1),visibility 0s}
+ html.navc #shell{grid-template-columns:0 minmax(0,1fr)}
+ html.navc #nav{transform:translateX(calc(-100% - 14px));visibility:hidden;overflow:hidden}
+ html.navanim.navc #nav{transition:transform .34s cubic-bezier(.2,.8,.2,1),visibility 0s .34s}
+ #navTab{position:fixed;left:0;top:26px;width:30px;height:60px;padding:0;border:0;border-radius:0 18px 18px 0;background:linear-gradient(180deg,var(--s1),var(--s2));color:#fff;cursor:pointer;z-index:7;place-items:center;box-shadow:4px 6px 16px #0003}
+ #navTab svg{width:20px;height:20px}
+ html.navc #navTab{display:grid;animation:tabIn .36s .12s both cubic-bezier(.2,.8,.2,1)}
+ @keyframes tabIn{from{transform:translateX(-100%)}to{transform:none}}
+}
+@media(max-width:820px){
+ .navin{display:contents}#nav .ncl{display:none}#nav .nset{margin-top:0}
+ #nav{transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+ #nav.hid{transform:translateY(calc(100% + 30px))}
+}
+@media(prefers-reduced-motion:reduce){html.navanim #shell,html.navanim #nav,#nav{transition:none!important}#navTab{animation:none!important}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<button class="bell fl" id="belF" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button><div id="prn"></div>
-<div id="shell"><nav id="nav"><button class="lgb" id="lgb" onclick="bmenu()" aria-label="เมนูสาขา">B</button>
- <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg><span>สแกน</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button></nav>
+<button class="bell fl" id="belF" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button><div id="prn"></div><button id="navTab" onclick="navTog()" title="แสดงเมนู" aria-label="แสดงเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+<div id="shell"><nav id="nav"><div class="navin"><button class="lgb" id="lgb" onclick="bmenu()" aria-label="เมนูสาขา">B</button>
+ <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg><span>สแกน</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button><button data-p="set" class="nset" title="ตั้งค่า"><svg class="i" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>ตั้งค่า</span></button><button class="ncl" onclick="navTog()" title="ซ่อนเมนู" aria-label="ซ่อนเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div></nav>
 <div id="main">
 <header id="appTop">
 <div class="atTrack" aria-hidden="true"><span class="dg d1" onclick="bark(this)"><i><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith('🐈')"></i></span><span class="dg d2" onclick="bark(this)"><i>🐈‍⬛</i></span><span class="dg d3" onclick="bark(this)"><i>🐱</i></span></div>
@@ -947,9 +981,10 @@ function printRep(){const g=group(+$('f2').value);if(!g.length)return toast('ไ
   dt=now.toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'})+' เวลา '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' น.';
  const by=[0,1,2,3,4,5].map(l=>g.filter(e=>lv(days(e.due))==l)),qs=a=>a.reduce((s,e)=>s+e.qty,0),f0=x=>x.toLocaleString('th-TH'),cl=e=>e.claim&&e.claim!='-'?e.claim:'',hasCl=g.some(e=>cl(e));let n=0;
  const tile=(v,l,c)=>`<div class="rt" style="--c:${c}"><b>${v}</b><span>${l}</span></div>`;
- const wd=hasCl?['6%','37%','11%','16%','15%','15%']:['6%','46%','13%','18%','17%'];
- const sec=l=>!by[l].length?'':`<div class="rs" style="--c:${COL[l]}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>#</th><th>ชื่อสินค้า / บาร์โค้ด</th><th>จำนวน</th><th>วันหมดอายุ</th><th>เหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map(e=>{const d=days(e.due);n++;return `<tr><td>${n}</td><td><b>${esc(e.item||'-')}</b><small>${esc(e.barcode)}</small></td><td><b>${e.qty}</b></td><td>${fd(e.due)}</td><td><span class="dd" style="--c:${dc(d)}">${isNaN(d)?'-':d<0?'เกิน '+(-d)+' วัน':d==0?'วันนี้':d+' วัน'}</span></td>${hasCl?`<td>${esc(cl(e))}</td>`:''}</tr>`}).join('')}</tbody></table>`;
- $('prn').innerHTML=`<div class="rp"><div class="rh"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rsub"><span>สาขา ${esc(BRN||'-')}</span><span>สถานะ: ${esc(st)}</span></div><div class="rdt">ออกรายงานเมื่อ ${dt}</div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','#3b3f8f')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','#3b3f8f')}${tile(by[0].length+by[1].length,'ด่วน ภายใน '+TH[0]+' วัน','#c8102e')}${tile(by[0].length,'หมดอายุ / ตัดเบิก','#7f1d1d')}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">— สิ้นสุดรายงาน · ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น —</div></div>`;
+ const wd=hasCl?['5%','33%','16%','9%','13%','12%','12%']:['5%','40%','18%','10%','14%','13%'];
+ const lg=[0,1,2,3,4,5].filter(l=>by[l].length).map(l=>`<span style="--c:${COL[l]}"><i></i>${NM()[l]} <b>${by[l].length}</b></span>`).join('');
+ const sec=l=>!by[l].length?'':`<section class="rsec"><div class="rs" style="--c:${COL[l]}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>ที่</th><th>ชื่อสินค้า</th><th>บาร์โค้ด</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map(e=>{const d=days(e.due);n++;return `<tr><td class="rno">${n}</td><td class="rnm">${esc(e.item||'-')}</td><td class="rbc">${esc(e.barcode)}</td><td><b>${e.qty}</b></td><td>${fd(e.due)}</td><td><span class="dd" style="--c:${dc(d)}">${isNaN(d)?'-':d<0?'เกิน '+(-d)+' วัน':d==0?'วันนี้':d+' วัน'}</span></td>${hasCl?`<td>${esc(cl(e))}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
+ $('prn').innerHTML=`<div class="rp"><div class="rh"><div class="rl"><small>NEAR-EXPIRY STOCK REPORT</small><h1>รายงานสินค้าใกล้หมดอายุ</h1></div><div class="rm"><div><span>สาขา</span><b>${esc(BRN||'-')}</b></div><div><span>สถานะ</span><b>${esc(st)}</b></div><div><span>ออกรายงานเมื่อ</span><b>${dt}</b></div></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','#1c2240')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','#1c2240')}${tile(by[0].length+by[1].length,'ด่วน ภายใน '+TH[0]+' วัน','#c8102e')}${tile(by[0].length,'หมดอายุ / ตัดเบิก','#7f1d1d')}</div><div class="rlg">${lg}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">— สิ้นสุดรายงาน · ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น —</div></div>`;
  document.body.classList.add('prnm');setTimeout(()=>window.print(),80)}
 window.addEventListener('afterprint',()=>{document.body.classList.remove('prnm');$('prn').innerHTML=''});
 let SEL=null,SG=[],pkKey='',SI=0,RC=[];try{RC=JSON.parse(ls('RC')||'[]')}catch(e){}
@@ -1175,6 +1210,11 @@ async function dlBr(el){const c=el.closest('[data-k]');if(!c.dataset.k)return c.
 async function admPw(){const r=await adm('adminPw',{newAdmin:$('npw').value});if(!r.ok)return toast(r.error);AD=$('npw').value;$('adm').value=AD;$('npw').value='';toast('เปลี่ยนรหัสแอดมินแล้ว')}
 let CUR='list';function go(p){CUR=p;scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
 document.querySelectorAll('#nav button[data-p]').forEach(b=>b.onclick=()=>go(b.dataset.p));
+// เมนูข้าง: พับเก็บ/เปิด (จอคอม จำค่าไว้) · มือถือ: เลื่อนลงซ่อนแถบล่าง เลื่อนขึ้นโผล่กลับ
+function navTog(){const h=document.documentElement;h.classList.add('navanim');const c=h.classList.toggle('navc');try{localStorage.setItem('navc',c?'1':'0')}catch(e){}}
+try{if(localStorage.getItem('navc')=='1')document.documentElement.classList.add('navc')}catch(e){}
+(function(){let ly=scrollY;addEventListener('scroll',()=>{const nv=$('nav');if(!nv)return;const y=scrollY,d=y-ly;if(innerWidth>820){nv.classList.remove('hid');ly=y;return}
+ if(Math.abs(d)<8)return;ly=y;const end=innerHeight+y>=document.documentElement.scrollHeight-6;nv.classList.toggle('hid',d>0&&y>140&&!end)},{passive:true})})();
 ['cf','al','qd'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close()}));
 drawSet();
 BR&&CODE?load():(BR||0,drawAll(),BR||toast('ยังไม่ได้เลือกสาขา'),openBr());
