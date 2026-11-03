@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="theme-color" content="#fff0f6">
+<meta name="description" content="ตรวจและจัดการสต็อกวันหมดอายุ สแกนบาร์โค้ด แจ้งเตือนสินค้าใกล้หมด แยกตามสาขา">
+<meta name="application-name" content="สต็อกวันหมดอายุ"><meta name="apple-mobile-web-app-title" content="สต็อกวันหมดอายุ">
+<meta property="og:type" content="website"><meta property="og:site_name" content="สต็อกวันหมดอายุ"><meta property="og:locale" content="th_TH">
+<meta property="og:title" content="สต็อกวันหมดอายุ"><meta property="og:description" content="สแกนบาร์โค้ด เช็กวันหมดอายุ แยกตามสาขา">
+<meta property="og:url" content="https://phak37301-collab.github.io/All-EXP/"><meta property="og:image" content="https://phak37301-collab.github.io/All-EXP/Logo.gif">
+<meta property="og:image:alt" content="สต็อกวันหมดอายุ">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="สต็อกวันหมดอายุ"><meta name="twitter:description" content="สแกนบาร์โค้ด เช็กวันหมดอายุ แยกตามสาขา"><meta name="twitter:image" content="https://phak37301-collab.github.io/All-EXP/Logo.gif">
+<link rel="icon" type="image/gif" href="Logo.gif"><link rel="apple-touch-icon" href="Logo.gif">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>สต็อกวันหมดอายุ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap">
@@ -552,6 +560,45 @@ dialog.pop .alh .ib{background:#ffffffcc;color:var(--ink)}
 .atLogo[data-fit=cover] img{object-fit:cover;padding:0}
 :root[data-style=cool] .atLogo.hasLogo{background:#ffffffee}
 :root[data-style=cool] .atLogo img{border-radius:12px}
+
+/* ===== UI v10: cats run BEHIND the header text · richer desktop header · no password-manager popups ===== */
+.pwm{-webkit-text-security:disc;text-security:disc}
+#appTop{padding:14px 76px 26px 14px}
+.atTrack{position:absolute;left:0;right:0;top:0;bottom:0;height:auto;margin:0;z-index:0;overflow:hidden;pointer-events:none}
+.atGround{display:none}
+.dg{bottom:6px;font-size:34px;pointer-events:auto}.d2{font-size:30px}.d3{font-size:27px}
+.atRow{position:relative;z-index:1;gap:10px}
+.atLogo{background:#ffffffe0}
+.atArr{display:none!important}
+.atBr{padding:6px 36px 7px 14px;background:#ffffffb8;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.atBr:before{display:none}
+.atBr:after{content:"▾";position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--ac);font-size:15px}
+:root[data-style=cool] .atBr:after{color:#fff}
+.atBr b{padding-right:0}.atBr small{padding-right:0}
+.atHi{display:none}
+.atC{background:#ffffffb8;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.atC.x b{color:#7f1d1d}:root[data-style=cool] .atC.x b{color:#fecaca}
+.atChips{flex-wrap:wrap}
+@media(max-width:560px){#appTop{padding:12px 72px 24px 12px}.atC:nth-child(n+3){display:none}.atChips{flex-wrap:nowrap}.atBr b{font-size:17px}}
+@media(min-width:821px){
+ #appTop{padding:18px 86px 34px 20px;min-height:128px}
+ .atLogo{width:62px;height:62px;font-size:30px}
+ .atBr{padding:9px 44px 10px 18px;border-radius:20px}.atBr small{font-size:13px}.atBr b{font-size:26px}
+ .atHi{display:flex;flex-direction:column;justify-content:center;margin-left:14px;line-height:1.3;min-width:0}
+ .atHi b{font-family:Mitr,Prompt,sans-serif;font-weight:500;font-size:22px;white-space:nowrap}
+ .atHi .atDate{display:block;font-size:14px;color:var(--mut)}
+ :root[data-style=cool] .atHi b{color:#fff}
+ .atInfo{margin-left:auto;align-items:flex-end}
+ .atChips{gap:10px;flex-wrap:nowrap}
+ .atC{gap:8px;padding:9px 18px 9px 13px;border-radius:20px;font-size:15px}
+ .atC b{font-size:28px;line-height:1.1}.atC i{font-size:14px}
+ .dg{font-size:44px;bottom:8px}.d2{font-size:38px}.d3{font-size:33px}
+ .bell.fl{top:70px}
+}
+.atLogo{font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+@media(min-width:821px){.atHi{flex:1 1 0;overflow:hidden}.atInfo{flex:0 1 auto}.atHi .atDate{overflow:hidden;text-overflow:ellipsis}}
+@media(min-width:821px) and (max-width:1500px){.atC:nth-child(5){display:none}.atC{padding:8px 15px 8px 11px}.atC b{font-size:25px}}
+@media(min-width:821px) and (max-width:1120px){.atC:nth-child(n+4){display:none}}
 </style>
 </head>
 <body>
@@ -560,24 +607,27 @@ dialog.pop .alh .ib{background:#ffffffcc;color:var(--ink)}
 <div id="shell"><nav id="nav"><button class="lgb" id="lgb" onclick="bmenu()" aria-label="เมนูสาขา">B</button>
  <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg><span>สแกน</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button></nav>
 <div id="main">
-<header id="appTop"><div class="atRow"><button class="atLogo" onclick="flipStyle()" aria-label="สลับสไตล์ น่ารัก/เท่">🐱</button><button class="atBr" onclick="bmenu()" aria-label="เปลี่ยนสาขา"><small>สาขาที่ใช้งาน</small><b class="brl">สาขา</b></button><span class="atArr">▾</span><div class="atInfo" id="atInfo" aria-live="polite"><div class="atDate" id="atDate"></div><div class="atChips" id="atChips"></div></div></div>
-<div class="atTrack" aria-hidden="true"><span class="dg d1" onclick="bark(this)"><i>🐈</i></span><span class="dg d2" onclick="bark(this)"><i>🐈‍⬛</i></span><span class="dg d3" onclick="bark(this)"><i>🐱</i></span><span class="atGround"></span></div></header>
+<header id="appTop">
+<div class="atTrack" aria-hidden="true"><span class="dg d1" onclick="bark(this)"><i>🐈</i></span><span class="dg d2" onclick="bark(this)"><i>🐈‍⬛</i></span><span class="dg d3" onclick="bark(this)"><i>🐱</i></span></div>
+<div class="atRow"><button class="atLogo" onclick="flipStyle()" aria-label="สลับสไตล์ น่ารัก/เท่">🐱</button><button class="atBr" onclick="bmenu()" aria-label="เปลี่ยนสาขา"><small>สาขาที่ใช้งาน</small><b class="brl">สาขา</b></button>
+<div class="atHi"><b id="atHi"></b><span class="atDate" id="atDate"></span></div>
+<div class="atInfo" id="atInfo" aria-live="polite"><div class="atChips" id="atChips"></div></div></div></header>
 <section id="list"><div class="mtop"><button class="chipb" onclick="bmenu()"><i class="gdot"></i><span class="brl">สาขา</span> ▾</button><button class="bell m" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button></div>
 <div class="lgrid"><div>
  <button class="alstrip hide" id="alS" onclick="bellTap()"></button>
  <div class="hdr"><div class="ht"><h1>รายการทั้งหมด</h1><div class="mut" id="lsub"></div></div>
-  <div class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="q" placeholder="ค้นหาหรือยิงบาร์โค้ด" oninput="drawList()"><button class="sb" onclick="scan('find')" aria-label="สแกนค้นหา"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg></button></div>
+  <div class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="q" name="stock-search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ค้นหาหรือยิงบาร์โค้ด" oninput="drawList()"><button class="sb" onclick="scan('find')" aria-label="สแกนค้นหา"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg></button></div>
   <button class="bell d" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button></div>
  <div class="cc"><div class="ccl"><b>ชิ้นที่จะหมดอายุใน 8 วันข้างหน้า</b><span id="c8t"></span></div><div class="cbs" id="c8"></div></div>
  <div class="tabs" id="tabs"></div><div class="fbx" id="fb1"></div><div id="lst"></div></div>
  <aside id="dp"></aside></div></section>
 <section id="add" class="hide"><div class="ph"><h1>เพิ่มสินค้า</h1><div class="mut">สแกนหรือพิมพ์ชื่อ แล้วเข้าคิวบันทึกทีเดียว</div></div><div class="sq"><div>
  <div class="stepc"><div class="sh"><i>1</i><b>สินค้า</b></div>
-  <div class="row"><input id="bc" class="bcin" autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">▣ สแกน</button></div>
+  <div class="row"><input id="bc" class="bcin" name="stock-item" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">▣ สแกน</button></div>
   <div id="sug"></div><div id="pk" class="pk hide"></div><div id="rc"></div></div>
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
   <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
-  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" inputmode="decimal" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
+  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" name="stock-due" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="decimal" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
   <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb" onclick="$('qty').value=48">48</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
@@ -602,7 +652,7 @@ dialog.pop .alh .ib{background:#ffffffcc;color:var(--ink)}
 <section id="set" class="hide"><div class="ph"><button class="chipb" onclick="go('list')">← กลับ</button><h1 style="margin-top:14px">ตั้งค่า</h1></div>
  <div id="setb" class="sgrid"></div>
  <div class="card" style="margin-top:14px"><h3>🔐 จัดการสาขา (แอดมิน)</h3>
-  <div class="row"><input id="adm" type="password" placeholder="รหัสแอดมิน (ครั้งแรก: ตั้งรหัสใหม่ 4 ตัวขึ้นไป)" autocomplete="off"><button class="btn fit" onclick="W(this,admLoad)">เข้าสู่โหมดแอดมิน</button></div>
+  <div class="row"><input id="adm" class="pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="รหัสแอดมิน (ครั้งแรก: ตั้งรหัสใหม่ 4 ตัวขึ้นไป)"><button class="btn fit" onclick="W(this,admLoad)">เข้าสู่โหมดแอดมิน</button></div>
   <div class="mut" style="margin-top:8px;font-size:13px">ลืมรหัสแอดมิน: เข้าหน้าระบบ จากนั้นกลับมากรอกรหัสใหม่ที่ช่องนี้</div><div id="brs"></div></div>
 </section>
 </div></div>
@@ -613,7 +663,7 @@ dialog.pop .alh .ib{background:#ffffffcc;color:var(--ink)}
  <div id="lgA"><h3 style="margin:0 0 4px;font-size:21px">เลือกสาขา</h3><div class="mut" style="margin-bottom:14px">แตะสาขาที่ต้องการใช้งาน</div><div id="brL" class="brl2"></div><button class="btn alt big" style="margin-top:14px" onclick="$('lg').close();go('set')">ตั้งค่าแอดมิน</button></div>
  <div id="lgB" class="hide"><button class="chipb" onclick="pinBack()">← เปลี่ยนสาขา</button><h3 id="pinN" style="margin:14px 0 2px;font-size:21px;text-align:center"></h3><div class="mut" id="pinH" style="text-align:center">ใส่รหัส 4 หลัก</div>
   <div id="pinP"><div class="pdots" id="pdots"><i></i><i></i><i></i><i></i></div><div id="pinE" style="min-height:22px;color:#c8102e;text-align:center;font-size:14px"></div><div class="pad" id="pad"></div></div>
-  <div id="pinT" class="hide"><input id="pw" type="password" autocomplete="off" placeholder="รหัสสาขา" style="margin-top:14px"><div id="pinE2" style="min-height:22px;color:#c8102e;font-size:14px;margin-top:6px"></div><button class="btn big" style="margin-top:6px" onclick="W(this,()=>tryLogin($('pw').value))">เข้าใช้งาน</button></div>
+  <div id="pinT" class="hide"><input id="pw" class="pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="รหัสสาขา" style="margin-top:14px"><div id="pinE2" style="min-height:22px;color:#c8102e;font-size:14px;margin-top:6px"></div><button class="btn big" style="margin-top:6px" onclick="W(this,()=>tryLogin($('pw').value))">เข้าใช้งาน</button></div>
   <div style="text-align:center;margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="chipb" id="pinM" onclick="pinMode(!PTXT)">ใช้รหัสแบบตัวอักษร</button><button class="chipb" onclick="$('lg').close();go('set')">🔑 ลืมรหัส?</button></div><div class="mut" style="text-align:center;font-size:13px;margin-top:10px">ลืมรหัส: ให้หัวหน้า/แอดมินเข้า ตั้งค่า › จัดการสาขา แล้วกด 🎲 สุ่ม PIN ใหม่ จากนั้นแจ้งพนักงาน</div></div>
 </div></dialog>
 <dialog id="sc" class="scan">
@@ -720,9 +770,10 @@ function drawAll(){buildCL();const n=BRN||'เลือกสาขา',m=n.matc
  document.querySelectorAll('.brl').forEach(e=>e.textContent=n);$('lgb').textContent=m?m[m.length-1].slice(0,4):[...n].slice(0,3).join('');
  drawFb();drawAdd();drawQ();drawTop();drawHome();drawList();drawRep();drawExtra();lookup()}
 function drawTop(){
- const E=(D&&D.entries)||[],ur=E.filter(e=>e.due&&days(e.due)<=TH[0]).length,nr=E.filter(e=>e.due&&days(e.due)<=TH[1]).length;
+ const E=(D&&D.entries)||[],ur=E.filter(e=>e.due&&days(e.due)<=TH[0]).length,nr=E.filter(e=>e.due&&days(e.due)<=TH[1]).length,ex=E.filter(e=>e.due&&days(e.due)<0).length,pc=E.reduce((a,e)=>a+(+e.qty||0),0),h=new Date().getHours();
  try{$('atDate').textContent=new Date().toLocaleDateString('th-TH'+(S.be?'':'-u-ca-gregory'),{weekday:'long',day:'numeric',month:'short',year:'numeric'})}catch(e){}
- $('atChips').innerHTML=loaded?`<span class="atC u" title="ต้องจัดการด่วน">🚨<b>${ur}</b><i>ด่วน</i></span><span class="atC w" title="ใกล้หมดอายุ">⏳<b>${nr}</b><i>ใกล้หมด</i></span><span class="atC" title="ทั้งหมด">📦<b>${E.length}</b><i>ล็อต</i></span>`:'<span class="atC"><i>กำลังรอข้อมูลสาขา…</i></span>'}
+ $('atHi').textContent=h<11?'สวัสดีตอนเช้า ☀️':h<17?'สวัสดีตอนบ่าย 🌤️':h<20?'สวัสดีตอนเย็น 🌇':'สวัสดีตอนค่ำ 🌙';
+ $('atChips').innerHTML=loaded?`<span class="atC u" title="ต้องจัดการด่วน">🚨<b>${ur}</b><i>ด่วน</i></span><span class="atC w" title="ใกล้หมดอายุ">⏳<b>${nr}</b><i>ใกล้หมด</i></span><span class="atC x" title="หมดอายุแล้ว">⛔<b>${ex}</b><i>หมดแล้ว</i></span><span class="atC" title="ล็อตทั้งหมด">📦<b>${E.length}</b><i>ล็อต</i></span><span class="atC" title="จำนวนชิ้นรวม">🧮<b>${pc.toLocaleString('th-TH')}</b><i>ชิ้น</i></span>`:'<span class="atC"><i>กำลังรอข้อมูลสาขา…</i></span>'}
 function drawHome(){
  const E=D.entries,near=E.filter(e=>days(e.due)<=TH[1]),sum=a=>a.reduce((s,e)=>s+e.qty,0);
  $('k1t').textContent='ใกล้หมดอายุ (ภายใน '+TH[1]+' วัน)';cnt('k1',near.length);$('k1s').textContent='ล็อต · รวม '+sum(near)+' ชิ้น';
@@ -812,7 +863,7 @@ function lookup(){const v=$('bc').value.trim(),pk=$('pk'),sg=$('sug');SG=[];draw
  sg.innerHTML=SG.map(([b,n],i)=>`<button class="sg2 ${i==SI?'on':''}" onclick="pick(${i})"><b>${esc(n)}</b><small>${esc(b)}</small></button>`).join('')||(dg&&v.length<3?'<div class="mut">พิมพ์เลขท้ายบาร์โค้ด 3 ตัวขึ้นไป หรือพิมพ์ชื่อสินค้า</div>':'');
  const nw=!SG.length&&(!dg||v.length>=8)&&v.length>=2,k=nw?'n'+v:'';
  if(!nw){pk.className='pk hide';pk.innerHTML='';pkKey='';return}
- if(k!==pkKey){pkKey=k;pk.className='pk new';pk.innerHTML=`<div style="flex:1;min-width:0"><div class="mut" style="margin-bottom:6px">🆕 ไม่พบในฐานข้อมูล จะเพิ่มลงชีท Database ให้อัตโนมัติ</div><input id="nmIn" placeholder="ชื่อสินค้า" value="${dg?'':esc(v)}"><input id="nbc" inputmode="numeric" placeholder="บาร์โค้ด (ไม่ใส่ก็ได้)" value="${dg?esc(v):''}" style="margin-top:8px"></div>`}}
+ if(k!==pkKey){pkKey=k;pk.className='pk new';pk.innerHTML=`<div style="flex:1;min-width:0"><div class="mut" style="margin-bottom:6px">🆕 ไม่พบในฐานข้อมูล จะเพิ่มลงชีท Database ให้อัตโนมัติ</div><input id="nmIn" name="new-name" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ชื่อสินค้า" value="${dg?'':esc(v)}"><input id="nbc" name="new-barcode" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" placeholder="บาร์โค้ด (ไม่ใส่ก็ได้)" value="${dg?esc(v):''}" style="margin-top:8px"></div>`}}
 function pick(i){SEL={b:SG[i][0],n:SG[i][1]};$('bc').value=SG[i][1];lookup();$('due').focus()}
 const qa=n=>{$('qty').value=Math.max(1,(+$('qty').value||0)+n)};
 // อ่านวันที่แบบพิมพ์เร็ว: 14.2.26 / 14/2 / 14-2-2569 / 1402 / 140226 / 14022026 (ไม่ใส่ปี = ปีนี้, ปี 2 หลัก >=55 = พ.ศ.)
@@ -998,8 +1049,8 @@ const adm=(a,b)=>post({action:a,admin:AD,...b});
 async function admLoad(){AD=$('adm').value;let r=await adm('adminList');
  if(r.needInit){if(AD.length<4)return toast('ตั้งรหัสแอดมินอย่างน้อย 4 ตัว');r=await adm('adminInit');if(!r.ok)return toast(r.error);toast('ตั้งรหัสแอดมินแล้ว');r=await adm('adminList')}
  if(!r.ok)return toast(r.error);drawAdm(r.list)}
-function drawAdm(l){$('brs').innerHTML=l.map(b=>brCard(b)).join('')+'<button class="btn alt big" onclick="this.insertAdjacentHTML(\'beforebegin\',brCard({key:\'\',name:\'\',id:\'\'}))">＋ เพิ่มสาขา</button>'+'<div class="row" style="margin-top:14px"><input id="npw" type="password" placeholder="รหัสแอดมินใหม่"><button class="btn alt fit" onclick="W(this,admPw)">เปลี่ยนรหัสแอดมิน</button></div>'}
-const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>PIN รหัสสาขา (ตัวเลข 4 หลัก) ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':'(ยังไม่ได้ตั้ง ต้องใส่)'}</label><div class="row"><input class="bc2" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="PIN 4 หลัก เช่น 1234"><button type="button" class="btn alt sm fit" onclick="const i=this.previousElementSibling;i.type='text';i.value=String(1000+Math.floor(Math.random()*9000))">🎲 สุ่ม PIN</button></div><div class="row" style="margin-top:10px"><button class="btn sm" onclick="W(this,()=>svBr(this))">บันทึก</button><button class="btn del sm" onclick="W(this,()=>dlBr(this))">ลบสาขา</button>${b.key?'<button class="btn alt sm" onclick="W(this,()=>unlockBr(this))">🔓 ปลดล็อก</button>':''}${b.key?'<button class="btn alt sm" onclick="W(this,()=>shLoad(this))">จัดการชีท</button>':''}</div><div class="shp"></div></div>`;
+function drawAdm(l){$('brs').innerHTML=l.map(b=>brCard(b)).join('')+'<button class="btn alt big" onclick="this.insertAdjacentHTML(\'beforebegin\',brCard({key:\'\',name:\'\',id:\'\'}))">＋ เพิ่มสาขา</button>'+'<div class="row" style="margin-top:14px"><input id="npw" class="pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="รหัสแอดมินใหม่"><button class="btn alt fit" onclick="W(this,admPw)">เปลี่ยนรหัสแอดมิน</button></div>'}
+const brCard=b=>`<div class="card" style="box-shadow:none;border:1px solid var(--ln);margin-top:12px" data-k="${esc(b.key)}"><label>ชื่อสาขา</label><input class="bn" value="${esc(b.name)}"><label>ลิงก์หรือ ID ของสเปรดชีตสาขา (ว่าง = ชีทที่ผูกกับสคริปต์)</label><input class="bi" value="${esc(b.id)}"><label>PIN รหัสสาขา (ตัวเลข 4 หลัก) ${b.hasCode?'(เว้นว่าง = ไม่เปลี่ยน)':'(ยังไม่ได้ตั้ง ต้องใส่)'}</label><div class="row"><input class="bc2 pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" maxlength="4" placeholder="PIN 4 หลัก เช่น 1234"><button type="button" class="btn alt sm fit" onclick="const i=this.previousElementSibling;i.classList.remove('pwm');i.value=String(1000+Math.floor(Math.random()*9000))">🎲 สุ่ม PIN</button></div><div class="row" style="margin-top:10px"><button class="btn sm" onclick="W(this,()=>svBr(this))">บันทึก</button><button class="btn del sm" onclick="W(this,()=>dlBr(this))">ลบสาขา</button>${b.key?'<button class="btn alt sm" onclick="W(this,()=>unlockBr(this))">🔓 ปลดล็อก</button>':''}${b.key?'<button class="btn alt sm" onclick="W(this,()=>shLoad(this))">จัดการชีท</button>':''}</div><div class="shp"></div></div>`;
 const shPrev=r=>Object.entries(r.preview||{}).map(([t,rows])=>`<div class="mut" style="margin-top:10px">ตัวอย่างที่อ่านได้จากชีท <b>${esc(t)}</b></div>`+(rows.length?`<div style="overflow-x:auto"><table><tr><th>บาร์โค้ด</th><th>ชื่อ</th><th>จำนวน</th><th>หมดอายุ</th><th>เคลม</th></tr>${rows.map(x=>'<tr>'+x.map(c=>`<td>${esc(c)}</td>`).join('')+'</tr>').join('')}</table></div>`:'<div class="mut">ยังไม่มีข้อมูลในชีทนี้</div>')).join('');
 const shView=(k,r)=>`<div class="row" style="margin:8px 0"><button class="btn sm" onclick="W(this,()=>shDet(this))">🔍 ตรวจชีทอัตโนมัติ</button></div>`+shPrev(r)+`<div class="mut" style="margin-top:12px">ติ๊ก "สต็อก" ได้หลายชีท · เลือก "ฐานข้อมูล" 1 ชีท</div>`+r.sheets.map(n=>`<div class="sr"><b>${esc(n)}</b><div class="row"><label><input type="checkbox" class="shs" value="${esc(n)}" ${r.tabs.includes(n)?'checked':''}> สต็อก</label><label><input type="radio" name="db_${k}" class="shd" value="${esc(n)}" ${r.db==n?'checked':''}> ฐานข้อมูล</label><button class="btn alt sm fit" data-n="${esc(n)}" onclick="W(this,()=>shRen(this))">เปลี่ยนชื่อ</button></div></div>`).join('')+`<div class="row" style="margin-top:10px"><input class="shn" placeholder="ชื่อชีทใหม่"><button class="btn alt sm fit" onclick="W(this,()=>shAdd(this))">＋ สร้างชีท</button></div><button class="btn sm" style="margin-top:10px" onclick="W(this,()=>shSet(this))">บันทึกการเลือกชีท</button><label style="margin-top:14px">ตัวเลือกสถานะเคลมเพิ่มเอง (คั่นด้วย , ) · ระบบดึงจากค่าในชีทให้อัตโนมัติอยู่แล้ว</label><div class="row"><input class="shc" value="${esc((r.claims||[]).join(', '))}" placeholder="เช่น Lotus's, Makro"><button class="btn alt sm fit" onclick="W(this,()=>shCl(this))">บันทึก</button></div>`;
 const shRun=async(el,b)=>{const c=el.closest('[data-k]'),r=await adm(b.action,{key:c.dataset.k,...b});if(!r.ok)return toast(r.error);c.querySelector('.shp').innerHTML=shView(c.dataset.k,r);toast('บันทึกแล้ว');if(BR&&CODE&&c.dataset.k==BR)load()};
