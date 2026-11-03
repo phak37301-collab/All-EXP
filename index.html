@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><link rel="preload" as="image" href="Logo.gif">
 <meta name="theme-color" content="#fff0f6">
 <meta name="description" content="ตรวจและจัดการสต็อกวันหมดอายุ สแกนบาร์โค้ด แจ้งเตือนสินค้าใกล้หมด แยกตามสาขา">
 <meta name="application-name" content="สต็อกวันหมดอายุ"><meta name="apple-mobile-web-app-title" content="สต็อกวันหมดอายุ">
@@ -813,15 +813,55 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
 @media(min-width:821px){#camF,body.nvh #camF{bottom:28px}}
 @media print{#camF{display:none!important}}
 @media(prefers-reduced-motion:reduce){#camF,#camF *{transition:none!important}}
+
+/* ===== v11 ===== */
+.ldrBox{padding:5px 20px 5px 5px;gap:12px;min-width:0}
+.ldrFr{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:26px;box-shadow:inset 0 0 0 1px var(--ln)}
+.ldrFr:before{content:"";position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 25%,var(--ac2),var(--ac));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));animation:ldrSpin 1s linear infinite}
+.ldrFr img{width:36px;height:36px;object-fit:contain;border-radius:50%;display:block;-webkit-user-drag:none;pointer-events:none}
+@keyframes ldrSpin{to{transform:rotate(360deg)}}
+#ldr.big .ldrBox{flex-direction:column;border-radius:32px;padding:24px 34px 20px;gap:10px;min-width:240px;text-align:center}
+#ldr.big .ldrFr{width:96px;height:96px}#ldr.big .ldrFr:before{inset:-6px;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px))}#ldr.big .ldrFr img{width:78px;height:78px}
+.vwld .ldrFr{width:68px;height:68px}.vwld .ldrFr img{width:54px;height:54px}.vwld .ldrFr:before{inset:-5px}
+@media(prefers-reduced-motion:reduce){.ldrFr:before{animation:none}}
+#appTop .bell.fl{position:absolute;top:14px;right:14px;left:auto;width:46px;height:46px;z-index:5;background:#fff;border:2px solid #fff;box-shadow:0 6px 16px var(--shc)}
+@media(min-width:821px){#appTop .bell.fl{top:18px;right:20px;width:52px;height:52px}}
+.bell.fs{position:fixed;top:calc(10px + env(safe-area-inset-top));right:12px;width:44px;height:44px;z-index:9;background:#fff;border:1px solid var(--ln);box-shadow:0 8px 22px #0003;opacity:0;pointer-events:none;transform:scale(.7);transition:opacity .2s,transform .25s cubic-bezier(.2,.9,.3,1.3)}
+body.hscr .bell.fs{opacity:1;pointer-events:auto;transform:none}
+@media print{.bell.fs{display:none!important}}
+em.em{position:static!important;display:inline-block!important;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;font-style:normal;font-size:22px;line-height:1;display:inline-block}
+#camF .camMain .em{font-size:28px}.srch .sb .em{font-size:18px}#nav button .em{font-size:22px}
+#dp{max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
+#dtb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;margin:0 -4px 10px;padding:0 4px}
+.dsum{display:flex;align-items:center;gap:14px;margin:10px 0 10px}.dbig{font:600 46px/1 Mitr,Prompt,sans-serif;color:var(--c)}.dbig small{font:500 14px Prompt,sans-serif;color:var(--mut);margin-left:4px}.dsx b{display:block;font-size:18px}.dsx span{color:var(--mut);font-size:13px}
+.lots{display:grid;gap:6px}.lt{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--ln);border-left:5px solid var(--c);border-radius:14px;padding:8px 8px 8px 12px}
+.ltd b{display:block}.ltd small{color:var(--mut);font-size:12px}.ltd>div{margin-top:3px}.ltq{text-align:right}.ltq b{font-size:18px}.ltq small{display:block;font-size:10px;color:var(--mut)}
+.lta{display:flex;gap:4px}.ib2{width:38px;height:38px;border:0;border-radius:12px;background:var(--tint);cursor:pointer;font-size:15px}.ib2.rd{background:#fdecee}
+.rch{display:flex;align-items:center;justify-content:space-between;margin:14px 0 6px;font-size:13px}.rch b{font-weight:600;color:var(--mut)}.rch button{border:0;background:none;color:var(--mut);font:inherit;text-decoration:underline;cursor:pointer}
+.rcs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 8px;margin:0 -2px;-webkit-overflow-scrolling:touch}
+.rcc{flex:none;width:158px;scroll-snap-align:start;display:grid;grid-template-columns:34px 1fr;gap:1px 8px;align-items:center;text-align:left;border:1px solid var(--ln);background:#fff;border-radius:16px;padding:9px 10px;cursor:pointer;font:inherit;color:var(--ink)}
+.rcc:hover{border-color:var(--ac)}.rcc.inq{border-color:#1f9d55;background:#f1fbf5}
+.rca{grid-row:1/3;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700}
+.rcn{font-weight:600;font-size:13px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em;align-self:end}.rcc i{font-style:normal;font-size:11px;color:var(--mut)}.rcc.inq i{color:#1f9d55}
+.rsel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:14px}.rsel span{flex:1;min-width:200px}
+.ck{width:40px;text-align:center}#tb tr{cursor:pointer}#tb td.ck input{pointer-events:none}#tb tr.sel td{background:color-mix(in srgb,var(--ac) 10%,#fff)}
+.rcd{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--ln);border-left:6px solid var(--c);background:#fff;border-radius:16px;padding:10px 12px;margin-bottom:8px;font:inherit;color:var(--ink);cursor:pointer}
+.rcd.sel{background:color-mix(in srgb,var(--ac) 9%,#fff);border-color:var(--ac)}.rck{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid #c3c9d4;display:grid;place-items:center;color:#fff;font-weight:700}.rcd.sel .rck{background:var(--ac);border-color:var(--ac)}
+.rcb2{flex:1;min-width:0}.rcb2 b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rcb2 small{display:block;color:var(--mut)}.rcq{text-align:right}.rcq b{font-size:20px}.rcq small{display:block;color:var(--mut);font-size:11px}
+#ql{max-height:56vh;overflow:auto}
+.sq,.sq>*,.stepc,.stepc .row{min-width:0}.sq{grid-template-columns:minmax(0,1fr)}.stepc{max-width:100%}.rcs{width:100%;max-width:100%}
+#dtb:focus,#dtb:focus-visible,#dp:focus,#dp:focus-visible{outline:none}
+@media(min-width:1000px){.sq{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<button class="bell fl" id="belF" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button><div id="prn"></div><button id="navTab" onclick="navTog()" title="แสดงเมนู" aria-label="แสดงเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+<button class="bell fs" id="belS" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button><div id="prn"></div><button id="navTab" onclick="navTog()" title="แสดงเมนู" aria-label="แสดงเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
 <div id="shell"><nav id="nav"><div class="navin"><button class="lgb" id="lgb" onclick="bmenu()" aria-label="เมนูสาขา">B</button>
- <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg><span>สแกน</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button><button data-p="set" class="nset" title="ตั้งค่า"><svg class="i" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>ตั้งค่า</span></button><button class="ncl" onclick="navTog()" title="ซ่อนเมนู" aria-label="ซ่อนเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div></nav>
+ <button data-p="add" title="เพิ่มสินค้า"><em class="em">📷</em><span>สแกน</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button><button data-p="set" class="nset" title="ตั้งค่า"><svg class="i" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>ตั้งค่า</span></button><button class="ncl" onclick="navTog()" title="ซ่อนเมนู" aria-label="ซ่อนเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div></nav>
 <div id="main">
-<header id="appTop">
+<header id="appTop"><button class="bell fl" id="belF" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button>
 <div class="atTrack" aria-hidden="true"><span class="dg d1" onclick="bark(this)"><i><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith('🐈')"></i></span><span class="dg d2" onclick="bark(this)"><i>🐈‍⬛</i></span><span class="dg d3" onclick="bark(this)"><i>🐱</i></span></div>
 <div class="atRow"><button class="atLogo" onclick="flipStyle()" aria-label="สลับสไตล์ น่ารัก/เท่">🐱</button><button class="atBr" onclick="bmenu()" aria-label="เปลี่ยนสาขา"><small>สาขาที่ใช้งาน</small><b class="brl">สาขา</b></button>
 <div class="atHi"><b id="atHi"></b><span class="atDate" id="atDate"></span></div>
@@ -829,14 +869,14 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
 <section id="list"><div class="mtop"><button class="chipb" onclick="bmenu()"><i class="gdot"></i><span class="brl">สาขา</span> ▾</button><button class="bell m" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button></div>
 <div class="lgrid"><div>
  <div class="hdr"><div class="ht"><h1>รายการทั้งหมด</h1><div class="mut" id="lsub"></div></div>
-  <div class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="q" name="stock-search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ค้นหาหรือยิงบาร์โค้ด" oninput="drawList()"><button class="sb" onclick="scan('find')" aria-label="สแกนค้นหา"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8"/></svg></button></div>
+  <div class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="q" name="stock-search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ค้นหาหรือยิงบาร์โค้ด" oninput="drawList()"><button class="sb" onclick="scan('find')" aria-label="สแกนค้นหา"><em class="em">📷</em></button></div>
   <button class="bell d" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button></div>
  <div class="cc"><div class="ccl"><b>ชิ้นที่จะหมดอายุใน 8 วันข้างหน้า</b><span id="c8t"></span></div><div class="cbs" id="c8"></div></div>
  <div class="tabs" id="tabs"></div><div class="fbx" id="fb1"></div><div id="lst"></div></div>
  <aside id="dp"></aside></div></section>
 <section id="add" class="hide"><div class="ph"><h1>เพิ่มสินค้า</h1><div class="mut">สแกนหรือพิมพ์ชื่อ แล้วเข้าคิวบันทึกทีเดียว</div></div><div class="sq"><div>
  <div class="stepc"><div class="sh"><i>1</i><b>สินค้า</b></div>
-  <div class="row"><input id="bc" class="bcin" name="stock-item" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">▣ สแกน</button></div>
+  <div class="row"><input id="bc" class="bcin" name="stock-item" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">📷 สแกน</button></div>
   <div id="sug"></div><div id="pk" class="pk hide"></div><div id="rc"></div></div>
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
   <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
@@ -844,8 +884,8 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
   <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb" onclick="$('qty').value=48">48</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
- <div class="acts"><button class="btn big" id="qnow" onclick="W(this,saveNow)">✓ บันทึกเลย</button><button class="btn alt big" onclick="queue()">＋ เข้าคิว</button></div>
- <div class="mut hint" style="text-align:center">รายการเดียว กด "บันทึกเลย" ได้ทันที · หลายรายการ กด "เข้าคิว" แล้วค่อยบันทึกรวม</div></div>
+ <div class="acts"><button class="btn big" id="qnow" onclick="W(this,saveNow)">💾 บันทึกชิ้นนี้เลย</button><button class="btn alt big" onclick="queue()">＋ เพิ่มชิ้นถัดไป</button></div>
+ <div class="mut hint" style="text-align:center">💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว</div></div>
  <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveQ)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
 <section id="stat" class="hide"><div class="ph"><h1>สถิติและรายงาน</h1><div class="mut">แตะการ์ด แท่งกราฟ หรือแถวสินค้า เพื่อดูรายการข้างใน</div></div>
 <div id="bn" class="hide"><b id="bn1"></b><i id="bn2"></i><i id="bnA"></i></div>
@@ -854,7 +894,8 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
 <div class="card"><div class="ch"><h3>หมดอายุรายเดือน</h3><small class="mut">ชิ้น · แตะแท่งกราฟ</small></div><div id="bars" class="mbars"></div></div></div>
 <div class="card"><div class="ch"><h3>ต้องจัดการก่อน</h3><button class="chipb" onclick="jumpList('urg')">ดูทั้งหมด ›</button></div><div id="topl" class="topl"></div></div>
 <h3 class="sech">ออกรายงาน</h3>
- <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" onclick="csv()">CSV</button><button class="btn alt fit" onclick="xls()">Excel</button><button class="btn fit" onclick="printRep()">พิมพ์ / PDF</button></div>
+ <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" id="bCsv" onclick="csv()">CSV</button><button class="btn alt fit" id="bXls" onclick="xls()">Excel</button><button class="btn fit" id="bPrn" onclick="printRep()">พิมพ์ / PDF</button></div>
+ <div class="rsel noprint" id="rsel"></div>
  <div class="card fbx" id="fb2"></div>
  <div class="card"><div class="row" id="sum" style="flex-wrap:wrap;margin-bottom:10px"></div><div class="dsk" style="overflow-x:auto"><table id="tb"></table></div><div class="mob" id="tbc"></div></div>
 </section>
@@ -875,12 +916,12 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
   <div id="pinT" class="hide"><input id="pw" class="pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="รหัสสาขา" style="margin-top:14px"><div id="pinE2" style="min-height:22px;color:#c8102e;font-size:14px;margin-top:6px"></div><button class="btn big" style="margin-top:6px" onclick="W(this,()=>tryLogin($('pw').value))">เข้าใช้งาน</button></div>
   <div style="text-align:center;margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="chipb" id="pinM" onclick="pinMode(!PTXT)">ใช้รหัสแบบตัวอักษร</button><button class="chipb" onclick="$('lg').close();go('set')">🔑 ลืมรหัส?</button></div><div class="mut" style="text-align:center;font-size:13px;margin-top:10px">ลืมรหัส: ให้หัวหน้า/แอดมินเข้า ตั้งค่า › จัดการสาขา แล้วกด 🎲 สุ่ม PIN ใหม่ จากนั้นแจ้งพนักงาน</div></div>
 </div></dialog>
-<div id="camF" role="group" aria-label="ปุ่มสแกนลอย"><button class="camTab" type="button" onclick="camSlide()" aria-label="ซ่อนหรือแสดงปุ่มสแกน"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="camW"><div class="camMenu"><button type="button" onclick="camGo('find')"><span>ค้นหา</span><i><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg></i></button><button type="button" onclick="camGo('add')"><span>เพิ่มสินค้า</span><i><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button></div><button class="camMain" type="button" onclick="camTap()" aria-label="สแกนบาร์โค้ด" aria-expanded="false"><svg class="i cm" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l1.4-2h5.2L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg><svg class="i xx" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
+<div id="camF" role="group" aria-label="ปุ่มสแกนลอย"><button class="camTab" type="button" onclick="camSlide()" aria-label="ซ่อนหรือแสดงปุ่มสแกน"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="camW"><div class="camMenu"><button type="button" onclick="camGo('find')"><span>ค้นหา</span><i><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg></i></button><button type="button" onclick="camGo('add')"><span>เพิ่มสินค้า</span><i><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button></div><button class="camMain" type="button" onclick="camTap()" aria-label="สแกนบาร์โค้ด" aria-expanded="false"><em class="em cm">📷</em><svg class="i xx" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
 <dialog id="sc" class="scan">
  <div class="row" style="margin-bottom:10px"><div style="font-weight:600"><i class="dot" id="sdot" style="--c:var(--ac2)"></i><span id="sst">กำลังสแกน</span></div>
   <button class="ib fit" id="bp" onclick="toggleBeep()" aria-label="เปิดปิดเสียงบี๊บ">🔊</button><button class="ib fit hide" id="tq" onclick="torch()" aria-label="ไฟฉาย">🔦</button><button class="ib fit" onclick="stopScan()" aria-label="ปิดกล้อง">✕</button></div>
  <div class="seg"><button data-m="add" class="on" onclick="setMode('add')">เพิ่มสินค้า</button><button data-m="find" onclick="setMode('find')">ค้นหา</button></div>
- <div class="vw" id="vw" onclick="focusTap(event)"><video id="vid" playsinline muted autoplay></video><b class="cn a"></b><b class="cn b"></b><b class="cn c"></b><b class="cn d"></b><i class="sl"></i><i class="fr" id="fr"></i><div class="vwld"><span class="ldrCat"><i><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith('🐈')"></i></span><small>กำลังเปิดกล้อง</small></div></div>
+ <div class="vw" id="vw" onclick="focusTap(event)"><video id="vid" playsinline muted autoplay></video><b class="cn a"></b><b class="cn b"></b><b class="cn c"></b><b class="cn d"></b><i class="sl"></i><i class="fr" id="fr"></i><div class="vwld"><div class="ldrFr" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><small>กำลังเปิดกล้อง</small></div></div>
  <div class="row" id="zm" style="justify-content:center;margin-top:10px"></div>
  <div class="mut" id="scmsg" style="margin:6px 0;min-height:22px;text-align:center"></div>
  <div class="row"><label class="btn alt" for="pic" style="text-align:center">ถ่ายรูปแทน</label><button class="btn hide" id="addNew">เพิ่มสินค้านี้</button></div>
@@ -894,7 +935,7 @@ body.nvh #camF{bottom:calc(26px + env(safe-area-inset-bottom))}
 <dialog id="al" class="pop"><div class="in"><div class="alh"><i class="alI">🔔</i><div class="alTt"><b id="alT"></b><small id="alS2"></small></div><button class="btn alt sm hide" id="alSel" onclick="alMode()">เลือก</button><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><div class="alBar hide" id="alBar"><button class="btn alt" id="alAllC" onclick="alPickAll()">เลือกทั้งหมด</button><button class="btn del" id="alDelB" onclick="alDelSel()" disabled>🗑 ลบ <b>0</b> ล็อต</button></div><button class="btn alt big" id="alAllB" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
 <div id="qbar" class="hide"><button class="qi" onclick="toQ()" aria-label="เปิดดูคิวทั้งหมด"><span class="qcnt" id="qcnt">0</span><span class="qtx"><b>คิวรอบันทึก <em>แตะเพื่อดู ▴</em></b><small id="qbn"></small></span></button><button class="btn" onclick="W(this,saveQ)">บันทึกทั้งหมด</button></div>
 <dialog id="qd" class="qsheet"><div class="qgrab"></div><div class="qdh"><b>🧾 คิวรอบันทึก <small id="qdn"></small></b><button class="ib fit" onclick="$('qd').close()" aria-label="ปิด">✕</button></div><div id="qdl"></div><div class="qdf"><button class="btn alt" onclick="$('qd').close()">＋ เพิ่มชิ้นถัดไป</button><button class="btn" onclick="W(this,async()=>{await saveQ();if(!Q.length&&$('qd').open)$('qd').close()})">บันทึกทั้งหมด</button></div></dialog>
-<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrTrack" aria-hidden="true"><span class="ldrP p1">🐾</span><span class="ldrP p2">🐾</span><span class="ldrP p3">🐾</span><span class="ldrP p4">🐾</span><span class="ldrCat"><i><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith('🐈')"></i></span></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
+<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrFr" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
 <div id="toast"></div>
 <script>
 (()=>{ // iPhone: กันแตะสองทีซูม + กันบีบนิ้วซูมทั้งหน้า (ช่องกรอกยังเลือกข้อความได้)
@@ -1040,7 +1081,7 @@ async function alDelSel(){if(ALBZ)return;const L=[...ALS].map(i=>AL[i]).filter(e
  if(!await ask({t:'ลบ '+L.length+' ล็อต?',b:`รวม ${L.reduce((a,e)=>a+e.qty,0)} ชิ้น<br><span style="color:#c8102e">แถวเหล่านี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ '+L.length+' ล็อต',danger:1}))return;
  ALBZ=1;$('alDelB').disabled=true;let ok=0;
  L.sort((a,b)=>String(a.tab).localeCompare(String(b.tab))||b.row-a.row); // ลบจากแถวล่างขึ้นบน กันเลขแถวในชีตเลื่อน
- try{for(const e of L){await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode});ok++}}catch(x){toast(x.message)}
+ try{for(const e of L){await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,was:{due:e.due}});ok++}}catch(x){toast(x.message)}
  finally{ALBZ=0}
  await load();if(ok==L.length)toast('ลบแล้ว '+ok+' ล็อต');else if(ok)toast('ลบได้ '+ok+' จาก '+L.length+' ล็อต');
  bellTap()}
@@ -1055,23 +1096,29 @@ function drawDetail(){const el=SELB?D.entries.filter(e=>e.barcode==SELB).sort(by
  const h=!el.length?'<div class="mut" style="padding:24px 0;text-align:center">เลือกสินค้าจากรายการ เพื่อดูรายละเอียดแต่ละล็อต</div>':detail(el);$('dp').innerHTML=h;$('dtb').innerHTML=h}
 function detail(el){const f=el[0],d=days(f.due),nm=f.item||D.db[f.barcode]||f.barcode,tot=el.reduce((a,e)=>a+e.qty,0),
  lab=isNaN(d)?'ไม่ระบุวันที่':d<0?'หมดอายุแล้ว':d==0?'หมดอายุวันนี้':d==1?'หมดอายุพรุ่งนี้':'หมดอายุในอีก '+d+' วัน';
- return `<div class="mut">${lab}</div><h2 class="dh">${esc(nm)}</h2><div class="mut">${esc(f.barcode)}</div><div class="bigd" style="color:${dc(d)}">${isNaN(d)?'–':d}<small>วัน</small></div><div class="kv"><span>วันหมดอายุ</span><b>${fd(f.due)}</b></div><div class="kv"><span>จำนวนรวม</span><b>${tot} ชิ้น, ${el.length} ล็อต</b></div>`+
- el.map(e=>{const k=days(e.due),x=D.entries.indexOf(e);return `<div class="lot"><div><b>${fd(e.due)}</b> <small class="mut">${isNaN(k)?'':k<0?'เกิน '+(-k)+' วัน':'อีก '+k+' วัน'}</small><div>${clPill(e.claim)}${e.tab&&tabs().length>1?' <small class="mut">'+esc(e.tab)+'</small>':''}</div></div><div class="lq"><b style="font-size:20px">${e.qty}</b> ชิ้น</div><div class="la"><button class="btn alt sm" onclick="openEdit(${x})">แก้ไข</button><button class="btn del sm" onclick="W(this,()=>del(${x}))">ลบ</button></div></div>`}).join('')}
-function group(f){const m={};D.entries.filter(e=>okF(e)&&(f<0||lv(days(e.due))==f)).forEach(e=>{const k=e.barcode+'|'+e.due+'|'+(e.claim||'-');(m[k]=m[k]||{...e,item:e.item||D.db[e.barcode]||'',qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1)}
+ return `<div class="dpH"><div class="mut">${lab}</div><h2 class="dh">${esc(nm)}</h2><div class="mut">${esc(f.barcode)}</div><div class="dsum"><div class="dbig" style="--c:${dc(d)}">${isNaN(d)?'–':d}<small>วัน</small></div><div class="dsx"><b>${tot} ชิ้น</b><span>${el.length} ล็อต · ใกล้สุด ${fd(f.due)}</span></div></div></div><div class="lots">`+
+ el.map(e=>{const k=days(e.due),x=D.entries.indexOf(e);return `<div class="lt" style="--c:${dc(k)}"><div class="ltd"><b>${fd(e.due)}</b><small>${isNaN(k)?'':k<0?'เกิน '+(-k)+' วัน':k==0?'วันนี้':'อีก '+k+' วัน'}${e.tab&&tabs().length>1?' · '+esc(e.tab):''}</small>${(e.claim&&e.claim!='-')?'<div>'+clPill(e.claim)+'</div>':''}</div><div class="ltq"><b>${e.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" onclick="openEdit(${x})" aria-label="แก้ไข" title="แก้ไข">✎</button><button type="button" class="ib2 rd" onclick="W(this,()=>del(${x}))" aria-label="ลบ" title="ลบ">🗑</button></div></div>`}).join('')+'</div>'}
+function group(f){const m={};D.entries.filter(e=>okF(e)&&(f<0||lv(days(e.due))==f)).forEach(e=>{const k=e.barcode+'|'+e.due+'|'+(e.claim||'-');(m[k]=m[k]||{...e,k,item:e.item||D.db[e.barcode]||'',qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1)}
+let RSEL=new Set(),RG=[];
 function drawRep(){
  const s=$('f2'),v=s.value||-1;s.innerHTML='<option value="-1">ทุกสถานะ</option>'+NM().map((n,i)=>`<option value="${i}">${n}</option>`).join('');s.value=v;
- const g=group(+s.value);
+ const g=RG=group(+s.value),n=g.filter(e=>RSEL.has(e.k)).length,all=g.length&&n==g.length;
  $('sum').innerHTML=`<b>${g.length} รายการ / ${g.reduce((a,e)=>a+e.qty,0)} ชิ้น</b>`;
- $('tb').innerHTML='<tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th>เคลม</th></tr>'+g.map(e=>`<tr style="--c:${COL[lv(days(e.due))]}"><td>${e.barcode}</td><td>${esc(e.item)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td>${clPill(e.claim)}</td></tr>`).join('')}
+ $('rsel').innerHTML=`<span>${n?'✅ เลือกแล้ว <b>'+n+'</b> จาก '+g.length+' รายการ · ส่งออก/พิมพ์เฉพาะที่เลือก':'แตะแถวเพื่อเลือกบางรายการ · ถ้าไม่เลือก = ทั้งหมดตามตัวกรอง ('+g.length+')'}</span><button type="button" class="chipb" onclick="rSelAll(1)">เลือกทั้งหมด</button>${n?'<button type="button" class="chipb" onclick="rSelAll(0)">ล้างที่เลือก</button>':''}`;
+ const sx=n?' ('+n+')':'';$('bCsv').textContent='CSV'+sx;$('bXls').textContent='Excel'+sx;$('bPrn').textContent='พิมพ์ / PDF'+sx;
+ $('tb').innerHTML='<tr><th class="ck"><input type="checkbox" aria-label="เลือกทั้งหมด" '+(all?'checked':'')+' onclick="rSelAll(this.checked?1:0)"></th><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th class="n">จำนวน</th><th>หมดอายุ</th><th>สถานะ</th><th>เคลม</th></tr>'+g.map((e,i)=>`<tr class="${RSEL.has(e.k)?'sel':''}" style="--c:${COL[lv(days(e.due))]}" onclick="rTog(${i})"><td class="ck"><input type="checkbox" tabindex="-1" ${RSEL.has(e.k)?'checked':''}></td><td>${esc(e.barcode)}</td><td>${esc(e.item)}</td><td class="n">${e.qty}</td><td>${fd(e.due)}</td><td>${pill(days(e.due))}</td><td>${clPill(e.claim)}</td></tr>`).join('')}
+const rTog=i=>{const k=RG[i].k;RSEL.has(k)?RSEL.delete(k):RSEL.add(k);drawRep();drawExtra()};
+const rSelAll=on=>{RG.forEach(e=>on?RSEL.add(e.k):RSEL.delete(e.k));drawRep();drawExtra()};
+const repRows=()=>{const g=group(+$('f2').value);return RSEL.size?g.filter(e=>RSEL.has(e.k)):g};
 const dstr=()=>new Date().toISOString().slice(0,10);
-function csv(){const g=group(+$('f2').value);if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
+function csv(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
  dl([['บาร์โค้ด','ชื่อสินค้า','จำนวน','วันหมดอายุ','เหลือ(วัน)','สถานะ','สถานะเคลม']].concat(g.map(e=>{const d=days(e.due);return[bcx(e.barcode),e.item,e.qty,fd(e.due),isNaN(d)?'':d,NM()[lv(d)],e.claim||'-']})),'รายงานสต็อก_')}
-function xls(){const g=group(+$('f2').value);if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
+function xls(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
  const rows=g.map(e=>{const d=days(e.due),l=lv(d);return `<tr><td style="mso-number-format:'\\@'">${esc(e.barcode)}</td><td>${esc(e.item)}</td><td>${e.qty}</td><td>${fd(e.due)}</td><td>${isNaN(d)?'':d}</td><td style="background:${COL[l]};color:${TX[l]}">${NM()[l]}</td><td>${esc(e.claim||'-')}</td></tr>`}).join('');
  out(new Blob(['\ufeff<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table border="1"><tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>เหลือ(วัน)</th><th>สถานะ</th><th>สถานะเคลม</th></tr>'+rows+'</table></body></html>'],{type:'application/vnd.ms-excel'}),'รายงานสต็อก_'+dstr()+'.xls')}
-function printRep(){const g=group(+$('f2').value);if(!g.length)return toast('ไม่มีรายการให้พิมพ์');
+function printRep(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้พิมพ์');
  if(inApp())toast('ถ้าไม่เด้งหน้าพิมพ์ ให้เปิดลิงก์ด้วย Chrome/Safari',5000);
- const st=$('f2').selectedOptions[0].text,tot=g.reduce((a,e)=>a+e.qty,0),now=new Date(),loc='th-TH'+(S.be?'':'-u-ca-gregory'),
+ const st=$('f2').selectedOptions[0].text+(RSEL.size?' · เลือกเฉพาะ '+g.length+' รายการ':''),tot=g.reduce((a,e)=>a+e.qty,0),now=new Date(),loc='th-TH'+(S.be?'':'-u-ca-gregory'),
   dt=now.toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'})+' เวลา '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' น.';
  const by=[0,1,2,3,4,5].map(l=>g.filter(e=>lv(days(e.due))==l)),qs=a=>a.reduce((s,e)=>s+e.qty,0),f0=x=>x.toLocaleString('th-TH'),cl=e=>e.claim&&e.claim!='-'?e.claim:'',hasCl=g.some(e=>cl(e));
  const urg=by[0].length+by[1].length,urgQ=qs(by[0])+qs(by[1]),near=g.find(e=>lv(days(e.due))<=1);
@@ -1089,8 +1136,10 @@ function printRep(){const g=group(+$('f2').value);if(!g.length)return toast('ไ
  document.body.classList.add('prnm');setTimeout(()=>window.print(),80)}
 window.addEventListener('afterprint',()=>{document.body.classList.remove('prnm');$('prn').innerHTML='';const p=document.getElementById('prPg');if(p)p.textContent=''});
 let SEL=null,SG=[],pkKey='',SI=0,RC=[];try{RC=JSON.parse(ls('RC')||'[]')}catch(e){}
-const pushRc=(b,n)=>{RC=[{b,n}].concat(RC.filter(x=>x.b!=b)).slice(0,6);localStorage.setItem('RC',JSON.stringify(RC))};
-const drawRc=v=>{$('rc').innerHTML=(!SEL&&!v&&RC.length)?'<div class="mut" style="margin:12px 0 6px;font-size:13px">ใช้ล่าสุด</div><div class="chips">'+RC.map((x,i)=>`<button type="button" class="chip rcb" onclick="pickRc(${i})">${esc(x.n)}</button>`).join('')+'</div>':''};
+const pushRc=(b,n)=>{RC=[{b,n}].concat(RC.filter(x=>x.b!=b)).slice(0,10);localStorage.setItem('RC',JSON.stringify(RC))};
+const hueOf=s=>{let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))%360;return h};
+const drawRc=v=>{const inq=new Set(Q.map(x=>x.barcode));$('rc').innerHTML=(!SEL&&!v&&RC.length)?`<div class="rch"><b>⏱ เพิ่งคีย์ล่าสุด</b><button type="button" onclick="clrRc()">ล้าง</button></div><div class="rcs">${RC.map((x,i)=>{const h=hueOf(x.n);return `<button type="button" class="rcc ${inq.has(x.b)?'inq':''}" onclick="pickRc(${i})"><span class="rca" style="background:hsl(${h} 75% 90%);color:hsl(${h} 55% 28%)">${esc(([...String(x.n).trim()][0]||'?').toUpperCase())}</span><span class="rcn">${esc(x.n)}</span><i>${inq.has(x.b)?'✓ อยู่ในคิว':'แตะเพื่อเลือก'}</i></button>`}).join('')}</div>`:''};
+const clrRc=()=>{RC=[];localStorage.setItem('RC','[]');drawRc('')};
 function pickRc(i){SEL={b:RC[i].b,n:RC[i].n};$('bc').value=RC[i].n;lookup();$('due').focus()}
 const qq=(i,n)=>{Q[i].qty=Math.max(1,Q[i].qty+n);drawQ()};
 const lotsOf=b=>{const l=D.entries.filter(e=>e.barcode==b).sort((x,y)=>String(x.due||'9').localeCompare(String(y.due||'9')));if(!l.length)return'';
@@ -1134,18 +1183,18 @@ function drawAdd(){$('cl').innerHTML=chipsH(CLV,'setCl');const v=$('tabSel').val
 const setCl=i=>{CLV=CL[i][0];drawAdd()};
 function drawQ(){qLbl();localStorage.setItem('Q',JSON.stringify(Q));$('qdn').textContent=Q.length?Q.length+' รายการ · '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น':'';$('qn').textContent=Q.length?Q.length+' รายการ · '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น':'';$('qs').classList.toggle('hide',!Q.length);$('qcard').classList.toggle('e0',!Q.length);
  const qh=Q.map((x,i)=>`<div class="lc${i==Q.length-1&&QNEW?' fresh':''}" style="--c:${clr(x.claim)[1]}"><div class="t"><b>${esc(x.item)}</b><span class="mut">${esc(x.barcode)}${tabs().length>1?' · '+esc(x.tab):''}</span><div class="mcs">${pill(days(x.due))}<span class="mut" style="font-size:12px">${fd(x.due)}</span>${(x.claim&&x.claim!='-')?clPill(x.claim):''}</div></div><div class="r"><div class="qs3"><button onclick="qq(${i},-1)" aria-label="ลด">−</button><b>${x.qty}</b><button onclick="qq(${i},1)" aria-label="เพิ่ม">＋</button></div><button class="btn del sm" onclick="Q.splice(${i},1);drawQ()" aria-label="ลบรายการ">ลบ</button></div></div>`).join('')||'<p class="mut">ยังไม่มีรายการ สแกนหรือกรอกด้านซ้าย แล้วกด "เข้าคิว"</p>';QNEW=0;$('ql').innerHTML=qh;$('qdl').innerHTML=qh;if(!Q.length&&$('qd').open)$('qd').close()}
-function queue(again){let b,item;
+function queue(silent){let b,item;
  if(SEL){b=SEL.b;item=SEL.n}else{const n=$('nmIn'),c=$('nbc');if(!n)return toast('พิมพ์ค้นหา แล้วเลือกสินค้าจากรายการ');item=n.value.trim();if(!item)return toast('ใส่ชื่อสินค้าใหม่');b=c.value.trim()||'NB'+Date.now().toString().slice(-9)}
  const q=+$('qty').value,d=pd($('due').value);
  if(!(q>0))return toast('ใส่จำนวน');if(!d)return toast('ใส่วันหมดอายุให้ถูกต้อง เช่น 14.2.26');
  Q.push({barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
- $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();toast('เข้าคิวแล้ว ('+Q.length+') '+item);
- if(matchMedia('(max-width:820px)').matches){const t=$('add');if(t){const y=t.getBoundingClientRect().top+scrollY-8;if(scrollY>y+40)scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
- $('bc').focus({preventScroll:true});return true}
+ $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();if(!silent)toast('＋ พักไว้ในคิวแล้ว ('+Q.length+') · '+item+' · ยังไม่ได้บันทึกลงชีท');
+ if(!silent&&matchMedia('(max-width:820px)').matches){const t=$('add');if(t){const y=t.getBoundingClientRect().top+scrollY-8;if(scrollY>y+40)scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
+ if(!silent)$('bc').focus({preventScroll:true});return true}
 function bumpQ(){const c=$('qcnt');if(!c)return;c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}
-function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt').textContent=n;if(b)b.textContent=n?'✓ บันทึกทั้งหมด ('+(n+1)+')':'✓ บันทึกเลย';
+function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt').textContent=n;if(b)b.textContent=n?'💾 บันทึกทั้งหมด ('+(n+1)+' รายการ)':'💾 บันทึกชิ้นนี้เลย';
  if(bar){bar.classList.toggle('hide',!n||CUR!='add');document.body.classList.toggle('hasq',!!n&&CUR=='add');$('qbn').textContent=n?(Q[n-1].item+' · รวม '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น'):''}}
-async function saveNow(){if(!queue())return;await saveQ()}
+async function saveNow(){if(!queue(1))return;await saveQ()}
 function toQ(){if(matchMedia('(max-width:820px)').matches){drawQ();if(!$('qd').open)$('qd').showModal();return}const c=$('qcard');if(c)c.scrollIntoView({behavior:'smooth',block:'center'})}
 async function saveQ(){
  if(Q.some(x=>x.br&&x.br!==BR))return toast('ในคิวมีรายการของสาขาอื่น กรุณาลบออกหรือสลับไปสาขาเดิมก่อนบันทึก');
@@ -1154,9 +1203,9 @@ async function saveQ(){
   if(same){if(S.dup=='merge'||up.has(same))merge=true;
    else if(S.dup=='ask'){const v=await ask({t:'มีล็อตนี้อยู่แล้ว',b:`<b>${esc(x.item)}</b><br>วันหมดอายุ ${fd(x.due)} มีอยู่ ${same.qty} ชิ้น จะรวมเพิ่มอีก ${x.qty} ชิ้นหรือแยกเป็นแถวใหม่?`,ok:'บวกจำนวน',alt:'แถวใหม่'});if(v=='ok')merge=true;else if(v!='alt')return}}
   if(merge){const u=up.get(same)||{o:same,q:same.qty};u.q+=x.qty;u.x=x;up.set(same,u)}else add.push(x)}
- try{for(const u of up.values())await api({action:'update',tab:u.o.tab,row:u.o.row,barcode:u.o.barcode,qty:u.q,due:u.x.due,claim:u.x.claim});
+ try{for(const u of up.values())await api({action:'update',tab:u.o.tab,row:u.o.row,barcode:u.o.barcode,qty:u.q,due:u.x.due,claim:u.x.claim,was:{due:u.o.due}});
   if(add.length)await api({action:'add',items:add});
-  toast('บันทึก '+Q.length+' รายการแล้ว');Q=[];drawQ();await load()}catch(e){toast(e.message)}}
+  const nQ=Q.length,q0=Q[0];toast(nQ==1?'✓ บันทึกลงชีทแล้ว · '+q0.item+' ×'+q0.qty:'✓ บันทึกลงชีทแล้ว '+nQ+' รายการ');Q=[];drawQ();await load()}catch(e){toast(e.message)}}
 // ฟิลเตอร์: ช่วงวันหมดอายุ + ประเภท(สถานะเคลม) + ชีท ใช้ร่วมกันในหน้ารายการและรายงาน
 const okF=e=>(!F.from||e.due>=F.from)&&(!F.to||e.due<=F.to)&&(!F.cl.length||F.cl.includes(e.claim||'-'))&&(!F.tab||e.tab==F.tab);
 function pre(n){const a=new Date(),b=new Date();if(n=='m'){a.setDate(1);b.setMonth(b.getMonth()+1,0)}else b.setDate(b.getDate()+n);F.from=ymd(a);F.to=ymd(b);drawAll()}
@@ -1173,7 +1222,7 @@ function drawFb(){const on=F.from||F.to||F.cl.length||F.tab,pb=(t,a)=>`<button c
  $('fb1').innerHTML=$('fb2').innerHTML=h}
 const setEc=i=>{EC=CL[i][0];$('edC').innerHTML=chipsH(EC,'setEc')};
 function openEdit(r){editing=D.entries[r];EC=editing.claim||'-';$('edC').innerHTML=chipsH(EC,'setEc');$('edN').textContent=editing.item;$('edQ').value=editing.qty;$('edD').value=editing.due;$('ed').showModal()}
-async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');try{await api({action:'update',tab:editing.tab,row:editing.row,barcode:editing.barcode,qty:+$('edQ').value,due:$('edD').value,claim:EC});toast('แก้ไขแล้ว');await load();$('ed').close()}catch(e){toast(e.message)}}
+async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');try{await api({action:'update',tab:editing.tab,row:editing.row,barcode:editing.barcode,qty:+$('edQ').value,due:$('edD').value,claim:EC,was:{due:editing.due}});toast('แก้ไขแล้ว');await load();$('ed').close()}catch(e){toast(e.message)}}
 async function del(r){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;try{await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode});toast('ลบแล้ว');await load()}catch(x){toast(x.message)}}
 const lc=(n,sub,right,ph,act)=>`<div class="lc" style="--c:${(ph.match(/--c:([^">;]+)/)||[])[1]||'#ddd'}"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
 function cnt(id,to){const el=$(id);if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=to;return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/700);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
@@ -1182,7 +1231,7 @@ function drawExtra(){
  $('bn').classList.toggle('hot',hot>0);$('bnA').textContent=!BR||!E0.length?'📦':hot?'🚨':'✅';
  $('bn1').textContent=!BR?'เลือกสาขาเพื่อเริ่มใช้งาน':!E0.length?'ยังไม่มีข้อมูลในสาขานี้':hot?'มี '+hot+' ล็อตที่ต้องจัดการด่วน':'สต็อกปกติดี ไม่มีของหมดอายุเร่งด่วน';
  $('bn2').textContent=E0.length?(hot?'หมดอายุแล้ว '+ex.length+' ล็อต · หมดภายใน '+TH[0]+' วัน '+u7.length+' ล็อต':'ติดตามต่อได้ในหน้ารายการ (ล็อตทั้งหมด '+E0.length+')'):'กดสแกนหรือเพิ่มสินค้าเพื่อเริ่มต้น';
- $('tbc').innerHTML=group(+$('f2').value).map(e=>lc(e.item,e.barcode+' · '+fd(e.due),e.qty+' ชิ้น',pill(days(e.due)))).join('')}
+ RG=group(+$('f2').value);$('tbc').innerHTML=RG.map((e,i)=>{const k=days(e.due);return `<button type="button" class="rcd ${RSEL.has(e.k)?'sel':''}" style="--c:${COL[lv(k)]}" onclick="rTog(${i})"><span class="rck">${RSEL.has(e.k)?'✓':''}</span><span class="rcb2"><b>${esc(e.item)}</b><small>${esc(e.barcode)} · ${fd(e.due)}</small><span>${pill(k)}${clPill(e.claim)}</span></span><span class="rcq"><b>${e.qty}</b><small>ชิ้น</small></span></button>`}).join('')}
 // สแกนบาร์โค้ดแบบเร็ว: ตัดเฉพาะกรอบกลาง ย่อเหลือ ~720px สลับหมุน 90° (สำหรับบาร์โค้ดแนวตั้ง) ใช้ BarcodeDetector ถ้ามี ไม่งั้น ZXing
 let stream,tmr,ztrack,zr,SM='add',paused=0,inTick=0,rot=0,last={c:'',t:0},AC,cv,cx,rd,det,beepOn=S.beep;
 const spin='<i class="spin"></i>';
@@ -1328,6 +1377,7 @@ try{if(localStorage.getItem('navc')=='1')document.documentElement.classList.add(
  f.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;const c=f.classList.contains('c');if(dx>42&&!c)camSet(1);else if(dx<-42&&c)camSet(0)},{passive:true});
  document.addEventListener('click',e=>{if(!e.target.closest('#camF'))open(0)});
  try{if(localStorage.getItem('camc')=='1')f.classList.add('c')}catch(e){}})();
+try{new IntersectionObserver(([e])=>document.body.classList.toggle('hscr',!e.isIntersecting)).observe($('appTop'))}catch(e){}
 drawSet();
 BR&&CODE?load():(BR||0,drawAll(),BR||toast('ยังไม่ได้เลือกสาขา'),openBr());
 </script>
