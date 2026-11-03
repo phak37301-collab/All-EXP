@@ -694,6 +694,9 @@ body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;c
 .fbx,.fbx details>*,.fbx div{min-width:0;max-width:100%}
 .fbx input,.fbx select{min-width:0;max-width:100%;width:100%}
 .fbx input[type=date]{-webkit-appearance:none;appearance:none;min-height:46px}
+.dfw{position:relative}.dfw>input[type=text]{padding-right:54px}
+.dfw .dcal{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:40px;height:40px;margin:0;border-radius:12px;display:grid;place-items:center;background:#fff;cursor:pointer;overflow:hidden;font-size:18px}
+.dfw .dcal input{position:absolute;inset:0;opacity:0;width:100%;height:100%;min-height:0;padding:0;cursor:pointer}
 /* cat loader: Logo.gif */
 .ldrCat i{--fx:1}
 .ldrCat img{display:block;width:1.2em;height:1.2em;object-fit:contain;-webkit-user-drag:none;pointer-events:none}
@@ -1022,8 +1025,12 @@ async function saveQ(){
 const okF=e=>(!F.from||e.due>=F.from)&&(!F.to||e.due<=F.to)&&(!F.cl.length||F.cl.includes(e.claim||'-'))&&(!F.tab||e.tab==F.tab);
 function pre(n){const a=new Date(),b=new Date();if(n=='m'){a.setDate(1);b.setMonth(b.getMonth()+1,0)}else b.setDate(b.getDate()+n);F.from=ymd(a);F.to=ymd(b);drawAll()}
 const tgCl=i=>{const v=CL[i][0];F.cl=F.cl.includes(v)?F.cl.filter(x=>x!=v):F.cl.concat(v);drawAll()};
+// ช่องวันที่ตัวกรอง: พิมพ์เองได้ (1/11/2026, 1.11.69, 011126) หรือกดปฏิทินเลือก
+const dfw=(k,lb)=>`<div><label>${lb}</label><div class="dfw"><input type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="เช่น 1/11/2026" value="${F[k]?fd(F[k]):''}" onchange="fDt('${k}',this)" onkeydown="if(event.key=='Enter')this.blur()"><label class="dcal" aria-label="เลือกจากปฏิทิน">📅<input type="date" value="${F[k]}" onclick="try{this.showPicker()}catch(e){}" onchange="fDp('${k}',this)"></label></div></div>`;
+function fDt(k,el){const t=el.value.trim();if(!t)F[k]='';else{const d=pd(t);if(!d){toast('อ่านวันที่ไม่ได้ ลองพิมพ์ เช่น 1/11/2026');el.value=F[k]?fd(F[k]):'';return}F[k]=d}drawAll()}
+function fDp(k,el){if(el.value){F[k]=el.value;drawAll()}}
 function drawFb(){const on=F.from||F.to||F.cl.length||F.tab,pb=(t,a)=>`<button class="btn alt sm mini" onclick="${a}">${t}</button>`;
- const h=`<details ${on?'open':''}><summary>🔎 ตัวกรอง${on?' · กำลังใช้':' (วันที่ / ประเภท)'}</summary><div class="row" style="margin-top:6px"><div><label>หมดอายุตั้งแต่</label><input type="date" value="${F.from}" onchange="F.from=this.value;drawAll()"></div><div><label>ถึงวันที่</label><input type="date" value="${F.to}" onchange="F.to=this.value;drawAll()"></div></div>
+ const h=`<details ${on?'open':''}><summary>🔎 ตัวกรอง${on?' · กำลังใช้':' (วันที่ / ประเภท)'}</summary><div class="row" style="margin-top:6px">${dfw('from','หมดอายุตั้งแต่')}${dfw('to','ถึงวันที่')}</div>
  <div class="chips" style="margin-top:10px">${pb('ภายใน 7 วัน','pre(7)')}${pb('ภายใน 30 วัน','pre(30)')}${pb('เดือนนี้',"pre('m')")}${on?pb('✕ ล้างตัวกรอง',"F={from:'',to:'',cl:[],tab:''};drawAll()"):''}</div>
  <label style="margin-top:12px">ประเภท (สถานะเคลม)</label><div class="chips">${chipsH(F.cl,'tgCl',1)}</div>
  ${tabs().length>1?`<select onchange="F.tab=this.value;drawAll()"><option value="">ทุกชีท</option>${tabs().map(t=>`<option ${F.tab==t?'selected':''}>${esc(t)}</option>`).join('')}</select>`:''}</details>`;
