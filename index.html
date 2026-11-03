@@ -853,6 +853,11 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 .sq,.sq>*,.stepc,.stepc .row{min-width:0}.sq{grid-template-columns:minmax(0,1fr)}.stepc{max-width:100%}.rcs{width:100%;max-width:100%}
 #dtb:focus,#dtb:focus-visible,#dp:focus,#dp:focus-visible{outline:none}
 @media(min-width:1000px){.sq{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+
+/* fix: ไอคอนกล้องอยู่กลางปุ่ม + ป๊อปอัปโหลดกลางจอ */
+#camF .camMain .em,[data-p=add] .em{position:static;right:auto;top:auto;display:grid;place-items:center;width:100%;height:100%;margin:0;font-size:26px;line-height:1;transform:none}
+[data-p=add] .em{font-size:22px}
+#ldr.big .ldrSub{display:block;font-size:14px;line-height:1.5;opacity:.75;white-space:pre-line;max-width:78vw}
 </style>
 </head>
 <body>
@@ -935,7 +940,7 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 <dialog id="al" class="pop"><div class="in"><div class="alh"><i class="alI">🔔</i><div class="alTt"><b id="alT"></b><small id="alS2"></small></div><button class="btn alt sm hide" id="alSel" onclick="alMode()">เลือก</button><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><div class="alBar hide" id="alBar"><button class="btn alt" id="alAllC" onclick="alPickAll()">เลือกทั้งหมด</button><button class="btn del" id="alDelB" onclick="alDelSel()" disabled>🗑 ลบ <b>0</b> ล็อต</button></div><button class="btn alt big" id="alAllB" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
 <div id="qbar" class="hide"><button class="qi" onclick="toQ()" aria-label="เปิดดูคิวทั้งหมด"><span class="qcnt" id="qcnt">0</span><span class="qtx"><b>คิวรอบันทึก <em>แตะเพื่อดู ▴</em></b><small id="qbn"></small></span></button><button class="btn" onclick="W(this,saveQ)">บันทึกทั้งหมด</button></div>
 <dialog id="qd" class="qsheet"><div class="qgrab"></div><div class="qdh"><b>🧾 คิวรอบันทึก <small id="qdn"></small></b><button class="ib fit" onclick="$('qd').close()" aria-label="ปิด">✕</button></div><div id="qdl"></div><div class="qdf"><button class="btn alt" onclick="$('qd').close()">＋ เพิ่มชิ้นถัดไป</button><button class="btn" onclick="W(this,async()=>{await saveQ();if(!Q.length&&$('qd').open)$('qd').close()})">บันทึกทั้งหมด</button></div></dialog>
-<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrFr" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
+<div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrFr" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub" id="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
 <div id="toast"></div>
 <script>
 (()=>{ // iPhone: กันแตะสองทีซูม + กันบีบนิ้วซูมทั้งหน้า (ช่องกรอกยังเลือกข้อความได้)
@@ -973,14 +978,17 @@ function toast(m,ms){const t=$('toast');t.textContent=m;t.style.display='block';
 localStorage.removeItem('codes');let PEND=0,loaded=0,CODES={};
 const LDT={list:'กำลังโหลดข้อมูลสต็อก',branches:'กำลังโหลดรายชื่อสาขา',add:'กำลังบันทึกสินค้า',update:'กำลังบันทึกการแก้ไข',delete:'กำลังลบรายการ'};
 let ldTm=0,ldN=0;
-function LD(on,msg){ // ตัวโหลดน้องแมว: หน่วงเล็กน้อย กันกระพริบเวลาโหลดเร็ว · ใช้ popover ให้ลอยเหนือป๊อปอัปได้
+function LD(on,msg,sub){ // ตัวโหลดน้องแมว: หน่วงเล็กน้อย กันกระพริบเวลาโหลดเร็ว · ใช้ popover ให้ลอยเหนือป๊อปอัปได้
  const e=$('ldr');if(!e)return;ldN=Math.max(0,ldN+(on?1:-1));
- if(on){if(msg)$('ldrTx').textContent=msg;if(ldN==1){clearTimeout(ldTm);ldTm=setTimeout(()=>{e.classList.toggle('big',!loaded&&!document.querySelector('dialog[open]'));try{if(!e.matches(':popover-open'))e.showPopover()}catch(_){}e.classList.add('on')},loaded?220:60)}}
+ if(on){if(msg)$('ldrTx').textContent=msg;$('ldrSub').textContent=sub||'รอสักครู่นะครับ ไม่ต้องกดซ้ำ';if(ldN==1){clearTimeout(ldTm);ldTm=setTimeout(()=>{e.classList.add('big');try{if(!e.matches(':popover-open'))e.showPopover()}catch(_){}e.classList.add('on')},loaded?150:60)}}
  else if(!ldN){clearTimeout(ldTm);e.classList.remove('on');setTimeout(()=>{if(!e.classList.contains('on'))try{e.hidePopover()}catch(_){}},320)}}
-async function post(b){PEND++;document.body.classList.add('busy');LD(1,LDT[b&&b.action]||(b&&b.action&&/^admin/.test(b.action)?'กำลังทำงาน':'กำลังโหลด'));
+async function post(b){const quiet=b&&b._q;if(quiet){b={...b};delete b._q}
+ if(!quiet){PEND++;document.body.classList.add('busy');
+  const it=b&&b.action=='add'&&b.items;
+  LD(1,it?'กำลังบันทึก '+it.length+' รายการ · '+it.reduce((a,x)=>a+(+x.qty||0),0)+' ชิ้น':(LDT[b&&b.action]||(b&&b.action&&/^admin/.test(b.action)?'กำลังทำงาน':'กำลังโหลด')),it?it.slice(0,4).map(x=>x.item+' ×'+x.qty).join('\n')+(it.length>4?'\n…และอีก '+(it.length-4)+' รายการ':''):'')}
  try{return await (await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)})).json()}
  catch(e){throw new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจอินเทอร์เน็ตหรือ apiUrl ใน config.js')}
- finally{LD(0);if(!--PEND)document.body.classList.remove('busy')}}
+ finally{if(!quiet){LD(0);if(!--PEND)document.body.classList.remove('busy')}}}
 // ปุ่มที่ทำงานนาน: แสดงวงกลมหมุนและกันกดซ้ำ
 async function W(b,f){if(b.classList.contains('ld'))return;const h=b.innerHTML;b.classList.add('ld');b.innerHTML='<i class="spin"></i>'+h;
  try{await f()}catch(e){toast(e.message)}finally{b.classList.remove('ld');b.innerHTML=h}}
@@ -1017,7 +1025,7 @@ async function tryLogin(code,silent){const k=PK;if(!k||!code||PBUSY)return;PBUSY
  catch(e){if(silent){delete CODES[k];localStorage.setItem('codes',JSON.stringify(CODES))}showPin(silent?'รหัสที่จำไว้ใช้ไม่ได้ ใส่ใหม่อีกครั้ง':e.message,1)}
  finally{PBUSY=0}}
 async function load(){if(!loaded)document.body.classList.add('ldg');try{D=await api({action:'list'});loaded=1;drawAll();autoAlert()}catch(e){toast(e.message)}finally{document.body.classList.remove('ldg')}}
-function drawAll(){buildCL();const n=BRN||'เลือกสาขา',m=n.match(/[A-Za-z]+\d+|[A-Za-z0-9]{2,}/g);
+function drawAll(){POLLH=D.h||POLLH;buildCL();const n=BRN||'เลือกสาขา',m=n.match(/[A-Za-z]+\d+|[A-Za-z0-9]{2,}/g);
  document.querySelectorAll('.brl').forEach(e=>e.textContent=n);$('lgb').textContent=m?m[m.length-1].slice(0,4):[...n].slice(0,3).join('');
  drawFb();drawAdd();drawQ();drawTop();drawHome();drawList();drawRep();drawExtra();lookup()}
 function drawTop(){
@@ -1172,7 +1180,9 @@ $('qty').onkeydown=e=>{if(e.key=='Enter')$('due').focus()};$('due').onkeydown=e=
 $('sc').addEventListener('close',stopStream);
 // ตัวเลือกเคลมดึงจากค่าที่มีในชีทของสาขานั้น (D.claims) สีของค่าที่รู้จักคงเดิม ค่าอื่นหมุนตามชุดสี
 const CL0=['-','#e6e9f2','#1c2240'],KNOWN={'เคลมได้':['#6fa88c','#fff'],'เคลมไม่ได้':['#d1605f','#fff'],"Lotus's":['#fdeab9','#7a5c14'],'Makro':['#d1605f','#fff']},PAL=['#cfe3ff','#e0d4ff','#c9ecd9','#ffd9c7','#e3e3e3','#fff1a8'];let CL=[CL0];
-function buildCL(){const l=(D.claims&&D.claims.length?D.claims:['เคลมได้',"Lotus's",'Makro']).filter(x=>x&&x!='-');let k=0;
+function buildCL(){const ck='cls_'+BR;let sv=[];try{sv=JSON.parse(ls(ck)||'[]')}catch(e){}
+ let l=[...new Set((D.claims||[]).concat(sv))].filter(x=>x&&x!='-');if(!l.length)l=['เคลมได้',"Lotus's",'Makro'];
+ try{localStorage.setItem(ck,JSON.stringify(l))}catch(e){}let k=0;
  CL=[CL0].concat(l.map(n=>KNOWN[n]?[n,KNOWN[n][0],KNOWN[n][1]]:[n,PAL[k++%PAL.length],'#1c2240']));
  if(!CL.some(c=>c[0]==CLV))CLV='-';F.cl=F.cl.filter(x=>CL.some(c=>c[0]==x))}
 let QNEW=0,Q=[];try{Q=JSON.parse(ls('Q')||'[]')}catch(e){}let CLV='-',EC='-',F={from:'',to:'',cl:[],tab:''};
@@ -1187,7 +1197,7 @@ function queue(silent){let b,item;
  if(SEL){b=SEL.b;item=SEL.n}else{const n=$('nmIn'),c=$('nbc');if(!n)return toast('พิมพ์ค้นหา แล้วเลือกสินค้าจากรายการ');item=n.value.trim();if(!item)return toast('ใส่ชื่อสินค้าใหม่');b=c.value.trim()||'NB'+Date.now().toString().slice(-9)}
  const q=+$('qty').value,d=pd($('due').value);
  if(!(q>0))return toast('ใส่จำนวน');if(!d)return toast('ใส่วันหมดอายุให้ถูกต้อง เช่น 14.2.26');
- Q.push({barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
+ Q.push({id:uid(),barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
  $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();if(!silent)toast('＋ พักไว้ในคิวแล้ว ('+Q.length+') · '+item+' · ยังไม่ได้บันทึกลงชีท');
  if(!silent&&matchMedia('(max-width:820px)').matches){const t=$('add');if(t){const y=t.getBoundingClientRect().top+scrollY-8;if(scrollY>y+40)scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
  if(!silent)$('bc').focus({preventScroll:true});return true}
@@ -1196,16 +1206,32 @@ function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt'
  if(bar){bar.classList.toggle('hide',!n||CUR!='add');document.body.classList.toggle('hasq',!!n&&CUR=='add');$('qbn').textContent=n?(Q[n-1].item+' · รวม '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น'):''}}
 async function saveNow(){if(!queue(1))return;await saveQ()}
 function toQ(){if(matchMedia('(max-width:820px)').matches){drawQ();if(!$('qd').open)$('qd').showModal();return}const c=$('qcard');if(c)c.scrollIntoView({behavior:'smooth',block:'center'})}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);let SAVING=0;
+const nc=c=>c&&c!='-'?c:'';
 async function saveQ(){
+ if(SAVING||!Q.length)return;
  if(Q.some(x=>x.br&&x.br!==BR))return toast('ในคิวมีรายการของสาขาอื่น กรุณาลบออกหรือสลับไปสาขาเดิมก่อนบันทึก');
- const add=[],up=new Map();
- for(const x of Q){const same=D.entries.find(e=>e.barcode==x.barcode&&e.due==x.due&&e.tab==x.tab&&(e.claim||'-')==(x.claim||'-'));let merge=false;
-  if(same){if(S.dup=='merge'||up.has(same))merge=true;
-   else if(S.dup=='ask'){const v=await ask({t:'มีล็อตนี้อยู่แล้ว',b:`<b>${esc(x.item)}</b><br>วันหมดอายุ ${fd(x.due)} มีอยู่ ${same.qty} ชิ้น จะรวมเพิ่มอีก ${x.qty} ชิ้นหรือแยกเป็นแถวใหม่?`,ok:'บวกจำนวน',alt:'แถวใหม่'});if(v=='ok')merge=true;else if(v!='alt')return}}
-  if(merge){const u=up.get(same)||{o:same,q:same.qty};u.q+=x.qty;u.x=x;up.set(same,u)}else add.push(x)}
- try{for(const u of up.values())await api({action:'update',tab:u.o.tab,row:u.o.row,barcode:u.o.barcode,qty:u.q,due:u.x.due,claim:u.x.claim,was:{due:u.o.due}});
-  if(add.length)await api({action:'add',items:add});
-  const nQ=Q.length,q0=Q[0];toast(nQ==1?'✓ บันทึกลงชีทแล้ว · '+q0.item+' ×'+q0.qty:'✓ บันทึกลงชีทแล้ว '+nQ+' รายการ');Q=[];drawQ();await load()}catch(e){toast(e.message)}}
+ const batch=Q.slice(),add=[],up=new Map();SAVING=1;
+ try{
+  for(const x of batch){x.id=x.id||uid();const same=D.entries.find(e=>e.barcode==x.barcode&&e.due==x.due&&e.tab==x.tab&&(e.claim||'-')==(x.claim||'-'));let merge=false;
+   if(same){if(S.dup=='merge'||up.has(same))merge=true;
+    else if(S.dup=='ask'){const v=await ask({t:'มีล็อตนี้อยู่แล้ว',b:`<b>${esc(x.item)}</b><br>วันหมดอายุ ${fd(x.due)} มีอยู่ ${same.qty} ชิ้น จะรวมเพิ่มอีก ${x.qty} ชิ้นหรือแยกเป็นแถวใหม่?`,ok:'บวกจำนวน',alt:'แถวใหม่'});if(v=='ok')merge=true;else if(v!='alt')return}}
+   if(merge){const u=up.get(same)||{o:same,q:same.qty,xs:[]};u.q+=x.qty;u.x=x;u.xs.push(x);up.set(same,u)}else add.push(x)}
+  for(const u of up.values()){await api({action:'update',tab:u.o.tab,row:u.o.row,barcode:u.o.barcode,qty:u.q,due:u.x.due,claim:u.x.claim,was:{due:u.o.due}});
+   Object.assign(u.o,{qty:u.q,due:u.x.due,claim:nc(u.x.claim)});Q=Q.filter(y=>!u.xs.includes(y))} // เสร็จแล้วเอาออกจากคิวทันที ถ้าขั้นต่อไปพลาด กดซ้ำจะไม่บวกซ้ำ
+  let miss=0;
+  if(add.length){const r=await api({action:'add',items:add}),by=new Map((r.added||[]).map(a=>[a.id,a]));
+   add.forEach(x=>{const a=by.get(x.id);if(!a){miss++;return}D.entries.push({tab:a.tab,row:a.row,barcode:x.barcode,item:x.item,qty:x.qty,due:x.due,claim:nc(x.claim)})})}
+  const nQ=batch.length,q0=batch[0];Q=Q.filter(x=>!batch.includes(x));drawQ();
+  toast(nQ==1?'✓ บันทึกลงชีทแล้ว · '+q0.item+' ×'+q0.qty:'✓ บันทึกลงชีทแล้ว '+nQ+' รายการ');
+  if(miss)await load();else drawAll()} // ไม่ต้องโหลดทั้งชีทใหม่ แก้เฉพาะที่เพิ่ง/เปลี่ยน
+ catch(e){toast(e.message)}finally{SAVING=0}}
+// อัปเดตอัตโนมัติ: ถามเซิร์ฟเวอร์ทุก 30 วิ (เงียบ ไม่มีป๊อปอัป) ถ้าข้อมูลเปลี่ยนค่อยโหลดมาแทน
+let POLLH='';
+async function poll(){const a=document.activeElement;
+ if(!loaded||document.hidden||PEND||SAVING||!BR||!CODE||document.querySelector('dialog[open]')||(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)))return;
+ try{const r=await api({action:'list',h:POLLH,_q:1});if(r.same)return;D=r;drawAll()}catch(e){}}
+setInterval(poll,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
 // ฟิลเตอร์: ช่วงวันหมดอายุ + ประเภท(สถานะเคลม) + ชีท ใช้ร่วมกันในหน้ารายการและรายงาน
 const okF=e=>(!F.from||e.due>=F.from)&&(!F.to||e.due<=F.to)&&(!F.cl.length||F.cl.includes(e.claim||'-'))&&(!F.tab||e.tab==F.tab);
 function pre(n){const a=new Date(),b=new Date();if(n=='m'){a.setDate(1);b.setMonth(b.getMonth()+1,0)}else b.setDate(b.getDate()+n);F.from=ymd(a);F.to=ymd(b);drawAll()}
