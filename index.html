@@ -963,7 +963,6 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #add .pk{margin-top:0;padding:8px 8px 8px 12px;border-radius:14px}
  #add .pk .t b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
  #add .pk .t .mut{font-size:12px}
- #add .pk .lots{max-height:84px;overflow:auto;font-size:13px}
  /* เลือกสินค้าแล้ว: ซ่อนช่องค้นหา (ชื่อซ้ำกับการ์ด) กด ✕ เพื่อเปลี่ยน */
  #add .stepc:has(#pk:not(.hide):not(.new)) .row{display:none}
  /* 2 จำนวน + วันหมดอายุ แถวเดียว */
@@ -987,6 +986,36 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  body.hasq #add #qacts{bottom:calc(156px + env(safe-area-inset-bottom))}
  #add #qacts .btn{margin:0;padding:13px 8px;font-size:15px;white-space:nowrap}
 }
+
+/* ===== รอบ 2: ทำงานมือเดียว ===== */
+#qscan{display:none}
+@media(max-width:820px){
+ /* ปุ่มสแกนย้ายลงมาแถวล่าง (โซนนิ้วโป้ง) */
+ #add #bc+.btn{display:none}
+ #add #qscan{display:grid;place-items:center;width:100%;padding:0;font-size:22px;min-height:50px}
+ #add #qacts{grid-template-columns:56px minmax(0,1.25fr) minmax(0,1fr)}
+ #add #qacts.one{grid-template-columns:56px minmax(0,1fr)}
+ #add #qacts .btn{font-size:14.5px;overflow:hidden;text-overflow:ellipsis}
+ /* ล็อตในชีต: แถบปัดซ้าย-ขวาบรรทัดเดียว ไม่มีกล่องเลื่อนซ้อนกล่อง */
+ #add .pk .lots{margin-top:6px;padding:6px 8px 4px;border-radius:12px;max-height:none;overflow:visible}
+ #add .pk .lots .lh{padding:0 2px 6px}
+ #add .pk .lots .lh b{font-size:13px}
+ #add .pk .lots .lh span{font-size:12px}
+ #add .pk .lcs{display:flex;grid-template-columns:none;gap:6px;max-height:none;overflow-x:auto;overflow-y:hidden;padding:2px 2px 6px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ #add .pk .lcs::-webkit-scrollbar{display:none}
+ #add .pk .lcs .lt{flex:none;min-width:138px;display:flex!important;gap:8px!important;padding:6px 8px 6px 10px!important;scroll-snap-align:start}
+ #add .pk .lcs .lt .ld b{font-size:14px}
+ #add .pk .lcs .lt .ld small{font-size:11.5px}
+ /* แจ้งเตือนไม่ทับปุ่มล่าง: ย้ายขึ้นด้านบน */
+ body.pgadd #toast{top:calc(62px + env(safe-area-inset-top))!important;bottom:auto!important}
+ /* แผ่นคิว: ข้อความปุ่มไม่ล้น */
+ .qdf{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
+ .qdf .btn{white-space:nowrap;font-size:15px;padding:14px 8px;overflow:hidden;text-overflow:ellipsis}
+}
+
+.lotpick{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,box-shadow .12s}
+.lotpick:active{transform:scale(.96)}
+.lotpick.sel{box-shadow:0 0 0 2px var(--ac)!important}
 </style>
 </head>
 <body>
@@ -1018,7 +1047,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
   <div class="dpv" id="dpv"></div><div class="chips qkc"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb qk" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb qk" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb qk" onclick="$('qty').value=18">18</button><button type="button" class="chip rcb qk" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb qk" onclick="$('qty').value=36">36</button><button type="button" class="chip rcb qk" onclick="$('qty').value=48">48</button><button type="button" class="chip rcb qk" onclick="$('qty').value=72">72</button><button type="button" class="chip rcb qk" onclick="$('qty').value=96">96</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
- <div class="acts" id="qacts"><button class="btn big" id="qnow" onclick="W(this,saveNow)">💾 บันทึกชิ้นนี้เลย</button><button class="btn alt big" id="qadd" onclick="queue()">＋ เพิ่มชิ้นถัดไป</button></div>
+ <div class="acts" id="qacts"><button type="button" class="btn alt big" id="qscan" onclick="scan('add')" aria-label="สแกน">📷</button><button class="btn big" id="qnow" onclick="W(this,saveNow)">💾 บันทึกชิ้นนี้เลย</button><button class="btn alt big" id="qadd" onclick="queue()">＋ เพิ่มชิ้นถัดไป</button></div>
  <div class="mut hint" id="qhint" style="text-align:center">💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว</div></div>
  <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveQ)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
 <section id="stat" class="hide"><div class="ph"><h1>สถิติและรายงาน</h1><div class="mut">แตะการ์ด แท่งกราฟ หรือแถวสินค้า เพื่อดูรายการข้างใน</div></div>
@@ -1291,7 +1320,8 @@ const qq=(i,n)=>{Q[i].qty=Math.max(1,Q[i].qty+n);drawQ()};
 const lotsOf=b=>{const l=D.entries.filter(e=>e.barcode==b).sort((x,y)=>String(x.due||'9').localeCompare(String(y.due||'9')));if(!l.length)return'';
  const tot=l.reduce((a,e)=>a+(+e.qty||0),0);
  return `<div class="lots"><div class="lh"><b>📦 มีในชีตแล้ว</b><span>${l.length} ล็อต · ${tot} ชิ้น</span></div><div class="lcs">`+l.map(e=>{const d=e.due?days(e.due):NaN,c=dc(d),t=isNaN(d)?'ไม่ระบุวันที่':d<0?'เกินกำหนด '+(-d)+' วัน':d==0?'วันนี้':'อีก '+d+' วัน';
-  return `<div class="lt" style="--c:${c}"><div class="ld"><b>${e.due?fd(e.due):'-'}</b><small>${t}${e.claim&&e.claim!='-'?' · '+esc(e.claim):''}</small></div><span class="lq">×${e.qty}</span></div>`}).join('')+'</div></div>'};
+  return `<div class="lt lotpick" role="button" tabindex="0" data-due="${e.due||''}" onclick="useLot(this)" style="--c:${c}"><div class="ld"><b>${e.due?fd(e.due):'-'}</b><small>${t}${e.claim&&e.claim!='-'?' · '+esc(e.claim):''}</small></div><span class="lq">×${e.qty}</span></div>`}).join('')+'</div></div>'};
+function useLot(el){const d=el.dataset.due;if(!d)return toast('ล็อตนี้ไม่มีวันหมดอายุ');const p=d.split('-');$('due').value=(+p[2])+'.'+(+p[1])+'.'+p[0];pv();document.querySelectorAll('.lotpick.sel').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');if(navigator.vibrate)try{navigator.vibrate(15)}catch(e){}}
 function lookup(){const v=$('bc').value.trim(),pk=$('pk'),sg=$('sug');SG=[];drawRc(v);
  if(!SEL&&v&&D.db[v])SEL={b:v,n:D.db[v]};
  if(SEL){sg.innerHTML='';pkKey='';pk.className='pk';pk.innerHTML=`<div class="t"><b>${esc(SEL.n)}</b><span class="mut">${esc(SEL.b)}</span></div><button class="ib" onclick="SEL=null;$('bc').value='';lookup();$('bc').focus()" aria-label="เปลี่ยนสินค้า">✕</button>${lotsOf(SEL.b)}`;return}
@@ -1338,7 +1368,7 @@ function queue(silent){let b,item;
  const q=+$('qty').value,d=pd($('due').value);
  if(!(q>0))return toast('ใส่จำนวน');if(!d)return toast('ใส่วันหมดอายุให้ถูกต้อง เช่น 14.2.26');
  Q.push({id:uid(),barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
- $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();if(!silent)toast('＋ พักไว้ในคิวแล้ว ('+Q.length+') · '+item+' · ยังไม่ได้บันทึกลงชีท');
+ $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();if(!silent&&!matchMedia('(max-width:820px)').matches)toast('＋ พักไว้ในคิวแล้ว ('+Q.length+') · '+item+' · ยังไม่ได้บันทึกลงชีท');
  if(!silent&&matchMedia('(max-width:820px)').matches){const t=$('add');if(t){const y=t.getBoundingClientRect().top+scrollY-8;if(scrollY>y+40)scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
  if(!silent)$('bc').focus({preventScroll:true});return true}
 function bumpQ(){const c=$('qcnt');if(!c)return;c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}
@@ -1347,7 +1377,7 @@ function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt'
  if(b)b.textContent=n?'＋ เพิ่มลงคิว (ตอนนี้ '+n+' รายการ)':'💾 บันทึกชิ้นนี้เลย';
  if($('qadd'))$('qadd').classList.toggle('hide',!!n);if($('qacts'))$('qacts').classList.toggle('one',!!n);
  if($('qhint'))$('qhint').textContent=n?'เพิ่มลงคิวไปเรื่อย ๆ แล้วกด “บันทึกทั้งหมด” ที่แถบคิว (ปุ่มบันทึกมีที่เดียว)':'💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว';
- ['qds','qs'].forEach(id=>{const e=$(id);if(e)e.textContent=n?'💾 บันทึกทั้งหมด ('+n+' รายการ)':'บันทึกทั้งหมด'});
+ ['qds','qs'].forEach(id=>{const e=$(id);if(e)e.textContent=n?(id=='qds'?'💾 บันทึกทั้งหมด ('+n+')':'💾 บันทึกทั้งหมด ('+n+' รายการ)'):'บันทึกทั้งหมด'});
  if(bar){bar.classList.toggle('hide',!n||CUR!='add');document.body.classList.toggle('hasq',!!n&&CUR=='add');$('qbn').textContent=n?(Q[n-1].item+' · รวม '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น'):''}}
 async function saveNow(){const had=Q.length;if(!queue(had?0:1))return;if(!had)await saveQ()} // ว่าง=บันทึกเลย · มีคิวอยู่=แค่เพิ่มลงคิว
 function toQ(){if(matchMedia('(max-width:820px)').matches){drawQ();if(!$('qd').open)$('qd').showModal();return}const c=$('qcard');if(c)c.scrollIntoView({behavior:'smooth',block:'center'})}
