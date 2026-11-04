@@ -908,6 +908,23 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 #prn .rp .lv1 tr.hot .dd{background:var(--p);border-color:var(--s);color:var(--t)}
 #prn .rp tr.ov td{background:#e8eefc}#prn .rp tr.ov td.rnm,#prn .rp tr.ov .dt{color:#1e3a8a}
 #prn .rp tr.ov .dd{background:#1e3a8a;border-color:#1e3a8a;color:#fff}
+
+/* โทน Sounds Of The Universe: สีเข้มขึ้น ชัดขึ้น */
+.rw{background:color-mix(in srgb,var(--c,#999) 17%,#fff)!important;border:1px solid color-mix(in srgb,var(--c,#999) 50%,#fff)!important;border-left:6px solid var(--c,#999)!important;box-shadow:0 4px 12px color-mix(in srgb,var(--c,#999) 20%,transparent)!important}
+.rw:hover,.rw.on{background:color-mix(in srgb,var(--c,#999) 27%,#fff)!important}
+.dn,.ai .d{background:color-mix(in srgb,var(--c) 32%,#fff)!important}
+.ai{background:color-mix(in srgb,var(--c) 14%,#fff)!important;border-color:color-mix(in srgb,var(--c) 45%,#fff)!important}
+.lt{background:color-mix(in srgb,var(--c) 15%,#fff)!important;border-color:color-mix(in srgb,var(--c) 42%,#fff)!important}
+.dpH .dst,.ltc,.dti.big{background:color-mix(in srgb,var(--c) 26%,#fff)!important}
+.kt i,.td2{background:color-mix(in srgb,var(--c) 26%,#fff)!important}
+/* รายงาน */
+#prn .rp .lv0{--p:#fcdcdc;--b:#ea3033;--t:#9c1417;--s:#ea3033}
+#prn .rp .lv1{--p:#fde3e3;--b:#f06a6c;--t:#9c2a2c;--s:#f06a6c}
+#prn .rp .lv2{--p:#fde3c8;--b:#ee7b11;--t:#8a4300;--s:#ee7b11}
+#prn .rp .lv3{--p:#fdfbbd;--b:#d9d50a;--t:#6b6a00;--s:#f2ef0c}
+#prn .rp .lv4{--p:#d3efe0;--b:#5cc08c;--t:#006b38;--s:#00a655}
+#prn .rp tr.ov td{background:#e1e3f3}#prn .rp tr.ov td.rnm,#prn .rp tr.ov .dt{color:#484f93}
+#prn .rp tr.ov .dd{background:#484f93;border-color:#484f93}
 </style>
 </head>
 <body>
@@ -1091,7 +1108,7 @@ function openItem(b){SELB=b;TAB2='all';$('q').value='';go('list');drawList();if(
 function drawHome(){
  const E=D.entries,sum=a=>a.reduce((s,e)=>s+e.qty,0),d=e=>days(e.due),n0=x=>x.toLocaleString('th-TH');
  const ur=E.filter(e=>d(e)<=TH[0]),nr=E.filter(e=>d(e)<=TH[1]),ex=E.filter(e=>d(e)<0);
- $('kp2').innerHTML=[['urg','🚨','#e8868c','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#ff9800','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#1e3a8a','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
+ $('kp2').innerHTML=[['urg','🚨','#f06a6c','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#ee7b11','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#484f93','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
  const c=[0,0,0,0,0,0],q=[0,0,0,0,0,0];E.forEach(e=>{const l=lv(d(e));c[l]++;q[l]+=e.qty});const tot=E.length||1;
  $('stBar').innerHTML=c.map((n,i)=>n?`<button style="flex:${n};background:${COL[i]}" onclick="jumpList('L${i}')" title="${NM()[i]}: ${n} ล็อต" aria-label="${NM()[i]}"></button>`:'').join('')||'<i class="stE">ยังไม่มีข้อมูล</i>';
  $('stLg').innerHTML=NM().map((n,i)=>`<button class="stl ${c[i]?'':'z'}" style="--c:${COL[i]}" onclick="jumpList('L${i}')"><span class="stn"><i class="dot"></i>${n}</span><b>${c[i]}<u>ล็อต</u></b><small>${n0(q[i])} ชิ้น</small></button>`).join('');
@@ -1100,7 +1117,7 @@ function drawHome(){
  const mx=Math.max(1,...M.map(m=>m.v));
  $('bars').innerHTML=M.map((m,i)=>`<button class="mb" onclick="jumpList('M${m.k}')" ${m.v?'':'disabled'}><small>${m.v?n0(m.v):''}</small><div><i style="--i:${i};height:${Math.max(m.v/mx*100,m.v?4:1)}%;background:${m.red?'linear-gradient(180deg,#ff8a80,#e53935)':'linear-gradient(180deg,var(--ac2),var(--ac))'}"></i></div><em>${m.n}</em></button>`).join('');
  $('topl').innerHTML=[...E].filter(e=>e.due).sort(byDue).slice(0,8).map(e=>{const k=d(e);return `<button class="ti" onclick="openItem('${esc(e.barcode)}')"><div class="td2" style="--c:${dc(k)}">${k<0?'-'+(-k):k}<small>วัน</small></div><div class="tn"><b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><small>${fd(e.due)}${tabs().length>1?' · '+esc(e.tab):''}</small></div>${(e.claim&&e.claim!='-')?clPill(e.claim):''}<div class="tq"><b>${e.qty}</b><small>ชิ้น</small></div><em>›</em></button>`}).join('')||'<div class="mut" style="padding:20px;text-align:center">ยังไม่มีข้อมูล</div>'}
-const dc=d=>isNaN(d)?'#9aa1ad':d<0?'#1e3a8a':d==0?'#e53935':d<=TH[0]?'#e8868c':d<=TH[1]?'#ff9800':d<=TH[2]?'#f5c542':'#8fc47a';
+const dc=d=>isNaN(d)?'#9aa1ad':d<0?'#484f93':d==0?'#ea3033':d<=TH[0]?'#f06a6c':d<=TH[1]?'#ee7b11':d<=TH[2]?'#f2ef0c':'#00a655';
 const BK=[[d=>d<0,'หมดอายุแล้ว'],[d=>d==0,'วันนี้'],[d=>d==1,'พรุ่งนี้'],[d=>d<=5,'อีก 2–5 วัน'],[d=>d<=10,'อีก 6–10 วัน'],[d=>d<=30,'อีก 11–30 วัน'],[d=>d<=90,'อีก 31–90 วัน'],[d=>true,'มากกว่า 90 วัน']],NMB=BK.map(x=>x[1]).concat('ไม่ระบุวันที่');
 const TABS=[['all','ทั้งหมด'],['exp','หมดแล้ว'],['0','วันนี้'],['7','7 วัน'],['30','30 วัน'],['90','90 วัน'],['cl','สินค้าเคลม']];
 let TAB2='all',SELB='',GP=[];
@@ -1138,12 +1155,12 @@ const alRow=i=>{if(!ALM)return;ALS.has(i)?ALS.delete(i):ALS.add(i);alUi()};
 const alPickAll=()=>{if(ALS.size==AL.length)ALS.clear();else AL.forEach((_,i)=>ALS.add(i));alUi()};
 async function alDelSel(){if(ALBZ)return;const L=[...ALS].map(i=>AL[i]).filter(e=>D.entries.includes(e));if(!L.length)return toast('ยังไม่ได้เลือกรายการ');
  if(!await ask({t:'ลบ '+L.length+' ล็อต?',b:`รวม ${L.reduce((a,e)=>a+e.qty,0)} ชิ้น<br><span style="color:#c8102e">แถวเหล่านี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ '+L.length+' ล็อต',danger:1}))return;
- ALBZ=1;$('alDelB').disabled=true;let ok=0;
- L.sort((a,b)=>String(a.tab).localeCompare(String(b.tab))||b.row-a.row); // ลบจากแถวล่างขึ้นบน กันเลขแถวในชีตเลื่อน
- try{for(const e of L){await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,was:{due:e.due}});ok++}}catch(x){toast(x.message)}
- finally{ALBZ=0}
- await load();if(ok==L.length)toast('ลบแล้ว '+ok+' ล็อต');else if(ok)toast('ลบได้ '+ok+' จาก '+L.length+' ล็อต');
- bellTap()}
+ ALBZ=1;$('alDelB').disabled=true;
+ const rm=new Set(L);D.entries=D.entries.filter(e=>!rm.has(e));ALS.clear();drawAll();toast('ลบแล้ว '+L.length+' ล็อต');bellTap(); // เห็นผลทันที
+ BG++;try{const r=await api({action:'deleteMany',items:L.map(e=>({tab:e.tab,row:e.row,barcode:e.barcode,due:e.due})),_q:1}); // ส่งครั้งเดียว ไม่ต้องรอทีละแถว
+  if(r.fail&&r.fail.length){toast('ลบไม่สำเร็จ '+r.fail.length+' จาก '+L.length+' ล็อต (ข้อมูลในชีตเปลี่ยนไป) กำลังรีเฟรช',4500);D=await api({action:'list',_q:1});drawAll();bellTap()}}
+ catch(x){toast('ลบไม่สำเร็จ: '+x.message,4500);try{D=await api({action:'list',_q:1});drawAll();bellTap()}catch(y){}}
+ finally{ALBZ=0;BG--;setTimeout(poll,1200)}}
 const alEdit=i=>{const x=D.entries.indexOf(AL[i]);if(x<0)return;ALBACK=1;$('al').close();openEdit(x)};
 async function alDel(i){const x=D.entries.indexOf(AL[i]);if(x<0)return;$('al').close();await del(x);bellTap()}
 const alAll=()=>{$('al').close();TAB2='urg';go('list');drawList()};
@@ -1279,9 +1296,9 @@ async function saveQ(){
   if(miss)await load();else drawAll()} // ไม่ต้องโหลดทั้งชีทใหม่ แก้เฉพาะที่เพิ่ง/เปลี่ยน
  catch(e){toast(e.message)}finally{SAVING=0}}
 // อัปเดตอัตโนมัติ: ถามเซิร์ฟเวอร์ทุก 30 วิ (เงียบ ไม่มีป๊อปอัป) ถ้าข้อมูลเปลี่ยนค่อยโหลดมาแทน
-let POLLH='';
+let POLLH='',BG=0;
 async function poll(){const a=document.activeElement;
- if(!loaded||document.hidden||PEND||SAVING||!BR||!CODE||document.querySelector('dialog[open]')||(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)))return;
+ if(!loaded||document.hidden||PEND||SAVING||BG||!BR||!CODE||document.querySelector('dialog[open]')||(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)))return;
  try{const r=await api({action:'list',h:POLLH,_q:1});if(r.same)return;D=r;drawAll()}catch(e){}}
 setInterval(poll,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
 // ฟิลเตอร์: ช่วงวันหมดอายุ + ประเภท(สถานะเคลม) + ชีท ใช้ร่วมกันในหน้ารายการและรายงาน
@@ -1300,8 +1317,17 @@ function drawFb(){const on=F.from||F.to||F.cl.length||F.tab,pb=(t,a)=>`<button c
  $('fb1').innerHTML=$('fb2').innerHTML=h}
 const setEc=i=>{EC=CL[i][0];$('edC').innerHTML=chipsH(EC,'setEc')};
 function openEdit(r){editing=D.entries[r];EC=editing.claim||'-';$('edC').innerHTML=chipsH(EC,'setEc');$('edN').textContent=editing.item;$('edQ').value=editing.qty;$('edD').value=editing.due;$('ed').showModal()}
-async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');try{await api({action:'update',tab:editing.tab,row:editing.row,barcode:editing.barcode,qty:+$('edQ').value,due:$('edD').value,claim:EC,was:{due:editing.due}});toast('แก้ไขแล้ว');await load();$('ed').close()}catch(e){toast(e.message)}}
-async function del(r){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;try{await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode});toast('ลบแล้ว');await load()}catch(x){toast(x.message)}}
+async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');
+ const e=editing,old={qty:e.qty,due:e.due,claim:e.claim},nq=+$('edQ').value,nd=$('edD').value,ec=EC;
+ e.qty=nq;e.due=nd;e.claim=ec=='-'?'':ec;$('ed').close();drawAll();toast('แก้ไขแล้ว'); // เห็นผลทันที แล้วค่อยส่งให้ชีตเบื้องหลัง
+ BG++;try{await api({action:'update',tab:e.tab,row:e.row,barcode:e.barcode,qty:nq,due:nd,claim:ec,was:{due:old.due},_q:1})}
+ catch(x){Object.assign(e,old);drawAll();toast('บันทึกไม่สำเร็จ คืนค่าเดิมแล้ว: '+x.message,4500)}
+ finally{BG--;setTimeout(poll,1200)}}
+async function del(r){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;
+ const i=D.entries.indexOf(e);if(i<0)return;D.entries.splice(i,1);drawAll();toast('ลบแล้ว');
+ BG++;try{await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,_q:1})}
+ catch(x){D.entries.splice(Math.min(i,D.entries.length),0,e);drawAll();toast('ลบไม่สำเร็จ คืนรายการแล้ว: '+x.message,4500)}
+ finally{BG--;setTimeout(poll,1200)}}
 const lc=(n,sub,right,ph,act)=>`<div class="lc" style="--c:${(ph.match(/--c:([^">;]+)/)||[])[1]||'#ddd'}"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
 function cnt(id,to){const el=$(id);if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=to;return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/700);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
 function drawExtra(){
