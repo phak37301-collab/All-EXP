@@ -985,6 +985,7 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 </section>
 </div></div>
 
+<dialog id="trD"><b style="font-size:18px">🗑 ถังขยะ</b><div class="mut" style="margin:2px 0 10px">รายการที่ลบล่าสุดของสาขานี้ · กด ↩ เพื่อใส่กลับในชีต</div><div id="trL" style="display:grid;gap:8px;max-height:52vh;overflow:auto"></div><button class="btn big" style="margin-top:12px" onclick="$('trD').close()">ปิด</button></dialog>
 <dialog id="ed"><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date"><label>สถานะเคลม</label><div class="chips" id="edC"></div>
  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
 <dialog id="lg" class="lgd"><div class="in">
@@ -1006,7 +1007,7 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
  <input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
 <dialog id="bm"><b id="bmt" style="font-size:18px"></b><div class="mut" style="margin-bottom:12px">เมนูสาขาและระบบ</div>
  <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openBr()">⇄ สลับสาขา</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();go('set')">⚙ ตั้งค่า</button>
- <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
+ <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openTrash()">🗑 ถังขยะ (กู้คืนที่ลบ)</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
  <button class="btn del big" style="margin-top:8px" onclick="$('bm').close();logout()">ออกจากสาขานี้</button><button class="btn big" style="margin-top:8px" onclick="$('bm').close()">ปิด</button></dialog>
 <dialog id="dt"><div id="dtb"></div><button class="btn big" onclick="$('dt').close()">ปิด</button></dialog>
 <dialog id="cf" class="cfd"><div class="in"><div class="cfI" id="cfI">❓</div><h3 id="cfT"></h3><div class="mut" id="cfB"></div><div class="cfb" id="cfBtns"></div></div></dialog>
@@ -1070,9 +1071,10 @@ function ask(o){return new Promise(res=>{const d=$('cf');let v='';
  d.classList.toggle('danger',!!o.danger);$('cfI').textContent=o.danger?'🗑️':'❓';$('cfT').textContent=o.t;$('cfB').innerHTML=o.b||'';
  const bt=$('cfBtns');bt.innerHTML=(o.alt?`<button class="btn alt" data-v="alt">${o.alt}</button>`:'')+`<button class="btn alt" data-v="">${o.no||'ยกเลิก'}</button><button class="btn ${o.danger?'dng':''}" data-v="ok">${o.ok||'ตกลง'}</button>`;
  bt.onclick=e=>{const b=e.target.closest('button');if(b){v=b.dataset.v;d.close()}};d.onclose=()=>res(v);d.showModal()})}
+const DEV=(()=>{try{let d=localStorage.getItem('dev');if(!d){d=Math.random().toString(36).slice(2,6).toUpperCase();localStorage.setItem('dev',d)}return d}catch(e){return '-'}})(); // รหัสเครื่อง 4 ตัว ใช้ระบุในประวัติว่าใครแก้
 async function api(b){
  if(!BR||!CODE){openBr();throw new Error('เลือกสาขาและใส่รหัสก่อน')}
- const r=await post({branch:BR,code:CODE,...b});
+ const r=await post({branch:BR,code:CODE,dev:DEV,...b});
  if(!r.ok){if(r.auth){CODE='';localStorage.removeItem('code');openBr()}throw new Error(r.error)}return r}
 let PK='',PN2='',PIN='',PTXT=0,BL=[],PBUSY=0;
 async function openBr(){
@@ -1323,6 +1325,14 @@ function drawFb(){const on=F.from||F.to||F.cl.length||F.tab,pb=(t,a)=>`<button c
  $('fb1').innerHTML=$('fb2').innerHTML=h}
 const setEc=i=>{EC=CL[i][0];$('edC').innerHTML=chipsH(EC,'setEc')};
 function openEdit(r){editing=D.entries[r];EC=editing.claim||'-';$('edC').innerHTML=chipsH(EC,'setEc');$('edN').textContent=editing.item;$('edQ').value=editing.qty;$('edD').value=editing.due;$('ed').showModal()}
+let TR=[];
+async function openTrash(){$('trL').innerHTML='<div class="mut" style="padding:14px 0;text-align:center">กำลังโหลด...</div>';$('trD').showModal();
+ try{TR=(await api({action:'trashList'})).items||[];drawTrash()}catch(e){$('trD').close();toast(e.message)}}
+function drawTrash(){$('trL').innerHTML=TR.length?TR.map((x,i)=>`<div class="lt" style="--c:#9aa1ad"><div class="ltd"><b>${esc(x.item||x.barcode)}</b><div class="ltm"><span class="ltt">${esc(x.barcode)} · ${fd(x.due)}${x.claim?' · '+esc(x.claim):''}</span></div><small>ลบเมื่อ ${esc(x.t)}</small></div><div class="ltq"><b>${x.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" title="กู้คืน" aria-label="กู้คืน" onclick="W(this,()=>restoreTr(${i}))">↩</button></div></div>`).join(''):'<div class="mut" style="padding:18px 0;text-align:center">ถังขยะว่าง</div>'}
+async function restoreTr(i){const x=TR[i];if(!x)return;
+ try{const r=await api({action:'restore',items:[{id:x.id,barcode:x.barcode}]});
+  if(r.fail&&r.fail.length)toast('กู้คืนไม่ได้ (ถูกกู้คืนไปแล้ว หรือข้อมูลเปลี่ยน)');else toast('กู้คืนแล้ว · '+(x.item||x.barcode));
+  TR.splice(i,1);drawTrash();await load()}catch(e){toast(e.message)}}
 async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');
  const e=editing,old={qty:e.qty,due:e.due,claim:e.claim},nq=+$('edQ').value,nd=$('edD').value,ec=EC;
  e.qty=nq;e.due=nd;e.claim=ec=='-'?'':ec;$('ed').close();drawAll();toast('แก้ไขแล้ว'); // เห็นผลทันที แล้วค่อยส่งให้ชีตเบื้องหลัง
