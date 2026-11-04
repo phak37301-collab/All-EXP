@@ -871,6 +871,32 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 .chip.rcb.qk{min-width:48px;min-height:38px;padding:6px 14px;font-weight:600;color:var(--ac);background:color-mix(in srgb,var(--ac) 9%,#fff);border:1.5px solid color-mix(in srgb,var(--ac) 38%,#fff);box-shadow:0 2px 6px color-mix(in srgb,var(--ac) 14%,transparent);transition:transform .12s,background .15s,color .15s}
 .chip.rcb.qk:hover,.chip.rcb.qk:focus-visible{background:color-mix(in srgb,var(--ac) 18%,#fff)}
 .chip.rcb.qk:active{transform:scale(.94);background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-color:transparent}
+
+/* การ์ดรายละเอียดสินค้า */
+.dpH .dst{display:inline-block;padding:3px 12px;border-radius:99px;font-size:12.5px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.dpH .dh{margin:9px 0 5px;line-height:1.3;overflow-wrap:anywhere}
+.dpH .dbc{display:inline-block;padding:1px 9px;border-radius:6px;background:var(--tint);color:var(--mut);font-size:12px;letter-spacing:.5px}
+.dtl{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px;margin:14px 0 4px}
+.dti{text-align:center;padding:9px 4px 8px;border-radius:14px;background:var(--tint);min-width:0}
+.dti b{display:block;font:600 24px/1.15 Mitr,Prompt,sans-serif;color:var(--ink)}.dti span{font-size:11.5px;color:var(--mut)}
+.dti.big{background:color-mix(in srgb,var(--c) 12%,#fff)}.dti.big b{color:var(--c);font-size:30px}.dti.big.s b{font-size:23px}
+.lsh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:14px 2px 7px;font-weight:600;font-size:14px}.lsh span{font-weight:400;font-size:11.5px;color:var(--mut)}
+.lt{gap:8px!important;padding:9px 8px 9px 12px!important}.lt .ltd{min-width:0}.ltd b{font-size:15px}
+.ltm{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin-top:4px}
+.ltc{padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.ltt{font-size:11.5px;color:var(--mut)}
+.ltq{display:flex;align-items:baseline;gap:3px}.ltq small{display:inline!important}.ltq b{font-size:19px}
+.ib2{width:34px;height:34px;border-radius:10px;font-size:14px}.lta{gap:5px}
+/* รายงาน: เรียบ อ่านง่าย ส่งหัวหน้าได้ */
+#prn .rp .rh{align-items:center;padding-bottom:8px;margin-bottom:10px;border-bottom:2px solid #1c2240}
+#prn .rp .rl{background:none;border:0;padding:0}#prn .rp h1{margin:0 0 5px;font-size:22px}
+#prn .rp .mp.st,#prn .rp .mp.dtm{background:#f2f4fb;border-color:#e1e5f3}
+#prn .rp .rbr{background:#1c2240;border:0;min-width:30mm;padding:5px 14px}#prn .rp .rbr span{color:#c9cffa}#prn .rp .rbr b{color:#fff;font-size:24px}
+#prn .rp .rtb th:nth-child(2){text-align:left}#prn .rp .rtb td{padding:4px 6px}
+#prn .rp .rtb td.ri{color:#8a93b2;font-size:10px}
+#prn .rp .rbc{display:block;margin-top:1px;font-size:9.5px;font-weight:400;letter-spacing:.5px;color:#7a84a6}
+#prn .rp .qt{background:none;border:0;padding:0;min-width:0;color:#1c2240;font-size:12.5px}
+#prn .rp .dt{background:none;border:0;padding:0;color:#1c2240;font-size:11px}#prn .rp tr.hot .dt{color:var(--t);font-weight:700}
 </style>
 </head>
 <body>
@@ -1118,8 +1144,9 @@ function drawDetail(){const el=SELB?D.entries.filter(e=>e.barcode==SELB).sort(by
  const h=!el.length?'<div class="mut" style="padding:24px 0;text-align:center">เลือกสินค้าจากรายการ เพื่อดูรายละเอียดแต่ละล็อต</div>':detail(el);$('dp').innerHTML=h;$('dtb').innerHTML=h}
 function detail(el){const f=el[0],d=days(f.due),nm=f.item||D.db[f.barcode]||f.barcode,tot=el.reduce((a,e)=>a+e.qty,0),
  lab=isNaN(d)?'ไม่ระบุวันที่':d<0?'หมดอายุแล้ว':d==0?'หมดอายุวันนี้':d==1?'หมดอายุพรุ่งนี้':'หมดอายุในอีก '+d+' วัน';
- return `<div class="dpH"><div class="mut">${lab}</div><h2 class="dh">${esc(nm)}</h2><div class="mut">${esc(f.barcode)}</div><div class="dsum"><div class="dbig" style="--c:${dc(d)}">${isNaN(d)?'–':d}<small>วัน</small></div><div class="dsx"><b>${tot} ชิ้น</b><span>${el.length} ล็อต · ใกล้สุด ${fd(f.due)}</span></div></div></div><div class="lots">`+
- el.map(e=>{const k=days(e.due),x=D.entries.indexOf(e);return `<div class="lt" style="--c:${dc(k)}"><div class="ltd"><b>${fd(e.due)}</b><small>${isNaN(k)?'':k<0?'เกิน '+(-k)+' วัน':k==0?'วันนี้':'อีก '+k+' วัน'}${e.tab&&tabs().length>1?' · '+esc(e.tab):''}</small>${(e.claim&&e.claim!='-')?'<div>'+clPill(e.claim)+'</div>':''}</div><div class="ltq"><b>${e.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" onclick="openEdit(${x})" aria-label="แก้ไข" title="แก้ไข">✎</button><button type="button" class="ib2 rd" onclick="W(this,()=>del(${x}))" aria-label="ลบ" title="ลบ">🗑</button></div></div>`}).join('')+'</div>'}
+ const dv=isNaN(d)?'–':Math.abs(d),dl=isNaN(d)?'ไม่ระบุวัน':d<0?'วันที่เกินมา':'วันที่เหลือ';
+ return `<div class="dpH"><span class="dst" style="--c:${dc(d)}">${lab}</span><h2 class="dh">${esc(nm)}</h2><span class="dbc">${esc(f.barcode)}</span><div class="dtl"><div class="dti big${String(dv).length>3?' s':''}" style="--c:${dc(d)}"><b>${dv}</b><span>${dl}</span></div><div class="dti"><b>${tot}</b><span>ชิ้นรวม</span></div><div class="dti"><b>${el.length}</b><span>ล็อต</span></div></div></div><div class="lsh">ล็อตทั้งหมด<span>ใกล้หมดอายุก่อนอยู่บนสุด</span></div><div class="lots">`+
+ el.map(e=>{const k=days(e.due),x=D.entries.indexOf(e);return `<div class="lt" style="--c:${dc(k)}"><div class="ltd"><b>${fd(e.due)}</b><div class="ltm"><span class="ltc">${isNaN(k)?'ไม่ระบุ':k<0?'เกิน '+(-k)+' วัน':k==0?'วันนี้':'อีก '+k+' วัน'}</span>${e.tab&&tabs().length>1?'<span class="ltt">'+esc(e.tab)+'</span>':''}${(e.claim&&e.claim!='-')?clPill(e.claim):''}</div></div><div class="ltq"><b>${e.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" onclick="openEdit(${x})" aria-label="แก้ไข" title="แก้ไข">✎</button><button type="button" class="ib2 rd" onclick="W(this,()=>del(${x}))" aria-label="ลบ" title="ลบ">🗑</button></div></div>`}).join('')+'</div>'}
 function group(f){const m={};D.entries.filter(e=>okF(e)&&(f<0||lv(days(e.due))==f)).forEach(e=>{const k=e.barcode+'|'+e.due+'|'+(e.claim||'-');(m[k]=m[k]||{...e,k,item:e.item||D.db[e.barcode]||'',qty:0}).qty+=e.qty});return Object.values(m).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1)}
 let RSEL=new Set(),RG=[];
 function drawRep(){
@@ -1147,12 +1174,12 @@ function printRep(){const g=repRows();if(!g.length)return toast('ไม่มี
  const dd=d=>isNaN(d)?'-':d<0?'เกิน '+(-d)+' วัน':d==0?'วันนี้':d+' วัน';
  const tile=(v,l,c,hot)=>`<div class="rt ${c}${hot?' hot':''}"><b>${v}</b><span>${l}</span></div>`;
  // คอลัมน์: บาร์โค้ด · สินค้า · จำนวน · วันหมดอายุ · คงเหลือ (+ เคลม เฉพาะเมื่อมีข้อมูลเคลม)
- const wd=hasCl?['17%','29%','9%','16%','15%','14%']:['19%','37%','10%','17%','17%'];
+ const wd=hasCl?['5%','43%','9%','16%','14%','13%']:['5%','48%','10%','18%','19%'];
  const lg=[0,1,2,3,4,5].filter(l=>by[l].length).map(l=>`<span class="lv${l}"><i></i>${NM()[l]} <b>${by[l].length}</b></span>`).join('');
- const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map(e=>{const d=days(e.due);return `<tr${l<2?' class="hot"':''}><td><span class="bc">${esc(e.barcode)}</span></td><td class="rnm">${esc(e.item||'-')}</td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
+ const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>#</th><th>สินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map((e,n)=>{const d=days(e.due);return `<tr${l<2?' class="hot"':''}><td class="ri">${n+1}</td><td class="rnm">${esc(e.item||'-')}<small class="rbc">${esc(e.barcode)}</small></td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
  const ban=urg?`<div class="rhl bad"><i>!</i><div><b>ต้องจัดการด่วน ${f0(urg)} รายการ · ${f0(urgQ)} ชิ้น</b><span>ใกล้สุด: ${esc(near.item||near.barcode)} · ${dd(days(near.due))} (${fd(near.due)})</span></div></div>`:`<div class="rhl ok"><i>✓</i><div><b>ไม่มีสินค้าที่ต้องจัดการด่วน</b><span>ไม่มีสินค้าหมดอายุหรือใกล้หมดอายุภายใน ${TH[0]} วัน</span></div></div>`;
  const sp='<tr><td><i class="sp"></i></td></tr>';
- $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rl"><small>NEAR-EXPIRY STOCK REPORT</small><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${ban}<div class="rlg">${lg}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">— สิ้นสุดรายงาน · สาขา ${esc(BRN||'-')} · ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น —</div></div></td></tr></tbody></table>`;
+ $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rl"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
  let ps=document.getElementById('prPg');if(!ps){ps=document.createElement('style');ps.id='prPg';document.head.appendChild(ps)}
  ps.textContent='@page{@bottom-left{content:"สาขา '+String(BRN||'-').replace(/["\\\n\r<>{}]/g,'')+' · รายงานสินค้าใกล้หมดอายุ";font:9.5px Prompt,sans-serif;color:#6b7390}}';
  document.body.classList.add('prnm');setTimeout(()=>window.print(),80)}
