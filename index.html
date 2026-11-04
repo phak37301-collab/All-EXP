@@ -270,7 +270,7 @@ body{background:radial-gradient(60% 45% at 95% -5%,#c4b5fd88,transparent 65%),ra
 .grp b:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
 .rw{background:#fff;border:1px solid var(--ln);border-left:5px solid var(--c,#ddd);margin-bottom:8px;box-shadow:0 4px 12px #4f46e50c;transition:transform .12s}
 .rw:hover{background:#fff;transform:translateY(-1px)}.rw.on{background:var(--tint)}
-.dn{background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);border-radius:14px;padding:8px 0 6px}
+.dn{background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 56%,#000);border-radius:14px;padding:8px 0 6px}
 .dn small{display:block;font-size:11px;font-weight:500;margin-top:3px;opacity:.85}
 .rw{border-left-color:var(--c)}
 .nm2 .mcs{margin-top:4px}
@@ -531,7 +531,7 @@ body.ldg :is(.k b,#bars,#dn,#tp5,#top,#topc,#lv,#tbl,#cards){background:linear-g
 .lcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px;max-height:216px;overflow:auto;padding:2px;overscroll-behavior:contain}
 .lt{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px 8px 12px;border-radius:12px;background:color-mix(in srgb,var(--c) 9%,#fff);border:1px solid color-mix(in srgb,var(--c) 24%,#fff);border-left:4px solid var(--c);min-width:0}
 .lt .ld{min-width:0}.lt .ld b{display:block;font-size:15px;line-height:1.25;color:var(--ink);font-weight:600}
-.lt .ld small{display:block;font-size:12px;color:var(--c);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lt .ld small{display:block;font-size:12px;color:color-mix(in srgb,var(--c) 56%,#000);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lt .lq{flex:none;font-family:Mitr,Prompt,sans-serif;font-weight:500;font-size:14px;padding:2px 10px;border-radius:99px;background:var(--c);color:#fff}
 .pk{align-items:flex-start;flex-wrap:wrap}.pk .ib{margin-top:2px}.pk .lots{flex:1 0 100%;order:3}
 @media(max-width:560px){.lcs{grid-template-columns:1fr;max-height:250px}}
@@ -548,7 +548,7 @@ dialog.pop .alh .ib{background:#ffffffcc;color:var(--ink)}
 #alL{margin:0 -6px;padding:2px 6px}
 .ai{--c:#999;border:1px solid color-mix(in srgb,var(--c) 22%,#fff);border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 6%,#fff);border-radius:16px;padding:10px 12px;margin-bottom:10px;gap:10px}
 .ai:hover{background:color-mix(in srgb,var(--c) 6%,#fff)}
-.ai .d{color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff);border-radius:14px;padding:8px 0 6px;width:56px}
+.ai .d{color:color-mix(in srgb,var(--c) 56%,#000);background:color-mix(in srgb,var(--c) 14%,#fff);border-radius:14px;padding:8px 0 6px;width:56px}
 .ai .t small{display:block}
 .ai .ax{padding:4px 0 2px}.ai .ax .btn{flex:1}
 @media(prefers-reduced-motion:reduce){.alI{animation:none}}
@@ -609,7 +609,7 @@ button.cb{border:0;background:none;font:inherit;color:inherit;cursor:pointer;pad
 .kt:hover{transform:translateY(-2px);box-shadow:0 10px 24px #1c22401f}.kt:active{transform:scale(.98)}
 .kt i{grid-area:i;font-style:normal;font-size:22px;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,#fff)}
 .kt span{grid-area:n;font-weight:600;line-height:1.25}.kt span small{display:block;font-weight:400;color:var(--mut);font-size:12.5px}
-.kt b{grid-area:b;font:500 34px/1.1 Mitr,Prompt,sans-serif;color:var(--c)}.kt em{grid-area:e;font-style:normal;color:var(--mut);font-size:13px}
+.kt b{grid-area:b;font:500 34px/1.1 Mitr,Prompt,sans-serif;color:color-mix(in srgb,var(--c) 56%,#000)}.kt em{grid-area:e;font-style:normal;color:var(--mut);font-size:13px}
 .sgr{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .ch{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.ch h3{margin:0}
 .stBar{display:flex;gap:3px;height:22px;border-radius:99px;overflow:hidden;margin-bottom:12px;background:var(--tint)}.stBar button{border:0;cursor:pointer;min-width:6px;transition:filter .12s}.stBar button:hover{filter:brightness(.9)}.stE{font-style:normal;color:var(--mut);font-size:13px;padding:2px 10px}
@@ -619,7 +619,7 @@ button.cb{border:0;background:none;font:inherit;color:inherit;cursor:pointer;pad
 .mb:hover:not(:disabled){background:var(--tint)}.mb:disabled{cursor:default;opacity:.55}.mb small{font-size:12px;font-weight:600;min-height:18px}.mb div{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
 .mb div i{display:block;width:70%;max-width:46px;border-radius:10px 10px 4px 4px;transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*70ms)}.mb em{font-style:normal;font-size:12px;color:var(--mut);padding-top:6px}
 .topl{display:grid;gap:8px}.ti{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:var(--tint);border-radius:16px;padding:10px 12px;font:inherit;color:var(--ink);cursor:pointer}.ti:hover{filter:brightness(.96)}
-.td2{flex:none;width:54px;height:50px;border-radius:14px;display:grid;place-content:center;text-align:center;background:color-mix(in srgb,var(--c) 16%,#fff);color:var(--c);font:600 22px/1 Mitr,Prompt,sans-serif}.td2 small{display:block;font:500 10px/1.2 Prompt,sans-serif;opacity:.85}
+.td2{flex:none;width:54px;height:50px;border-radius:14px;display:grid;place-content:center;text-align:center;background:color-mix(in srgb,var(--c) 16%,#fff);color:color-mix(in srgb,var(--c) 56%,#000);font:600 22px/1 Mitr,Prompt,sans-serif}.td2 small{display:block;font:500 10px/1.2 Prompt,sans-serif;opacity:.85}
 .ti .tn{flex:1;min-width:0}.ti .tn b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ti .tn small{color:var(--mut)}.ti .tq{text-align:right;flex:none}.ti .tq b{font-size:18px}.ti .tq small{display:block;color:var(--mut);font-size:11px}.ti em{font-style:normal;color:var(--mut)}
 body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars){min-height:60px;border-radius:12px;color:transparent!important;background:linear-gradient(90deg,#e9edf7 25%,#f6f8fd 50%,#e9edf7 75%) 0 0/200% 100%;animation:shm 1.2s linear infinite}body.ldg :is(#kp2,#stBar,#stLg,#topl,#bars)>*{visibility:hidden}
 @media(max-width:820px){.kp2{grid-template-columns:1fr 1fr}.sgr{grid-template-columns:1fr}.kt b{font-size:28px}.stl small{min-width:0}}
@@ -834,7 +834,7 @@ em.em{position:static!important;display:inline-block!important;font-family:"Noto
 #dp{max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
 dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 #dtb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;margin:0 -4px 10px;padding:0 4px}
-.dsum{display:flex;align-items:center;gap:14px;margin:10px 0 10px}.dbig{font:600 46px/1 Mitr,Prompt,sans-serif;color:var(--c)}.dbig small{font:500 14px Prompt,sans-serif;color:var(--mut);margin-left:4px}.dsx b{display:block;font-size:18px}.dsx span{color:var(--mut);font-size:13px}
+.dsum{display:flex;align-items:center;gap:14px;margin:10px 0 10px}.dbig{font:600 46px/1 Mitr,Prompt,sans-serif;color:color-mix(in srgb,var(--c) 56%,#000)}.dbig small{font:500 14px Prompt,sans-serif;color:var(--mut);margin-left:4px}.dsx b{display:block;font-size:18px}.dsx span{color:var(--mut);font-size:13px}
 .lots{display:grid;gap:6px}.lt{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--ln);border-left:5px solid var(--c);border-radius:14px;padding:8px 8px 8px 12px}
 .ltd b{display:block}.ltd small{color:var(--mut);font-size:12px}.ltd>div{margin-top:3px}.ltq{text-align:right}.ltq b{font-size:18px}.ltq small{display:block;font-size:10px;color:var(--mut)}
 .lta{display:flex;gap:4px}.ib2{width:38px;height:38px;border:0;border-radius:12px;background:var(--tint);cursor:pointer;font-size:15px}.ib2.rd{background:#fdecee}
@@ -873,17 +873,17 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 .chip.rcb.qk:active{transform:scale(.94);background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-color:transparent}
 
 /* การ์ดรายละเอียดสินค้า */
-.dpH .dst{display:inline-block;padding:3px 12px;border-radius:99px;font-size:12.5px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.dpH .dst{display:inline-block;padding:3px 12px;border-radius:99px;font-size:12.5px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 56%,#000)}
 .dpH .dh{margin:9px 0 5px;line-height:1.3;overflow-wrap:anywhere}
 .dpH .dbc{display:inline-block;padding:1px 9px;border-radius:6px;background:var(--tint);color:var(--mut);font-size:12px;letter-spacing:.5px}
 .dtl{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px;margin:14px 0 4px}
 .dti{text-align:center;padding:9px 4px 8px;border-radius:14px;background:var(--tint);min-width:0}
 .dti b{display:block;font:600 24px/1.15 Mitr,Prompt,sans-serif;color:var(--ink)}.dti span{font-size:11.5px;color:var(--mut)}
-.dti.big{background:color-mix(in srgb,var(--c) 12%,#fff)}.dti.big b{color:var(--c);font-size:30px}.dti.big.s b{font-size:23px}
+.dti.big{background:color-mix(in srgb,var(--c) 12%,#fff)}.dti.big b{color:color-mix(in srgb,var(--c) 56%,#000);font-size:30px}.dti.big.s b{font-size:23px}
 .lsh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:14px 2px 7px;font-weight:600;font-size:14px}.lsh span{font-weight:400;font-size:11.5px;color:var(--mut)}
 .lt{gap:8px!important;padding:9px 8px 9px 12px!important}.lt .ltd{min-width:0}.ltd b{font-size:15px}
 .ltm{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin-top:4px}
-.ltc{padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.ltc{padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600;background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 56%,#000)}
 .ltt{font-size:11.5px;color:var(--mut)}
 .ltq{display:flex;align-items:baseline;gap:3px}.ltq small{display:inline!important}.ltq b{font-size:19px}
 .ib2{width:34px;height:34px;border-radius:10px;font-size:14px}.lta{gap:5px}
@@ -897,6 +897,17 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 #prn .rp .rbc{display:block;margin-top:1px;font-size:9.5px;font-weight:400;letter-spacing:.5px;color:#7a84a6}
 #prn .rp .qt{background:none;border:0;padding:0;min-width:0;color:#1c2240;font-size:12.5px}
 #prn .rp .dt{background:none;border:0;padding:0;color:#1c2240;font-size:11px}#prn .rp tr.hot .dt{color:var(--t);font-weight:700}
+
+/* สีรายงานตามตารางสี */
+#prn .rp .lv0{--p:#fde0de;--b:#ef9a96;--t:#9f1d18;--s:#e53935}
+#prn .rp .lv1{--p:#fbe4e5;--b:#eaa3a6;--t:#8f2f36;--s:#e8868c}
+#prn .rp .lv2{--p:#ffe8c7;--b:#ffc266;--t:#8a4a00;--s:#ff9800}
+#prn .rp .lv3{--p:#fff3cc;--b:#f3d36b;--t:#6e5400;--s:#f5c542}
+#prn .rp .lv4{--p:#e6f2df;--b:#b4d8a2;--t:#2f6b25;--s:#8fc47a}
+#prn .rp .lv5{--p:#eceef2;--b:#c4c9d4;--t:#4b5262;--s:#9aa1ad}
+#prn .rp .lv1 tr.hot .dd{background:var(--p);border-color:var(--s);color:var(--t)}
+#prn .rp tr.ov td{background:#e8eefc}#prn .rp tr.ov td.rnm,#prn .rp tr.ov .dt{color:#1e3a8a}
+#prn .rp tr.ov .dd{background:#1e3a8a;border-color:#1e3a8a;color:#fff}
 </style>
 </head>
 <body>
@@ -1080,7 +1091,7 @@ function openItem(b){SELB=b;TAB2='all';$('q').value='';go('list');drawList();if(
 function drawHome(){
  const E=D.entries,sum=a=>a.reduce((s,e)=>s+e.qty,0),d=e=>days(e.due),n0=x=>x.toLocaleString('th-TH');
  const ur=E.filter(e=>d(e)<=TH[0]),nr=E.filter(e=>d(e)<=TH[1]),ex=E.filter(e=>d(e)<0);
- $('kp2').innerHTML=[['urg','🚨','#ef4444','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#f59e0b','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#c8102e','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
+ $('kp2').innerHTML=[['urg','🚨','#e8868c','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#ff9800','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#1e3a8a','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
  const c=[0,0,0,0,0,0],q=[0,0,0,0,0,0];E.forEach(e=>{const l=lv(d(e));c[l]++;q[l]+=e.qty});const tot=E.length||1;
  $('stBar').innerHTML=c.map((n,i)=>n?`<button style="flex:${n};background:${COL[i]}" onclick="jumpList('L${i}')" title="${NM()[i]}: ${n} ล็อต" aria-label="${NM()[i]}"></button>`:'').join('')||'<i class="stE">ยังไม่มีข้อมูล</i>';
  $('stLg').innerHTML=NM().map((n,i)=>`<button class="stl ${c[i]?'':'z'}" style="--c:${COL[i]}" onclick="jumpList('L${i}')"><span class="stn"><i class="dot"></i>${n}</span><b>${c[i]}<u>ล็อต</u></b><small>${n0(q[i])} ชิ้น</small></button>`).join('');
@@ -1089,7 +1100,7 @@ function drawHome(){
  const mx=Math.max(1,...M.map(m=>m.v));
  $('bars').innerHTML=M.map((m,i)=>`<button class="mb" onclick="jumpList('M${m.k}')" ${m.v?'':'disabled'}><small>${m.v?n0(m.v):''}</small><div><i style="--i:${i};height:${Math.max(m.v/mx*100,m.v?4:1)}%;background:${m.red?'linear-gradient(180deg,#ff8a80,#e53935)':'linear-gradient(180deg,var(--ac2),var(--ac))'}"></i></div><em>${m.n}</em></button>`).join('');
  $('topl').innerHTML=[...E].filter(e=>e.due).sort(byDue).slice(0,8).map(e=>{const k=d(e);return `<button class="ti" onclick="openItem('${esc(e.barcode)}')"><div class="td2" style="--c:${dc(k)}">${k<0?'-'+(-k):k}<small>วัน</small></div><div class="tn"><b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><small>${fd(e.due)}${tabs().length>1?' · '+esc(e.tab):''}</small></div>${(e.claim&&e.claim!='-')?clPill(e.claim):''}<div class="tq"><b>${e.qty}</b><small>ชิ้น</small></div><em>›</em></button>`}).join('')||'<div class="mut" style="padding:20px;text-align:center">ยังไม่มีข้อมูล</div>'}
-const dc=d=>isNaN(d)?'#9aa1ad':d<=0?'#c8102e':d<=1?'#d9380f':d<=7?'#d65a00':d<=30?'#a67600':d<=90?'#5a8f2a':'#1f8a5b';
+const dc=d=>isNaN(d)?'#9aa1ad':d<0?'#1e3a8a':d==0?'#e53935':d<=TH[0]?'#e8868c':d<=TH[1]?'#ff9800':d<=TH[2]?'#f5c542':'#8fc47a';
 const BK=[[d=>d<0,'หมดอายุแล้ว'],[d=>d==0,'วันนี้'],[d=>d==1,'พรุ่งนี้'],[d=>d<=5,'อีก 2–5 วัน'],[d=>d<=10,'อีก 6–10 วัน'],[d=>d<=30,'อีก 11–30 วัน'],[d=>d<=90,'อีก 31–90 วัน'],[d=>true,'มากกว่า 90 วัน']],NMB=BK.map(x=>x[1]).concat('ไม่ระบุวันที่');
 const TABS=[['all','ทั้งหมด'],['exp','หมดแล้ว'],['0','วันนี้'],['7','7 วัน'],['30','30 วัน'],['90','90 วัน'],['cl','สินค้าเคลม']];
 let TAB2='all',SELB='',GP=[];
@@ -1176,7 +1187,7 @@ function printRep(){const g=repRows();if(!g.length)return toast('ไม่มี
  // คอลัมน์: บาร์โค้ด · สินค้า · จำนวน · วันหมดอายุ · คงเหลือ (+ เคลม เฉพาะเมื่อมีข้อมูลเคลม)
  const wd=hasCl?['5%','43%','9%','16%','14%','13%']:['5%','48%','10%','18%','19%'];
  const lg=[0,1,2,3,4,5].filter(l=>by[l].length).map(l=>`<span class="lv${l}"><i></i>${NM()[l]} <b>${by[l].length}</b></span>`).join('');
- const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>#</th><th>สินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map((e,n)=>{const d=days(e.due);return `<tr${l<2?' class="hot"':''}><td class="ri">${n+1}</td><td class="rnm">${esc(e.item||'-')}<small class="rbc">${esc(e.barcode)}</small></td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
+ const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>#</th><th>สินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map((e,n)=>{const d=days(e.due);return `<tr${l<2||d<0?` class="${l<2?'hot':''}${d<0?' ov':''}"`:''}><td class="ri">${n+1}</td><td class="rnm">${esc(e.item||'-')}<small class="rbc">${esc(e.barcode)}</small></td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
  const ban=urg?`<div class="rhl bad"><i>!</i><div><b>ต้องจัดการด่วน ${f0(urg)} รายการ · ${f0(urgQ)} ชิ้น</b><span>ใกล้สุด: ${esc(near.item||near.barcode)} · ${dd(days(near.due))} (${fd(near.due)})</span></div></div>`:`<div class="rhl ok"><i>✓</i><div><b>ไม่มีสินค้าที่ต้องจัดการด่วน</b><span>ไม่มีสินค้าหมดอายุหรือใกล้หมดอายุภายใน ${TH[0]} วัน</span></div></div>`;
  const sp='<tr><td><i class="sp"></i></td></tr>';
  $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rl"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
