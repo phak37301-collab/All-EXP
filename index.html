@@ -925,6 +925,12 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 #prn .rp .lv4{--p:#d3efe0;--b:#5cc08c;--t:#006b38;--s:#00a655}
 #prn .rp tr.ov td{background:#e1e3f3}#prn .rp tr.ov td.rnm,#prn .rp tr.ov .dt{color:#484f93}
 #prn .rp tr.ov .dd{background:#484f93;border-color:#484f93}
+
+/* ป้ายตัวเลขวัน: พื้นขาว ตัวเลขสีตามสถานะ ขอบดำ · น้ำเงิน Lapis สำหรับเลยวัน */
+.dn,.ai .d,.td2{background:#fff!important;border:1px solid color-mix(in srgb,var(--c) 38%,#e3e6ec);color:var(--c)!important;-webkit-text-stroke:1.3px #14161c;paint-order:stroke fill}
+.dn small,.ai .d small,.td2 small{-webkit-text-stroke:0;color:#4b5262!important;paint-order:normal}
+#prn .rp tr.ov td{background:#dfe2fa}#prn .rp tr.ov td.rnm,#prn .rp tr.ov .dt{color:#2732c2}
+#prn .rp tr.ov .dd{background:#2732c2;border-color:#2732c2}
 </style>
 </head>
 <body>
@@ -1108,7 +1114,7 @@ function openItem(b){SELB=b;TAB2='all';$('q').value='';go('list');drawList();if(
 function drawHome(){
  const E=D.entries,sum=a=>a.reduce((s,e)=>s+e.qty,0),d=e=>days(e.due),n0=x=>x.toLocaleString('th-TH');
  const ur=E.filter(e=>d(e)<=TH[0]),nr=E.filter(e=>d(e)<=TH[1]),ex=E.filter(e=>d(e)<0);
- $('kp2').innerHTML=[['urg','🚨','#f06a6c','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#ee7b11','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#484f93','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
+ $('kp2').innerHTML=[['urg','🚨','#f06a6c','ต้องจัดการด่วน','ภายใน '+TH[0]+' วัน',ur],['near','⏳','#ee7b11','ใกล้หมดอายุ','ภายใน '+TH[1]+' วัน',nr],['exp','⛔','#2732c2','หมดอายุแล้ว','ต้องตัดเบิก',ex],['all','📦','var(--ac)','ทั้งหมด','ทุกล็อตในสาขา',E]].map(([t,ic,c,n,s,a])=>`<button class="kt" style="--c:${c}" onclick="jumpList('${t}')"><i>${ic}</i><span>${n}<small>${s}</small></span><b>${n0(a.length)}</b><em>ล็อต · ${n0(sum(a))} ชิ้น ›</em></button>`).join('');
  const c=[0,0,0,0,0,0],q=[0,0,0,0,0,0];E.forEach(e=>{const l=lv(d(e));c[l]++;q[l]+=e.qty});const tot=E.length||1;
  $('stBar').innerHTML=c.map((n,i)=>n?`<button style="flex:${n};background:${COL[i]}" onclick="jumpList('L${i}')" title="${NM()[i]}: ${n} ล็อต" aria-label="${NM()[i]}"></button>`:'').join('')||'<i class="stE">ยังไม่มีข้อมูล</i>';
  $('stLg').innerHTML=NM().map((n,i)=>`<button class="stl ${c[i]?'':'z'}" style="--c:${COL[i]}" onclick="jumpList('L${i}')"><span class="stn"><i class="dot"></i>${n}</span><b>${c[i]}<u>ล็อต</u></b><small>${n0(q[i])} ชิ้น</small></button>`).join('');
@@ -1117,7 +1123,7 @@ function drawHome(){
  const mx=Math.max(1,...M.map(m=>m.v));
  $('bars').innerHTML=M.map((m,i)=>`<button class="mb" onclick="jumpList('M${m.k}')" ${m.v?'':'disabled'}><small>${m.v?n0(m.v):''}</small><div><i style="--i:${i};height:${Math.max(m.v/mx*100,m.v?4:1)}%;background:${m.red?'linear-gradient(180deg,#ff8a80,#e53935)':'linear-gradient(180deg,var(--ac2),var(--ac))'}"></i></div><em>${m.n}</em></button>`).join('');
  $('topl').innerHTML=[...E].filter(e=>e.due).sort(byDue).slice(0,8).map(e=>{const k=d(e);return `<button class="ti" onclick="openItem('${esc(e.barcode)}')"><div class="td2" style="--c:${dc(k)}">${k<0?'-'+(-k):k}<small>วัน</small></div><div class="tn"><b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><small>${fd(e.due)}${tabs().length>1?' · '+esc(e.tab):''}</small></div>${(e.claim&&e.claim!='-')?clPill(e.claim):''}<div class="tq"><b>${e.qty}</b><small>ชิ้น</small></div><em>›</em></button>`}).join('')||'<div class="mut" style="padding:20px;text-align:center">ยังไม่มีข้อมูล</div>'}
-const dc=d=>isNaN(d)?'#9aa1ad':d<0?'#484f93':d==0?'#ea3033':d<=TH[0]?'#f06a6c':d<=TH[1]?'#ee7b11':d<=TH[2]?'#f2ef0c':'#00a655';
+const dc=d=>isNaN(d)?'#9aa1ad':d<0?'#2732c2':d==0?'#ea3033':d<=TH[0]?'#f06a6c':d<=TH[1]?'#ee7b11':d<=TH[2]?'#f2ef0c':'#00a655';
 const BK=[[d=>d<0,'หมดอายุแล้ว'],[d=>d==0,'วันนี้'],[d=>d==1,'พรุ่งนี้'],[d=>d<=5,'อีก 2–5 วัน'],[d=>d<=10,'อีก 6–10 วัน'],[d=>d<=30,'อีก 11–30 วัน'],[d=>d<=90,'อีก 31–90 วัน'],[d=>true,'มากกว่า 90 วัน']],NMB=BK.map(x=>x[1]).concat('ไม่ระบุวันที่');
 const TABS=[['all','ทั้งหมด'],['exp','หมดแล้ว'],['0','วันนี้'],['7','7 วัน'],['30','30 วัน'],['90','90 วัน'],['cl','สินค้าเคลม']];
 let TAB2='all',SELB='',GP=[];
