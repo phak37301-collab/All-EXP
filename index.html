@@ -935,6 +935,10 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 .acts.one{grid-template-columns:1fr}
 /* โหลดเร็วขึ้นบนมือถือ: ไม่ใช้เบลอพื้นหลังตอนโหลด */
 #ldr,#ldr.big,#ldr::backdrop,#toast{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+
+/* แตะไว: ไม่หน่วงเพราะรอแตะสองครั้ง (double-tap zoom) */
+button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.pad button{-webkit-user-select:none;user-select:none;height:66px}
 </style>
 </head>
 <body>
@@ -962,7 +966,7 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
   <div id="sug"></div><div id="pk" class="pk hide"></div><div id="rc"></div></div>
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
   <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
-  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" name="stock-due" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="decimal" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
+  <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" name="stock-due" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" enterkeyhint="done" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
   <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb qk" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb qk" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb qk" onclick="$('qty').value=18">18</button><button type="button" class="chip rcb qk" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb qk" onclick="$('qty').value=36">36</button><button type="button" class="chip rcb qk" onclick="$('qty').value=48">48</button><button type="button" class="chip rcb qk" onclick="$('qty').value=72">72</button><button type="button" class="chip rcb qk" onclick="$('qty').value=96">96</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
@@ -1090,8 +1094,12 @@ async function openBr(){
  catch(e){$('brL').innerHTML='';toast('เชื่อมต่อระบบไม่ได้ ตรวจ apiUrl ใน config.js')}}
 function pickBr(i){PK=BL[i].key;PN2=BL[i].name;if(PK==BR&&CODE){$('lg').close();return}showPin('')}
 function showPin(err,shake){PIN='';$('lgA').classList.add('hide');$('lgB').classList.remove('hide');$('pinN').textContent=PN2;pinMode(0);drawPin();$('pinE').textContent=err||'';$('pinE2').textContent=err||'';
- $('pad').innerHTML=[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button type="button" class="${k=='⌫'?'x':''}" onclick="${k=='⌫'?'pinDel()':'pinKey('+k+')'}" aria-label="${k=='⌫'?'ลบ':k}">${k}</button>`).join('');
+ $('pad').innerHTML=[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button type="button" class="${k=='⌫'?'x':''}" data-k="${k=='⌫'?'x':k}" aria-label="${k=='⌫'?'ลบ':k}">${k}</button>`).join('');
  if(shake){const d=$('pdots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');navigator.vibrate&&navigator.vibrate(120)}}
+(()=>{const pad=$('pad'),act=b=>{const k=b.dataset.k;if(k==='x')pinDel();else pinKey(+k)};
+ pad.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b)return;e.preventDefault();act(b);if(navigator.vibrate)navigator.vibrate(6)}); // กดแล้วทำงานทันที ไม่รอปล่อยนิ้ว/ไม่ถูกตีความเป็นแตะสองครั้ง
+ pad.addEventListener('click',e=>{const b=e.target.closest('button');if(b&&e.detail===0)act(b)}); // คีย์บอร์ดจริง (Enter/Space)
+})();
 function pinBack(){PIN='';$('lgB').classList.add('hide');$('lgA').classList.remove('hide')}
 function pinMode(t){PTXT=t?1:0;$('pinP').classList.toggle('hide',!!t);$('pinT').classList.toggle('hide',!t);$('pinM').textContent=t?'กลับไปใช้ PIN 4 หลัก':'ใช้รหัสแบบตัวอักษร';$('pinH').textContent=t?'ใส่รหัสสาขา':'ใส่รหัส 4 หลัก';if(t)setTimeout(()=>$('pw').focus(),50)}
 const drawPin=()=>document.querySelectorAll('#pdots i').forEach((e,i)=>e.classList.toggle('on',i<PIN.length));
@@ -1230,7 +1238,7 @@ const pushRc=(b,n)=>{RC=[{b,n}].concat(RC.filter(x=>x.b!=b)).slice(0,10);localSt
 const hueOf=s=>{let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))%360;return h};
 const drawRc=v=>{const inq=new Set(Q.map(x=>x.barcode));$('rc').innerHTML=(!SEL&&!v&&RC.length)?`<div class="rch"><b>⏱ เพิ่งคีย์ล่าสุด</b><button type="button" onclick="clrRc()">ล้าง</button></div><div class="rcs">${RC.map((x,i)=>{const h=hueOf(x.n);return `<button type="button" class="rcc ${inq.has(x.b)?'inq':''}" onclick="pickRc(${i})"><span class="rca" style="background:hsl(${h} 75% 90%);color:hsl(${h} 55% 28%)">${esc(([...String(x.n).trim()][0]||'?').toUpperCase())}</span><span class="rcn">${esc(x.n)}</span><i>${inq.has(x.b)?'✓ อยู่ในคิว':'แตะเพื่อเลือก'}</i></button>`}).join('')}</div>`:''};
 const clrRc=()=>{RC=[];localStorage.setItem('RC','[]');drawRc('')};
-function pickRc(i){SEL={b:RC[i].b,n:RC[i].n};$('bc').value=RC[i].n;lookup();$('due').focus()}
+function pickRc(i){SEL={b:RC[i].b,n:RC[i].n};$('bc').value=RC[i].n;lookup();focusDue()}
 const qq=(i,n)=>{Q[i].qty=Math.max(1,Q[i].qty+n);drawQ()};
 const lotsOf=b=>{const l=D.entries.filter(e=>e.barcode==b).sort((x,y)=>String(x.due||'9').localeCompare(String(y.due||'9')));if(!l.length)return'';
  const tot=l.reduce((a,e)=>a+(+e.qty||0),0);
@@ -1246,7 +1254,7 @@ function lookup(){const v=$('bc').value.trim(),pk=$('pk'),sg=$('sug');SG=[];draw
  const nw=!SG.length&&(!dg||v.length>=8)&&v.length>=2,k=nw?'n'+v:'';
  if(!nw){pk.className='pk hide';pk.innerHTML='';pkKey='';return}
  if(k!==pkKey){pkKey=k;pk.className='pk new';pk.innerHTML=`<div style="flex:1;min-width:0"><div class="mut" style="margin-bottom:6px">🆕 ไม่พบในฐานข้อมูล จะเพิ่มลงชีท Database ให้อัตโนมัติ</div><input id="nmIn" name="new-name" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ชื่อสินค้า" value="${dg?'':esc(v)}"><input id="nbc" name="new-barcode" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" placeholder="บาร์โค้ด (ไม่ใส่ก็ได้)" value="${dg?esc(v):''}" style="margin-top:8px"></div>`}}
-function pick(i){SEL={b:SG[i][0],n:SG[i][1]};$('bc').value=SG[i][1];lookup();$('due').focus()}
+function pick(i){SEL={b:SG[i][0],n:SG[i][1]};$('bc').value=SG[i][1];lookup();focusDue()}
 const qa=n=>{$('qty').value=Math.max(1,(+$('qty').value||0)+n)};
 // อ่านวันที่แบบพิมพ์เร็ว: 14.2.26 / 14/2 / 14-2-2569 / 1402 / 140226 / 14022026 (ไม่ใส่ปี = ปีนี้, ปี 2 หลัก >=55 = พ.ศ.)
 function pd(t){t=String(t||'').trim();let m=t.match(/^(\d{1,2})[\s.\/,\-]+(\d{1,2})(?:[\s.\/,\-]+(\d{2}|\d{4}))?$/),d,mo,y;
@@ -1255,10 +1263,12 @@ function pd(t){t=String(t||'').trim();let m=t.match(/^(\d{1,2})[\s.\/,\-]+(\d{1,
  const x=new Date(y,mo-1,d);return x.getFullYear()==y&&x.getMonth()==mo-1&&x.getDate()==d?ymd(x):''}
 function pv(){const t=$('due').value.trim(),e=$('dpv');if(!t){e.innerHTML='';return}const d=pd(t);
  e.innerHTML=d?`→ <b>${fd(d)}</b> ${pill(days(d))}`:'<span style="color:#d6336c">อ่านวันที่ไม่ได้ ลองพิมพ์ เช่น 14.2.26 หรือ 14/2</span>'}
+/* ย้ายโฟกัสมาช่องวันที่: ตั้งโหมดตัวเลขใหม่แล้ว blur→focus เพื่อให้แป้นพิมพ์เปลี่ยนเป็นตัวเลข (มือถือบางรุ่นค้างเป็นแป้นตัวอักษรจากช่องก่อนหน้า) */
+function focusDue(){const e=$('due');e.setAttribute('inputmode','numeric');e.blur();e.focus()}
 const dp=el=>{if(el.value){$('due').value=el.value.split('-').reverse().join('/');pv()}};
 function resumeScan(){if(!stream)return;paused=0;last={c:'',t:0};status(0);$('scmsg').textContent='สแกนตัวต่อไปได้เลย'}
-$('bc').onkeydown=e=>{if(e.key=='ArrowDown'||e.key=='ArrowUp'){if(!SG.length||SEL)return;e.preventDefault();SI=Math.max(0,Math.min(SG.length-1,SI+(e.key=='ArrowDown'?1:-1)));lookup()}else if(e.key=='Enter'){e.preventDefault();SG.length&&!SEL?pick(SI):$('due').focus()}};
-$('qty').onkeydown=e=>{if(e.key=='Enter')$('due').focus()};$('due').onkeydown=e=>{if(e.key=='Enter')queue()};
+$('bc').onkeydown=e=>{if(e.key=='ArrowDown'||e.key=='ArrowUp'){if(!SG.length||SEL)return;e.preventDefault();SI=Math.max(0,Math.min(SG.length-1,SI+(e.key=='ArrowDown'?1:-1)));lookup()}else if(e.key=='Enter'){e.preventDefault();SG.length&&!SEL?pick(SI):focusDue()}};
+$('qty').onkeydown=e=>{if(e.key=='Enter')focusDue()};$('due').onkeydown=e=>{if(e.key=='Enter')queue()};
 $('sc').addEventListener('close',stopStream);
 // ตัวเลือกเคลมดึงจากค่าที่มีในชีทของสาขานั้น (D.claims) สีของค่าที่รู้จักคงเดิม ค่าอื่นหมุนตามชุดสี
 const CL0=['-','#e6e9f2','#1c2240'],KNOWN={'เคลมได้':['#6fa88c','#fff'],'เคลมไม่ได้':['#d1605f','#fff'],"Lotus's":['#fdeab9','#7a5c14'],'Makro':['#d1605f','#fff']},PAL=['#cfe3ff','#e0d4ff','#c9ecd9','#ffd9c7','#e3e3e3','#fff1a8'];let CL=[CL0];
@@ -1419,7 +1429,7 @@ async function focusTap(e){
 function stopStream(){clearInterval(tmr);if(stream)stream.getTracks().forEach(t=>t.stop());stream=ztrack=null;$('vid').srcObject=null}
 function stopScan(){stopStream();if($('sc').open)$('sc').close()}
 async function torch(){const t=ztrack;if(!t)return;t._on=!t._on;try{await t.applyConstraints({advanced:[{torch:t._on}]});$('tq').classList.toggle('on',t._on)}catch(e){t._on=!t._on}}
-function toAdd(c){stopScan();go('add');SEL=null;$('bc').value=c;lookup();($('nmIn')||$('due')).focus()}
+function toAdd(c){stopScan();go('add');SEL=null;$('bc').value=c;lookup();$('nmIn')?$('nmIn').focus():focusDue()}
 function got(c){
  if(SM=='add')return toAdd(c);
  const n=D.entries.filter(e=>e.barcode==c).length;
