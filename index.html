@@ -939,6 +939,54 @@ dialog#dt[open]{display:flex;flex-direction:column;max-height:88dvh}
 /* แตะไว: ไม่หน่วงเพราะรอแตะสองครั้ง (double-tap zoom) */
 button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .pad button{-webkit-user-select:none;user-select:none;height:66px}
+
+/* ===== มือถือ: หน้าเพิ่มสินค้าให้คีย์จบในหน้าจอเดียว ไม่ต้องเลื่อน (คอมไม่เปลี่ยน) ===== */
+@media(max-width:820px){
+ body.pgadd #appTop,body.pgadd #camF{display:none!important}
+ body.pgadd .bell.fs{opacity:1;pointer-events:auto;transform:none}
+ body.pgadd #main{padding-top:10px}
+ #add{padding-bottom:0}
+ #add .ph{margin:0 0 8px;min-height:44px;display:flex;align-items:center;padding-right:58px}
+ #add .ph h1{font-size:20px;margin:0}
+ #add .ph .mut,#add .hint,#add #qhint{display:none}
+ #add .sq{gap:0}
+ /* เอากรอบการ์ดทั้ง 3 ใบออก ให้เป็นฟอร์มต่อเนื่องกัน */
+ #add .stepc{border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;padding:0;margin:0 0 10px}
+ #add .stepc .sh{display:none}
+ #add .stepc:nth-of-type(3) .sh{display:flex;margin:0 0 6px;font-size:13px;color:var(--mut)}
+ #add .stepc:nth-of-type(3) .sh i{display:none}
+ #add .stepc:nth-of-type(3) .sh b{font-size:13px;font-weight:500}
+ /* 1 สินค้า */
+ #add .bcin{font-size:17px;letter-spacing:.3px;padding:11px 14px;border-radius:14px}
+ #add .stepc .row .btn.fit{padding:12px 14px!important}
+ #add #sug{max-height:34vh;overflow:auto}
+ #add .pk{margin-top:0;padding:8px 8px 8px 12px;border-radius:14px}
+ #add .pk .t b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ #add .pk .t .mut{font-size:12px}
+ #add .pk .lots{max-height:84px;overflow:auto;font-size:13px}
+ /* เลือกสินค้าแล้ว: ซ่อนช่องค้นหา (ชื่อซ้ำกับการ์ด) กด ✕ เพื่อเปลี่ยน */
+ #add .stepc:has(#pk:not(.hide):not(.new)) .row{display:none}
+ /* 2 จำนวน + วันหมดอายุ แถวเดียว */
+ #add .two{grid-template-columns:132px minmax(0,1fr);gap:8px}
+ #add .two>div>label{font-size:12px;margin:0 0 3px;display:block;color:var(--mut)}
+ #add .qs2 button{height:44px;width:34px}
+ #add .qs2 input,#add #due{padding:10px 6px;height:44px;font-size:17px}
+ #add #due{padding:10px 12px}
+ #add .two .row .btn{padding:0 12px!important;height:44px;display:grid;place-items:center}
+ #add .dpv{min-height:0;margin-top:8px;font-size:15px}
+ #add .dpv:empty{display:none}
+ /* จำนวนด่วน 4x2 */
+ #add .qkc{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+ #add .qkc .mut{display:none}
+ #add .chip.rcb.qk{min-width:0;min-height:40px;padding:4px 0;font-size:16px;justify-content:center}
+ /* 3 สถานะเคลม */
+ #add #cl{gap:6px}
+ #add #cl .chip{min-height:40px;padding:6px 14px;font-size:14px}
+ /* ปุ่มบันทึก: ลอยค้างเหนือเมนูล่าง กดได้ทุกเมื่อ ไม่ต้องเลื่อนขึ้นลง */
+ #add #qacts{position:sticky;bottom:calc(86px + env(safe-area-inset-bottom));z-index:4;gap:8px;margin:0;padding:8px 0 4px;background:linear-gradient(to bottom,#fff0,#fff 22%)}
+ body.hasq #add #qacts{bottom:calc(156px + env(safe-area-inset-bottom))}
+ #add #qacts .btn{margin:0;padding:13px 8px;font-size:15px;white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -967,7 +1015,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
   <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
   <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" name="stock-due" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" enterkeyhint="done" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
-  <div class="dpv" id="dpv"></div><div class="chips" style="margin-top:12px"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb qk" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb qk" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb qk" onclick="$('qty').value=18">18</button><button type="button" class="chip rcb qk" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb qk" onclick="$('qty').value=36">36</button><button type="button" class="chip rcb qk" onclick="$('qty').value=48">48</button><button type="button" class="chip rcb qk" onclick="$('qty').value=72">72</button><button type="button" class="chip rcb qk" onclick="$('qty').value=96">96</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
+  <div class="dpv" id="dpv"></div><div class="chips qkc"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb qk" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb qk" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb qk" onclick="$('qty').value=18">18</button><button type="button" class="chip rcb qk" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb qk" onclick="$('qty').value=36">36</button><button type="button" class="chip rcb qk" onclick="$('qty').value=48">48</button><button type="button" class="chip rcb qk" onclick="$('qty').value=72">72</button><button type="button" class="chip rcb qk" onclick="$('qty').value=96">96</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
  <div class="acts" id="qacts"><button class="btn big" id="qnow" onclick="W(this,saveNow)">💾 บันทึกชิ้นนี้เลย</button><button class="btn alt big" id="qadd" onclick="queue()">＋ เพิ่มชิ้นถัดไป</button></div>
@@ -1501,7 +1549,7 @@ async function svBr(el){const c=el.closest('[data-k]'),pin0=c.querySelector('.bc
 async function unlockBr(el){const c=el.closest('[data-k]'),r=await adm('adminUnlock',{key:c.dataset.k});if(!r.ok)return toast(r.error);toast('ปลดล็อกแล้ว ใส่ PIN ได้ใหม่ทันที')}
 async function dlBr(el){const c=el.closest('[data-k]');if(!c.dataset.k)return c.remove();if(!await ask({t:'ลบสาขานี้?',b:'ข้อมูลในชีตจะไม่ถูกลบ แต่สาขานี้จะเข้าใช้งานไม่ได้อีก',ok:'ลบสาขา',danger:1}))return;const r=await adm('adminDel',{key:c.dataset.k});if(!r.ok)return toast(r.error);drawAdm(r.list)}
 async function admPw(){const r=await adm('adminPw',{newAdmin:$('npw').value});if(!r.ok)return toast(r.error);AD=$('npw').value;$('adm').value=AD;$('npw').value='';toast('เปลี่ยนรหัสแอดมินแล้ว')}
-let CUR='list';function go(p){CUR=p;scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
+let CUR='list';function go(p){CUR=p;document.body.classList.toggle('pgadd',p=='add');scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
 document.querySelectorAll('#nav button[data-p]').forEach(b=>b.onclick=()=>go(b.dataset.p));
 // เมนูข้าง: พับเก็บ/เปิด (จอคอม จำค่าไว้) · มือถือ: เลื่อนลงซ่อนแถบล่าง เลื่อนขึ้นโผล่กลับ
 function navTog(){const h=document.documentElement;h.classList.add('navanim');const c=h.classList.toggle('navc');try{localStorage.setItem('navc',c?'1':'0')}catch(e){}}
