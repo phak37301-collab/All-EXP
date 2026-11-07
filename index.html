@@ -1229,6 +1229,23 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #prn .rp .dd{min-width:19mm;padding:1px 10px;font-size:11.5px}
 #prn .rp .cm{background:#f3f4f7;border:1px solid #d3d8e4;color:#3a4156;font-size:10.5px;border-radius:99px;padding:1px 9px}
 #prn .rp .rf{margin-top:12px;padding:6px 0 0;border:0;border-top:1px solid #d3d8e4;border-radius:0;background:none;color:#7a8296;font-size:10.5px;text-align:right}
+
+/* ===== รอบ 7: แถบปุ่มโชว์ตลอด (ไม่ซ่อน/ไม่ต้องสไลด์) · แตะที่ว่างปิดคีย์บอร์ด ===== */
+@media(max-width:820px){
+ #add #qacts{position:fixed!important;left:12px!important;right:12px!important;bottom:calc(92px + env(safe-area-inset-bottom))!important;width:auto!important;display:flex!important;flex-direction:row!important;gap:8px!important;padding:8px!important;border-radius:26px!important;background:#ffffffeb!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 30px #0003!important;transform:none!important;z-index:6}
+ #add #qacts .qTab{display:none!important}
+ #add #qacts .btn{flex:1 1 0!important;width:auto!important;min-height:56px!important;margin:0!important;padding:6px 6px!important;border-radius:18px!important;display:flex!important;flex-direction:row!important;align-items:center;justify-content:center;gap:6px!important;font-size:15px!important;white-space:nowrap!important}
+ #add #qacts #qnow{flex:1.5 1 0!important;min-height:56px!important}
+ #add #qacts .btn>i:not(.spin){font-size:22px!important}
+ body.hasq #add #qacts{bottom:calc(92px + env(safe-area-inset-bottom))!important}
+ #qbar{bottom:calc(164px + env(safe-area-inset-bottom))!important}
+ #qbar>.btn{display:none!important}
+ #add{padding-bottom:calc(190px + env(safe-area-inset-bottom))}
+ /* คีย์บอร์ดเปิด: ซ่อนเมนูล่าง ดันแถบปุ่มลงมาติดคีย์บอร์ด จะได้กดถัดไป/บันทึกได้เลย */
+ body.kb #nav{transform:translateY(160%)!important;transition:transform .2s}
+ body.kb #add #qacts{bottom:8px!important}
+ body.kb #qbar{bottom:80px!important}
+}
 </style>
 </head>
 <body>
@@ -1252,17 +1269,17 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  <aside id="dp"></aside></div></section>
 <section id="add" class="hide"><div class="ph"><div class="ahLogo" onclick="flipStyle()" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="ahT"><h1>เพิ่มสินค้า</h1><div class="mut">สแกนหรือพิมพ์ชื่อ แล้วเข้าคิวบันทึกทีเดียว</div><div class="ahRow"><button type="button" class="ahBr" onclick="bmenu()" aria-label="เปลี่ยนสาขา"><i class="gdot"></i><span class="brl">สาขา</span> ▾</button><span class="ahChip" id="ahDt"></span><button type="button" class="ahChip ahQ" id="ahQn" onclick="toQ()"></button></div></div></div><div class="sq"><div>
  <div class="stepc"><div class="sh"><i>1</i><b>สินค้า</b></div>
-  <div class="row"><input id="bc" class="bcin" name="stock-item" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">📷 สแกน</button></div>
+  <div class="row"><input id="bc" class="bcin" name="stock-item" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="พิมพ์ชื่อ หรือบาร์โค้ดบางส่วน" oninput="SEL=null;SI=0;VIA='';lookup()"><button class="btn fit" style="padding:15px 16px" onclick="scan('add')">📷 สแกน</button></div>
   <div id="sug"></div><div id="pk" class="pk hide"></div><div id="rc"></div></div>
  <div class="stepc"><div class="sh"><i>2</i><b>จำนวนและวันหมดอายุ</b></div>
-  <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
+  <div class="two"><div><label for="qty" style="margin-top:0">จำนวน</label><div class="qs2"><button onclick="qa(-1)">−</button><input id="qty" type="number" inputmode="numeric" enterkeyhint="next" min="1" value="1"><button onclick="qa(1)">＋</button></div></div>
   <div><label for="due" style="margin-top:0">วันหมดอายุ</label><div class="row"><input id="due" name="stock-due" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" enterkeyhint="done" autocomplete="off" placeholder="" oninput="pv()"><label class="btn alt fit" style="margin:0;position:relative;padding:12px 14px">📅<input type="date" onchange="dp(this)" style="position:absolute;inset:0;opacity:0;width:100%;padding:0"></label></div></div></div>
   <div class="dpv" id="dpv"></div><div class="chips qkc"><span class="mut" style="align-self:center;font-size:13px">จำนวนด่วน</span><button type="button" class="chip rcb qk" onclick="$('qty').value=6">6</button><button type="button" class="chip rcb qk" onclick="$('qty').value=12">12</button><button type="button" class="chip rcb qk" onclick="$('qty').value=18">18</button><button type="button" class="chip rcb qk" onclick="$('qty').value=24">24</button><button type="button" class="chip rcb qk" onclick="$('qty').value=36">36</button><button type="button" class="chip rcb qk" onclick="$('qty').value=48">48</button><button type="button" class="chip rcb qk" onclick="$('qty').value=72">72</button><button type="button" class="chip rcb qk" onclick="$('qty').value=96">96</button></div><div class="mut hint">วันหมดอายุพิมพ์เร็วได้ เช่น 14.2.26 หรือ 1402 (ไม่ใส่ปี = ปีนี้) หรือกดไอคอนปฏิทิน · กด Enter เพื่อเข้าคิว</div></div>
  <div class="stepc"><div class="sh"><i>3</i><b>สถานะเคลม</b></div><div class="chips" id="cl"></div>
   <div id="tabRow" class="hide"><label for="tabSel">บันทึกลงชีท</label><select id="tabSel"></select></div></div>
- <div class="acts" id="qacts"><button type="button" class="qTab" id="qTab" onclick="qSlide()" aria-label="เปิด/ซ่อนปุ่มลัด สแกน ถัดไป บันทึก"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="btn alt big" id="qscan" onclick="scan('add')" aria-label="สแกน"><i>📷</i><span class="s">สแกน</span></button><button class="btn big" id="qnow" onclick="W(this,saveNow)"><i>💾</i><span class="f">บันทึกชิ้นนี้เลย</span><span class="s">บันทึก</span></button><button class="btn alt big" id="qadd" onclick="queue()"><i>＋</i><span class="f">เพิ่มชิ้นถัดไป</span><span class="s">ถัดไป</span></button></div>
+ <div class="acts" id="qacts"><button type="button" class="qTab" id="qTab" onclick="qSlide()" aria-label="เปิด/ซ่อนปุ่มลัด สแกน ถัดไป บันทึก"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="btn alt big" id="qscan" onclick="scan('add')" aria-label="สแกน"><i>📷</i><span class="s">สแกน</span></button><button class="btn big" id="qnow" onclick="W(this,saveAll)"><i>💾</i><span class="f">บันทึกชิ้นนี้เลย</span><span class="s">บันทึก</span></button><button class="btn alt big" id="qadd" onclick="queue()"><i>＋</i><span class="f">เพิ่มชิ้นถัดไป</span><span class="s">ถัดไป</span></button></div>
  <div class="mut hint" id="qhint" style="text-align:center">💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว</div></div>
- <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveQ)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
+ <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveAll)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
 <section id="stat" class="hide"><div class="ph"><h1>สถิติและรายงาน</h1><div class="mut">แตะการ์ด แท่งกราฟ หรือแถวสินค้า เพื่อดูรายการข้างใน</div></div>
 <div id="bn" class="hide"><b id="bn1"></b><i id="bn2"></i><i id="bnA"></i></div>
 <div class="kp2" id="kp2"></div>
@@ -1313,8 +1330,8 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 <dialog id="dt"><div id="dtb"></div><button class="btn big" onclick="$('dt').close()">ปิด</button></dialog>
 <dialog id="cf" class="cfd"><div class="in"><div class="cfI" id="cfI">❓</div><h3 id="cfT"></h3><div class="mut" id="cfB"></div><div class="cfb" id="cfBtns"></div></div></dialog>
 <dialog id="al" class="pop"><div class="in"><div class="alh"><i class="alI">🔔</i><div class="alTt"><b id="alT"></b><small id="alS2"></small></div><button class="btn alt sm hide" id="alSel" onclick="alMode()">เลือก</button><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><div class="alBar hide" id="alBar"><button class="btn alt" id="alAllC" onclick="alPickAll()">เลือกทั้งหมด</button><button class="btn del" id="alDelB" onclick="alDelSel()" disabled>🗑 ลบ <b>0</b> ล็อต</button></div><button class="btn alt big" id="alAllB" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
-<div id="qbar" class="hide"><button class="qi" onclick="toQ()" aria-label="เปิดดูคิวทั้งหมด"><span class="qcnt" id="qcnt">0</span><span class="qtx"><b>คิวรอบันทึก <em>แตะเพื่อดู ▴</em></b><small id="qbn"></small></span></button><button class="btn" onclick="W(this,saveQ)">บันทึกทั้งหมด</button></div>
-<dialog id="qd" class="qsheet"><div class="qgrab"></div><div class="qdh"><b>🧾 คิวรอบันทึก <small id="qdn"></small></b><button class="ib fit" onclick="$('qd').close()" aria-label="ปิด">✕</button></div><div id="qdl"></div><div class="qdf"><button class="btn alt" onclick="$('qd').close()">＋ เพิ่มชิ้นถัดไป</button><button class="btn" id="qds" onclick="W(this,async()=>{await saveQ();if(!Q.length&&$('qd').open)$('qd').close()})">บันทึกทั้งหมด</button></div></dialog>
+<div id="qbar" class="hide"><button class="qi" onclick="toQ()" aria-label="เปิดดูคิวทั้งหมด"><span class="qcnt" id="qcnt">0</span><span class="qtx"><b>คิวรอบันทึก <em>แตะเพื่อดู ▴</em></b><small id="qbn"></small></span></button><button class="btn" onclick="W(this,saveAll)">บันทึกทั้งหมด</button></div>
+<dialog id="qd" class="qsheet"><div class="qgrab"></div><div class="qdh"><b>🧾 คิวรอบันทึก <small id="qdn"></small></b><button class="ib fit" onclick="$('qd').close()" aria-label="ปิด">✕</button></div><div id="qdl"></div><div class="qdf"><button class="btn alt" onclick="$('qd').close()">＋ เพิ่มชิ้นถัดไป</button><button class="btn" id="qds" onclick="W(this,async()=>{await saveAll();if(!Q.length&&$('qd').open)$('qd').close()})">บันทึกทั้งหมด</button></div></dialog>
 <div id="ldr" popover="manual" role="status" aria-live="polite"><div class="ldrBox"><div class="ldrFr" aria-hidden="true"><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="ldrTx"><span id="ldrTx">กำลังโหลด</span><span class="ldrDots"><b>.</b><b>.</b><b>.</b></span></div><div class="ldrSub" id="ldrSub">รอสักครู่นะครับ ไม่ต้องกดซ้ำ</div></div></div>
 <div id="toast"></div>
 <script>
@@ -1325,7 +1342,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 const CFG=window.APP_CONFIG||{},$=id=>document.getElementById(id),API=CFG.apiUrl||'',ls=k=>localStorage.getItem(k)||'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fd=s=>{if(!s)return'-';const p=s.split('-');return p[2]+'/'+p[1]+'/'+(S.be?+p[0]+543:p[0])},COL=['#ea4335','#ea9999','#ff9900','#ffd966','#d9ead3','#86b4fc'],TX=['#fff','#1c2240','#1c2240','#1c2240','#1c2240','#1c2240'];
-const S=Object.assign({theme:'pink',style:'cute',be:0,view:-1,scanMode:'auto',beep:true,vib:true,zoom:1,dup:'ask'},(()=>{try{return JSON.parse(localStorage.getItem('S')||'{}')}catch(e){return{}}})());
+const S=Object.assign({theme:'pink',style:'cute',be:0,view:-1,scanMode:'auto',autoScan:true,beep:true,vib:true,zoom:1,dup:'ask'},(()=>{try{return JSON.parse(localStorage.getItem('S')||'{}')}catch(e){return{}}})());
 if(!S.tset){if(CFG.theme)S.theme=CFG.theme;if(CFG.style)S.style=CFG.style} // ธีมเริ่มต้นจาก config.js (ทุกเครื่องเหมือนกัน) จนกว่าผู้ใช้จะเลือกเอง
 const LEGACY={indigo:null,ocean:'ocean',emerald:'green',rose:'red'};
 if(!(S.theme in {pink:1,red:1,orange:1,green:1,teal:1,ocean:1,blue:1,violet:1,mono:1})){S.theme=(S.theme=='indigo'||!(S.theme in LEGACY))?(S.style=='cool'?'blue':'pink'):LEGACY[S.theme];try{localStorage.setItem('S',JSON.stringify(S))}catch(e){}}
@@ -1546,7 +1563,7 @@ const pushRc=(b,n)=>{RC=[{b,n}].concat(RC.filter(x=>x.b!=b)).slice(0,10);localSt
 const hueOf=s=>{let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))%360;return h};
 const drawRc=v=>{const inq=new Set(Q.map(x=>x.barcode));$('rc').innerHTML=(!SEL&&!v&&RC.length)?`<div class="rch"><b>⏱ เพิ่งคีย์ล่าสุด</b><button type="button" onclick="clrRc()">ล้าง</button></div><div class="rcs">${RC.map((x,i)=>{const h=hueOf(x.n);return `<button type="button" class="rcc ${inq.has(x.b)?'inq':''}" onclick="pickRc(${i})"><span class="rca" style="background:hsl(${h} 75% 90%);color:hsl(${h} 55% 28%)">${esc(([...String(x.n).trim()][0]||'?').toUpperCase())}</span><span class="rcn">${esc(x.n)}</span><i>${inq.has(x.b)?'✓ อยู่ในคิว':'แตะเพื่อเลือก'}</i></button>`}).join('')}</div>`:''};
 const clrRc=()=>{RC=[];localStorage.setItem('RC','[]');drawRc('')};
-function pickRc(i){SEL={b:RC[i].b,n:RC[i].n};$('bc').value=RC[i].n;lookup();focusDue()}
+function pickRc(i){SEL={b:RC[i].b,n:RC[i].n};$('bc').value=RC[i].n;lookup();focusQty()}
 const qq=(i,n)=>{Q[i].qty=Math.max(1,Q[i].qty+n);drawQ()};
 const lotsOf=b=>{const l=D.entries.filter(e=>e.barcode==b).sort((x,y)=>String(x.due||'9').localeCompare(String(y.due||'9')));if(!l.length)return'';
  const tot=l.reduce((a,e)=>a+(+e.qty||0),0);
@@ -1563,7 +1580,7 @@ function lookup(){const v=$('bc').value.trim(),pk=$('pk'),sg=$('sug');SG=[];draw
  const nw=!SG.length&&(!dg||v.length>=8)&&v.length>=2,k=nw?'n'+v:'';
  if(!nw){pk.className='pk hide';pk.innerHTML='';pkKey='';return}
  if(k!==pkKey){pkKey=k;pk.className='pk new';pk.innerHTML=`<div style="flex:1;min-width:0"><div class="mut" style="margin-bottom:6px">🆕 ไม่พบในฐานข้อมูล จะเพิ่มลงชีท Database ให้อัตโนมัติ</div><input id="nmIn" name="new-name" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="ชื่อสินค้า" value="${dg?'':esc(v)}"><input id="nbc" name="new-barcode" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore inputmode="numeric" placeholder="บาร์โค้ด (ไม่ใส่ก็ได้)" value="${dg?esc(v):''}" style="margin-top:8px"></div>`}}
-function pick(i){SEL={b:SG[i][0],n:SG[i][1]};$('bc').value=SG[i][1];lookup();focusDue()}
+function pick(i){SEL={b:SG[i][0],n:SG[i][1]};$('bc').value=SG[i][1];lookup();focusQty()}
 const qa=n=>{$('qty').value=Math.max(1,(+$('qty').value||0)+n)};
 // อ่านวันที่แบบพิมพ์เร็ว: 14.2.26 / 14/2 / 14-2-2569 / 1402 / 140226 / 14022026 (ไม่ใส่ปี = ปีนี้, ปี 2 หลัก >=55 = พ.ศ.)
 function pd(t){t=String(t||'').trim();let m=t.match(/^(\d{1,2})[\s.\/,\-]+(\d{1,2})(?:[\s.\/,\-]+(\d{2}|\d{4}))?$/),d,mo,y;
@@ -1573,10 +1590,11 @@ function pd(t){t=String(t||'').trim();let m=t.match(/^(\d{1,2})[\s.\/,\-]+(\d{1,
 function pv(){const t=$('due').value.trim(),e=$('dpv');if(!t){e.innerHTML='';return}const d=pd(t);
  e.innerHTML=d?`→ <b>${fd(d)}</b> ${pill(days(d))}`:'<span style="color:#d6336c">อ่านวันที่ไม่ได้ ลองพิมพ์ เช่น 14.2.26 หรือ 14/2</span>'}
 /* ย้ายโฟกัสมาช่องวันที่: ตั้งโหมดตัวเลขใหม่แล้ว blur→focus เพื่อให้แป้นพิมพ์เปลี่ยนเป็นตัวเลข (มือถือบางรุ่นค้างเป็นแป้นตัวอักษรจากช่องก่อนหน้า) */
+function focusQty(){const e=$('qty');e.setAttribute('inputmode','numeric');e.blur();setTimeout(()=>{e.focus();try{e.select()}catch(_){}try{e.scrollIntoView({block:'center',behavior:'smooth'})}catch(_){}},150)}
 function focusDue(){const e=$('due');e.setAttribute('inputmode','numeric');e.blur();e.focus()}
 const dp=el=>{if(el.value){$('due').value=el.value.split('-').reverse().join('/');pv()}};
 function resumeScan(){if(!stream)return;paused=0;last={c:'',t:0};status(0);$('scmsg').textContent='สแกนตัวต่อไปได้เลย'}
-$('bc').onkeydown=e=>{if(e.key=='ArrowDown'||e.key=='ArrowUp'){if(!SG.length||SEL)return;e.preventDefault();SI=Math.max(0,Math.min(SG.length-1,SI+(e.key=='ArrowDown'?1:-1)));lookup()}else if(e.key=='Enter'){e.preventDefault();SG.length&&!SEL?pick(SI):focusDue()}};
+$('bc').onkeydown=e=>{if(e.key=='ArrowDown'||e.key=='ArrowUp'){if(!SG.length||SEL)return;e.preventDefault();SI=Math.max(0,Math.min(SG.length-1,SI+(e.key=='ArrowDown'?1:-1)));lookup()}else if(e.key=='Enter'){e.preventDefault();SG.length&&!SEL?pick(SI):focusQty()}};
 $('qty').onkeydown=e=>{if(e.key=='Enter')focusDue()};$('due').onkeydown=e=>{if(e.key=='Enter')queue()};
 $('sc').addEventListener('close',stopStream);
 // ตัวเลือกเคลมดึงจากค่าที่มีในชีทของสาขานั้น (D.claims) สีของค่าที่รู้จักคงเดิม ค่าอื่นหมุนตามชุดสี
@@ -1586,7 +1604,7 @@ function buildCL(){const ck='cls_'+BR;let sv=[];try{sv=JSON.parse(ls(ck)||'[]')}
  try{localStorage.setItem(ck,JSON.stringify(l))}catch(e){}let k=0;
  CL=[CL0].concat(l.map(n=>KNOWN[n]?[n,KNOWN[n][0],KNOWN[n][1]]:[n,PAL[k++%PAL.length],'#1c2240']));
  if(!CL.some(c=>c[0]==CLV))CLV='-';F.cl=F.cl.filter(x=>CL.some(c=>c[0]==x))}
-let QNEW=0,Q=[];try{Q=JSON.parse(ls('Q')||'[]')}catch(e){}let CLV='-',EC='-',F={from:'',to:'',cl:[],tab:''};
+let VIA='',QNEW=0,Q=[];try{Q=JSON.parse(ls('Q')||'[]')}catch(e){}let CLV='-',EC='-',F={from:'',to:'',cl:[],tab:''};
 const clr=n=>CL.find(c=>c[0]==n)||CL[0],clPill=n=>{const c=clr(n||'-');return `<span class="pill" style="--c:${c[1]};--t:${c[2]}">${esc(c[0])}</span>`};
 const chipsH=(sel,fn,m)=>CL.map((c,i)=>`<button type="button" class="chip ${(m?sel.includes(c[0]):sel==c[0])?'on':''}" style="--c:${c[1]};--t:${c[2]}" onclick="${fn}(${i})">${esc(c[0])}</button>`).join('');
 const tabs=()=>D.tabs||[],ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -1601,16 +1619,25 @@ function queue(silent){let b,item;
  Q.push({id:uid(),barcode:b,item,qty:q,due:d,claim:CLV,tab:$('tabSel').value||tabs()[0]||'',br:BR});D.db[b]=item;pushRc(b,item);SEL=null;
  $('bc').value=$('due').value='';$('qty').value=1;lookup();pv();QNEW=1;drawQ();bumpQ();if(!silent&&!matchMedia('(max-width:820px)').matches)toast('＋ พักไว้ในคิวแล้ว ('+Q.length+') · '+item+' · ยังไม่ได้บันทึกลงชีท');
  if(!silent&&matchMedia('(max-width:820px)').matches){const t=$('add');if(t){const y=t.getBoundingClientRect().top+scrollY-8;if(scrollY>y+40)scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
- if(!silent)$('bc').focus({preventScroll:true});return true}
+ if(!silent){if(matchMedia('(max-width:820px)').matches){const a=document.activeElement;if(a&&a.blur)a.blur();if(VIA=='scan'&&S.autoScan!==false){VIA='';const n=Q.length;setTimeout(()=>{scan('add').then(()=>{if(stream)$('scmsg').textContent='เข้าคิวแล้ว '+n+' รายการ · สแกนชิ้นต่อไปได้เลย'})},350)}}else $('bc').focus({preventScroll:true})}
+ return true}
 function bumpQ(){const c=$('qcnt');if(!c)return;c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}
-function qLbl(){const n=Q.length,b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt').textContent=n;
- /* หลักคิด: ไม่มีคิว = ปุ่มในฟอร์มบันทึกเลย · มีคิว = ฟอร์มมีแค่ "เพิ่มลงคิว" และปุ่มบันทึกอยู่ที่แถบ/การ์ดคิวที่เดียว */
- if(b)b.innerHTML=n?'<i>＋</i><span class="f">เพิ่มลงคิว (ตอนนี้ '+n+' รายการ)</span><span class="s">เข้าคิว</span>':'<i>💾</i><span class="f">บันทึกชิ้นนี้เลย</span><span class="s">บันทึก</span>';
- if($('qadd'))$('qadd').classList.toggle('hide',!!n);if($('qacts'))$('qacts').classList.toggle('one',!!n);
- if($('qhint'))$('qhint').textContent=n?'เพิ่มลงคิวไปเรื่อย ๆ แล้วกด “บันทึกทั้งหมด” ที่แถบคิว (ปุ่มบันทึกมีที่เดียว)':'💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว';
+const pendingItem=()=>!!SEL||!!($('nmIn')&&$('nmIn').value.trim());
+function qLbl(){const n=Q.length,c=n+(pendingItem()?1:0),b=$('qnow'),bar=$('qbar');if($('qcnt'))$('qcnt').textContent=n;
+ if(b)b.innerHTML='<i>💾</i><span class="f">'+(c>1?'บันทึกทั้งหมด ('+c+' รายการ)':'บันทึกชิ้นนี้เลย')+'</span><span class="s">บันทึก'+(c>1?' ('+c+')':'')+'</span>';
+ if($('qadd'))$('qadd').classList.remove('hide');if($('qacts'))$('qacts').classList.remove('one');
+ if($('qhint'))$('qhint').textContent='📷 สแกน → จำนวน → วันที่ → ＋ถัดไป · 💾 บันทึกจะรวมชิ้นที่ยังไม่เข้าคิวให้เองด้วย';
  ['qds','qs'].forEach(id=>{const e=$(id);if(e)e.textContent=n?(id=='qds'?'💾 บันทึกทั้งหมด ('+n+')':'💾 บันทึกทั้งหมด ('+n+' รายการ)'):'บันทึกทั้งหมด'});
  if(bar){bar.classList.toggle('hide',!n||CUR!='add');document.body.classList.toggle('hasq',!!n&&CUR=='add');$('qbn').textContent=n?(Q[n-1].item+' · รวม '+Q.reduce((a,x)=>a+x.qty,0)+' ชิ้น'):''}}
-async function saveNow(){const had=Q.length;if(!queue(had?0:1))return;if(!had)await saveQ()} // ว่าง=บันทึกเลย · มีคิวอยู่=แค่เพิ่มลงคิว
+// บันทึกทั้งหมด: ถ้ามีชิ้นที่กรอกค้างอยู่ในฟอร์ม (ยังไม่กดเข้าคิว) ให้ดันเข้าคิวก่อนแล้วบันทึกรวมทีเดียว
+async function saveAll(){if(SAVING)return;
+ if(pendingItem()){
+  if(!$('due').value.trim()){if($('qd').open)$('qd').close();toast('ชิ้นล่าสุดยังไม่ได้ใส่วันหมดอายุ');focusDue();return}
+  if(!queue(1))return}
+ await saveQ()}
+// ครอบ lookup ให้ตัวนับบนปุ่มบันทึกอัปเดตทุกครั้งที่เลือก/ล้างสินค้า
+(function(){const lk=lookup;lookup=function(){const r=lk.apply(this,arguments);try{qLbl()}catch(e){}return r}})();
+async function saveNow(){return saveAll()}
 function toQ(){if(matchMedia('(max-width:820px)').matches){drawQ();if(!$('qd').open)$('qd').showModal();return}const c=$('qcard');if(c)c.scrollIntoView({behavior:'smooth',block:'center'})}
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);let SAVING=0;
 const nc=c=>c&&c!='-'?c:'';
@@ -1759,7 +1786,7 @@ async function focusTap(e){
 function stopStream(){clearInterval(tmr);if(stream)stream.getTracks().forEach(t=>t.stop());stream=ztrack=null;$('vid').srcObject=null}
 function stopScan(){stopStream();if($('sc').open)$('sc').close()}
 async function torch(){const t=ztrack;if(!t)return;t._on=!t._on;try{await t.applyConstraints({advanced:[{torch:t._on}]});$('tq').classList.toggle('on',t._on)}catch(e){t._on=!t._on}}
-function toAdd(c){stopScan();go('add');SEL=null;$('bc').value=c;lookup();$('nmIn')?$('nmIn').focus():focusDue()}
+function toAdd(c){stopScan();go('add');SEL=null;VIA='scan';$('bc').value=c;lookup();$('nmIn')?$('nmIn').focus():focusQty()}
 function got(c){
  if(SM=='add')return toAdd(c);
  const n=D.entries.filter(e=>e.barcode==c).length;
@@ -1790,7 +1817,7 @@ function drawSet(){
  '<div class="card"><h3>👤 บัญชีและสาขา</h3>'+SR('สาขาที่ใช้งาน',esc(BRN||'ยังไม่ได้เลือกสาขา'),'<button class="btn alt sm" onclick="openBr()">เปลี่ยนสาขา</button>')+SR('เปิดชีตของสาขา','ดูหรือแก้ข้อมูลใน Google Sheets','<button class="btn alt sm" onclick="openSheet()">เปิดชีต</button>')+SR('ออกจากสาขานี้','ลบรหัสที่จำไว้ในเครื่องนี้','<button class="btn del sm" onclick="logout()">ออกจากระบบ</button>')+'</div>'+
  '<div class="card"><h3>🎨 การแสดงผล</h3>'+SR('สไตล์หน้าจอ','น่ารัก (พาสเทล) หรือ เท่ (เข้ม) · แตะโลโก้แมวบนหัวเว็บเพื่อสลับเร็ว',seg('style',[['cute','💗 น่ารัก'],['cool','🖤 เท่']]))+SR('ธีมสี','สีหลักของทั้งแอป ใช้ได้กับทั้งแบบน่ารักและแบบเท่ · ตอนนี้: '+thN,'')+`<div class="th">${th}</div>`+SR('รูปแบบปี','แสดงในรายการและรายงาน',seg('be',[[0,'ค.ศ.'],[1,'พ.ศ.']]))+'</div>'+
  `<div class="card"><h3>🚦 เกณฑ์สถานะสี (วัน)</h3><div class="row">${ti}</div><div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">${pv}</div></div>`+
- '<div class="card"><h3>▣ การสแกน</h3>'+SR('เสียงบี๊บ','เมื่ออ่านบาร์โค้ดได้',sw('beep'))+SR('สั่นเมื่อสแกนติด','เฉพาะมือถือที่รองรับ',sw('vib'))+SR('โหมดสแกนเริ่มต้น','กดสแกนแล้วเริ่มที่โหมดไหน',seg('scanMode',[['auto','ตามหน้า'],['add','เพิ่ม'],['find','ค้นหา']]))+SR('ซูมกล้องเริ่มต้น','ถ้ากล้องรองรับ',seg('zoom',[[1,'1x'],[2,'2x'],[3,'3x'],[5,'5x']]))+'</div>'+
+ '<div class="card"><h3>▣ การสแกน</h3>'+SR('เสียงบี๊บ','เมื่ออ่านบาร์โค้ดได้',sw('beep'))+SR('สแกนต่อเนื่อง','กด ถัดไป แล้วเปิดกล้องสแกนชิ้นต่อไปให้เลย',sw('autoScan'))+SR('สั่นเมื่อสแกนติด','เฉพาะมือถือที่รองรับ',sw('vib'))+SR('โหมดสแกนเริ่มต้น','กดสแกนแล้วเริ่มที่โหมดไหน',seg('scanMode',[['auto','ตามหน้า'],['add','เพิ่ม'],['find','ค้นหา']]))+SR('ซูมกล้องเริ่มต้น','ถ้ากล้องรองรับ',seg('zoom',[[1,'1x'],[2,'2x'],[3,'3x'],[5,'5x']]))+'</div>'+
  '<div class="card"><h3>📝 การบันทึกสินค้า</h3>'+SR('เมื่อมีล็อตวันหมดอายุเดียวกันอยู่แล้ว','บาร์โค้ดและวันที่ตรงกัน',seg('dup',[['ask','ถามทุกครั้ง'],['merge','บวกจำนวน'],['new','แถวใหม่']]))+'</div>'+
  '<div class="card"><h3>🛠 ข้อมูลและระบบ</h3>'+SR('สำรองข้อมูลทั้งหมด','ดาวน์โหลดทุกล็อตเป็น CSV','<button class="btn alt sm" onclick="csvAll()">ดาวน์โหลด</button>')+SR('ตรวจการเชื่อมต่อ','ทดสอบการติดต่อ Apps Script','<button class="btn alt sm" onclick="W(this,ping)">ทดสอบ</button>')+SR('คืนค่าตั้งต้น','ล้างค่าตั้งทั้งหมดของเครื่องนี้','<button class="btn del sm" onclick="resetS()">คืนค่า</button>')+'</div>'}
 const inApp=()=>/Line|FBAN|FBAV|Instagram/i.test(navigator.userAgent);
@@ -1905,6 +1932,13 @@ BR&&CODE?load(1):(BR||0,drawAll(),BR||toast('ยังไม่ได้เล�
   if(fromEdge&&dx<-40)qSlide(true);
   else if(dx>40&&a.classList.contains('open')&&a.contains(e.target))qSlide(false)},{passive:true});
  try{info()}catch(e){}
+})();
+/* ===== รอบ 7: คีย์บอร์ด (มือถือ) ===== */
+(function(){const mob=()=>matchMedia('(max-width:820px)').matches,tg=/^(INPUT|SELECT|TEXTAREA)$/;
+ document.addEventListener('focusin',e=>{const t=e.target;if(mob()&&t.closest&&t.closest('#add')&&tg.test(t.tagName)&&t.type!='date')document.body.classList.add('kb')});
+ document.addEventListener('focusout',()=>setTimeout(()=>{if(!tg.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
+ document.addEventListener('click',e=>{const a=document.activeElement;if(!mob()||!a||!/^(INPUT|TEXTAREA)$/.test(a.tagName))return;
+  if(e.target.closest('input,textarea,select,button,label,a,.sg2,.lotpick,.rcc,#qacts,dialog'))return;a.blur()});
 })();
 </script>
 </body>
