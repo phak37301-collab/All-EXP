@@ -1166,7 +1166,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 .syS{flex:none;width:16px;height:16px;border-radius:50%;border:3px solid #ffffff55;border-top-color:#fff;animation:syR .8s linear infinite}
 @keyframes syR{to{transform:rotate(360deg)}}
 .syE{background:#fff;color:#7a1220;border:2px solid #d1424f;border-radius:20px;padding:12px 16px;box-shadow:0 12px 32px #00000050;font-size:14px;line-height:1.45;animation:tIn .2s ease-out}
-.syE b{display:block;font-size:15px;margin-bottom:4px;color:#b3202c}.syE div{margin:2px 0}
+.syE b{display:block;font-size:15px;margin-bottom:4px;color:#b3202c}.syE div{margin:2px 0;white-space:pre-line}
 .syE button{margin-top:8px;width:100%;border:0;border-radius:12px;padding:9px;background:#b3202c;color:#fff;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}
 /* หน้าประวัติ */
 #hsD{width:min(96vw,780px);max-height:92dvh;padding:16px;display:none;flex-direction:column}#hsD[open]{display:flex}
@@ -1625,7 +1625,7 @@ async function saveEdit(){if(!$('edD').value)return toast('เลือกวั
  const e=editing,old={qty:e.qty,due:e.due,claim:e.claim},nq=+$('edQ').value,nd=$('edD').value,ec=EC;
  e.qty=nq;e.due=nd;e.claim=ec=='-'?'':ec;$('ed').close();drawAll();const nm=nmOf(e);syStart(); // แสดงผลในรายการทันที แต่แจ้งว่า 'สำเร็จ' ต่อเมื่อชีตตอบกลับแล้วเท่านั้น
  BG++;try{await wq(()=>api({action:'update',tab:e.tab,row:e.row,barcode:e.barcode,qty:nq,due:nd,claim:ec,was:{due:old.due},_q:1}));syOk('แก้ไข '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
- catch(x){Object.assign(e,old);drawAll();syFail('แก้ไข '+nm+' ไม่สำเร็จ · คืนค่าเดิมให้แล้ว · '+(/เปลี่ยนไปแล้ว/.test(x.message)?'รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว':x.message));await staleFix(x)}
+ catch(x){Object.assign(e,old);drawAll();syFail(failMsg('แก้ไข',nm,x));await staleFix(x)}
  finally{BG--;setTimeout(poll,1200)}}
 
 // ===== แถบสถานะการบันทึก: กำลังบันทึก → สำเร็จจริง / ไม่สำเร็จ (ไม่ขึ้น "สำเร็จ" ก่อนแล้วค่อยมี error ตามมา) =====
@@ -1642,13 +1642,14 @@ const syClr=()=>{SYE=[];syDraw()};
 const nmOf=e=>e.item||D.db[e.barcode]||e.barcode;
 let WQ=Promise.resolve();const wq=f=>{const p=WQ.then(f);WQ=p.then(()=>{},()=>{});return p}; // เขียนลงชีตทีละคำขอตามลำดับที่กด (ลบ/แก้ไขเบื้องหลังจะไม่แซงกัน)
 const shiftRows=(tab,gone)=>D.entries.forEach(x=>{if(x.tab==tab){const n=gone.filter(g=>g<x.row).length;if(n)x.row-=n}}); // ลบแถวในชีตแล้ว แถวที่อยู่ล่างกว่าเลื่อนขึ้น → ปรับเลขแถวในหน้าเว็บให้ตรง
+const failMsg=(act,nm,x)=>act+' '+nm+' ไม่สำเร็จ\n'+(/เปลี่ยนไปแล้ว/.test(x.message)?'มีเครื่องอื่นลบหรือแก้รายการนี้ไปก่อนแล้ว ไม่มีข้อมูลเสียหาย กำลังโหลดรายการล่าสุดให้':x.message+' · กำลังโหลดรายการล่าสุดให้');
 async function staleFix(x){ // ล้มเหลวแบบไหนก็ตาม: โหลดข้อมูลจริงจากชีตมาแทน (รายการอาจถูกลบ/แก้ไปแล้วจริง แต่หน้าเว็บไม่รู้) · เหตุผลอยู่ในแถบ ❌ แล้ว ไม่แจ้งซ้ำ
  await resync()}
 async function resync(){for(let k=0;k<3;k++){const w=WSEQ;try{const r=await api({action:'list',_q:1});if(w===WSEQ){D=r;drawAll();return}}catch(_){return}}}
 async function del(r,fast){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;
  const i=D.entries.indexOf(e);if(i<0)return;D.entries.splice(i,1);shiftRows(e.tab,[e.row]);drawAll();const nm=nmOf(e)+' '+e.qty+' ชิ้น';syStart();
  BG++;(async()=>{try{await wq(()=>api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,was:{due:e.due},_q:1}));syOk('ลบ '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
-  catch(x){D.entries.splice(Math.min(i,D.entries.length),0,e);D.entries.forEach(y=>{if(y!==e&&y.tab==e.tab&&y.row>=e.row)y.row++});drawAll();syFail('ลบ '+nm+' ไม่สำเร็จ · คืนรายการเดิมให้แล้ว · '+(/เปลี่ยนไปแล้ว/.test(x.message)?'รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว':x.message));await staleFix(x);if($('al').open)bellTap()}
+  catch(x){D.entries.splice(Math.min(i,D.entries.length),0,e);D.entries.forEach(y=>{if(y!==e&&y.tab==e.tab&&y.row>=e.row)y.row++});drawAll();syFail(failMsg('ลบ',nm,x));await staleFix(x);if($('al').open)bellTap()}
   finally{BG--;setTimeout(poll,1200)}})()}
 
 const lc=(n,sub,right,ph,act)=>`<div class="lc" style="--c:${(ph.match(/--c:([^">;]+)/)||[])[1]||'#ddd'}"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
