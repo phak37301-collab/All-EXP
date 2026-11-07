@@ -1239,7 +1239,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 </div></div>
 
 <div id="sy" popover="manual" role="status" aria-live="polite"></div>
-<dialog id="hsD"><div class="hsH"><b>📜 ประวัติการใช้งาน</b><button type="button" class="hsX" onclick="$('hsD').close()" aria-label="ปิด">✕</button></div><div class="hsF"><select id="hsB" onchange="HS.k=this.value;hsLoad(0)"></select><div class="hsA" id="hsA"></div><div class="hsQ"><input id="hsQ" type="search" placeholder="ค้นหา ชื่อสินค้า / บาร์โค้ด / รหัสเครื่อง" autocomplete="off" onkeydown="if(event.key=='Enter'){HS.q=this.value.trim();hsLoad(0)}"><button type="button" class="btn fit" onclick="HS.q=$('hsQ').value.trim();hsLoad(0)">ค้นหา</button></div><div class="mut" id="hsS" style="font-size:13px"></div></div><div id="hsL"></div><button type="button" class="btn alt big hide" id="hsMore" style="margin-top:8px" onclick="hsLoad(1)">โหลดเพิ่ม</button><button type="button" class="btn big" style="margin-top:10px" onclick="$('hsD').close()">ปิด</button></dialog>
+<dialog id="hsD"><div class="hsH"><b>📜 ประวัติการใช้งาน</b><button type="button" class="hsX" onclick="$('hsD').close()" aria-label="ปิด">✕</button></div><div class="hsF"><select id="hsB" onchange="HS.k=this.value;hsLoad(0)"></select><div class="hsA" id="hsA"></div><div class="hsQ"><input id="hsQ" type="search" placeholder="ค้นหา ชื่อสินค้า / บาร์โค้ด / ชื่อผู้ใช้ / รหัสเครื่อง" autocomplete="off" onkeydown="if(event.key=='Enter'){HS.q=this.value.trim();hsLoad(0)}"><button type="button" class="btn fit" onclick="HS.q=$('hsQ').value.trim();hsLoad(0)">ค้นหา</button></div><div class="mut" id="hsS" style="font-size:13px"></div></div><div id="hsL"></div><button type="button" class="btn alt big hide" id="hsMore" style="margin-top:8px" onclick="hsLoad(1)">โหลดเพิ่ม</button><button type="button" class="btn big" style="margin-top:10px" onclick="$('hsD').close()">ปิด</button></dialog>
 <dialog id="trD"><b style="font-size:18px">🗑 ถังขยะ</b><div class="mut" style="margin:2px 0 10px">รายการที่ลบล่าสุดของสาขานี้ · กด ↩ เพื่อใส่กลับในชีต</div><div id="trL" style="display:grid;gap:8px;max-height:52vh;overflow:auto"></div><button class="btn big" style="margin-top:12px" onclick="$('trD').close()">ปิด</button></dialog>
 <dialog id="ed"><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date"><label>สถานะเคลม</label><div class="chips" id="edC"></div>
  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
@@ -1262,8 +1262,9 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  <input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
 <dialog id="bm"><b id="bmt" style="font-size:18px"></b><div class="mut" style="margin-bottom:12px">เมนูสาขาและระบบ</div>
  <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openBr()">⇄ สลับสาขา</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();go('set')">⚙ ตั้งค่า</button>
- <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openTrash()">🗑 ถังขยะ (กู้คืนที่ลบ)</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
+ <button class="btn alt big" id="bmw" style="margin-top:8px" onclick="$('bm').close();askWho()"></button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openTrash()">🗑 ถังขยะ (กู้คืนที่ลบ)</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
  <button class="btn del big" style="margin-top:8px" onclick="$('bm').close();logout()">ออกจากสาขานี้</button><button class="btn big" style="margin-top:8px" onclick="$('bm').close()">ปิด</button></dialog>
+<dialog id="whD"><b style="font-size:18px">👤 ใครใช้เครื่องนี้?</b><div class="mut" style="margin:4px 0 12px">ชื่อนี้จะบันทึกในประวัติทุกครั้งที่เพิ่ม แก้ไข หรือลบ (รหัสเครื่องนี้คือ <b id="whDev"></b>)</div><input id="whI" maxlength="24" placeholder="เช่น สมชาย / ต้น" autocomplete="off" onkeydown="if(event.key=='Enter')saveWho()"><button class="btn big" style="margin-top:12px" onclick="saveWho()">บันทึกชื่อ</button><button class="btn alt big" id="whSk" style="margin-top:8px" onclick="skipWho()">ไว้ทีหลัง</button></dialog>
 <dialog id="dt"><div id="dtb"></div><button class="btn big" onclick="$('dt').close()">ปิด</button></dialog>
 <dialog id="cf" class="cfd"><div class="in"><div class="cfI" id="cfI">❓</div><h3 id="cfT"></h3><div class="mut" id="cfB"></div><div class="cfb" id="cfBtns"></div></div></dialog>
 <dialog id="al" class="pop"><div class="in"><div class="alh"><i class="alI">🔔</i><div class="alTt"><b id="alT"></b><small id="alS2"></small></div><button class="btn alt sm hide" id="alSel" onclick="alMode()">เลือก</button><button class="ib" onclick="$('al').close()" aria-label="ปิด">✕</button></div><div id="alL"></div><div class="alBar hide" id="alBar"><button class="btn alt" id="alAllC" onclick="alPickAll()">เลือกทั้งหมด</button><button class="btn del" id="alDelB" onclick="alDelSel()" disabled>🗑 ลบ <b>0</b> ล็อต</button></div><button class="btn alt big" id="alAllB" onclick="alAll()">ดูทั้งหมดในรายการ</button></div></dialog>
@@ -1316,7 +1317,7 @@ async function post(b){const quiet=b&&b._q;if(quiet){b={...b};delete b._q}
   const it=b&&b.action=='add'&&b.items;
   LD(1,it?'กำลังบันทึก '+it.length+' รายการ · '+it.reduce((a,x)=>a+(+x.qty||0),0)+' ชิ้น':(LDT[b&&b.action]||(b&&b.action&&/^admin/.test(b.action)?'กำลังทำงาน':'กำลังโหลด')),it?it.slice(0,4).map(x=>x.item+' ×'+x.qty).join('\n')+(it.length>4?'\n…และอีก '+(it.length-4)+' รายการ':''):'')}
  try{return await (await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)})).json()}
- catch(e){throw new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจอินเทอร์เน็ตหรือ apiUrl ใน config.js')}
+ catch(e){errNote(b&&b.action||'?','เชื่อมต่อเซิร์ฟเวอร์ไม่ได้: '+(e&&e.message||e));throw new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจอินเทอร์เน็ตหรือ apiUrl ใน config.js')}
  finally{if(!quiet){LD(0);if(!--PEND)document.body.classList.remove('busy')}}}
 // ปุ่มที่ทำงานนาน: แสดงวงกลมหมุนและกันกดซ้ำ
 async function W(b,f){if(b.classList.contains('ld'))return;const h=b.innerHTML;b.classList.add('ld');b.innerHTML='<i class="spin"></i>'+h;
@@ -1327,11 +1328,18 @@ function ask(o){return new Promise(res=>{const d=$('cf');let v='';
  const bt=$('cfBtns');bt.innerHTML=(o.alt?`<button class="btn alt" data-v="alt">${o.alt}</button>`:'')+`<button class="btn alt" data-v="">${o.no||'ยกเลิก'}</button><button class="btn ${o.danger?'dng':''}" data-v="ok">${o.ok||'ตกลง'}</button>`;
  bt.onclick=e=>{const b=e.target.closest('button');if(b){v=b.dataset.v;d.close()}};d.onclose=()=>res(v);d.showModal()})}
 const DEV=(()=>{try{let d=localStorage.getItem('dev');if(!d){d=Math.random().toString(36).slice(2,6).toUpperCase();localStorage.setItem('dev',d)}return d}catch(e){return '-'}})(); // รหัสเครื่อง 4 ตัว ใช้ระบุในประวัติว่าใครแก้
+const getWho=()=>{try{return(localStorage.getItem('who')||'').trim().slice(0,24)}catch(e){return''}};
+let ERQ=[];try{ERQ=JSON.parse(localStorage.getItem('erq')||'[]')}catch(e){}
+const saveErq=()=>{try{localStorage.setItem('erq',JSON.stringify(ERQ))}catch(e){}};
+function errNote(op,msg){msg=String(msg||'').slice(0,300);const l=ERQ[ERQ.length-1];if(l&&l.op==op&&l.msg==msg&&Date.now()-l.t<60000)return;ERQ.push({t:Date.now(),op:String(op||'?').slice(0,40),msg,ua:navigator.userAgent.replace(/^Mozilla\/5\.0 /,'').slice(0,60)});while(ERQ.length>15)ERQ.shift();saveErq()}
+addEventListener('error',e=>{if(e.message)errNote('หน้าเว็บ (JS)',e.message+' @'+String(e.filename||'').split('/').pop()+':'+e.lineno)});
+addEventListener('unhandledrejection',e=>errNote('หน้าเว็บ (JS)','promise: '+(e.reason&&e.reason.message||e.reason)));
 let WSEQ=0; // นับทุกครั้งที่เราเขียน (เพิ่ม/แก้/ลบ) ใช้ทิ้งผลโหลดเก่าที่เริ่มก่อนแล้วมาถึงทีหลัง
 async function api(b){
  if(!BR||!CODE){openBr();throw new Error('เลือกสาขาและใส่รหัสก่อน')}
  const wr=/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action);if(wr)WSEQ++;let r;
- try{r=await post({branch:BR,code:CODE,dev:DEV,...b})}finally{if(wr)WSEQ++}
+ const ce=ERQ.slice(),body={branch:BR,code:CODE,dev:DEV,who:getWho(),...b};if(ce.length)body.cerr=ce; // แนบข้อผิดพลาดที่ค้างอยู่ในเครื่อง ให้แอดมินเห็นในประวัติ
+ try{r=await post(body);if(ce.length&&r&&!r.auth){ERQ.splice(0,ce.length);saveErq()}}finally{if(wr)WSEQ++}
  if(!r.ok){if(r.auth){CODE='';localStorage.removeItem('code');openBr()}throw new Error(r.error)}
  if(r.v&&/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action))D.v=r.v;return r}
 let PK='',PN2='',PIN='',PTXT=0,BL=[],PBUSY=0;
@@ -1435,10 +1443,14 @@ async function alDelSel(){if(ALBZ)return;const L=[...ALS].map(i=>AL[i]).filter(e
 const alEdit=i=>{const x=D.entries.indexOf(AL[i]);if(x<0)return;$('al').close();openEdit(x)};
 async function alDel(i){const x=D.entries.indexOf(AL[i]);if(x<0)return;$('al').close();await del(x)}
 const alAll=()=>{$('al').close();TAB2='urg';go('list');drawList()};
-function autoAlert(){} // ไม่เปิดหน้าแจ้งเตือนเองแล้ว (คนใช้เข้าใจผิดว่ารายการยังทำไม่เสร็จ) · ดูได้ที่กระดิ่ง
+function autoAlert(){ // ไม่เปิดหน้าแจ้งเตือนเองแล้ว · ถ้ายังไม่ตั้งชื่อผู้ใช้ จะถามครั้งเดียวต่อรอบการใช้งาน
+ setTimeout(()=>{if(!getWho()&&!sessionStorage.getItem('whSkip')&&BR&&!document.querySelector('dialog[open]'))askWho()},900)}
+function askWho(){$('whDev').textContent=DEV;$('whI').value=getWho();$('whSk').textContent=getWho()?'ปิด':'ไว้ทีหลัง';$('whD').showModal();setTimeout(()=>$('whI').focus(),80)}
+function saveWho(){const v=$('whI').value.trim().slice(0,24);if(!v)return toast('พิมพ์ชื่อก่อน');try{localStorage.setItem('who',v)}catch(e){}$('whD').close();toast('ตั้งชื่อเป็น “'+v+'” แล้ว ประวัติจะแสดงชื่อนี้')}
+function skipWho(){sessionStorage.setItem('whSkip','1');$('whD').close()}
 
 function bark(e){e.classList.add("jmp");setTimeout(()=>e.classList.remove("jmp"),550);toast((S.style=='cool'?["เมี้ยว 😼","เช็กของใกล้หมดอายุให้ครบ 💪","ฟึ่บ… 🐈‍⬛"]:["เมี๊ยว เมี๊ยว! 🐾","แงว~ ✨","เช็กวันหมดอายุให้ครบนะ 🐱"])[Math.random()*3|0])}
-function bmenu(){$('bmt').textContent=BRN||'ยังไม่ได้เลือกสาขา';$('bm').showModal()}
+function bmenu(){$('bmt').textContent=BRN||'ยังไม่ได้เลือกสาขา';$('bmw').textContent='👤 ชื่อผู้ใช้: '+(getWho()||'ยังไม่ตั้ง (แตะเพื่อตั้ง)');$('bm').showModal()}
 function drawDetail(){const el=SELB?D.entries.filter(e=>e.barcode==SELB).sort(byDue):[];
  const h=!el.length?'<div class="mut" style="padding:24px 0;text-align:center">เลือกสินค้าจากรายการ เพื่อดูรายละเอียดแต่ละล็อต</div>':detail(el);$('dp').innerHTML=h;$('dtb').innerHTML=h}
 function detail(el){const f=el[0],d=days(f.due),nm=f.item||D.db[f.barcode]||f.barcode,tot=el.reduce((a,e)=>a+e.qty,0),
@@ -1750,12 +1762,23 @@ function saveTh(){const t=[0,1,2].map(i=>+$('t'+i).value);if(!(t[0]>0&&t[1]>t[0]
 const adm=(a,b)=>post({action:a,admin:AD,...b});
 // ===== ประวัติการใช้งาน (เฉพาะแอดมิน): ใคร/เครื่องไหน เพิ่ม แก้ ลบ อะไร เมื่อไหร่ =====
 let HS={k:'',a:'',q:'',off:0},ADL=[];
-const HSA=[['','ทั้งหมด'],['เพิ่ม','เพิ่ม'],['แก้ไข','แก้ไข'],['ลบ','ลบ'],['กู้คืน','กู้คืน'],['แก้ชื่อ','แก้ชื่อสินค้า']];
-const HSC={'เพิ่ม':['#17724a','#e1f6ea'],'แก้ไข':['#8a5a00','#fff1c9'],'ลบ':['#b3202c','#fde2e4'],'กู้คืน':['#1b5fb4','#dfeeff'],'แก้ชื่อ':['#6a3fb0','#ece3fb']};
+const HSA=[['','ทั้งหมด'],['เพิ่ม','เพิ่ม'],['แก้ไข','แก้ไข'],['ลบ','ลบ'],['กู้คืน','กู้คืน'],['แก้ชื่อ','แก้ชื่อสินค้า'],['ข้อผิดพลาด','⚠️ ข้อผิดพลาด']];
+const HSC={'เพิ่ม':['#17724a','#e1f6ea'],'แก้ไข':['#8a5a00','#fff1c9'],'ลบ':['#b3202c','#fde2e4'],'กู้คืน':['#1b5fb4','#dfeeff'],'แก้ชื่อ':['#6a3fb0','#ece3fb'],'ข้อผิดพลาด':['#9a3412','#ffedd5']};
 function hsChips(){$('hsA').innerHTML=HSA.map(([v,t])=>`<button type="button" class="hsc${HS.a==v?' on':''}" onclick="HS.a='${v}';hsChips();hsLoad(0)">${t}</button>`).join('')}
 function openHist(){HS={k:'',a:'',q:'',off:0};$('hsB').innerHTML='<option value="">ทุกสาขา</option>'+ADL.map(b=>`<option value="${esc(b.key)}">${esc(b.name)}</option>`).join('');$('hsQ').value='';hsChips();$('hsL').innerHTML='';$('hsS').textContent='';$('hsMore').classList.add('hide');$('hsD').showModal();hsLoad(0)}
-const hsRow=x=>{const k=Object.keys(HSC).find(k=>x.act.startsWith(k))||'',c=HSC[k]||['#444','#eceef2'],meta=[x.qty!==''&&x.qty!=null?x.qty+' ชิ้น':'',x.due?fd(x.due):'',x.claim].filter(Boolean).join(' · ');
- return `<div class="hsr"><div class="hsr1"><span class="hsb" style="color:${c[0]};background:${c[1]}">${esc(x.act)}</span><b>${esc(x.item||x.barcode)}</b></div><div class="hsr2">${esc(x.barcode)}${x.tab?' · '+esc(x.tab):''}${meta?' · '+esc(meta):''}</div>${x.note?`<div class="hsr3">${esc(x.note)}</div>`:''}<div class="hsr4"><span>🕒 ${esc(x.t)}</span><span>🏬 ${esc(x.br)}</span><span>💻 เครื่อง ${esc(x.dev)}</span></div></div>`};
+const ERH=[[/เปลี่ยนไปแล้ว/,'มีคนอื่นแก้หรือลบแถวนี้ไปก่อน (หรือมีการจัดเรียงชีต) เกิดได้ตามปกติ ระบบโหลดข้อมูลใหม่ให้แล้ว ไม่ต้องแก้'],
+ [/ไม่รู้จักคำสั่ง/,'โค้ดฝั่งชีตเก่ากว่าหน้าเว็บ: วาง Code.gs ใหม่แล้ว Deploy > Manage deployments > Edit > New version'],
+ [/lock|Lock/,'มีคนบันทึกพร้อมกันหลายเครื่อง ให้ลองกดใหม่อีกครั้ง (ถ้าเกิดบ่อยแจ้งผู้พัฒนา)'],
+ [/เชื่อมต่อเซิร์ฟเวอร์ไม่ได้|Failed to fetch|NetworkError|Load failed/,'เน็ตของเครื่องนั้นหลุดหรือสัญญาณอ่อน และ apiUrl ใน config.js ต้องตรงกับลิงก์ /exec ที่ Deploy ล่าสุด'],
+ [/maximum execution time|Exceeded/,'ชีตใหญ่หรือ Google ช้า: ลองใหม่ ถ้าซ้ำให้ลดจำนวนแถวหรือแจ้งผู้พัฒนา'],
+ [/permission|authorization|สิทธิ์/i,'สคริปต์ยังไม่ได้รับสิทธิ์: เปิด Apps Script รันฟังก์ชันใดก็ได้หนึ่งครั้งเพื่ออนุญาต'],
+ [/ไม่พบ(ชีท|แท็บ)|Cannot read properties of null|ไม่มีแท็บ/,'ชื่อแท็บ/ชีทถูกเปลี่ยนหรือลบ: ตรวจที่ ตั้งค่า > จัดการสาขา ว่าชื่อแท็บตรงกับในชีต'],
+ [/จำนวนไม่ถูกต้อง/,'ส่งจำนวนที่ไม่ใช่ตัวเลข/ติดลบ ตรวจช่องจำนวนในฟอร์ม'],
+ [/JS|promise|is not defined|undefined|null/,'บั๊กในหน้าเว็บ: ถ่ายหน้าจอข้อความนี้ส่งให้ผู้พัฒนา (บอกด้วยว่ากดอะไรอยู่)']];
+const errHint=m=>{const f=ERH.find(([re])=>re.test(m));return f?f[1]:''};
+const hsRow=x=>{if(x.act.startsWith('ข้อผิดพลาด')){const hn=errHint((x.tab||'')+' '+(x.note||''));return `<div class="hsr"><div class="hsr1"><span class="hsb" style="color:#9a3412;background:#ffedd5">⚠️ ${esc(x.act)}</span><b>${esc(x.tab||'ระบบ')}</b></div><div class="hsr3">${esc(x.note)}</div>${hn?`<div class="hsr2">💡 ${esc(hn)}</div>`:''}<div class="hsr4"><span>🕒 ${esc(x.t)}</span><span>🏬 ${esc(x.br)}</span><span>👤 ${esc(x.dev)}</span></div></div>`}
+const k=Object.keys(HSC).find(k=>x.act.startsWith(k))||'',c=HSC[k]||['#444','#eceef2'],meta=[x.qty!==''&&x.qty!=null?x.qty+' ชิ้น':'',x.due?fd(x.due):'',x.claim].filter(Boolean).join(' · ');
+ return `<div class="hsr"><div class="hsr1"><span class="hsb" style="color:${c[0]};background:${c[1]}">${esc(x.act)}</span><b>${esc(x.item||x.barcode)}</b></div><div class="hsr2">${esc(x.barcode)}${x.tab?' · '+esc(x.tab):''}${meta?' · '+esc(meta):''}</div>${x.note?`<div class="hsr3">${esc(x.note)}</div>`:''}<div class="hsr4"><span>🕒 ${esc(x.t)}</span><span>🏬 ${esc(x.br)}</span><span>👤 ${esc(x.dev)}</span></div></div>`};
 async function hsLoad(more){
  if(!more){HS.off=0;$('hsL').innerHTML='<div class="mut hsE">กำลังโหลด...</div>'}
  $('hsMore').classList.add('hide');
