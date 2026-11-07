@@ -966,11 +966,16 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  /* เลือกสินค้าแล้ว: ซ่อนช่องค้นหา (ชื่อซ้ำกับการ์ด) กด ✕ เพื่อเปลี่ยน */
  #add .stepc:has(#pk:not(.hide):not(.new)) .row{display:none}
  /* 2 จำนวน + วันหมดอายุ แถวเดียว */
- #add .two{grid-template-columns:132px minmax(0,1fr);gap:8px}
+ #add .two{grid-template-columns:172px minmax(0,1fr);gap:8px}
+ #add .qs2{gap:2px}
+ #add .qs2 button{width:32px}
+ #add .qs2 input{min-width:0;flex:1;width:100%;padding:10px 0;font-size:18px}
+ #add #due{min-width:0;font-size:16px;padding:10px 8px}
  #add .two>div>label{font-size:12px;margin:0 0 3px;display:block;color:var(--mut)}
- #add .qs2 button{height:44px;width:34px}
+ #add .qs2 button{height:44px;width:32px}
  #add .qs2 input,#add #due{padding:10px 6px;height:44px;font-size:17px}
- #add #due{padding:10px 12px}
+ #add .qs2 input{min-width:0;flex:1;width:100%;padding:10px 0;font-size:18px}
+ #add #due{min-width:0;font-size:16px;padding:10px 8px}
  #add .two .row .btn{padding:0 12px!important;height:44px;display:grid;place-items:center}
  #add .dpv{min-height:0;margin-top:8px;font-size:15px}
  #add .dpv:empty{display:none}
@@ -1278,7 +1283,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #rail.sc .rSub{display:flex}
  #rail .rSub button{display:flex;align-items:center;gap:8px;height:46px;padding:0 18px;border:0;border-radius:23px;background:#fff;color:#1f2937;font:700 15px Prompt,"IBM Plex Sans Thai",sans-serif;white-space:nowrap;box-shadow:0 8px 20px #0003;cursor:pointer}
  body.pgadd #rail{top:56%}
- body.kb #rail{display:none}
+ body.kb #rail .rCol{display:none}
  /* หัวหน้าเพิ่มสินค้า: เล็กลง */
  #add .ph{min-height:60px!important;margin:0 0 10px!important;padding:8px 66px 8px 10px!important;border-radius:22px!important}
  #add .ahLogo{width:42px!important;height:42px!important;font-size:22px!important}
@@ -2016,6 +2021,8 @@ BR&&CODE?load(1):(BR||0,drawAll(),BR||toast('ยังไม่ได้เล�
  document.addEventListener('focusout',()=>setTimeout(()=>{if(!tg.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
  document.addEventListener('click',e=>{const a=document.activeElement;if(!mob()||!a||!/^(INPUT|TEXTAREA)$/.test(a.tagName))return;
   if(e.target.closest('input,textarea,select,button,label,a,.sg2,.lotpick,.rcc,#qacts,dialog'))return;a.blur()});
+ if(window.visualViewport)visualViewport.addEventListener('resize',()=>{if(visualViewport.height>innerHeight*0.85)document.body.classList.remove('kb')});
+ document.addEventListener('click',e=>{if(document.body.classList.contains('pgadd')&&!e.target.closest('#rail')&&window.railSlide)railSlide(true)});
 })();
 
 /* ===== รอบ 8: เมนูลัดขวา ===== */
