@@ -1435,7 +1435,7 @@ async function alDelSel(){if(ALBZ)return;const L=[...ALS].map(i=>AL[i]).filter(e
 const alEdit=i=>{const x=D.entries.indexOf(AL[i]);if(x<0)return;$('al').close();openEdit(x)};
 async function alDel(i){const x=D.entries.indexOf(AL[i]);if(x<0)return;$('al').close();await del(x)}
 const alAll=()=>{$('al').close();TAB2='urg';go('list');drawList()};
-function autoAlert(){if(sessionStorage.getItem('alS')==BR)return;if(!D.entries.some(e=>e.due&&days(e.due)<=TH[0]))return;sessionStorage.setItem('alS',BR);if(!document.querySelector('dialog[open]'))bellTap()}
+function autoAlert(){} // ไม่เปิดหน้าแจ้งเตือนเองแล้ว (คนใช้เข้าใจผิดว่ารายการยังทำไม่เสร็จ) · ดูได้ที่กระดิ่ง
 
 function bark(e){e.classList.add("jmp");setTimeout(()=>e.classList.remove("jmp"),550);toast((S.style=='cool'?["เมี้ยว 😼","เช็กของใกล้หมดอายุให้ครบ 💪","ฟึ่บ… 🐈‍⬛"]:["เมี๊ยว เมี๊ยว! 🐾","แงว~ ✨","เช็กวันหมดอายุให้ครบนะ 🐱"])[Math.random()*3|0])}
 function bmenu(){$('bmt').textContent=BRN||'ยังไม่ได้เลือกสาขา';$('bm').showModal()}
@@ -1559,21 +1559,22 @@ const nc=c=>c&&c!='-'?c:'';
 async function saveQ(){
  if(SAVING||!Q.length)return;
  if(Q.some(x=>x.br&&x.br!==BR))return toast('ในคิวมีรายการของสาขาอื่น กรุณาลบออกหรือสลับไปสาขาเดิมก่อนบันทึก');
- const batch=Q.slice(),add=[],up=new Map();SAVING=1;
+ const batch=Q.slice(),add=[],up=new Map();SAVING=1;let sy=0;
  try{
   for(const x of batch){x.id=x.id||uid();const same=D.entries.find(e=>e.barcode==x.barcode&&e.due==x.due&&e.tab==x.tab&&(e.claim||'-')==(x.claim||'-'));let merge=false;
    if(same){if(S.dup=='merge'||up.has(same))merge=true;
     else if(S.dup=='ask'){const v=await ask({t:'มีล็อตนี้อยู่แล้ว',b:`<b>${esc(x.item)}</b><br>วันหมดอายุ ${fd(x.due)} มีอยู่ ${same.qty} ชิ้น จะรวมเพิ่มอีก ${x.qty} ชิ้นหรือแยกเป็นแถวใหม่?`,ok:'บวกจำนวน',alt:'แถวใหม่'});if(v=='ok')merge=true;else if(v!='alt')return}}
    if(merge){const u=up.get(same)||{o:same,q:same.qty,xs:[]};u.q+=x.qty;u.x=x;u.xs.push(x);up.set(same,u)}else add.push(x)}
+  syStart();sy=1;
   for(const u of up.values()){await api({action:'update',tab:u.o.tab,row:u.o.row,barcode:u.o.barcode,qty:u.q,due:u.x.due,claim:u.x.claim,was:{due:u.o.due}});
    Object.assign(u.o,{qty:u.q,due:u.x.due,claim:nc(u.x.claim)});Q=Q.filter(y=>!u.xs.includes(y))} // เสร็จแล้วเอาออกจากคิวทันที ถ้าขั้นต่อไปพลาด กดซ้ำจะไม่บวกซ้ำ
   let miss=0;
   if(add.length){const r=await api({action:'add',items:add}),by=new Map((r.added||[]).map(a=>[a.id,a]));
    add.forEach(x=>{const a=by.get(x.id);if(!a){miss++;return}D.entries.push({tab:a.tab,row:a.row,barcode:x.barcode,item:x.item,qty:x.qty,due:x.due,claim:nc(x.claim)})})}
   const nQ=batch.length,q0=batch[0];Q=Q.filter(x=>!batch.includes(x));drawQ();
-  toast(nQ==1?'✓ บันทึกแล้ว · '+q0.item+' ×'+q0.qty:'✓ บันทึกแล้ว '+nQ+' รายการ');
+  syOk(nQ==1?'บันทึก '+q0.item+' ×'+q0.qty+' เรียบร้อย · บันทึกลงชีตแล้ว':'บันทึก '+nQ+' รายการ เรียบร้อย · บันทึกลงชีตแล้ว');
   if(miss)await load();else drawAll()} // ไม่ต้องโหลดทั้งชีทใหม่ แก้เฉพาะที่เพิ่ง/เปลี่ยน
- catch(e){toast(e.message)}finally{SAVING=0}}
+ catch(e){if(sy)syFail('บันทึกสินค้าไม่สำเร็จ · '+e.message+' · รายการที่เหลือยังอยู่ในคิว กดบันทึกซ้ำได้ (ระบบกันบันทึกซ้ำให้)');else toast(e.message)}finally{SAVING=0}}
 // อัปเดตอัตโนมัติ: ถามเซิร์ฟเวอร์ทุก 30 วิ (เงียบ ไม่มีป๊อปอัป) ถ้าข้อมูลเปลี่ยนค่อยโหลดมาแทน
 let POLLH='',BG=0,LFULL=0,LASTACT=Date.now();['pointerdown','keydown'].forEach(ev=>addEventListener(ev,()=>{LASTACT=Date.now()},{passive:true,capture:true}));
 async function poll(){const a=document.activeElement;
@@ -1603,10 +1604,10 @@ let TR=[];
 async function openTrash(){$('trL').innerHTML='<div class="mut" style="padding:14px 0;text-align:center">กำลังโหลด...</div>';$('trD').showModal();
  try{TR=(await api({action:'trashList'})).items||[];drawTrash()}catch(e){$('trD').close();toast(e.message)}}
 function drawTrash(){$('trL').innerHTML=TR.length?TR.map((x,i)=>`<div class="lt" style="--c:#9aa1ad"><div class="ltd"><b>${esc(x.item||x.barcode)}</b><div class="ltm"><span class="ltt">${esc(x.barcode)} · ${fd(x.due)}${x.claim?' · '+esc(x.claim):''}</span></div><small>ลบเมื่อ ${esc(x.t)}</small></div><div class="ltq"><b>${x.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" title="กู้คืน" aria-label="กู้คืน" onclick="W(this,()=>restoreTr(${i}))">↩</button></div></div>`).join(''):'<div class="mut" style="padding:18px 0;text-align:center">ถังขยะว่าง</div>'}
-async function restoreTr(i){const x=TR[i];if(!x)return;
+async function restoreTr(i){const x=TR[i];if(!x)return;const nm=x.item||x.barcode;syStart();
  try{const r=await api({action:'restore',items:[{id:x.id,barcode:x.barcode}]});
-  if(r.fail&&r.fail.length)toast('กู้คืนไม่ได้ (ถูกกู้คืนไปแล้ว หรือข้อมูลเปลี่ยน)');else toast('กู้คืนแล้ว · '+(x.item||x.barcode));
-  TR.splice(i,1);drawTrash();await load()}catch(e){toast(e.message)}}
+  if(r.fail&&r.fail.length)syFail('กู้คืน '+nm+' ไม่สำเร็จ · ถูกกู้คืนไปแล้ว หรือข้อมูลในชีตเปลี่ยน');else syOk('กู้คืน '+nm+' เรียบร้อย · ใส่กลับในชีตแล้ว');
+  TR.splice(i,1);drawTrash();await load()}catch(e){syFail('กู้คืน '+nm+' ไม่สำเร็จ · '+e.message)}}
 async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');
  const e=editing,old={qty:e.qty,due:e.due,claim:e.claim},nq=+$('edQ').value,nd=$('edD').value,ec=EC;
  e.qty=nq;e.due=nd;e.claim=ec=='-'?'':ec;$('ed').close();drawAll();const nm=nmOf(e);syStart(); // แสดงผลในรายการทันที แต่แจ้งว่า 'สำเร็จ' ต่อเมื่อชีตตอบกลับแล้วเท่านั้น
@@ -1626,8 +1627,7 @@ const syOk=m=>{SYP=Math.max(0,SYP-1);SYOK=m;clearTimeout(SYT);SYT=setTimeout(()=
 const syFail=m=>{SYP=Math.max(0,SYP-1);SYE.push(m);syDraw()};
 const syClr=()=>{SYE=[];syDraw()};
 const nmOf=e=>e.item||D.db[e.barcode]||e.barcode;
-async function staleFix(x){ // ล้มเหลวแบบไหนก็ตาม: โหลดข้อมูลจริงจากชีตมาแทน (รายการอาจถูกลบ/แก้ไปแล้วจริง แต่หน้าเว็บไม่รู้)
- if(/เปลี่ยนไปแล้ว/.test(x.message))toast('ℹ️ รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว ระบบโหลดข้อมูลล่าสุดให้แล้ว',7000);
+async function staleFix(x){ // ล้มเหลวแบบไหนก็ตาม: โหลดข้อมูลจริงจากชีตมาแทน (รายการอาจถูกลบ/แก้ไปแล้วจริง แต่หน้าเว็บไม่รู้) · เหตุผลอยู่ในแถบ ❌ แล้ว ไม่แจ้งซ้ำ
  await resync()}
 async function resync(){for(let k=0;k<3;k++){const w=WSEQ;try{const r=await api({action:'list',_q:1});if(w===WSEQ){D=r;drawAll();return}}catch(_){return}}}
 async function del(r,fast){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;
