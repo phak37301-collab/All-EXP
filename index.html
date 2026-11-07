@@ -1327,6 +1327,27 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  body.kb #add #qacts,body.kb.hasq #add #qacts{bottom:8px!important}
  body.kb #qbar{bottom:80px!important}
 }
+
+/* ===== แก้หัวหน้า: ชื่อสาขายาวแล้วเลย์เอาต์เพี้ยน (ใช้ container query ตามความกว้างจริงของหัว) ===== */
+#appTop{container-type:inline-size}
+#appTop .atRow{flex-wrap:wrap;row-gap:8px}
+#appTop .atBr{flex:0 1 auto;min-width:0;max-width:100%}
+#appTop .atBr b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#appTop .atInfo{flex:none;min-width:0;max-width:100%}
+#appTop .atChips{flex-wrap:nowrap;min-width:0}
+#appTop .atC{flex:none}
+@container (min-width:641px){
+ #appTop .atRow{flex-wrap:nowrap}
+ #appTop .atBr{max-width:min(46%,340px)}
+}
+@container (max-width:900px){#appTop .atHi{display:none}}
+@container (min-width:641px) and (max-width:820px){#appTop .atC:nth-child(n+4){display:none}}
+@container (max-width:640px){
+ #appTop .atInfo{flex:1 1 100%;order:3;margin-left:0;justify-content:flex-start}
+ #appTop .atChips{justify-content:flex-start;gap:6px;overflow:hidden}
+ #appTop .atC:nth-child(n+4){display:none}
+ #appTop .atBr{max-width:calc(100% - 60px)}
+}
 </style>
 </head>
 <body>
