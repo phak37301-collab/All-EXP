@@ -1316,7 +1316,8 @@ async function post(b){const quiet=b&&b._q;if(quiet){b={...b};delete b._q}
  if(!quiet){PEND++;document.body.classList.add('busy');
   const it=b&&b.action=='add'&&b.items;
   LD(1,it?'กำลังบันทึก '+it.length+' รายการ · '+it.reduce((a,x)=>a+(+x.qty||0),0)+' ชิ้น':(LDT[b&&b.action]||(b&&b.action&&/^admin/.test(b.action)?'กำลังทำงาน':'กำลังโหลด')),it?it.slice(0,4).map(x=>x.item+' ×'+x.qty).join('\n')+(it.length>4?'\n…และอีก '+(it.length-4)+' รายการ':''):'')}
- try{return await (await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)})).json()}
+ const go=async()=>(await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(b)})).json();
+ try{try{return await go()}catch(e0){if(quiet&&/^(ping|list)$/.test(b&&b.action)){await new Promise(r=>setTimeout(r,2500));return await go()}throw e0}}
  catch(e){errNote(b&&b.action||'?','เชื่อมต่อเซิร์ฟเวอร์ไม่ได้: '+(e&&e.message||e));throw new Error('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ตรวจอินเทอร์เน็ตหรือ apiUrl ใน config.js')}
  finally{if(!quiet){LD(0);if(!--PEND)document.body.classList.remove('busy')}}}
 // ปุ่มที่ทำงานนาน: แสดงวงกลมหมุนและกันกดซ้ำ
@@ -1331,14 +1332,14 @@ const DEV=(()=>{try{let d=localStorage.getItem('dev');if(!d){d=Math.random().toS
 const getWho=()=>{try{return(localStorage.getItem('who')||'').trim().slice(0,24)}catch(e){return''}};
 let ERQ=[];try{ERQ=JSON.parse(localStorage.getItem('erq')||'[]')}catch(e){}
 const saveErq=()=>{try{localStorage.setItem('erq',JSON.stringify(ERQ))}catch(e){}};
-function errNote(op,msg){msg=String(msg||'').slice(0,300);const l=ERQ[ERQ.length-1];if(l&&l.op==op&&l.msg==msg&&Date.now()-l.t<60000)return;ERQ.push({t:Date.now(),op:String(op||'?').slice(0,40),msg,ua:navigator.userAgent.replace(/^Mozilla\/5\.0 /,'').slice(0,60)});while(ERQ.length>15)ERQ.shift();saveErq()}
+function errNote(op,msg){msg=String(msg||'').slice(0,300);const l=ERQ[ERQ.length-1];if(l&&l.op==op&&l.msg==msg&&Date.now()-l.t<60000)return;ERQ.push({t:Date.now(),op:String(op||'?').slice(0,40),msg,ua:navigator.userAgent.replace(/^Mozilla\/5\.0 /,'').replace(/AppleWebKit\/[\d.]+ \(KHTML, like Gecko\) /,'').slice(0,70)});while(ERQ.length>15)ERQ.shift();saveErq()}
 addEventListener('error',e=>{if(e.message)errNote('หน้าเว็บ (JS)',e.message+' @'+String(e.filename||'').split('/').pop()+':'+e.lineno)});
 addEventListener('unhandledrejection',e=>errNote('หน้าเว็บ (JS)','promise: '+(e.reason&&e.reason.message||e.reason)));
 let WSEQ=0; // นับทุกครั้งที่เราเขียน (เพิ่ม/แก้/ลบ) ใช้ทิ้งผลโหลดเก่าที่เริ่มก่อนแล้วมาถึงทีหลัง
 async function api(b){
  if(!BR||!CODE){openBr();throw new Error('เลือกสาขาและใส่รหัสก่อน')}
  const wr=/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action);if(wr)WSEQ++;let r;
- const ce=ERQ.slice(),body={branch:BR,code:CODE,dev:DEV,who:getWho(),...b};if(ce.length)body.cerr=ce; // แนบข้อผิดพลาดที่ค้างอยู่ในเครื่อง ให้แอดมินเห็นในประวัติ
+ const ce=ERQ.slice(),body={branch:BR,code:CODE,dev:DEV,who:getWho(),...b};if(ce.length)body.cerr=ce.map(x=>({...x,age:Date.now()-x.t})); // แนบข้อผิดพลาดที่ค้างอยู่ในเครื่อง ให้แอดมินเห็นในประวัติ
  try{r=await post(body);if(ce.length&&r&&!r.auth){ERQ.splice(0,ce.length);saveErq()}}finally{if(wr)WSEQ++}
  if(!r.ok){if(r.auth){CODE='';localStorage.removeItem('code');openBr()}throw new Error(r.error)}
  if(r.v&&/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action))D.v=r.v;return r}
@@ -1435,8 +1436,8 @@ const alPickAll=()=>{if(ALS.size==AL.length)ALS.clear();else AL.forEach((_,i)=>A
 async function alDelSel(){if(ALBZ)return;const L=[...ALS].map(i=>AL[i]).filter(e=>D.entries.includes(e));if(!L.length)return toast('ยังไม่ได้เลือกรายการ');
  if(!await ask({t:'ลบ '+L.length+' ล็อต?',b:`รวม ${L.reduce((a,e)=>a+e.qty,0)} ชิ้น<br><span style="color:#c8102e">แถวเหล่านี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ '+L.length+' ล็อต',danger:1}))return;
  ALBZ=1;$('alDelB').disabled=true;
- const rm=new Set(L);D.entries=D.entries.filter(e=>!rm.has(e));ALS.clear();drawAll();syStart();alRefresh();const nmL=L.length+' ล็อต ('+L.reduce((a,e)=>a+e.qty,0)+' ชิ้น)'; // เอาออกจากรายการทันที แต่ยังไม่บอกว่าสำเร็จ
- BG++;try{const r=await api({action:'deleteMany',items:L.map(e=>({tab:e.tab,row:e.row,barcode:e.barcode,due:e.due})),_q:1}); // ส่งครั้งเดียว ไม่ต้องรอทีละแถว
+ const rm=new Set(L),gn={};L.forEach(e=>(gn[e.tab]=gn[e.tab]||[]).push(e.row));D.entries=D.entries.filter(e=>!rm.has(e));Object.keys(gn).forEach(t=>shiftRows(t,gn[t]));ALS.clear();drawAll();syStart();alRefresh();const nmL=L.length+' ล็อต ('+L.reduce((a,e)=>a+e.qty,0)+' ชิ้น)'; // เอาออกจากรายการทันที แต่ยังไม่บอกว่าสำเร็จ
+ BG++;try{const r=await wq(()=>api({action:'deleteMany',items:L.map(e=>({tab:e.tab,row:e.row,barcode:e.barcode,due:e.due})),_q:1})); // ส่งครั้งเดียว ไม่ต้องรอทีละแถว
   if(r.fail&&r.fail.length){syFail('ลบสำเร็จ '+(L.length-r.fail.length)+' · ไม่สำเร็จ '+r.fail.length+' จาก '+L.length+' ล็อต (ข้อมูลในชีตเปลี่ยนไป) โหลดข้อมูลล่าสุดให้แล้ว');await resync();alRefresh()}else syOk('ลบ '+nmL+' เรียบร้อย · บันทึกลงชีตแล้ว')}
  catch(x){syFail('ลบ '+nmL+' ไม่สำเร็จ · '+x.message);try{await resync();alRefresh()}catch(y){}}
  finally{ALBZ=0;BG--;setTimeout(poll,1200)}}
@@ -1623,7 +1624,7 @@ async function restoreTr(i){const x=TR[i];if(!x)return;const nm=x.item||x.barcod
 async function saveEdit(){if(!$('edD').value)return toast('เลือกวันหมดอายุก่อน');
  const e=editing,old={qty:e.qty,due:e.due,claim:e.claim},nq=+$('edQ').value,nd=$('edD').value,ec=EC;
  e.qty=nq;e.due=nd;e.claim=ec=='-'?'':ec;$('ed').close();drawAll();const nm=nmOf(e);syStart(); // แสดงผลในรายการทันที แต่แจ้งว่า 'สำเร็จ' ต่อเมื่อชีตตอบกลับแล้วเท่านั้น
- BG++;try{await api({action:'update',tab:e.tab,row:e.row,barcode:e.barcode,qty:nq,due:nd,claim:ec,was:{due:old.due},_q:1});syOk('แก้ไข '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
+ BG++;try{await wq(()=>api({action:'update',tab:e.tab,row:e.row,barcode:e.barcode,qty:nq,due:nd,claim:ec,was:{due:old.due},_q:1}));syOk('แก้ไข '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
  catch(x){Object.assign(e,old);drawAll();syFail('แก้ไข '+nm+' ไม่สำเร็จ · คืนค่าเดิมให้แล้ว · '+(/เปลี่ยนไปแล้ว/.test(x.message)?'รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว':x.message));await staleFix(x)}
  finally{BG--;setTimeout(poll,1200)}}
 
@@ -1639,13 +1640,15 @@ const syOk=m=>{SYP=Math.max(0,SYP-1);SYOK=m;clearTimeout(SYT);SYT=setTimeout(()=
 const syFail=m=>{SYP=Math.max(0,SYP-1);SYE.push(m);syDraw()};
 const syClr=()=>{SYE=[];syDraw()};
 const nmOf=e=>e.item||D.db[e.barcode]||e.barcode;
+let WQ=Promise.resolve();const wq=f=>{const p=WQ.then(f);WQ=p.then(()=>{},()=>{});return p}; // เขียนลงชีตทีละคำขอตามลำดับที่กด (ลบ/แก้ไขเบื้องหลังจะไม่แซงกัน)
+const shiftRows=(tab,gone)=>D.entries.forEach(x=>{if(x.tab==tab){const n=gone.filter(g=>g<x.row).length;if(n)x.row-=n}}); // ลบแถวในชีตแล้ว แถวที่อยู่ล่างกว่าเลื่อนขึ้น → ปรับเลขแถวในหน้าเว็บให้ตรง
 async function staleFix(x){ // ล้มเหลวแบบไหนก็ตาม: โหลดข้อมูลจริงจากชีตมาแทน (รายการอาจถูกลบ/แก้ไปแล้วจริง แต่หน้าเว็บไม่รู้) · เหตุผลอยู่ในแถบ ❌ แล้ว ไม่แจ้งซ้ำ
  await resync()}
 async function resync(){for(let k=0;k<3;k++){const w=WSEQ;try{const r=await api({action:'list',_q:1});if(w===WSEQ){D=r;drawAll();return}}catch(_){return}}}
 async function del(r,fast){const e=D.entries[r];if(!await ask({t:'ลบล็อตนี้?',b:`<b>${esc(e.item||D.db[e.barcode]||e.barcode)}</b><br>จำนวน ${e.qty} ชิ้น · หมดอายุ ${fd(e.due)}<br><span style="color:#c8102e">แถวนี้จะถูกลบออกจากชีตด้วย กู้คืนไม่ได้</span>`,ok:'ลบ',danger:1}))return;
- const i=D.entries.indexOf(e);if(i<0)return;D.entries.splice(i,1);drawAll();const nm=nmOf(e)+' '+e.qty+' ชิ้น';syStart();
- BG++;(async()=>{try{await api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,was:{due:e.due},_q:1});syOk('ลบ '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
-  catch(x){D.entries.splice(Math.min(i,D.entries.length),0,e);drawAll();syFail('ลบ '+nm+' ไม่สำเร็จ · คืนรายการเดิมให้แล้ว · '+(/เปลี่ยนไปแล้ว/.test(x.message)?'รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว':x.message));await staleFix(x);if($('al').open)bellTap()}
+ const i=D.entries.indexOf(e);if(i<0)return;D.entries.splice(i,1);shiftRows(e.tab,[e.row]);drawAll();const nm=nmOf(e)+' '+e.qty+' ชิ้น';syStart();
+ BG++;(async()=>{try{await wq(()=>api({action:'delete',tab:e.tab,row:e.row,barcode:e.barcode,was:{due:e.due},_q:1}));syOk('ลบ '+nm+' เรียบร้อย · บันทึกลงชีตแล้ว')}
+  catch(x){D.entries.splice(Math.min(i,D.entries.length),0,e);D.entries.forEach(y=>{if(y!==e&&y.tab==e.tab&&y.row>=e.row)y.row++});drawAll();syFail('ลบ '+nm+' ไม่สำเร็จ · คืนรายการเดิมให้แล้ว · '+(/เปลี่ยนไปแล้ว/.test(x.message)?'รายการนี้ถูกลบหรือแก้ไขจากเครื่องอื่นไปแล้ว':x.message));await staleFix(x);if($('al').open)bellTap()}
   finally{BG--;setTimeout(poll,1200)}})()}
 
 const lc=(n,sub,right,ph,act)=>`<div class="lc" style="--c:${(ph.match(/--c:([^">;]+)/)||[])[1]||'#ddd'}"><div class="t"><b>${esc(n)}</b><span class="mut">${sub}</span><div>${ph}</div></div><div class="r"><b>${right}</b>${act||''}</div></div>`;
