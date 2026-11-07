@@ -1282,7 +1282,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #rail .rSub{position:absolute;right:64px;top:0;display:none;flex-direction:column;gap:8px;align-items:flex-end}
  #rail.sc .rSub{display:flex}
  #rail .rSub button{display:flex;align-items:center;gap:8px;height:46px;padding:0 18px;border:0;border-radius:23px;background:#fff;color:#1f2937;font:700 15px Prompt,"IBM Plex Sans Thai",sans-serif;white-space:nowrap;box-shadow:0 8px 20px #0003;cursor:pointer}
- body.pgadd #rail{top:56%}
+ body.pgadd #rail{top:26%}
  body.kb #rail .rCol{display:none}
  /* หัวหน้าเพิ่มสินค้า: เล็กลง */
  #add .ph{min-height:60px!important;margin:0 0 10px!important;padding:8px 66px 8px 10px!important;border-radius:22px!important}
@@ -1300,9 +1300,9 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #add #bc+.btn .ci{font-style:normal;font-size:22px;line-height:1}
 
  /* จำนวน กว้างขึ้น / วันที่ แคบลง */
- #add .two{display:grid!important;grid-template-columns:124px minmax(0,1fr)!important;gap:8px!important;align-items:end}
+ #add .two{display:grid!important;grid-template-columns:172px minmax(0,1fr)!important;gap:8px!important;align-items:end}
  #add .two>div{min-width:0}
- #add .qs2{display:grid!important;grid-template-columns:36px minmax(0,1fr) 36px;width:100%;height:56px;align-items:stretch}
+ #add .qs2{display:grid!important;grid-template-columns:34px minmax(0,1fr) 34px;width:100%;height:56px;align-items:stretch}
  #add .qs2 button{width:100%!important;height:100%!important;min-height:0!important;padding:0!important}
  #add .qs2 input{width:100%!important;min-width:0;height:100%;text-align:center;font-size:22px;font-weight:700;padding:0!important}
  #add .two .row{display:flex!important;gap:6px;flex-wrap:nowrap}
@@ -1346,7 +1346,13 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #appTop .atInfo{flex:1 1 100%;order:3;margin-left:0;justify-content:flex-start}
  #appTop .atChips{justify-content:flex-start;gap:6px;overflow:hidden}
  #appTop .atC:nth-child(n+4){display:none}
+ #appTop .atC:nth-child(3){display:inline-flex}
  #appTop .atBr{max-width:calc(100% - 60px)}
+ /* ชิปเต็มความกว้าง แบ่งเท่า ๆ กัน ไม่เว้าแหว่งข้างล่างกระดิ่ง */
+ #appTop .atInfo{margin-right:-60px}
+ #appTop .atChips{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px;width:100%}
+ #appTop .atC{justify-content:center;padding:6px 8px;font-size:13px}
+ #appTop .atC b{font-size:20px}
 }
 </style>
 </head>
