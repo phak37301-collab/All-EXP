@@ -1272,6 +1272,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #rail .t1{background:linear-gradient(135deg,#ff9a3c,#f2542d)}
  #rail .t2{background:linear-gradient(135deg,#8b5cf6,#5b3fd6)}
  #rail .t3{background:linear-gradient(135deg,#3b9cff,#1d5fd8)}
+ #rail .t4{background:linear-gradient(135deg,#2dd4a8,#0f8f77)}
  #rail .rT.on,#rail.sc .t1{box-shadow:inset 0 0 0 3px #ffffffcc,0 8px 18px #0004}
  #rail .rSub{position:absolute;right:64px;top:0;display:none;flex-direction:column;gap:8px;align-items:flex-end}
  #rail.sc .rSub{display:flex}
@@ -1294,14 +1295,14 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #add #bc+.btn .ci{font-style:normal;font-size:22px;line-height:1}
 
  /* จำนวน กว้างขึ้น / วันที่ แคบลง */
- #add .two{display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)!important;gap:10px!important;align-items:end}
+ #add .two{display:grid!important;grid-template-columns:124px minmax(0,1fr)!important;gap:8px!important;align-items:end}
  #add .two>div{min-width:0}
- #add .qs2{display:grid!important;grid-template-columns:50px minmax(0,1fr) 50px;width:100%;height:56px;align-items:stretch}
+ #add .qs2{display:grid!important;grid-template-columns:36px minmax(0,1fr) 36px;width:100%;height:56px;align-items:stretch}
  #add .qs2 button{width:100%!important;height:100%!important;min-height:0!important;padding:0!important}
- #add .qs2 input{width:100%!important;min-width:0;height:100%;text-align:center;font-size:24px;font-weight:700;padding:0!important}
+ #add .qs2 input{width:100%!important;min-width:0;height:100%;text-align:center;font-size:22px;font-weight:700;padding:0!important}
  #add .two .row{display:flex!important;gap:6px;flex-wrap:nowrap}
- #add #due{flex:1 1 0;min-width:0;width:auto;height:56px;padding:0 10px!important;font-size:16px}
- #add .two .row>label.btn{flex:none;width:46px;min-width:46px;height:56px;padding:0!important;margin:0!important;display:grid!important;place-items:center}
+ #add #due{flex:1 1 0;min-width:0;width:auto;height:56px;padding:0 8px!important;font-size:17px;font-weight:600;letter-spacing:0!important;text-overflow:clip}
+ #add .two .row>label.btn{flex:none;width:44px;min-width:44px;height:56px;padding:0!important;margin:0!important;display:grid!important;place-items:center}
 
  /* จำนวนด่วน: ทุกปุ่มอยู่บนจอ ไม่ต้องเลื่อน (4 คอลัมน์ x 2 แถว) */
  #add .qkc{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important;margin:10px 0 0!important;overflow:visible!important;padding:0!important}
@@ -1387,7 +1388,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
   <div id="pinT" class="hide"><input id="pw" class="pwm" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="รหัสสาขา" style="margin-top:14px"><div id="pinE2" style="min-height:22px;color:#c8102e;font-size:14px;margin-top:6px"></div><button class="btn big" style="margin-top:6px" onclick="W(this,()=>tryLogin($('pw').value))">เข้าใช้งาน</button></div>
   <div style="text-align:center;margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="chipb" id="pinM" onclick="pinMode(!PTXT)">ใช้รหัสแบบตัวอักษร</button><button class="chipb" onclick="$('lg').close();go('set')">🔑 ลืมรหัส?</button></div><div class="mut" style="text-align:center;font-size:13px;margin-top:10px">ลืมรหัส: ให้หัวหน้า/แอดมินเข้า ตั้งค่า › จัดการสาขา แล้วกด 🎲 สุ่ม PIN ใหม่ จากนั้นแจ้งพนักงาน</div></div>
 </div></dialog>
-<div id="rail" role="group" aria-label="เมนูลัด"><button class="rTab" type="button" onclick="railSlide()" aria-label="ซ่อนหรือแสดงเมนูลัด"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="rCol"><div class="rSub"><button type="button" onclick="railGo('find')">🔎 สแกนค้นหา</button><button type="button" onclick="railGo('add')">➕ สแกนเพิ่ม</button><button type="button" onclick="railGo('type')">⌨️ พิมพ์เพิ่ม</button></div><button class="rT t1" type="button" onclick="railScan()" aria-label="สแกน"><i>📷</i>สแกน</button><button class="rT t2" type="button" data-p="list" onclick="go('list')"><i>📋</i>รายการ</button><button class="rT t3" type="button" data-p="stat" onclick="go('stat')"><i>📊</i>สถิติ</button></div></div>
+<div id="rail" role="group" aria-label="เมนูลัด"><button class="rTab" type="button" onclick="railSlide()" aria-label="ซ่อนหรือแสดงเมนูลัด"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="rCol"><div class="rSub"><button type="button" onclick="railGo('find')">🔎 สแกนค้นหา</button><button type="button" onclick="railGo('add')">➕ สแกนเพิ่ม</button><button type="button" onclick="railGo('type')">⌨️ พิมพ์เพิ่ม</button></div><button class="rT t1" type="button" onclick="railScan()" aria-label="สแกน"><i>📷</i>สแกน</button><button class="rT t2" type="button" data-p="list" onclick="go('list')"><i>📋</i>รายการ</button><button class="rT t3" type="button" data-p="stat" onclick="go('stat')"><i>📊</i>สถิติ</button><button class="rT t4" type="button" data-p="set" onclick="go('set')"><i>⚙️</i>ตั้งค่า</button></div></div>
 <div id="camF" role="group" aria-label="ปุ่มสแกนลอย"><button class="camTab" type="button" onclick="camSlide()" aria-label="ซ่อนหรือแสดงปุ่มสแกน"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="camW"><div class="camMenu"><button type="button" onclick="camGo('find')"><span>ค้นหา</span><i><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg></i></button><button type="button" onclick="camGo('add')"><span>เพิ่มสินค้า</span><i><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button></div><button class="camMain" type="button" onclick="camTap()" aria-label="สแกนบาร์โค้ด" aria-expanded="false"><svg class="i cm" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg><svg class="i xx" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
 <dialog id="sc" class="scan">
  <div class="row" style="margin-bottom:10px"><div style="font-weight:600"><i class="dot" id="sdot" style="--c:var(--ac2)"></i><span id="sst">กำลังสแกน</span></div>
