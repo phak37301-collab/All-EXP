@@ -1190,38 +1190,53 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 .hsr2{margin-top:3px;font-size:13px;color:#555}.hsr3{margin-top:3px;font-size:13px;color:#8a5a00}
 .hsr4{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:#7a8196}
 
-/* ===== รายงานพิมพ์ (รอบเรียบ): ขาว-ดำ-น้ำเงินเข้ม สีเฉพาะป้ายสถานะ/จุดบอกกลุ่ม ===== */
+/* ===== รายงานพิมพ์ (แนวพรีเซ็นต์): หัวน้ำเงินเข้ม + การ์ดสรุป + กราฟ + รายการอ่านง่าย · สีสดเฉพาะจุดเล็ก ===== */
 #prn::before{display:none!important}
-#prn .rp{font-size:12px;color:#1a1f36;padding:0 4mm}
-#prn .rp .rh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:0 0 9px;margin:0 0 12px;border-bottom:2.5px solid #1a1f36}
-#prn .rp .rl{background:none!important;border:0!important;padding:0!important}
-#prn .rp h1{font-size:23px;line-height:1.2;margin:0 0 4px;font-weight:700;color:#1a1f36}
-#prn .rp .rmeta{display:block;font-size:10.5px;color:#5b6378}
-#prn .rp .mp,#prn .rp .mp.st,#prn .rp .mp.dtm{display:inline;background:none!important;border:0!important;padding:0;border-radius:0;font-size:10.5px;color:#5b6378}
-#prn .rp .mp b{color:#1a1f36;font-weight:600;margin-left:3px}
+#prn .rp{font-size:12px;color:#1a1f36;padding:0 3mm}
+#prn .rp .rh{display:flex;align-items:center;gap:12px;padding:10px 14px;margin:0 0 10px;border:0;border-radius:3mm;background:#1f2a44;color:#fff}
+#prn .rp .rlogo{flex:none;width:13mm;height:13mm;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:22px;line-height:1;box-shadow:0 0 0 1.2mm rgba(255,255,255,.28)}
+#prn .rp .rlogo img{width:11mm;height:11mm;object-fit:contain;border-radius:50%;display:block}
+#prn .rp .rl{flex:1;min-width:0;background:none!important;border:0!important;padding:0!important}
+#prn .rp h1{margin:0 0 3px;font-size:21px;line-height:1.2;font-weight:700;color:#fff}
+#prn .rp .rmeta{display:block;font-size:10.5px;color:#b8c0d4}
+#prn .rp .mp,#prn .rp .mp.st,#prn .rp .mp.dtm{display:inline;background:none!important;border:0!important;padding:0;border-radius:0;font-size:10.5px;color:#b8c0d4}
+#prn .rp .mp b{color:#fff;font-weight:600;margin-left:3px}
 #prn .rp .mp.dtm::before{content:"  ·  ";white-space:pre}
-#prn .rp .rbr{display:block;background:none!important;border:0!important;min-width:0;max-width:60mm;padding:0;text-align:right}
-#prn .rp .rbr span{display:block;font-size:10px;letter-spacing:.5px;color:#7a8296;font-weight:500}
-#prn .rp .rbr b{color:#1a1f36;font-size:24px;line-height:1.1;font-weight:800}
-/* สรุป 4 ช่อง: กรอบเดียว เส้นคั่น ตัวเลขใหญ่ */
-#prn .rp .rts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0 0 10px;border:1px solid #d3d8e4;border-radius:2mm;overflow:hidden}
-#prn .rp .rt{background:#fff!important;border:0!important;border-right:1px solid #d3d8e4!important;border-radius:0;padding:7px 6px 6px;text-align:center}
-#prn .rp .rt:last-child{border-right:0!important}
-#prn .rp .rt b{font-size:23px;line-height:1.1;font-weight:800;color:#1a1f36}
-#prn .rp .rt span{font-size:10px;color:#6b7388}
-#prn .rp .rt.lv0 b,#prn .rp .rt.lv1 b{color:var(--t)}
-/* ข้อความเด่น */
+#prn .rp .rbr{flex:none;display:block;min-width:0;max-width:62mm;padding:0 0 0 14px;text-align:right;background:none!important;border:0!important;border-left:1px solid rgba(255,255,255,.28)!important}
+#prn .rp .rbr span{display:block;font-size:10px;letter-spacing:.8px;color:#b8c0d4;font-weight:500}
+#prn .rp .rbr b{color:#fff;font-size:25px;line-height:1.1;font-weight:800;overflow-wrap:anywhere}
+#prn .rp .rts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 10px}
+#prn .rp .rt{background:#fff!important;border:1px solid #dfe3ec!important;border-top:4px solid var(--k,#1f2a44)!important;border-radius:2.5mm;padding:7px 9px 6px;text-align:left}
+#prn .rp .rt b{display:block;font-size:24px;line-height:1.05;font-weight:800;color:var(--k,#1f2a44)}
+#prn .rp .rt span{font-size:10.5px;color:#5b6378}
+#prn .rp .rt.tA{--k:#1f2a44}#prn .rp .rt.tB{--k:#2f6fde}#prn .rp .rt.lv1{--k:#d6403f}#prn .rp .rt.lv0{--k:#ea3033}
+#prn .rp .rcharts{display:grid;grid-template-columns:1.7fr 1fr;gap:8px;margin:0 0 10px}
+#prn .rp .rcc{border:1px solid #dfe3ec;border-radius:2.5mm;padding:8px 10px 6px;background:#fff;break-inside:avoid}
+#prn .rp .rct{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:2px}
+#prn .rp .rct b{font-size:12px;color:#1a1f36}#prn .rp .rct span{font-size:10px;color:#5b6378}
+#prn .rp .rcc svg{display:block;width:100%;height:auto}
+#prn .rp .rcc svg text{font-family:inherit}
+#prn .rp .bv{font-size:11px;font-weight:700;fill:#1a1f36;text-anchor:middle}
+#prn .rp .bl{font-size:9.5px;font-weight:500;fill:#5b6378;text-anchor:middle}
+#prn .rp .rax{margin-top:1px;font-size:9px;color:#8a92a6;text-align:center}
+#prn .rp .rdn{display:flex;align-items:center;gap:8px}
+#prn .rp .rdn svg{flex:none;width:30mm}
+#prn .rp .dnn{font-size:8px;font-weight:800;fill:#1a1f36;text-anchor:middle}
+#prn .rp .dnl{font-size:3.2px;fill:#5b6378;text-anchor:middle}
+#prn .rp .rlgd{flex:1;min-width:0;display:grid;gap:4px;font-size:10.5px}
+#prn .rp .lgd{display:flex;align-items:center;gap:5px}
+#prn .rp .lgd i{flex:none;width:8px;height:8px;border-radius:2px}
+#prn .rp .lgd span{flex:1;min-width:0;color:#3a4156}
+#prn .rp .lgd b{font-weight:700}#prn .rp .lgd em{font-style:normal;color:#7a8296;font-size:9.5px;min-width:7mm;text-align:right}
 #prn .rp .rhl{display:flex;align-items:center;gap:10px;padding:7px 12px;margin:0 0 10px;border:0!important;border-left:4px solid #d32f2f!important;border-radius:0 2mm 2mm 0;background:#fff5f5!important}
 #prn .rp .rhl i{display:none}
 #prn .rp .rhl b{font-size:13px;color:#b71c1c}#prn .rp .rhl span{font-size:10.5px;color:#4b5266}
 #prn .rp .rhl.ok{border-left-color:#2e7d32!important;background:#f3faf4!important}#prn .rp .rhl.ok b{color:#2e7d32}
-/* หัวข้อกลุ่ม */
-#prn .rp .rsec{margin-top:14px}
-#prn .rp .rs{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:0 0 5px;background:none!important;border:0!important;border-bottom:2px solid var(--s)!important;border-radius:0!important}
-#prn .rp .rs b{display:flex;align-items:center;gap:7px;font-size:14px;color:#1a1f36}
-#prn .rp .rs b::before{content:"";flex:none;width:10px;height:10px;border-radius:2px;background:var(--s)}
-#prn .rp .rs i{font-style:normal;font-size:11px;color:#5b6378}
-/* ตาราง: เส้นบาง ไม่มีพื้นสีสลับ */
+#prn .rp .lv3{--s:#e8b800}
+#prn .rp .rsec{margin-top:12px}
+#prn .rp .rs{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 10px;margin-bottom:2px;border:0!important;border-left:4px solid var(--s)!important;border-radius:2mm!important;background:color-mix(in srgb,var(--s) 11%,#fff)!important}
+#prn .rp .rs b{display:block;font-size:13.5px;color:#1a1f36}
+#prn .rp .rs i{font-style:normal;font-size:10.5px;color:#4b5266}
 #prn .rp .rtb{border-collapse:collapse;font-size:11.5px}
 #prn .rp .rtb th{background:#f3f4f7!important;color:#5b6378;font-weight:600;font-size:10px;padding:5px 6px;border:0!important;border-bottom:1px solid #d3d8e4!important;text-align:center!important}
 #prn .rp .rtb th:first-child{text-align:left!important}
@@ -1234,126 +1249,33 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #prn .rp .dd{min-width:19mm;padding:1px 10px;font-size:11.5px}
 #prn .rp .cm{background:#f3f4f7;border:1px solid #d3d8e4;color:#3a4156;font-size:10.5px;border-radius:99px;padding:1px 9px}
 #prn .rp .rf{margin-top:12px;padding:6px 0 0;border:0;border-top:1px solid #d3d8e4;border-radius:0;background:none;color:#7a8296;font-size:10.5px;text-align:right}
-
-/* ===== รอบ 7: แถบปุ่มโชว์ตลอด (ไม่ซ่อน/ไม่ต้องสไลด์) · แตะที่ว่างปิดคีย์บอร์ด ===== */
-@media(max-width:820px){
- #add #qacts{position:fixed!important;left:12px!important;right:12px!important;bottom:calc(92px + env(safe-area-inset-bottom))!important;width:auto!important;display:flex!important;flex-direction:row!important;gap:8px!important;padding:8px!important;border-radius:26px!important;background:#ffffffeb!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 30px #0003!important;transform:none!important;z-index:6}
- #add #qacts .qTab{display:none!important}
- #add #qacts .btn{flex:1 1 0!important;width:auto!important;min-height:56px!important;margin:0!important;padding:6px 6px!important;border-radius:18px!important;display:flex!important;flex-direction:row!important;align-items:center;justify-content:center;gap:6px!important;font-size:15px!important;white-space:nowrap!important}
- #add #qacts #qnow{flex:1.5 1 0!important;min-height:56px!important}
- #add #qacts .btn>i:not(.spin){font-size:22px!important}
- body.hasq #add #qacts{bottom:calc(92px + env(safe-area-inset-bottom))!important}
- #qbar{bottom:calc(164px + env(safe-area-inset-bottom))!important}
- #qbar>.btn{display:none!important}
- #add{padding-bottom:calc(190px + env(safe-area-inset-bottom))}
- /* คีย์บอร์ดเปิด: ซ่อนเมนูล่าง ดันแถบปุ่มลงมาติดคีย์บอร์ด จะได้กดถัดไป/บันทึกได้เลย */
- body.kb #nav{transform:translateY(160%)!important;transition:transform .2s}
- body.kb #add #qacts{bottom:8px!important}
- body.kb #qbar{bottom:80px!important}
-}
-
-
-/* ปุ่มแก้ไข/ลบในแถวล็อต: สีทึบ ไม่จมพื้น */
-.ib2{width:42px!important;height:42px!important;border-radius:14px!important;display:grid;place-items:center;padding:0!important;color:#fff!important;background:linear-gradient(135deg,#3b82f6,#1d4ed8)!important;border:2px solid #fff!important;box-shadow:0 4px 10px #1d4ed860}
-.ib2.rd{background:linear-gradient(135deg,#f43f5e,#be123c)!important;box-shadow:0 4px 10px #be123c60}
-.ib2 svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-#rail{display:none}
-/* ===== รอบ 8 (มือถือเท่านั้น): เมนูสไลด์ข้าง รวมสแกน+เมนูในที่เดียว · หน้าเพิ่มสินค้ากระชับ ===== */
-#navFab,#navScrim,#nav .nh,#nav .nsc{display:none}
-@media(max-width:820px){
- /* เมนูลัดขวา: กล่องสีสด + แท็บซ่อน (กดสแกน -> เลือก ค้นหา/เพิ่ม/พิมพ์) */
- #nav,#navFab,#navScrim,#camF{display:none!important}
- #rail{display:flex;flex-direction:column;align-items:flex-end;position:fixed;right:0;top:40%;z-index:7;gap:8px;pointer-events:none}
- #rail>*{pointer-events:auto}
- #rail .rTab{width:54px;height:30px;border:2px solid #fff;border-right:0;border-radius:17px 0 0 17px;background:linear-gradient(135deg,#475569,#1e293b);color:#fff;display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 6px 14px #0004;transition:width .3s,height .3s;-webkit-tap-highlight-color:transparent}
- #rail .rTab svg{width:20px;height:20px;stroke-width:2.6;transition:transform .3s}
- #rail.c .rTab{width:26px;height:52px}
- #rail.c .rTab svg{transform:rotate(180deg)}
- #rail .rCol{position:relative;display:flex;flex-direction:column;gap:6px;align-items:flex-end;transition:transform .34s cubic-bezier(.2,.8,.2,1),opacity .25s}
- #rail.c .rCol{transform:translateX(110%);opacity:0;pointer-events:none}
- #rail .rT{width:54px;height:58px;border:2px solid #fff;border-right:0;border-radius:16px 0 0 16px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0;cursor:pointer;box-shadow:0 8px 18px #0004;font:700 11px Prompt,"IBM Plex Sans Thai",sans-serif;-webkit-tap-highlight-color:transparent;transition:transform .15s}
- #rail .rT i{font-style:normal;font-size:22px;line-height:1}
- #rail .rT:active{transform:scale(.95)}
- #rail .t1{background:linear-gradient(135deg,#ff9a3c,#f2542d)}
- #rail .t2{background:linear-gradient(135deg,#8b5cf6,#5b3fd6)}
- #rail .t3{background:linear-gradient(135deg,#3b9cff,#1d5fd8)}
- #rail .t4{background:linear-gradient(135deg,#2dd4a8,#0f8f77)}
- #rail .rT.on,#rail.sc .t1{box-shadow:inset 0 0 0 3px #ffffffcc,0 8px 18px #0004}
- #rail .rSub{position:absolute;right:64px;top:0;display:none;flex-direction:column;gap:8px;align-items:flex-end}
- #rail.sc .rSub{display:flex}
- #rail .rSub button{display:flex;align-items:center;gap:8px;height:46px;padding:0 18px;border:0;border-radius:23px;background:#fff;color:#1f2937;font:700 15px Prompt,"IBM Plex Sans Thai",sans-serif;white-space:nowrap;box-shadow:0 8px 20px #0003;cursor:pointer}
- body.pgadd #rail{top:26%}
- body.kb #rail .rCol{display:none}
- /* หัวหน้าเพิ่มสินค้า: เล็กลง */
- #add .ph{min-height:60px!important;margin:0 0 10px!important;padding:8px 66px 8px 10px!important;border-radius:22px!important}
- #add .ahLogo{width:42px!important;height:42px!important;font-size:22px!important}
- #add .ahLogo img{width:36px!important;height:36px!important}
- #add .ph h1{font-size:19px!important}
- #add .ph .ahT .mut{display:none!important}
- #add .ahRow{margin-top:4px!important}
-
- /* ช่องค้นหา + กล้องอยู่ในช่องเดียวกัน */
- #add .stepc:first-child>.row{position:relative;display:block}
- #add #bc{width:100%;height:56px;padding-right:68px!important;font-size:17px}
- #add #bc+.btn{display:grid!important;place-items:center;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:46px;height:46px;min-height:0;padding:0!important;margin:0;border:0;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac2))!important;color:#fff;box-shadow:0 6px 14px color-mix(in srgb,var(--ac) 35%,transparent)}
- #add #bc+.btn span{display:none}
- #add #bc+.btn .ci{font-style:normal;font-size:22px;line-height:1}
-
- /* จำนวน กว้างขึ้น / วันที่ แคบลง */
- #add .two{display:grid!important;grid-template-columns:172px minmax(0,1fr)!important;gap:8px!important;align-items:end}
- #add .two>div{min-width:0}
- #add .qs2{display:grid!important;grid-template-columns:34px minmax(0,1fr) 34px;width:100%;height:56px;align-items:stretch}
- #add .qs2 button{width:100%!important;height:100%!important;min-height:0!important;padding:0!important}
- #add .qs2 input{width:100%!important;min-width:0;height:100%;text-align:center;font-size:22px;font-weight:700;padding:0!important}
- #add .two .row{display:flex!important;gap:6px;flex-wrap:nowrap}
- #add #due{flex:1 1 0;min-width:0;width:auto;height:56px;padding:0 8px!important;font-size:17px;font-weight:600;letter-spacing:0!important;text-overflow:clip}
- #add .two .row>label.btn{flex:none;width:44px;min-width:44px;height:56px;padding:0!important;margin:0!important;display:grid!important;place-items:center}
-
- /* จำนวนด่วน: ทุกปุ่มอยู่บนจอ ไม่ต้องเลื่อน (4 คอลัมน์ x 2 แถว) */
- #add .qkc{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important;margin:10px 0 0!important;overflow:visible!important;padding:0!important}
- #add .qkc>.mut{display:none!important}
- #add .chip.rcb.qk{width:100%;min-width:0!important;height:42px!important;min-height:42px!important;padding:0!important;font-size:17px!important}
-
- /* แถบล่าง: ถัดไป + บันทึก */
- #add #qacts,body.hasq #add #qacts{bottom:calc(12px + env(safe-area-inset-bottom))!important;left:12px!important;right:12px!important}
- #add #qacts #qscan{display:none!important}
- #add #qacts #qadd{flex:1 1 0!important}
- #add #qacts #qnow{flex:1.4 1 0!important}
- #qbar{left:14px!important;right:14px!important;bottom:calc(92px + env(safe-area-inset-bottom))!important}
- body.pgadd #main{padding-bottom:calc(96px + env(safe-area-inset-bottom))!important}
- body.pgadd.hasq #main{padding-bottom:calc(152px + env(safe-area-inset-bottom))!important}
-
- /* คีย์บอร์ดเปิด: แถบ ถัดไป/บันทึก ติดคีย์บอร์ด */
- body.kb #add #qacts,body.kb.hasq #add #qacts{bottom:8px!important}
- body.kb #qbar{bottom:80px!important}
-}
-
-/* ===== แก้หัวหน้า: ชื่อสาขายาวแล้วเลย์เอาต์เพี้ยน (ใช้ container query ตามความกว้างจริงของหัว) ===== */
-#appTop{container-type:inline-size}
-#appTop .atRow{flex-wrap:wrap;row-gap:8px}
-#appTop .atBr{flex:0 1 auto;min-width:0;max-width:100%}
-#appTop .atBr b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#appTop .atInfo{flex:none;min-width:0;max-width:100%}
-#appTop .atChips{flex-wrap:nowrap;min-width:0}
-#appTop .atC{flex:none}
-@container (min-width:641px){
- #appTop .atRow{flex-wrap:nowrap}
- #appTop .atBr{max-width:min(46%,340px)}
-}
-@container (max-width:900px){#appTop .atHi{display:none}}
-@container (min-width:641px) and (max-width:820px){#appTop .atC:nth-child(n+4){display:none}}
-@container (max-width:640px){
- #appTop .atInfo{flex:1 1 100%;order:3;margin-left:0;justify-content:flex-start}
- #appTop .atChips{justify-content:flex-start;gap:6px;overflow:hidden}
- #appTop .atC:nth-child(n+4){display:none}
- #appTop .atC:nth-child(3){display:inline-flex}
- #appTop .atBr{max-width:calc(100% - 60px)}
- /* ชิปเต็มความกว้าง แบ่งเท่า ๆ กัน ไม่เว้าแหว่งข้างล่างกระดิ่ง */
- #appTop .atInfo{margin-right:-60px}
- #appTop .atChips{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px;width:100%}
- #appTop .atC{justify-content:center;padding:6px 8px;font-size:13px}
- #appTop .atC b{font-size:20px}
-}
+/* ===== เทียบสต็อกกับ SAP ===== */
+.sapd{width:min(96vw,1000px);max-height:92dvh;padding:16px;display:none;flex-direction:column;gap:10px}.sapd[open]{display:flex}
+.spH{display:flex;align-items:center;justify-content:space-between;font-size:18px}
+.spX{border:0;background:#eceef2;border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer}
+.spDrop{display:flex;align-items:center;gap:12px;padding:14px 16px;border:2px dashed #c4cad8;border-radius:16px;cursor:pointer;background:color-mix(in srgb,var(--ac,#14766f) 5%,#fff)}
+.spDrop.on{border-color:var(--ac,#14766f);background:color-mix(in srgb,var(--ac,#14766f) 12%,#fff)}.spIc{font-size:28px}
+#spRes{display:flex;flex-direction:column;gap:10px;min-height:0;flex:1}
+#spInfo{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:#5b6378}#spInfo b{color:#1a1f36;font-weight:600}
+.spLb{font-size:12px;color:#5b6378;margin-bottom:4px}
+.spGl,#spCh{display:flex;flex-wrap:wrap;gap:6px}
+.spg,.spc{border:1.5px solid #d5dae6;background:#fff;border-radius:99px;padding:5px 12px;font-family:inherit;font-size:13px;color:inherit;cursor:pointer}
+.spg em,.spc em{font-style:normal;color:#7a8296;margin-left:3px}
+.spg.on,.spc.on{background:var(--ac,#14766f);border-color:var(--ac,#14766f);color:#fff}.spg.on em,.spc.on em{color:#ffffffcc}
+#spKpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.spk{border:1px solid #dfe3ec;border-top:4px solid #1f2a44;border-radius:12px;padding:6px 10px;background:#fff}.spk b{display:block;font-size:20px;line-height:1.2}.spk span{font-size:12px;color:#5b6378}
+.spk.ok{border-top-color:#2e9e62}.spk.ok b{color:#17724a}.spk.bad{border-top-color:#d6403f}.spk.bad b{color:#b3202c}
+.spNote{grid-column:1/-1;font-size:12.5px;color:#5b6378}.spNote.warn{color:#b3202c}
+.spTool{display:grid;gap:8px}.spQ{display:flex;gap:8px}.spQ input{flex:1;min-width:0}
+#spL{overflow:auto;display:grid;gap:6px;align-content:start;min-height:160px;max-height:50dvh}
+.spr{display:grid;grid-template-columns:minmax(0,1fr) 64px 64px 72px 112px;gap:8px;align-items:center;padding:8px 10px;border:1px solid #e2e6ef;border-radius:12px;background:#fff;cursor:pointer}
+.spn b{display:block;font-weight:600;line-height:1.3}.spn small{color:#8a92a6;font-size:11.5px}
+.spv{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}.spv small{display:none;color:#8a92a6;font-weight:400;font-size:11px}
+.spd.x{color:#b3202c}.spb span{display:block;text-align:center;border-radius:99px;padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+.spx{margin:-2px 0 2px;padding:8px 12px;border:1px dashed #d5dae6;border-radius:12px;background:#f7f8fb}
+.spl{display:inline-block;margin:2px 6px 2px 0;padding:2px 10px;border-radius:99px;background:#fff;border:1px solid #dfe3ec;font-size:12.5px}
+.spE{padding:18px 0;text-align:center}
+@media(max-width:640px){.spr{grid-template-columns:repeat(3,1fr)}.spn{grid-column:1/-1}.spb{grid-column:1/-1}.spv{text-align:left}.spv small{display:block}#spL{max-height:46dvh}}
 </style>
 </head>
 <body>
@@ -1395,7 +1317,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 <div class="card"><div class="ch"><h3>หมดอายุรายเดือน</h3><small class="mut">ชิ้น · แตะแท่งกราฟ</small></div><div id="bars" class="mbars"></div></div></div>
 <div class="card"><div class="ch"><h3>ต้องจัดการก่อน</h3><button class="chipb" onclick="jumpList('urg')">ดูทั้งหมด ›</button></div><div id="topl" class="topl"></div></div>
 <h3 class="sech">ออกรายงาน</h3>
- <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" id="bCsv" onclick="csv()">CSV</button><button class="btn alt fit" id="bXls" onclick="xls()">Excel</button><button class="btn fit" id="bPrn" onclick="printRep()">พิมพ์ / PDF</button></div>
+ <div class="row noprint" style="margin-bottom:12px"><select id="f2" onchange="drawRep();drawExtra()"></select><button class="btn alt fit" id="bCsv" onclick="csv()">CSV</button><button class="btn alt fit" id="bXls" onclick="xls()">Excel</button><button class="btn fit" id="bPrn" onclick="printRep()">พิมพ์ / PDF</button><button class="btn alt fit" onclick="openSap()">⚖️ เทียบ SAP</button></div>
  <div class="rsel noprint" id="rsel"></div>
  <div class="card fbx" id="fb2"></div>
  <div class="card"><div class="row" id="sum" style="flex-wrap:wrap;margin-bottom:10px"></div><div class="dsk" style="overflow-x:auto"><table id="tb"></table></div><div class="mob" id="tbc"></div></div>
@@ -1410,6 +1332,11 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 
 <div id="sy" popover="manual" role="status" aria-live="polite"></div>
 <dialog id="hsD"><div class="hsH"><b>📜 ประวัติการใช้งาน</b><button type="button" class="hsX" onclick="$('hsD').close()" aria-label="ปิด">✕</button></div><div class="hsF"><select id="hsB" onchange="HS.k=this.value;hsLoad(0)"></select><div class="hsA" id="hsA"></div><div class="hsQ"><input id="hsQ" type="search" placeholder="ค้นหา ชื่อสินค้า / บาร์โค้ด / ชื่อผู้ใช้ / รหัสเครื่อง" autocomplete="off" onkeydown="if(event.key=='Enter'){HS.q=this.value.trim();hsLoad(0)}"><button type="button" class="btn fit" onclick="HS.q=$('hsQ').value.trim();hsLoad(0)">ค้นหา</button></div><div class="mut" id="hsS" style="font-size:13px"></div></div><div id="hsL"></div><button type="button" class="btn alt big hide" id="hsMore" style="margin-top:8px" onclick="hsLoad(1)">โหลดเพิ่ม</button><button type="button" class="btn big" style="margin-top:10px" onclick="$('hsD').close()">ปิด</button></dialog>
+<dialog id="sapD" class="sapd"><div class="spH"><b>⚖️ เทียบสต็อกกับ SAP</b><button type="button" class="spX" onclick="$('sapD').close()" aria-label="ปิด">✕</button></div>
+<div class="spDrop" ondragover="event.preventDefault();this.classList.add('on')" ondragleave="this.classList.remove('on')" ondrop="event.preventDefault();this.classList.remove('on');spFile(event.dataTransfer.files[0])" onclick="$('spFile').click()"><span class="spIc">📄</span><div><b>ลากไฟล์ SAP (.xlsx / .csv) มาวางที่นี่</b><div class="mut">หรือแตะเพื่อเลือกไฟล์ · อ่านในเครื่องนี้ ไม่ส่งไฟล์ไปที่ไหน</div></div><input type="file" id="spFile" accept=".xlsx,.xls,.csv,.txt" hidden onchange="spFile(this.files[0]);this.value=''"></div>
+<div id="spRes" class="hide"><div id="spInfo"></div><div id="spGrp"></div><div id="spKpi"></div>
+<div class="spTool"><div id="spCh"></div><div class="spQ"><input id="spQ" type="search" placeholder="ค้นหา ชื่อ / บาร์โค้ด / หมวด" autocomplete="off" oninput="SP.q=this.value;spList()"><button type="button" class="btn alt fit" onclick="spOut()">CSV</button></div></div>
+<div id="spL"></div></div></dialog>
 <dialog id="trD"><b style="font-size:18px">🗑 ถังขยะ</b><div class="mut" style="margin:2px 0 10px">รายการที่ลบล่าสุดของสาขานี้ · กด ↩ เพื่อใส่กลับในชีต</div><div id="trL" style="display:grid;gap:8px;max-height:52vh;overflow:auto"></div><button class="btn big" style="margin-top:12px" onclick="$('trD').close()">ปิด</button></dialog>
 <dialog id="ed"><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date"><label>สถานะเคลม</label><div class="chips" id="edC"></div>
  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
@@ -1433,7 +1360,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  <input id="pic" type="file" accept="image/*" capture="environment" class="hide" onchange="scanPic(this)"></dialog>
 <dialog id="bm"><b id="bmt" style="font-size:18px"></b><div class="mut" style="margin-bottom:12px">เมนูสาขาและระบบ</div>
  <button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openBr()">⇄ สลับสาขา</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();go('set')">⚙ ตั้งค่า</button>
- <button class="btn alt big" id="bmw" style="margin-top:8px" onclick="$('bm').close();askWho()"></button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openTrash()">🗑 ถังขยะ (กู้คืนที่ลบ)</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
+ <button class="btn alt big" id="bmw" style="margin-top:8px" onclick="$('bm').close();askWho()"></button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();load()">↻ รีเฟรชข้อมูล</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSap()">⚖️ เทียบสต็อกกับ SAP</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openTrash()">🗑 ถังขยะ (กู้คืนที่ลบ)</button><button class="btn alt big" style="margin-top:8px" onclick="$('bm').close();openSheet()">📄 เปิดชีต Google</button>
  <button class="btn del big" style="margin-top:8px" onclick="$('bm').close();logout()">ออกจากสาขานี้</button><button class="btn big" style="margin-top:8px" onclick="$('bm').close()">ปิด</button></dialog>
 <dialog id="whD"><b style="font-size:18px">👤 ใครใช้เครื่องนี้?</b><div class="mut" style="margin:4px 0 12px">ชื่อนี้จะบันทึกในประวัติทุกครั้งที่เพิ่ม แก้ไข หรือลบ (รหัสเครื่องนี้คือ <b id="whDev"></b>)</div><input id="whI" maxlength="24" placeholder="เช่น สมชาย / ต้น" autocomplete="off" onkeydown="if(event.key=='Enter')saveWho()"><button class="btn big" style="margin-top:12px" onclick="saveWho()">บันทึกชื่อ</button><button class="btn alt big" id="whSk" style="margin-top:8px" onclick="skipWho()">ไว้ทีหลัง</button></dialog>
 <dialog id="dt"><div id="dtb"></div><button class="btn big" onclick="$('dt').close()">ปิด</button></dialog>
@@ -1662,7 +1589,19 @@ function printRep(){const g=repRows();if(!g.length)return toast('ไม่มี
  const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>สินค้า</th><th>จำนวน (ชิ้น)</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map((e,n)=>{const d=days(e.due);return `<tr${l<2||d<0?` class="${l<2?'hot':''}${d<0?' ov':''}"`:''}><td class="rnm">${esc(e.item||'-')}<small class="rbc">${esc(e.barcode)}</small></td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
  const ban=urg?`<div class="rhl bad"><i>!</i><div><b>ต้องจัดการด่วน ${f0(urg)} รายการ · ${f0(urgQ)} ชิ้น</b><span>ใกล้สุด: ${esc(near.item||near.barcode)} · ${dd(days(near.due))} (${fd(near.due)})</span></div></div>`:`<div class="rhl ok"><i>✓</i><div><b>ไม่มีสินค้าที่ต้องจัดการด่วน</b><span>ไม่มีสินค้าหมดอายุหรือใกล้หมดอายุภายใน ${TH[0]} วัน</span></div></div>`;
  const sp='<tr><td><i class="sp"></i></td></tr>';
- $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rl"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
+  // กราฟ: แท่ง = จำนวนรายการที่หมดอายุในแต่ละวัน · โดนัท = สัดส่วนตามสถานะ (สีเดียวกับหน้าเว็บ)
+  const dv=g.map(e=>days(e.due)).filter(d=>!isNaN(d)),t1=TH[1]>7?TH[1]:30,
+   bks=[['เกิน',d=>d<0,-1],['วันนี้',d=>d==0,0]].concat([1,2,3,4,5,6,7].map(k=>[String(k),d=>d==k,k]),[['8–'+t1,d=>d>7&&d<=t1,t1],[t1+'+',d=>d>t1,t1+1]]),
+   cnt=bks.map(b=>dv.filter(d=>b[1](d)).length),mx=Math.max(1,...cnt),pc=c=>c=='#f2ef0c'?'#e8b800':c,
+   BW=330,BB=116,BH=82,stp=BW/bks.length,bw=Math.min(22,stp-6);
+  const bars=cnt.map((n,i)=>{const h=n?Math.max(4,Math.round(n/mx*BH)):0,x=i*stp+(stp-bw)/2,cx=(x+bw/2).toFixed(1);return `<rect x="${x.toFixed(1)}" y="${BB-h}" width="${bw}" height="${h}" rx="3" fill="${pc(dc(bks[i][2]))}"/>${n?`<text class="bv" x="${cx}" y="${BB-h-4}">${n}</text>`:''}<text class="bl" x="${cx}" y="${BB+13}">${bks[i][0]}</text>`}).join('');
+  const grid=[1,2,3].map(k=>`<line x1="0" x2="${BW}" y1="${BB-BH*k/3}" y2="${BB-BH*k/3}" stroke="#eceff5" stroke-width="1"/>`).join('');
+  const pk=cnt.indexOf(Math.max(...cnt)),pkL=cnt[pk]?'มากสุด: '+(pk==0?'เกินกำหนด':pk==1?'วันนี้':pk<=8?'อีก '+bks[pk][0]+' วัน':bks[pk][0]+' วัน')+' · '+cnt[pk]+' รายการ':'';
+  const lvC=['#ea3033','#f06a6c','#ee7b11','#e8b800','#00a655','#9aa1ad'],tn=g.length,prt=[0,1,2,3,4,5].filter(l=>by[l].length);let acc=0;
+  const arcs=prt.map(l=>{const p=by[l].length/tn*100,c=`<circle cx="21" cy="21" r="15.9155" fill="none" stroke="${lvC[l]}" stroke-width="6.5" stroke-dasharray="${p.toFixed(3)} ${(100-p).toFixed(3)}" stroke-dashoffset="${(25-acc).toFixed(3)}"/>`;acc+=p;return c}).join('');
+  const lgd=prt.map(l=>`<div class="lgd"><i style="background:${lvC[l]}"></i><span>${esc(NM()[l])}</span><b>${by[l].length}</b><em>${Math.round(by[l].length/tn*100)}%</em></div>`).join('');
+  const charts=`<div class="rcharts"><div class="rcc"><div class="rct"><b>รายการหมดอายุในแต่ละวัน</b><span>${pkL}</span></div><svg viewBox="0 0 ${BW} 134" role="img" aria-label="กราฟแท่งจำนวนรายการที่หมดอายุในแต่ละวัน">${grid}<line x1="0" x2="${BW}" y1="${BB}" y2="${BB}" stroke="#c9ced9" stroke-width="1"/>${bars}</svg><div class="rax">นับจากวันนี้ · ตัวเลขบนแท่ง = จำนวนรายการ</div></div><div class="rcc"><div class="rct"><b>สัดส่วนตามสถานะ</b></div><div class="rdn"><svg viewBox="0 0 42 42" role="img" aria-label="กราฟโดนัทสัดส่วนตามสถานะ"><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#eef0f5" stroke-width="6.5"/>${arcs}<text class="dnn" x="21" y="22.8">${tn}</text><text class="dnl" x="21" y="27.2">รายการ</text></svg><div class="rlgd">${lgd}</div></div></div></div>`;
+ $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rlogo"><img src="Logo.gif" alt="" onerror="this.replaceWith(document.createTextNode('🐱'))"></div><div class="rl"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${charts}${ban}${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
  let ps=document.getElementById('prPg');if(!ps){ps=document.createElement('style');ps.id='prPg';document.head.appendChild(ps)}
  ps.textContent='@page{@bottom-left{content:"สาขา '+String(BRN||'-').replace(/["\\\n\r<>{}]/g,'')+' · รายงานสินค้าใกล้หมดอายุ";font:9.5px Prompt,sans-serif;color:#6b7390}}';
  document.body.classList.add('prnm');setTimeout(()=>window.print(),80)}
@@ -1795,6 +1734,62 @@ function drawFb(){const on=F.from||F.to||F.cl.length||F.tab,pb=(t,a)=>`<button c
 const setEc=i=>{EC=CL[i][0];$('edC').innerHTML=chipsH(EC,'setEc')};
 function openEdit(r){editing=D.entries[r];EC=editing.claim||'-';$('edC').innerHTML=chipsH(EC,'setEc');$('edN').textContent=editing.item;$('edQ').value=editing.qty;$('edD').value=editing.due;$('ed').showModal()}
 let TR=[];
+// ===== เทียบสต็อกกับ SAP (ประมวลผลในเครื่อง ไม่ส่งไฟล์ไปไหน) =====
+let SP=null;
+const spNum=x=>{const n=parseFloat(String(x==null?'':x).replace(/[,\s]/g,''));return isNaN(n)?0:n};
+const spNb=s=>{s=String(s==null?'':s).trim().toUpperCase().replace(/\.0+$/,'');return /^\d+$/.test(s)?s.replace(/^0+(?=\d)/,''):s}; // 000014 = 14 (ชีทเก็บบาร์โค้ดเป็นตัวเลข เลขศูนย์นำหน้าหาย)
+const SPS={ok:['ตรงกัน','#17724a','#e1f6ea'],over:['เรามากกว่า','#b3202c','#fde2e4'],under:['SAP มากกว่า','#8a5a00','#fff1c9'],onlySap:['มีแต่ใน SAP','#6a3fb0','#ece3fb'],onlyOur:['SAP ไม่มียอด','#4b5266','#eceef2'],noSap:['ไม่พบใน SAP','#4b5266','#eceef2'],neg:['SAP ติดลบ','#b3202c','#ffe4d6']};
+const SPF=[['diff','ต่างกัน',r=>r.st!='ok'],['ok','ตรงกัน',r=>r.st=='ok'],['all','ทั้งหมด',()=>true],['over','เรามากกว่า',r=>r.st=='over'],['under','SAP มากกว่า',r=>r.st=='under'],['onlySap','มีแต่ใน SAP',r=>r.st=='onlySap'],['miss','ไม่มีใน SAP / SAP เป็น 0',r=>r.st=='onlyOur'||r.st=='noSap']];
+function spLoadX(){return window.XLSX?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=ok;s.onerror=()=>no(new Error('โหลดตัวอ่าน Excel ไม่ได้ (เช็กอินเทอร์เน็ต) หรือบันทึกไฟล์เป็น CSV แล้วลองใหม่'));document.head.appendChild(s)})}
+function spCsv(t){ // อ่าน CSV/TSV รองรับเครื่องหมายคำพูด
+ t=t.replace(/^\ufeff/,'');const h=t.split('\n')[0],d=(h.match(/\t/g)||[]).length>(h.match(/,/g)||[]).length?'\t':',',rows=[];let r=[],c='',q=0;
+ for(let i=0;i<t.length;i++){const ch=t[i];
+  if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=0}else c+=ch}
+  else if(ch=='"')q=1;else if(ch==d){r.push(c);c=''}else if(ch=='\n'){r.push(c);rows.push(r);r=[];c=''}else if(ch!='\r')c+=ch}
+ if(c!==''||r.length){r.push(c);rows.push(r)}return rows}
+function openSap(){if(!loaded)return toast('รอโหลดข้อมูลสต็อกก่อน');$('sapD').showModal()}
+async function spFile(f){if(!f)return;try{let a;if(/\.(csv|txt)$/i.test(f.name))a=spCsv(await f.text());else{await spLoadX();const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});a=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,defval:'',raw:false})}spBuild(f.name,a)}catch(e){toast('อ่านไฟล์ไม่ได้: '+e.message,6000)}}
+function spBuild(name,a){
+ const hd=(a[0]||[]).map(x=>String(x).trim()),ix=n=>hd.indexOf(n),cB=ix('Barcode (Document)'),cN=ix('Material description'),cG=ix('Material Group Description'),cU=ix('Base Unit'),cL=ix('Storage Location'),cP=ix('Plant');
+ const col=n=>{const l=[];hd.forEach((h,i)=>{if(h===n)l.push(i)});const p=l.filter(i=>i>cU);return p.length?p[0]:l.length?l[l.length-1]:-1}; // ใช้กลุ่ม "หน่วยฐาน" (คอลัมน์ที่อยู่หลัง Base Unit)
+ const cS=col('Unrestr.'),cQ=col('Qual.Insp.'),cK=col('Blocked');
+ if(cB<0||cS<0)throw new Error('ไม่ใช่ไฟล์ยอดคงเหลือ SAP (ไม่พบคอลัมน์ Barcode (Document) / Unrestr.)');
+ const g=(r,i)=>i<0?'':String(r[i]==null?'':r[i]).trim(),map=new Map(),noBc=[],sl=new Set(),pl=new Set();
+ a.slice(1).forEach(r=>{const nm=g(r,cN);if(!nm&&!g(r,cB))return;if(g(r,cL))sl.add(g(r,cL));if(g(r,cP))pl.add(g(r,cP));
+  const q=spNum(r[cS])+(cQ>=0?spNum(r[cQ]):0)+(cK>=0?spNum(r[cK]):0),k=spNb(g(r,cB));
+  if(!k){noBc.push({name:nm,sap:q});return}
+  const x=map.get(k)||{k,bc:g(r,cB),name:nm,grp:g(r,cG)||'(ไม่ระบุหมวด)',unit:g(r,cU),sap:0};x.sap+=q;map.set(k,x)});
+ const ours={};D.entries.forEach(e=>{const k=spNb(e.barcode);if(!k)return;const o=ours[k]||(ours[k]={k,bc:e.barcode,name:e.item||D.db[e.barcode]||'',qty:0,lots:[]});o.qty+=e.qty;o.lots.push(e)});
+ const gs={};map.forEach(x=>{const o=gs[x.grp]||(gs[x.grp]={n:0,hit:0});o.n++;if(ours[x.k])o.hit++});
+ let sv=[];try{sv=JSON.parse(localStorage.getItem('spG_'+BR)||'[]').filter(x=>gs[x])}catch(_){}
+ const inc=new Set(sv.length?sv:Object.keys(gs).filter(x=>gs[x].hit>0)); // เริ่มต้น: เทียบเฉพาะหมวดที่ระบบเราเคยลงสินค้า (ถุงเท้า ผ้าอ้อม ฯลฯ ถูกข้ามเอง)
+ const m=name.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/);
+ SP={name,asof:m?m[3]+'/'+m[2]+'/'+(S.be?+m[1]+543:m[1])+' '+m[4]+':'+m[5]:'',plant:[...pl].join(', '),sl:[...sl].join(', '),map,ours,noBc,gs,inc,st:'diff',q:''};
+ $('spRes').classList.remove('hide');$('spQ').value='';spDraw()}
+function spRows(){const S0=SP,out=[];
+ S0.map.forEach(x=>{if(!S0.inc.has(x.grp))return;const o=S0.ours[x.k],our=o?o.qty:0,d=our-x.sap;if(!our&&!x.sap)return;
+  const st=x.sap<0?'neg':d==0?'ok':!o?'onlySap':x.sap==0?'onlyOur':d>0?'over':'under';
+  out.push({k:x.k,bc:x.bc,name:x.name||(o&&o.name)||x.bc,grp:x.grp,sap:x.sap,our,d,st,o})});
+ Object.values(S0.ours).forEach(o=>{if(!S0.map.has(o.k))out.push({k:o.k,bc:o.bc,name:o.name||o.bc,grp:'ไม่พบใน SAP',sap:null,our:o.qty,d:null,st:'noSap',o})});
+ return out.sort((a,b)=>Math.abs(b.d==null?b.our:b.d)-Math.abs(a.d==null?a.our:a.d)||String(a.name).localeCompare(String(b.name)))}
+const spN=n=>n==null?'–':(Math.round(n*100)/100).toLocaleString('en-US');
+function spDraw(){const S0=SP,all=spRows(),cmp=all.filter(r=>r.st!='noSap'),okN=cmp.filter(r=>r.st=='ok').length,sapT=cmp.reduce((a,r)=>a+r.sap,0),ourT=cmp.reduce((a,r)=>a+r.our,0),net=ourT-sapT;
+ $('spInfo').innerHTML='<b>'+esc(S0.name)+'</b><span>'+(S0.asof?'ยอด SAP ณ '+esc(S0.asof):'')+'</span><span>Plant '+esc(S0.plant||'-')+' · คลัง '+esc(S0.sl||'-')+'</span><span>ระบบเรา: ล็อตที่มีในชีตตอนนี้</span>';
+ const gl=Object.keys(S0.gs).sort((a,b)=>S0.gs[b].n-S0.gs[a].n);S0.gl=gl;
+ $('spGrp').innerHTML='<div class="spLb">เทียบเฉพาะหมวด (แตะเพื่อเปิด/ปิด)</div><div class="spGl">'+gl.map((k,i)=>'<button type="button" class="spg'+(S0.inc.has(k)?' on':'')+'" onclick="spGrp('+i+')">'+esc(k)+' <em>'+S0.gs[k].n+'</em></button>').join('')+'</div>';
+ const bad=cmp.length-okN;
+ $('spKpi').innerHTML='<div class="spk"><b>'+cmp.length+'</b><span>สินค้าที่เทียบ</span></div><div class="spk ok"><b>'+okN+'</b><span>ตรงกัน'+(cmp.length?' ('+Math.round(okN/cmp.length*100)+'%)':'')+'</span></div><div class="spk '+(bad?'bad':'')+'"><b>'+bad+'</b><span>ต่างกัน</span></div><div class="spk"><b>'+spN(sapT)+'</b><span>รวม SAP (ชิ้น)</span></div><div class="spk"><b>'+spN(ourT)+'</b><span>รวมระบบเรา (ชิ้น)</span></div><div class="spk '+(net?'bad':'ok')+'"><b>'+(net>0?'+':'')+spN(net)+'</b><span>ผลต่างรวม</span></div>'+(S0.noBc.length?'<div class="spNote">SAP มี '+S0.noBc.length+' รายการที่ไม่มีบาร์โค้ด จับคู่กับระบบเราไม่ได้ (ไม่นำมาเทียบ)</div>':'')+(cmp.length&&!all.some(r=>r.o&&r.sap!=null)?'<div class="spNote warn">ไม่พบสินค้าที่บาร์โค้ดตรงกันเลย ลองเช็กว่าเลือกไฟล์/สาขาถูกต้อง</div>':'');
+ $('spCh').innerHTML=SPF.map(f=>'<button type="button" class="spc'+(S0.st==f[0]?' on':'')+'" onclick="SP.st=\''+f[0]+'\';spDraw()">'+f[1]+' <em>'+all.filter(f[2]).length+'</em></button>').join('');
+ spList(all)}
+function spList(all){const S0=SP;all=all||spRows();const f=SPF.find(x=>x[0]==S0.st)||SPF[0],q=S0.q.trim().toLowerCase(),rows=all.filter(f[2]).filter(r=>!q||(r.name+' '+r.bc+' '+r.grp).toLowerCase().includes(q));S0.cur=rows;
+ $('spL').innerHTML=rows.length?rows.slice(0,400).map((r,i)=>{const s=SPS[r.st],dd=r.d==null?'':(r.d>0?'+':'')+spN(r.d);
+  return '<div class="spr" data-i="'+i+'" onclick="spTog(this)"><div class="spn"><b>'+esc(r.name)+'</b><small>'+esc(r.bc)+' · '+esc(r.grp)+'</small></div><div class="spv"><small>SAP</small>'+spN(r.sap)+'</div><div class="spv"><small>เรา</small>'+spN(r.our)+'</div><div class="spv spd '+(r.d?'x':'')+'"><small>ต่าง</small>'+dd+'</div><div class="spb"><span style="color:'+s[1]+';background:'+s[2]+'">'+s[0]+'</span></div></div>'}).join('')+(rows.length>400?'<div class="mut spE">แสดง 400 รายการแรกจาก '+rows.length+' · ใช้ช่องค้นหาหรือกรองเพิ่ม</div>':''):'<div class="mut spE">ไม่มีรายการ</div>'}
+function spTog(el){const nx=el.nextElementSibling;if(nx&&nx.classList.contains('spx')){nx.remove();return}
+ const r=SP.cur[+el.dataset.i],lots=r.o?r.o.lots.slice().sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1):[];
+ const h='<div class="spx">'+(lots.length?'<div class="spLb">ล็อตในระบบเรา ('+lots.length+')</div>'+lots.map(e=>'<span class="spl"><b>'+e.qty+'</b> ชิ้น · '+fd(e.due)+(e.claim?' · '+esc(e.claim):'')+'</span>').join(''):'<div class="mut">ไม่มีล็อตในระบบเรา</div>')+'</div>';
+ el.insertAdjacentHTML('afterend',h)}
+function spGrp(i){const S0=SP,k=S0.gl[i];S0.inc.has(k)?S0.inc.delete(k):S0.inc.add(k);try{localStorage.setItem('spG_'+BR,JSON.stringify([...S0.inc]))}catch(_){}spDraw()}
+function spOut(){if(!SP)return;const rows=spRows();dl([['บาร์โค้ด','ชื่อสินค้า','หมวด SAP','SAP','ระบบเรา','ส่วนต่าง (เรา−SAP)','สถานะ','ล็อตในระบบเรา']].concat(rows.map(r=>[bcx(r.bc),r.name,r.grp,r.sap==null?'':r.sap,r.our,r.d==null?'':r.d,SPS[r.st][0],r.o?r.o.lots.map(e=>e.qty+'@'+fd(e.due)+(e.claim?'('+e.claim+')':'')).join(' ; '):''])),'เทียบSAP_')}
 async function openTrash(){$('trL').innerHTML='<div class="mut" style="padding:14px 0;text-align:center">กำลังโหลด...</div>';$('trD').showModal();
  try{TR=(await api({action:'trashList'})).items||[];drawTrash()}catch(e){$('trD').close();toast(e.message)}}
 function drawTrash(){$('trL').innerHTML=TR.length?TR.map((x,i)=>`<div class="lt" style="--c:#9aa1ad"><div class="ltd"><b>${esc(x.item||x.barcode)}</b><div class="ltm"><span class="ltt">${esc(x.barcode)} · ${fd(x.due)}${x.claim?' · '+esc(x.claim):''}</span></div><small>ลบเมื่อ ${esc(x.t)}</small></div><div class="ltq"><b>${x.qty}</b><small>ชิ้น</small></div><div class="lta"><button type="button" class="ib2" title="กู้คืน" aria-label="กู้คืน" onclick="W(this,()=>restoreTr(${i}))">↩</button></div></div>`).join(''):'<div class="mut" style="padding:18px 0;text-align:center">ถังขยะว่าง</div>'}
