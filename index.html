@@ -4,7 +4,7 @@
 <meta charset="utf-8"><link rel="preload" as="image" href="Logo.gif">
 <meta name="theme-color" content="#fff0f6">
 <meta name="description" content="ตรวจและจัดการสต็อกวันหมดอายุ สแกนบาร์โค้ด แจ้งเตือนสินค้าใกล้หมด แยกตามสาขา">
-<meta name="application-name" content="สต็อกวันหมดอายุ"><meta name="apple-mobile-web-app-title" content="สต็อกวันหมดอายุ">
+<meta name="application-name" content="สต็อกวันหมดอายุ"><meta name="apple-mobile-web-app-title" content="ระบบจัดการสินค้าหมดอายุ">
 <meta property="og:type" content="website"><meta property="og:site_name" content="สต็อกวันหมดอายุ"><meta property="og:locale" content="th_TH">
 <meta property="og:title" content="สต็อกวันหมดอายุ"><meta property="og:description" content="สแกนบาร์โค้ด เช็กวันหมดอายุ แยกตามสาขา">
 <meta property="og:url" content="https://phak37301-collab.github.io/All-EXP/"><meta property="og:image" content="https://phak37301-collab.github.io/All-EXP/og.png?v=2"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -1468,6 +1468,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 .xcl{pointer-events:auto;position:absolute;right:0;top:-6px;width:40px;height:40px;border:0;border-radius:50%;background:#ef4444;color:#fff;font:700 20px/1 sans-serif;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px #ef444466;padding:0}
 .xcl:hover,.xr:hover{background:#dc2626!important}.xcl:active,.xr:active{transform:scale(.92)}
 .xcw+*{padding-right:50px}.xcw+b{display:block}.xcw+b+.mut{padding-right:50px}
+#lg .xcw+*{padding-right:0}#lgA h3,#lgA h3+.mut{padding-right:50px}
 .ib.xr{background:#ef4444!important;color:#fff!important;font-weight:700;box-shadow:0 3px 10px #ef444455}
 #sales .sxpg{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0}#sales .sxpg span{font-size:13px;text-align:center}#sales .sxpg button:disabled{opacity:.4}
 
@@ -1653,7 +1654,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 <dialog id="trD"><div class="xcw"><button type="button" class="xcl" onclick="$('trD').close()" aria-label="ปิด">✕</button></div><b style="font-size:18px">🗑 ถังขยะ</b><div class="mut" style="margin:2px 0 10px">รายการที่ลบล่าสุดของสาขานี้ · กด ↩ เพื่อใส่กลับในชีต</div><div id="trL" style="display:grid;gap:8px;max-height:52vh;overflow:auto"></div></dialog>
 <dialog id="ed"><div class="xcw"><button type="button" class="xcl" onclick="ed.close()" aria-label="ปิด">✕</button></div><b id="edN"></b><label>จำนวน</label><input id="edQ" type="number" inputmode="numeric"><label>วันหมดอายุ</label><input id="edD" type="date"><label>สถานะเคลม</label><div class="chips" id="edC"></div>
  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="ed.close()">ยกเลิก</button><button class="btn" onclick="W(this,saveEdit)">บันทึกการแก้ไข</button></div></dialog>
-<dialog id="lg" class="lgd"><div class="in">
+<dialog id="lg" class="lgd"><div class="in"><div class="xcw"><button type="button" class="xcl" onclick="$('lg').close()" aria-label="ปิด">✕</button></div>
  <div id="lgA"><h3 style="margin:0 0 4px;font-size:21px">เลือกสาขา</h3><div class="mut" style="margin-bottom:14px">แตะสาขาที่ต้องการใช้งาน</div><div id="brL" class="brl2"></div><button class="btn alt big" style="margin-top:14px" onclick="$('lg').close();go('set')">ตั้งค่าแอดมิน</button></div>
  <div id="lgB" class="hide"><button class="chipb" onclick="pinBack()">← เปลี่ยนสาขา</button><h3 id="pinN" style="margin:14px 0 2px;font-size:21px;text-align:center"></h3><div class="mut" id="pinH" style="text-align:center">ใส่รหัส 4 หลัก</div>
   <div id="pinP"><div class="pdots" id="pdots"><i></i><i></i><i></i><i></i></div><div id="pinE" style="min-height:22px;color:#c8102e;text-align:center;font-size:14px"></div><div class="pad" id="pad"></div></div>
