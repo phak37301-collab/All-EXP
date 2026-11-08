@@ -1415,6 +1415,65 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .sxlg2{margin:6px 0 0}#sales .sxlg2 i{margin-right:5px}
 #sales .sxsub{margin:12px 0 2px;font-weight:600;font-size:14px;color:var(--ink)}
 @media(max-width:520px){#sales .sxg b{font-size:16px}#sales .sxv{min-width:38px}}
+/* ===== v2: แถบขั้นตอน · กราฟแนวตั้ง · แถวประวัติขาย ===== */
+#sales .fwrap{margin-bottom:14px}
+#sales .fws3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#sales .fws{display:flex;gap:10px;align-items:center;text-align:left;border:1.5px solid var(--ln);background:var(--card);border-radius:16px;padding:10px 12px;cursor:pointer;font:inherit;color:var(--ink);min-width:0}
+#sales .fws i{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:14px;background:var(--tint);color:var(--ac)}
+#sales .fws.done i{background:#22c55e;color:#fff}#sales .fws.warn i{background:#f59e0b;color:#fff}#sales .fws.bad i{background:#ef4444;color:#fff}
+#sales .fws b{display:block;font-size:14px}#sales .fws small{display:block;color:var(--mut);font-size:12px;line-height:1.3}
+#sales .fws.on{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 14%,transparent)}
+#sales .fwb{display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;border-radius:16px;background:var(--tint)}
+#sales .fwb.warn{background:#fef3c7;color:#78350f}#sales .fwb.bad{background:#fee2e2;color:#7f1d1d}#sales .fwb.ok{background:#dcfce7;color:#14532d}
+#sales .fwb>div{flex:1;min-width:0}#sales .fwb b{display:block}#sales .fwb small{display:block;opacity:.85;font-size:12.5px;line-height:1.4}#sales .fwi{font-size:22px}
+#sales .fwb .btn.mini{flex:none}
+@media(max-width:640px){#sales .fws{flex-direction:column;text-align:center;gap:4px;padding:8px 4px}#sales .fws small{display:none}}
+#sales .bsb{height:8px;border-radius:99px;background:var(--tint);overflow:hidden;margin:6px 0 4px}#sales .bsb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+#sales .hsh{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr);gap:12px;margin-bottom:14px}
+#sales .hq{border-radius:20px;padding:16px 18px;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 12px 26px color-mix(in srgb,var(--ac) 30%,transparent)}
+#sales .hq i{display:block;font-style:normal;font-size:13px;opacity:.92}#sales .hq b{display:block;font-size:48px;line-height:1.05;font-weight:800}#sales .hq small{opacity:.95;font-size:12.5px}
+#sales .hk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#sales .hk>div{background:var(--card);border-radius:18px;box-shadow:var(--sh);padding:12px 6px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+#sales .hk b{font-size:22px;font-weight:700;overflow-wrap:anywhere}#sales .hk i{font-style:normal;font-size:11.5px;color:var(--mut);margin-top:2px}
+@media(max-width:640px){#sales .hsh{grid-template-columns:1fr}#sales .hq b{font-size:40px}#sales .hk b{font-size:18px}}
+#sales .vcol{display:flex;gap:4px;align-items:flex-end;overflow-x:auto;padding:4px 2px 2px}
+#sales .vcol button{flex:1 0 26px;max-width:56px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;cursor:pointer;padding:4px 0;border-radius:10px;color:var(--mut);font:inherit}
+#sales .vcol em{font-style:normal;font-size:11px;font-weight:700;color:var(--ink);min-height:14px}
+#sales .vcol i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:6px 6px 2px 2px;background:color-mix(in srgb,var(--ac) 38%,#fff)}
+#sales .vcol button.on{background:color-mix(in srgb,var(--ac) 12%,transparent)}#sales .vcol button.on i{background:linear-gradient(180deg,var(--ac2),var(--ac))}
+#sales .vcol button:disabled{cursor:default}#sales .vcol button:disabled i{background:var(--ln)}
+#sales .vcol span{font-size:12px;line-height:1.15;text-align:center;font-weight:600}#sales .vcol span small{display:block;font-size:9.5px;font-weight:400;opacity:.75}
+#sales .hr{display:grid;grid-template-columns:30px minmax(0,1.3fr) minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 10px;margin:0 -10px;border-radius:14px;border-bottom:1px solid var(--ln);background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 10%,transparent) var(--w),transparent var(--w))}
+#sales .hr:last-child{border-bottom:0}
+#sales .hm{min-width:0}#sales .hsp{display:flex;gap:2px;align-items:flex-end;height:34px}
+#sales .hsp u{flex:1;min-width:2px;max-width:9px;height:calc(var(--h)*1%);min-height:2px;text-decoration:none;background:color-mix(in srgb,var(--ac) 32%,#fff);border-radius:2px 2px 0 0}
+#sales .hsp u.on{background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .hsp u.z{background:var(--ln)}
+#sales .hm small{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}#sales .hm small b{color:var(--ink)}
+#sales .hq2{min-width:72px;text-align:center;background:var(--card);border:1.5px solid color-mix(in srgb,var(--ac) 28%,#fff);border-radius:16px;padding:6px 10px;box-shadow:0 4px 12px color-mix(in srgb,var(--ac) 14%,transparent)}
+#sales .hq2 b{display:block;font-size:26px;line-height:1.1;font-weight:800;color:var(--ac)}#sales .hq2 i{font-style:normal;font-size:11px;color:var(--mut)}
+#sales .hr.t1 .hq2{background:linear-gradient(135deg,#fde68a,#fbbf24);border-color:transparent}#sales .hr.t1 .hq2 b,#sales .hr.t1 .hq2 i{color:#78350f}
+#sales .hr.t2 .hq2{background:linear-gradient(135deg,#f1f5f9,#cbd5e1);border-color:transparent}#sales .hr.t2 .hq2 b,#sales .hr.t2 .hq2 i{color:#334155}
+#sales .hr.t3 .hq2{background:linear-gradient(135deg,#fed7aa,#fdba74);border-color:transparent}#sales .hr.t3 .hq2 b,#sales .hr.t3 .hq2 i{color:#7c2d12}
+#sales .hr .sxrk{font-size:18px}
+@media(max-width:640px){#sales .hr{grid-template-columns:26px minmax(0,1fr) auto;gap:8px 10px}#sales .hm{grid-column:2/4;order:5}}
+#sales .cg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:center;margin:6px 0 10px}
+@media(max-width:640px){#sales .cg{grid-template-columns:1fr}}
+#sales .dn{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap}
+#sales .dnr{flex:none;width:124px;height:124px;border-radius:50%;display:grid;place-items:center}
+#sales .dnr>div{width:86px;height:86px;border-radius:50%;background:var(--card);display:grid;place-content:center;text-align:center;line-height:1.1}
+#sales .dnr b{font-size:26px;font-weight:800}#sales .dnr small{font-size:11px;color:var(--mut)}
+#sales .dnl{display:grid;gap:6px;font-size:13px;color:var(--mut)}#sales .dnl i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}#sales .dnl b{color:var(--ink)}
+#sales .tc{display:flex;gap:18px;justify-content:center;align-items:flex-end;height:176px}
+#sales .tc>div{flex:1;max-width:96px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+#sales .tc em{font-style:normal;font-weight:800;font-size:16px}#sales .tc i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .tc i.s{background:#0d9488}
+#sales .tc span{font-size:12.5px;color:var(--mut);font-weight:600}
+#sales .vgs{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 4px}
+#sales .vg{flex:1 0 88px;max-width:150px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 4px;border-radius:14px;background:var(--tint)}
+#sales .vb{display:flex;gap:6px;align-items:flex-end;height:152px;width:100%;justify-content:center}
+#sales .vb>div{flex:1;max-width:36px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:2px}
+#sales .vb em{font-style:normal;font-size:11px;font-weight:700}#sales .vb i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .vb i.s{background:#0d9488}
+#sales .vg>b{font-size:12px;font-weight:600;line-height:1.25;text-align:center;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;width:100%}
+
 </style>
 </head>
 <body>
@@ -2174,11 +2233,30 @@ function exportInfo(f){const m=f.name.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})
 
 /* ---------- โครงหน้า ---------- */
 function tabsH(){return[['imp','📥 นำเข้า'],['his','📅 ประวัติขาย'],['cmp','📊 สรุป & เทียบ SAP']].map(([k,t])=>`<button class="tab ${SX.tab==k?'on':''}" onclick="sxTab('${k}')">${t}</button>`).join('')}
+/* ---------- แถบสถานะ: ตอนนี้อยู่ขั้นไหน · ต้องทำอะไรต่อ ---------- */
+function flowStat(){const L=SX.list,S0=SX.sap,b=L&&L.batches&&L.batches[0],has=!!(S0&&S0.meta),pl=S0?pendList():[],pu=r3(pl.reduce((a,x)=>a+x.p,0));
+ let ok=0,bad=0;if(has){const A=cmpData();ok=A.filter(x=>x.c=='ok').length;bad=A.filter(x=>x.c=='hi'||x.c=='lo').length}
+ return{L,S0,b,has,pl,pu,ok,bad,tr:ok+bad}}
+function flowH(){const f=flowStat(),T=SX.tab;
+ const st=(n,t,s,c,fn,on)=>`<button class="fws ${c} ${on?'on':''}" onclick="${fn}"><i>${c=='done'?'✓':n}</i><span><b>${t}</b><small>${s}</small></span></button>`;
+ const s1=!f.L?st(1,'นำเข้ายอดขาย','กำลังโหลด…','todo',"sxTab('imp')",T=='imp'):f.b?st(1,'นำเข้ายอดขาย',`ล่าสุด ${ds(f.b.to)} · ${f.b.n} รายการ`,'done',"sxTab('imp')",T=='imp'):st(1,'นำเข้ายอดขาย','ยังไม่เคยนำเข้า','todo',"sxTab('imp')",T=='imp');
+ const s2=!f.S0?st(2,'ตัดสต็อก','กำลังโหลด…','todo',"sxTab('cmp')",T=='cmp'):f.pl.length?st(2,'ตัดสต็อก',`⏳ รอตัด ${f.pl.length} รายการ`,'warn',"sxTab('cmp')",T=='cmp'):st(2,'ตัดสต็อก','ไม่มีรายการรอตัด','done',"sxTab('cmp')",T=='cmp');
+ const s3=!f.S0?st(3,'เทียบ SAP','กำลังโหลด…','todo',"sxTab('cmp')",0):!f.has?st(3,'เทียบ SAP','ยังไม่มียอด SAP','todo',"sxTab('imp')",0):f.bad?st(3,'เทียบ SAP',`ไม่ตรง ${f.bad} · ตรง ${f.tr?Math.round(f.ok/f.tr*100):0}%`,'bad',"SX.cf='bad';sxTab('cmp')",0):st(3,'เทียบ SAP','ตรงทุกรายการ','done',"sxTab('cmp')",0);
+ const ban=(k,ic,t,s,bt,fn)=>`<div class="fwb ${k}"><span class="fwi">${ic}</span><div><b>${t}</b><small>${s}</small></div>${bt?`<button class="btn mini" onclick="${fn}">${bt}</button>`:''}</div>`;
+ let nx='';
+ if(f.L&&f.S0){
+  if(!f.has)nx=ban('info','🧾','ยังไม่มียอด SAP ของสาขานี้','อัปโหลดไฟล์ SAP เพื่อเทียบกับสต็อกในเว็บ','ไปอัปโหลด',"sxTab('imp')");
+  else if(f.pl.length)nx=ban('warn','⏳',`ต้องทำต่อ: ตัดสต็อก ${f.pl.length} รายการ (${nf(f.pu)} ชิ้น)`,'บันทึกยอดขายแล้วแต่ยังไม่หักสต็อกในเว็บ · เทียบ SAP ได้เลยโดยระบบหักยอดรอตัดให้แล้ว','ไปตัดสต็อก',"sxTab('cmp')");
+  else if(f.bad)nx=ban('bad','⚠️',`ยังไม่ตรงกับ SAP ${f.bad} รายการ`,`ตรงแล้ว ${f.tr?Math.round(f.ok/f.tr*100):0}% · ดูรายการที่ต่างมากสุดแล้วกด “ปรับ”`,'ดูรายการ',"SX.cf='bad';sxTab('cmp')");
+  else nx=ban('ok','✅','เรียบร้อย ไม่มีอะไรค้าง','ไม่มียอดรอตัด และตรงกับ SAP ทุกรายการ','','')}
+ return `<div class="fwrap"><div class="fws3">${s1}${s2}${s3}</div>${nx}</div>`}
 function draw(){const a=$('sxTabs'),b=$('sxBody');if(!a)return;a.innerHTML=tabsH();
- b.innerHTML=SX.tab=='imp'?impH():SX.tab=='his'?hisH():cmpH()}
+ b.innerHTML=flowH()+(SX.tab=='imp'?impH():SX.tab=='his'?hisH():cmpH())}
 window.sxOpen=()=>{if(SX.br!=BR){Object.assign(SX,{br:BR,list:null,sap:null,plan:null,rows:null,done:null,sapRows:null,month:'',day:'',items:null,sel:{},pdes:{},pq:'',pf:'all',loading:0})}sxTab(SX.tab)};
 window.sxTab=async k=>{SX.tab=k;draw();
  try{if(k=='his')await loadHis(SX.month);else if(k=='cmp')await loadSap();else{await Promise.all([loadHis(SX.month,1),loadSap(1)])}}catch(e){toast(e.message)}
+ if(SX.tab==k)draw();
+ try{if(k=='his'&&!SX.sap)await loadSap(1);else if(k=='cmp'&&!SX.list)await loadHis(SX.month,1)}catch(e){}
  if(SX.tab==k)draw()}
 async function loadHis(m,q){const r=await api(q?{action:'salesList',month:m||'',_q:1}:{action:'salesList',month:m||''});SX.list=r;SX.month=r.month;
  const ds2=[...new Set(r.rows.map(a=>a[0]))].sort();if(!SX.day||SX.day.slice(0,7)!=r.month||ds2.indexOf(SX.day)<0)SX.day=ds2[ds2.length-1]||''}
@@ -2223,7 +2301,8 @@ function planH(){const P=SX.plan;if(SX.done)return doneH();if(!P)return SX.loadi
  if(dup.length||less.length)h+=`<details class="sxd2"><summary>↩️ ข้าม <b>${dup.length+less.length}</b> รายการ (เคยนำเข้าแล้ว)</summary><div class="mut" style="margin-top:6px">${dup.length?`ซ้ำเท่าเดิม ${dup.length} รายการ`:''}${dup.length&&less.length?' · ':''}${less.length?`ยอดน้อยกว่าที่เคยนำเข้า ${less.length} รายการ (ไม่ย้อนแก้อัตโนมัติ)`:''}</div></details>`;
  return h}
 function plRefresh(){const a=$('sxPlS'),b=$('sxPlB');if(a)a.innerHTML=plSum();if(b)b.innerHTML=goBtn()}
-function doneH(){const s=SX.done;return `<div class="sxb ok">✅ บันทึกยอดขายแล้ว <b>${s.rows}</b> รายการ · ${nf(s.units)} ชิ้น<br>⏳ รอตัดสต็อก <b>${s.pend}</b> รายการ${s.notWeb?` · 🧦 ไม่อยู่ในเว็บ ${s.notWeb}`:''}${s.skipped?` · ไม่ได้เลือก ${s.skipped}`:''}</div><button class="btn big" onclick="sxTab('cmp')">ไปหน้าสรุป — ตัดสต็อก / เทียบ SAP →</button>`}
+function doneH(){const s=SX.done,pn=SX.sap?pendList().length:s.pend;
+ return `<div class="sxb ok">✅ บันทึกยอดขายแล้ว <b>${s.rows}</b> รายการ · <b>${nf(s.units)}</b> ชิ้น<br>${pn?`⏳ ยังรอตัดสต็อก <b>${pn}</b> รายการ`:'✅ ไม่มีรายการรอตัดสต็อกแล้ว'}${s.notWeb?` · 🧦 ไม่อยู่ในเว็บ ${s.notWeb}`:''}${s.skipped?` · ไม่ได้เลือก ${s.skipped}`:''}</div><button class="btn big" onclick="sxTab('cmp')">${pn?'ไปหน้าสรุป — ตัดสต็อก / เทียบ SAP →':'ไปหน้าสรุป — เทียบ SAP →'}</button>`}
 window.sxPickSales=async inp=>{const f=inp.files[0];if(!f)return;SX.done=null;SX.plan=null;SX.items=null;SX.fname=f.name;SX.loading=1;$('sxPlan').innerHTML=planH();
  try{SX.rows=parseSales(await f.text());await dry();SX.items=SX.plan.items.filter(x=>!x.st);SX.sel={};SX.items.forEach(x=>SX.sel[skey(x)]=1);SX.pf='all';SX.pq=''}catch(e){SX.rows=null;SX.plan=null;toast(e.message)}
  SX.loading=0;$('sxPlan').innerHTML=planH()}
@@ -2251,30 +2330,46 @@ window.sxUpSap=b=>W(b,async()=>{const M=SX.sapMeta;if(!/^\d{4}-\d{2}-\d{2}$/.tes
  await api({action:'sapImport',rows:SX.sapRows,asOf:M.asOf,exportAt:M.exportAt,file:M.file});
  SX.sapRows=null;try{$('sxS').value=''}catch(e){}toast('อัปโหลด SAP แล้ว');SX.tab='cmp';await loadSap();draw()})
 function batchH(){const B=SX.list&&SX.list.batches||[];if(!B.length)return'';
- return `<div class="card"><h3>🕘 การนำเข้าล่าสุด</h3>${B.map(x=>`<div class="sxr"><div class="sxn"><b>${ds(x.from)}${x.to!=x.from?' – '+ds(x.to):''}</b><small>${x.n} รายการ · ขาย ${nf(x.q)} · ตัดจริง ${nf(x.dd)} ชิ้น${x.pend?` · ⏳ รอตัด ${x.pend}`:''}${x.who?' · '+esc(x.who):''}</small></div><button class="btn del mini" onclick="sxUndo('${esc(x.batch)}')">🗑 ลบชุดนี้</button></div>`).join('')}<div class="mut" style="margin-top:8px">ยกเลิก = คืนจำนวนกลับล็อตเดิม (ล็อตที่หมดไปจะสร้างกลับให้)</div></div>`}
+ return `<div class="card"><h3>🕘 การนำเข้าล่าสุด</h3>${B.map(x=>{const cut=x.q?Math.min(100,x.dd/x.q*100):0,rest=r3(x.q-x.dd);
+  return `<div class="sxr"><div class="sxn"><b>${ds(x.from)}${x.to!=x.from?' – '+ds(x.to):''}</b><small>${x.n} รายการ${x.who?' · '+esc(x.who):''}</small>
+  <div class="bsb" title="ตัดสต็อกจริง ${nf(x.dd)} จากขาย ${nf(x.q)}"><i style="width:${cut}%"></i></div>
+  <small>ขาย <b>${nf(x.q)}</b> ชิ้น · ตัดสต็อกจริง <b>${nf(x.dd)}</b>${x.pend?` · ⏳ รอตัด ${x.pend} รายการ`:rest>0?` · ส่วนที่เหลือ ${nf(rest)} = ขายเกินสต็อกเว็บ หรือปรับตาม SAP แล้ว`:''}</small></div><button class="btn del mini" onclick="sxUndo('${esc(x.batch)}')">🗑 ลบชุดนี้</button></div>`}).join('')}<div class="mut" style="margin-top:8px">ยกเลิก = คืนจำนวนกลับล็อตเดิม (ล็อตที่หมดไปจะสร้างกลับให้)</div></div>`}
 window.sxUndo=async b=>{const v=await ask({t:'ยกเลิกชุดนำเข้านี้?',b:'คืนจำนวนที่ตัดไปกลับเข้าล็อตเดิม และลบประวัติขายของชุดนี้ออก',ok:'ยกเลิกชุดนี้',danger:1});if(v!='ok')return;
  try{const r=await api({action:'salesUndo',batch:b});toast('ยกเลิกแล้ว คืนสต็อก '+nf(r.back)+' ชิ้น');await load();await loadHis(SX.month,1);draw()}catch(e){toast(e.message)}}
 
 /* ---------- 2) ประวัติขาย ---------- */
+const wd=d=>['อา','จ','อ','พ','พฤ','ศ','ส'][new Date(d+'T00:00:00').getDay()];
+const ld=d=>{if(!d)return'';const s=String(d),y=+s.slice(0,4);return y>2400?(y-543)+s.slice(4):s}; // กันปีซ้อน พ.ศ.+543
+function colsH(rng,T,sel,fn){const mx=Math.max(1,...rng.map(d=>T[d]||0));
+ return `<div class="vcol">${rng.map(d=>{const v=T[d]||0;return `<button ${v?'':'disabled'} class="${d==sel?'on':''}" onclick="${fn}('${d}')" title="${ds(d)} · ${nf(v)} ชิ้น"><em>${v?nf(v):''}</em><i style="--h:${v?Math.max(4,Math.round(v/mx*104)):2}"></i><span>${+d.slice(8)}<small>${wd(d)}</small></span></button>`}).join('')}</div>`}
+const chipsOf=x=>x.lots.map(l=>`<span class="sxc ${l.l<=0?'z':''}">${l.d?ds(l.d):'ไม่ระบุวันหมดอายุ'} ${l.l<=0?'🏁 หมดล็อต':'เหลือ '+l.l}</span>`).join('')+(x.s=='รอตัด'?'<span class="sxc p">⏳ รอตัด</span>':x.s=='ปรับตาม SAP'?'<span class="sxc">↔ ปรับตาม SAP</span>':/ไม่อยู่ในเว็บ/.test(x.note)?'<span class="sxc">ไม่อยู่ในเว็บ</span>':/ขายเกิน/.test(x.note)?`<span class="sxc w">${esc(x.note)}</span>`:/ไม่ตัด/.test(x.note)?'<span class="sxc">ไม่ตัดสต็อก</span>':'');
+function hrow(o){const s=o.ser||{},rng=o.rng,smx=Math.max(1,...rng.map(d=>s[d]||0)),tot=r3(rng.reduce((a,d)=>a+(s[d]||0),0)),nd=rng.filter(d=>s[d]).length,
+ spark=rng.map(d=>`<u class="${s[d]?(d==o.sel?'on':''):'z'}" title="${ds(d)} · ${nf(s[d]||0)}" style="--h:${s[d]?Math.max(14,s[d]/smx*100):0}"></u>`).join(''),md=['🥇','🥈','🥉'][o.i];
+ return `<div class="hr ${o.i<3?'t'+(o.i+1):''}" style="--w:${Math.max(3,o.q/o.mx*100)}%"><span class="sxrk">${md||o.i+1}</span><div class="sxn"><b>${esc(o.n)}</b><small>${esc(o.b)}${o.sub?' · '+o.sub:''}</small>${o.chips?`<div class="sxcs">${o.chips}</div>`:''}</div><div class="hm"><div class="hsp">${spark}</div><small>${o.noTot?'':`เดือนนี้ <b>${nf(tot)}</b> ชิ้น · `}ขาย <b>${nd}</b> วัน</small></div><div class="hq2"><b>${nf(o.q)}</b><i>ชิ้น</i></div></div>`}
 function hisH(){const L=SX.list;if(!L)return'<div class="card mut">กำลังโหลด…</div>';
  if(!L.months.length)return'<div class="card mut">ยังไม่มีประวัติยอดขาย · ไปที่แท็บ “นำเข้า” เพื่อนำเข้าไฟล์ยอดขาย</div>';
- const q=SX.hq.trim().toLowerCase(),rows=L.rows.map(a=>({d:a[0],b:a[1],n:a[2],q:a[3],p:a[4],t:a[5],dd:a[6],lots:jp(a[7]),note:a[9],s:a[10]})).filter(x=>!q||(x.n+' '+x.b).toLowerCase().includes(q));
+ const q=SX.hq.trim().toLowerCase(),all=L.rows.map(a=>({d:a[0],b:a[1],n:a[2],q:a[3],p:a[4],t:a[5],dd:a[6],lots:jp(a[7]).map(l=>({...l,d:ld(l.d)})),note:a[9]||'',s:a[10]})),
+  rows=all.filter(x=>!q||(x.n+' '+x.b).toLowerCase().includes(q)),dT={},ser={};
+ all.forEach(x=>{dT[x.d]=r3((dT[x.d]||0)+x.q);const o=ser[x.b]||(ser[x.b]={});o[x.d]=r3((o[x.d]||0)+x.q)});
+ const dk=Object.keys(dT).sort(),last=dk.length?+dk[dk.length-1].slice(8):0,rng=[];for(let i=1;i<=last;i++)rng.push(L.month+'-'+pad(i));
+ const totQ=r3(dk.reduce((a,d)=>a+dT[d],0)),avg=dk.length?totQ/dk.length:0,sq=r3(rows.reduce((a,x)=>a+x.q,0)),sm=rows.reduce((a,x)=>a+x.t,0);
  let h=`<div class="row" style="margin-bottom:10px"><select onchange="sxMonth(this.value)">${L.months.map(m=>`<option value="${m.m}" ${m.m==L.month?'selected':''}>${mLabel(m.m)}</option>`).join('')}</select><button class="btn alt fit" onclick="sxCsv()">CSV</button></div>
  <div class="tabs"><button class="tab ${SX.mode=='day'?'on':''}" onclick="sxMode('day')">รายวัน</button><button class="tab ${SX.mode=='mon'?'on':''}" onclick="sxMode('mon')">รายเดือน</button></div>
- <div class="srch" style="margin-bottom:10px"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด" value="${esc(SX.hq)}" oninput="sxHq(this.value)"></div>`;
- const kp=(a)=>`<div class="sxg g3"><div><b>${nf(a.reduce((s,x)=>s+x.q,0))}</b><i>ชิ้น</i></div><div><b>${new Set(a.map(x=>x.b)).size}</b><i>สินค้า</i></div><div><b>${new Set(a.map(x=>x.d)).size}</b><i>วัน</i></div></div>`;
- if(SX.mode=='day'){const days=[...new Set(L.rows.map(a=>a[0]))].sort().reverse(),tt={};L.rows.forEach(a=>tt[a[0]]=(tt[a[0]]||0)+a[5]);
-  const cur=rows.filter(x=>x.d==SX.day).sort((a,b)=>b.q-a.q);
-  h+=`<div class="tabs">${days.map(d=>`<button class="tab ${d==SX.day?'on':''}" onclick="sxDay('${d}')">${+d.slice(8)}<small> ${nf(tt[d])}</small></button>`).join('')}</div>${kp(cur)}<div class="card">${cur.length?cur.map(itemH).join(''):'<div class="mut">ไม่มีรายการ</div>'}</div>`}
- else{const days={},it={};rows.forEach(x=>{days[x.d]=(days[x.d]||0)+x.q;const o=it[x.b]||(it[x.b]={b:x.b,n:x.n,q:0,t:0,d:new Set(),nw:0});o.q+=x.q;o.t+=x.t;o.d.add(x.d);if(/ไม่อยู่ในเว็บ/.test(x.note))o.nw=1});
-  const dk=Object.keys(days).sort(),mx=Math.max(1,...dk.map(d=>days[d])),so=[];rows.forEach(x=>x.lots.forEach(l=>{if(l.l<=0)so.push({n:x.n,day:x.d,d:l.d})}));
-  h+=kp(rows)+`<div class="card"><h3>ยอดขายรายวัน</h3><div class="sxbar">${dk.map(d=>`<button style="--h:${Math.max(4,days[d]/mx*100)}%" onclick="sxDay('${d}');sxMode('day')" title="${ds(d)} · ${nf(days[d])} ชิ้น"><i></i><span>${+d.slice(8)}</span></button>`).join('')}</div></div>
-  <div class="card"><h3>สินค้าขายดี</h3>${Object.values(it).sort((a,b)=>b.q-a.q).slice(0,100).map((x,i)=>`<div class="sxr"><span class="sxrk">${i+1}</span><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)} · ขาย ${x.d.size} วัน${x.nw?' · <span class="sxc">ไม่อยู่ในเว็บ</span>':''}</small></div><div class="sxv"><i>ชิ้น</i><b>${nf(x.q)}</b></div></div>`).join('')||'<div class="mut">ไม่มีรายการ</div>'}</div>`;
+ <div class="srch" style="margin-bottom:12px"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด" value="${esc(SX.hq)}" oninput="sxHq(this.value)"></div>`;
+ if(SX.mode=='day'){const cur=rows.filter(x=>x.d==SX.day).sort((a,b)=>b.q-a.q),cq=r3(cur.reduce((a,x)=>a+x.q,0)),cm=cur.reduce((a,x)=>a+x.t,0),pn=cur.filter(x=>x.s=='รอตัด').length,mx=Math.max(1,...cur.map(x=>x.q)),dv=avg?Math.round(((dT[SX.day]||0)-avg)/avg*100):0;
+  h+=`<div class="hsh"><div class="hq"><i>ขายวัน${SX.day?wd(SX.day):''}ที่ ${ds(SX.day)}${q?' · เฉพาะที่ค้นหา':''}</i><b>${nf(cq)}</b><small>ชิ้น${!q&&dk.length>1?` · ${dv>=0?'▲':'▼'} ${Math.abs(dv)}% เทียบค่าเฉลี่ย ${nf(Math.round(avg))}/วัน`:''}</small></div>
+   <div class="hk"><div><b>${cur.length}</b><i>รายการสินค้า</i></div><div><b>${mny(cm)}</b><i>ยอดเงิน</i></div><div><b ${pn?'style="color:#d97706"':''}>${pn}</b><i>รอตัดสต็อก</i></div></div></div>
+   <div class="card"><h3>📊 ยอดขายรายวัน · ${mLabel(L.month)} <small class="mut">แตะแท่งเพื่อดูรายวัน</small></h3>${colsH(rng,dT,SX.day,'sxDay')}</div>
+   <div class="card"><h3>🛍️ สินค้าที่ขาย <small class="mut">${cur.length} รายการ · เรียงจากขายมากสุด</small></h3>${cur.length?cur.map((x,i)=>hrow({i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:SX.day,chips:chipsOf(x)})).join(''):'<div class="mut">ไม่มีรายการ</div>'}</div>`}
+ else{const it={},so=[];rows.forEach(x=>{const o=it[x.b]||(it[x.b]={b:x.b,n:x.n,q:0,d:new Set(),nw:0});o.q=r3(o.q+x.q);o.d.add(x.d);if(/ไม่อยู่ในเว็บ/.test(x.note))o.nw=1;x.lots.forEach(l=>{if(l.l<=0)so.push({n:x.n,day:x.d,d:l.d})})});
+  const top=Object.values(it).sort((a,b)=>b.q-a.q).slice(0,100),mx=Math.max(1,...top.map(x=>x.q)),bd=dk.reduce((a,d)=>dT[d]>dT[a]?d:a,dk[0]);
+  h+=`<div class="hsh"><div class="hq"><i>ยอดขายรวม ${mLabel(L.month)}${q?' · เฉพาะที่ค้นหา':''}</i><b>${nf(sq)}</b><small>ชิ้น · เฉลี่ย ${nf(Math.round(avg))}/วัน · ขาย ${dk.length} วัน</small></div>
+   <div class="hk"><div><b>${Object.keys(it).length}</b><i>สินค้า</i></div><div><b>${mny(sm)}</b><i>ยอดเงิน</i></div><div><b>${bd?+bd.slice(8):'-'}</b><i>วันขายดีสุด${bd?' · '+nf(dT[bd])+' ชิ้น':''}</i></div></div></div>
+   <div class="card"><h3>📊 ยอดขายรายวัน <small class="mut">แตะแท่งเพื่อดูรายละเอียดวันนั้น</small></h3>${colsH(rng,dT,'','sxPickDay')}</div>
+   <div class="card"><h3>🏆 สินค้าขายดี <small class="mut">เรียงตามจำนวนชิ้น</small></h3>${top.map((x,i)=>hrow({i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:'',noTot:1,chips:x.nw?'<span class="sxc">ไม่อยู่ในเว็บ</span>':''})).join('')||'<div class="mut">ไม่มีรายการ</div>'}</div>`;
   if(so.length)h+=`<div class="card"><h3>🏁 ล็อตที่ขายหมดในเดือนนี้ <small class="mut">${so.length} ล็อต</small></h3>${so.sort((a,b)=>b.day<a.day?-1:1).map(x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ล็อต ${x.d?ds(x.d):'ไม่ระบุวันหมดอายุ'} · หมดเมื่อ ${ds(x.day)}</small></div>`).join('')}</div>`}
  return h}
-function itemH(x){const lots=x.lots.map(l=>`<span class="sxc ${l.l<=0?'z':''}">${l.d?ds(l.d):'ไม่ระบุวันหมดอายุ'} ${l.l<=0?'🏁 หมดล็อต':'เหลือ '+l.l}</span>`).join(''),
- nt=x.s=='รอตัด'?'<span class="sxc p">⏳ รอตัด</span>':/ไม่อยู่ในเว็บ/.test(x.note)?'<span class="sxc">ไม่อยู่ในเว็บ</span>':/ขายเกิน/.test(x.note)?`<span class="sxc w">${esc(x.note)}</span>`:/ไม่ตัด/.test(x.note)?'<span class="sxc">ไม่ตัดสต็อก</span>':'';
- return `<div class="sxr"><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)}</small><div class="sxcs">${lots}${nt}</div></div><div class="sxv"><i>ขาย</i><b>${nf(x.q)}</b></div></div>`}
+window.sxPickDay=d=>{SX.day=d;SX.mode='day';draw()};
 window.sxMonth=async m=>{try{await loadHis(m)}catch(e){toast(e.message)}draw()};
 window.sxMode=m=>{SX.mode=m;draw()};window.sxDay=d=>{SX.day=d;draw()};
 window.sxHq=v=>{SX.hq=v;const p=document.activeElement,s=p&&p.selectionStart;draw();const i=document.querySelector('#sxBody .srch input');if(i){i.focus();try{i.setSelectionRange(s,s)}catch(e){}}};
@@ -2320,17 +2415,18 @@ window.sxApply1=async i=>{const x=SX.cmp[i];if(!x||!(x.p>0))return;
 
 /* ----- กราฟเทียบยอด เว็บ vs SAP ----- */
 function chartH(A){const T=A.filter(x=>x.c=='ok'||x.c=='hi'||x.c=='lo');if(!T.length)return'';
- const n=c=>T.filter(x=>x.c==c).length,N=T.length,tw=r3(T.reduce((a,x)=>a+x.wp,0)),ts=r3(T.reduce((a,x)=>a+x.exp,0)),mx=Math.max(1,tw,ts),hasP=T.some(x=>x.p>0);
- const seg=(c,col)=>n(c)?`<i style="flex:${n(c)};background:${col}"></i>`:'';
- const top=T.filter(x=>x.c!='ok').sort((a,b)=>Math.abs(b.diff)-Math.abs(a.diff)).slice(0,8),m2=Math.max(1,...top.map(x=>Math.max(x.wp,x.exp)));
- const bar=(v,m,c)=>`<div class="sxbt ${c}"><i style="--w:${Math.max(v>0?2:0,v/m*100)}%"></i></div>`;
- const pair=(w,s,m)=>`<div class="sxbp"><span>เว็บ</span>${bar(w,m,'')}<em>${nf(w)}</em></div><div class="sxbp"><span>SAP</span>${bar(s,m,'s')}<em>${nf(s)}</em></div>`;
- return `<div class="card"><h3>📊 กราฟเทียบยอด เว็บ vs SAP</h3>
+ const n=c=>T.filter(x=>x.c==c).length,N=T.length,tw=r3(T.reduce((a,x)=>a+x.wp,0)),ts=r3(T.reduce((a,x)=>a+x.exp,0)),mx=Math.max(1,tw,ts),hasP=T.some(x=>x.p>0),pct=Math.round(n('ok')/N*100),a=n('ok')/N*100,b=a+n('hi')/N*100;
+ const hi=T.filter(x=>x.c=='hi').sort((p,q)=>q.diff-p.diff),lo=T.filter(x=>x.c=='lo').sort((p,q)=>p.diff-q.diff);
+ const grp=(L,t,s)=>{if(!L.length)return'';const S=L.slice(0,6),m=Math.max(1,...S.map(x=>Math.max(x.wp,x.exp))),ht=v=>Math.max(v>0?4:0,Math.round(v/m*104));
+  return `<div class="sxsub">${t} <small class="mut">${L.length} รายการ · ${s}${L.length>6?' · แสดง 6 อันดับแรก':''}</small></div><div class="vgs">${S.map(x=>`<div class="vg"><span class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</span><div class="vb"><div><em>${nf(x.wp)}</em><i style="--h:${ht(x.wp)}"></i></div><div><em>${nf(x.exp)}</em><i class="s" style="--h:${ht(x.exp)}"></i></div></div><b title="${esc(x.n)}">${esc(x.n)}</b></div>`).join('')}</div>`};
+ return `<div class="card"><h3>📊 เทียบยอด เว็บ vs SAP</h3>
  <div class="sxlg"><span><i></i>เว็บ${hasP?' (หลังหักยอดรอตัด)':''}</span><span><i class="s"></i>SAP (ปรับวันที่แล้ว)</span></div>
- <div class="sxbr"><div class="l"><b>รวมทุกสินค้าที่ติดตาม</b><span class="mut">${N} รายการ</span></div>${pair(tw,ts,mx)}</div>
- <div class="sxbr"><div class="l"><b>สัดส่วนที่ตรง / ไม่ตรง</b><span class="mut">${Math.round(n('ok')/N*100)}% ตรง</span></div><div class="sxst">${seg('ok','#22c55e')}${seg('hi','#ef4444')}${seg('lo','#f59e0b')}</div>
- <div class="sxlg2"><span><i style="background:#22c55e"></i>ตรง ${n('ok')}</span><span><i style="background:#ef4444"></i>เว็บมากกว่า ${n('hi')}</span><span><i style="background:#f59e0b"></i>เว็บน้อยกว่า ${n('lo')}</span></div></div>
- ${top.length?`<div class="sxsub">${top.length} รายการที่ต่างมากที่สุด</div>`+top.map(x=>`<div class="sxbr"><div class="l"><b>${esc(x.n)}</b><span class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</span></div>${pair(x.wp,x.exp,m2)}</div>`).join(''):'<div class="sxb ok">🎉 ทุกรายการตรงกับ SAP</div>'}</div>`}
+ <div class="cg"><div class="dn"><div class="dnr" style="background:conic-gradient(#22c55e 0 ${a}%,#ef4444 ${a}% ${b}%,#f59e0b ${b}% 100%)"><div><b>${pct}%</b><small>ตรง SAP</small></div></div>
+  <div class="dnl"><span><i style="background:#22c55e"></i>ตรง <b>${n('ok')}</b></span><span><i style="background:#ef4444"></i>เว็บมากกว่า <b>${n('hi')}</b></span><span><i style="background:#f59e0b"></i>เว็บน้อยกว่า <b>${n('lo')}</b></span></div></div>
+  <div><div class="tc"><div><em>${nf(tw)}</em><i style="--h:${Math.max(4,Math.round(tw/mx*120))}"></i><span>เว็บ</span></div><div><em>${nf(ts)}</em><i class="s" style="--h:${Math.max(4,Math.round(ts/mx*120))}"></i><span>SAP</span></div></div>
+  <div class="mut" style="text-align:center;font-size:12.5px;margin-top:6px">รวม ${N} รายการที่ติดตาม · ต่างกัน ${nf(r3(Math.abs(tw-ts)))} ชิ้น</div></div></div>
+ ${grp(hi,'🔴 เว็บมากกว่า SAP','ปรับ = ลดยอดในเว็บ')}${grp(lo,'🟠 เว็บน้อยกว่า SAP','ปรับ = เพิ่มล็อต “ไม่ระบุวันหมดอายุ”')}
+ ${hi.length+lo.length?'':'<div class="sxb ok">🎉 ทุกรายการตรงกับ SAP</div>'}</div>`}
 
 function cmpH(){const S0=SX.sap;if(!S0)return'<div class="card mut">กำลังโหลด…</div>';
  const pd=pendH();
@@ -2363,7 +2459,8 @@ window.sxAdj=async i=>{const r=SX.cmp[i];if(!r)return;
  const v=await ask({t:'ปรับยอดให้เท่า SAP?',b:`<b>${esc(r.n)}</b><br>เว็บ ${nf(r.w)} → ${nf(r.tg)} ชิ้น<br><small>${how(r)}${r.p>0?`<br>ยอดขายรอตัด ${nf(r.p)} ชิ้นของสินค้านี้ ถือว่ารวมอยู่ใน SAP แล้ว (ไม่ตัดซ้ำ)`:''}</small>`,ok:'ปรับเลย'});if(v!='ok')return;
  try{await doAdj([r])}catch(e){toast(e.message)}}
 window.sxAdjAll=async b=>{const L=SX.cmp.filter(x=>x.c=='hi'||x.c=='lo');if(!L.length)return;const up=L.filter(x=>x.w<x.tg).length;
- const v=await ask({t:`ปรับ ${L.length} รายการให้เท่า SAP?`,b:`ลดยอด ${L.length-up} รายการ · เพิ่มยอด ${up} รายการ<br><small>ลด = ตัดล็อตที่หมดอายุก่อน · เพิ่ม = ล็อต “ไม่ระบุวันหมดอายุ”<br>ทุกการปรับมีประวัติ และล็อตที่ถูกตัดหมดกู้คืนได้จากถังขยะ</small>`,ok:'ปรับทั้งหมด',danger:1});if(v!='ok')return;
+ const addU=r3(L.filter(x=>x.w<x.tg).reduce((a,x)=>a+x.tg-x.w,0)),cutU=r3(L.filter(x=>x.w>x.tg).reduce((a,x)=>a+x.w-x.tg,0));
+ const v=await ask({t:`ปรับ ${L.length} รายการให้เท่า SAP?`,b:`ลดยอด ${L.length-up} รายการ (−${nf(cutU)} ชิ้น) · เพิ่มยอด ${up} รายการ (+${nf(addU)} ชิ้น)<br><small>ลด = ตัดล็อตที่หมดอายุก่อน · เพิ่ม = ล็อต “ไม่ระบุวันหมดอายุ”<br>ทุกการปรับมีประวัติ และล็อตที่ถูกตัดหมดกู้คืนได้จากถังขยะ</small>`,ok:'ปรับทั้งหมด',danger:1});if(v!='ok')return;
  W(b,()=>doAdj(L.slice(0,500)))}
 window.sxSapFromRows=sapFromRows;window.sxParseSales=parseSales;
 })();
