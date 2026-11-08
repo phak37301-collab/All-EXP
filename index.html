@@ -1477,6 +1477,70 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .vb em{font-style:normal;font-size:11px;font-weight:700}#sales .vb i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .vb i.s{background:#0d9488}
 #sales .vg>b{font-size:12px;font-weight:600;line-height:1.25;text-align:center;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;width:100%}
 
+
+/* ===== v3 (ปรับตามฟีดแบ็ก): รายการรอตัด · กราฟเทียบยอด · ยอดสุทธิ · ประวัติความเคลื่อนไหว ===== */
+/* กราฟโดนัท: เดิมใช้คลาส .dn ชนกับ "ป้ายตัวเลขวัน" (ขอบตัวอักษรดำหนา) ทำให้ข้อความอ่านไม่ออก → เปลี่ยนเป็น .dnw */
+#sales .dnw{display:flex;align-items:center;gap:18px;justify-content:center;flex-wrap:wrap;-webkit-text-stroke:0}
+#sales .dnw *{-webkit-text-stroke:0;paint-order:normal}
+#sales .dnr b{font-size:28px;font-weight:800;color:var(--ink)}
+#sales .dnr small{font-size:12px;color:var(--mut);font-weight:500}
+#sales .dnl{display:grid;gap:9px;font-size:14.5px;color:var(--ink);font-weight:500}
+#sales .dnl span{display:flex;align-items:center;gap:8px;white-space:nowrap}
+#sales .dnl i{width:12px;height:12px;margin-right:0;flex:none}
+#sales .dnl b{margin-left:4px;min-width:30px;text-align:center;padding:1px 9px;border-radius:99px;background:var(--tint);font-size:15px;font-weight:700;color:var(--ink)}
+/* รายการรอตัด: ให้ตัวเลข "ขาย" เด่น + ช่องกลางแสดง เว็บมี → เหลือ */
+#sales #sxPL{overflow-x:hidden;overflow-y:auto;padding:0 6px 0 0}
+#sales #sxPL .sxs{margin:0;padding:10px 8px;gap:12px;border-bottom:1px solid var(--ln);border-radius:12px}
+#sales #sxPL .sxs:last-child{border-bottom:0}
+#sales .sxs .pmid{flex:none;display:flex;align-items:center;gap:10px;min-width:210px;justify-content:center;padding:6px 12px;border-radius:12px;background:var(--tint);font-size:13px;color:var(--mut)}
+#sales .sxs .pmid b{font-size:16px;font-weight:700;color:var(--ink)}
+#sales .sxs .pmid em{font-style:normal;color:var(--mut)}
+#sales .sxs .pmid .ov b{color:#b91c1c}
+#sales .sxs .pq{flex:none;min-width:64px;padding:6px 12px;border-radius:14px;background:#fef3c7;color:#92400e;text-align:center;line-height:1.05;box-shadow:inset 0 0 0 1.5px #fcd34d}
+#sales .sxs .pq i{display:block;font-style:normal;font-size:12px;font-weight:600;letter-spacing:.2px}
+#sales .sxs .pq b{display:block;font-size:26px;font-weight:800;color:#78350f}
+#sales .sxs.off .pq,#sales .sxs.off .pmid{opacity:.45}
+#sales .sxs .wm{display:none}
+@media(max-width:700px){#sales .sxs .pmid{display:none}#sales .sxs .wm{display:inline}#sales .sxs .pq{min-width:56px}#sales .sxs .pq b{font-size:24px}}
+/* ยอดสุทธิ */
+#sales .nk{display:grid;grid-template-columns:1.35fr repeat(3,minmax(0,1fr));gap:10px;margin:10px 0 6px}
+#sales .nk>div{border-radius:18px;padding:14px 12px;background:var(--tint);text-align:center;display:flex;flex-direction:column;justify-content:center;min-width:0}
+#sales .nk i{font-style:normal;font-size:12px;color:var(--mut)}
+#sales .nk b{font-size:24px;font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+#sales .nk small{font-size:12px;color:var(--mut);margin-top:2px}
+#sales .nk>.nkm{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;box-shadow:0 12px 26px color-mix(in srgb,var(--ac) 28%,transparent)}
+#sales .nk>.nkm i,#sales .nk>.nkm small{color:#fff;opacity:.92}#sales .nk>.nkm b{font-size:38px}
+@media(max-width:700px){#sales .nk{grid-template-columns:1fr 1fr}#sales .nk>.nkm{grid-column:1/-1}#sales .nk>.nkm b{font-size:34px}}
+#sales .nfx{margin:8px 0 2px;font-size:13px;color:var(--mut);line-height:1.5}
+#sales .nfx b{color:var(--ink)}
+#sales .nxb{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+#sales .nhd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}#sales .nhd h3{margin:0}
+#sales .nt{display:grid;grid-template-columns:minmax(0,1fr) 78px 82px 92px 96px;gap:8px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--ln)}
+#sales .nt:last-child{border-bottom:0}
+#sales .nt .hm,#sales .nt .nw{text-align:center;font-size:14px}
+#sales .nt .hm.sold{color:#b45309}
+#sales .nt .nn{text-align:center;font-size:20px;font-weight:800;padding:3px 0;border-radius:12px;background:#dcfce7;color:#166534}
+#sales .nt .nn.z{background:var(--tint);color:var(--mut)}#sales .nt .nn.neg{background:#fee2e2;color:#b91c1c}
+#sales .nt .nw b{font-weight:700}#sales .nt .nw em{display:block;font-style:normal;font-size:11.5px;font-weight:700}
+#sales .nt .nw em.hi{color:#b91c1c}#sales .nt .nw em.lo{color:#b45309}#sales .nt .nt-o{font-size:11.5px;color:var(--mut)}
+#sales .nt.nth{position:sticky;top:0;background:var(--card);z-index:1;font-size:12px;color:var(--mut);font-weight:600;border-bottom:2px solid var(--ln)}
+#sales .nt.nth div{font-size:12px;font-weight:600;color:var(--mut)}
+#sales .nt .mm{display:none}
+#sales #netL{max-height:520px;overflow:auto}
+@media(max-width:700px){#sales .nt{grid-template-columns:minmax(0,1fr) 78px 66px}#sales .nt .hm{display:none}#sales .nt .mm{display:inline}}
+/* ประวัติความเคลื่อนไหว */
+#sales #tlL{max-height:560px;overflow:auto}
+#sales .tld{margin:12px 0 2px;font-size:13px;font-weight:700;color:var(--mut);position:sticky;top:0;background:var(--card);padding:4px 0;z-index:1}
+#sales .tli{--kc:#64748b;display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--ln)}
+#sales .tli.k-in{--kc:#16a34a}#sales .tli.k-edit{--kc:#2563eb}#sales .tli.k-del{--kc:#dc2626}#sales .tli.k-sale{--kc:#d97706}#sales .tli.k-sap{--kc:#0d9488}
+#sales .tlt{flex:none;width:44px;text-align:right;font-size:13px;font-weight:700;color:var(--ink)}
+#sales .tlic{flex:none;width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:color-mix(in srgb,var(--kc) 14%,#fff)}
+#sales .tla{display:inline-block;padding:0 8px;border-radius:99px;font-size:11.5px;font-weight:700;color:var(--kc);background:color-mix(in srgb,var(--kc) 13%,#fff);margin-right:4px}
+#sales .tlw{opacity:.8}
+#sales .tlq{flex:none;text-align:right;font-weight:800;font-size:15px;color:var(--ink);white-space:nowrap}#sales .tlq small{display:block;font-size:11px;font-weight:500;color:var(--mut)}
+#sales .tlq.in{color:#16a34a}#sales .tlq.del{color:#dc2626}
+#sales .sph{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+#sales .sph span{font-size:12.5px;padding:4px 10px;border-radius:99px;background:color-mix(in srgb,#0d9488 12%,#fff);color:#0f766e}
 </style>
 </head>
 <body>
@@ -2189,7 +2253,7 @@ BR&&CODE?load(1):(BR||0,drawAll(),BR||toast('ยังไม่ได้เล�
 
 /* ===== ยอดขาย & เทียบ SAP ===== */
 (function(){
-const SX=window.SX={tab:'imp',mode:'day',month:'',day:'',list:null,sap:null,cf:'bad',q:'',hq:'',plan:null,rows:null,deduct:true,done:null,sapRows:null,sapSkip:0,sapMeta:null,cmp:[],br:'',items:null,sel:{},pf:'all',pq:'',fname:'',loading:0,pdes:{},pl:[]};
+const SX=window.SX={tab:'imp',mode:'day',month:'',day:'',list:null,sap:null,cf:'bad',q:'',hq:'',plan:null,rows:null,deduct:true,done:null,sapRows:null,sapSkip:0,sapMeta:null,cmp:[],br:'',items:null,sel:{},pf:'all',pq:'',fname:'',loading:0,pdes:{},pl:[],led:null,nf:'all',nq:'',ns:'name',lf:'all',lq:'',lm:80};
 const r3=x=>Math.round((+x||0)*1000)/1000,nf=n=>(+n||0).toLocaleString('en-US',{maximumFractionDigits:2}),mny=n=>'฿'+nf(n),ds=s=>s?fd(s):'-',pad=n=>('0'+n).slice(-2);
 const jp=s=>{try{return s?JSON.parse(s):[]}catch(e){return[]}};
 const mLabel=m=>{const p=m.split('-'),n=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];return n[+p[1]-1]+' '+(S.be?+p[0]+543:p[0])};
@@ -2235,7 +2299,7 @@ function exportInfo(f){const m=f.name.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})
  return{exportAt:y+'-'+pad(mo)+'-'+pad(d)+' '+pad(h)+':'+pad(mi),asOf:day.getFullYear()+'-'+pad(day.getMonth()+1)+'-'+pad(day.getDate())}}
 
 /* ---------- โครงหน้า ---------- */
-function tabsH(){return[['imp','📥 นำเข้า'],['his','📅 ประวัติขาย'],['cmp','📊 สรุป & เทียบ SAP']].map(([k,t])=>`<button class="tab ${SX.tab==k?'on':''}" onclick="sxTab('${k}')">${t}</button>`).join('')}
+function tabsH(){return[['imp','📥 นำเข้า'],['his','📅 ประวัติขาย'],['net','📦 ยอดสุทธิ'],['cmp','📊 สรุป & เทียบ SAP']].map(([k,t])=>`<button class="tab ${SX.tab==k?'on':''}" onclick="sxTab('${k}')">${t}</button>`).join('')}
 /* ---------- แถบสถานะ: ตอนนี้อยู่ขั้นไหน · ต้องทำอะไรต่อ ---------- */
 function flowStat(){const L=SX.list,S0=SX.sap,b=L&&L.batches&&L.batches[0],has=!!(S0&&S0.meta),pl=S0?pendList():[],pu=r3(pl.reduce((a,x)=>a+x.p,0));
  let ok=0,bad=0;if(has){const A=cmpData();ok=A.filter(x=>x.c=='ok').length;bad=A.filter(x=>x.c=='hi'||x.c=='lo').length}
@@ -2254,12 +2318,12 @@ function flowH(){const f=flowStat(),T=SX.tab;
   else nx=ban('ok','✅','เรียบร้อย ไม่มีอะไรค้าง','ไม่มียอดรอตัด และตรงกับ SAP ทุกรายการ','','')}
  return `<div class="fwrap"><div class="fws3">${s1}${s2}${s3}</div>${nx}</div>`}
 function draw(){const a=$('sxTabs'),b=$('sxBody');if(!a)return;a.innerHTML=tabsH();
- b.innerHTML=flowH()+(SX.tab=='imp'?impH():SX.tab=='his'?hisH():cmpH())}
-window.sxOpen=()=>{if(SX.br!=BR){Object.assign(SX,{br:BR,list:null,sap:null,plan:null,rows:null,done:null,sapRows:null,month:'',day:'',items:null,sel:{},pdes:{},pq:'',pf:'all',loading:0})}sxTab(SX.tab)};
+ b.innerHTML=flowH()+(SX.tab=='imp'?impH():SX.tab=='his'?hisH():SX.tab=='net'?netH():cmpH())}
+window.sxOpen=()=>{if(SX.br!=BR){Object.assign(SX,{br:BR,list:null,sap:null,plan:null,rows:null,done:null,sapRows:null,month:'',day:'',items:null,sel:{},pdes:{},pq:'',pf:'all',loading:0,led:null,nq:'',lq:'',lm:80})}sxTab(SX.tab)};
 window.sxTab=async k=>{SX.tab=k;draw();
- try{if(k=='his')await loadHis(SX.month);else if(k=='cmp')await loadSap();else{await Promise.all([loadHis(SX.month,1),loadSap(1)])}}catch(e){toast(e.message)}
+ try{if(k=='his')await loadHis(SX.month);else if(k=='cmp')await loadSap();else if(k=='net')await Promise.all([loadSap(),loadLedger()]);else{await Promise.all([loadHis(SX.month,1),loadSap(1)])}}catch(e){toast(e.message)}
  if(SX.tab==k)draw();
- try{if(k=='his'&&!SX.sap)await loadSap(1);else if(k=='cmp'&&!SX.list)await loadHis(SX.month,1)}catch(e){}
+ try{if(k=='his'&&!SX.sap)await loadSap(1);else if((k=='cmp'||k=='net')&&!SX.list)await loadHis(SX.month,1)}catch(e){}
  if(SX.tab==k)draw()}
 async function loadHis(m,q){const r=await api(q?{action:'salesList',month:m||'',_q:1}:{action:'salesList',month:m||''});SX.list=r;SX.month=r.month;
  const ds2=[...new Set(r.rows.map(a=>a[0]))].sort();if(!SX.day||SX.day.slice(0,7)!=r.month||ds2.indexOf(SX.day)<0)SX.day=ds2[ds2.length-1]||''}
@@ -2396,7 +2460,7 @@ function lotsH(b){const L=D.entries.filter(e=>e.barcode==b&&e.qty>0).sort(byDue)
 
 /* ----- ยอดขายรอตัด (เลือกรายการแล้วสั่งตัดที่นี่) ----- */
 function pendList(){const P=(SX.sap&&SX.sap.pend)||{};return Object.keys(P).filter(b=>P[b]>0).map(b=>({b,n:nameOf(b),p:r3(P[b]),w:r3(D.entries.filter(e=>e.barcode==b).reduce((a,e)=>a+e.qty,0))})).sort((a,b)=>b.p-a.p)}
-function pRow(x,i){const on=!SX.pdes[x.b];return `<label class="sxs ${on?'':'off'}"><input type="checkbox" ${on?'checked':''} onchange="sxPt(${i},this)"><i class="sxk"></i><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)} · เว็บมี ${nf(x.w)} ชิ้น</small>${x.p>x.w?`<div class="sxcs"><span class="sxc w">ขายเกินสต็อกในเว็บ ${nf(r3(x.p-x.w))}</span></div>`:''}</div><div class="sxv"><i>ขาย</i><b>${nf(x.p)}</b></div></label>`}
+function pRow(x,i){const on=!SX.pdes[x.b],aft=Math.max(0,r3(x.w-x.p)),over=x.p>x.w;return `<label class="sxs pr ${on?'':'off'}"><input type="checkbox" ${on?'checked':''} onchange="sxPt(${i},this)"><i class="sxk"></i><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)}<span class="wm"> · เว็บมี ${nf(x.w)} → เหลือ ${nf(aft)} ชิ้น</span></small>${over?`<div class="sxcs"><span class="sxc w">ขายเกินสต็อกในเว็บ ${nf(r3(x.p-x.w))}</span></div>`:''}</div><div class="pmid"><span>เว็บมี <b>${nf(x.w)}</b></span><em>→</em><span class="${over?'ov':''}">เหลือ <b>${nf(aft)}</b></span></div><div class="pq"><i>ขาย</i><b>${nf(x.p)}</b></div></label>`}
 function pBtn(){const L=(SX.pl||[]).filter(x=>!SX.pdes[x.b]),u=r3(L.reduce((a,x)=>a+x.p,0));return `<button class="btn big" onclick="sxApplySel(this)" ${L.length?'':'disabled'}>${L.length?`ตัดสต็อก ${L.length} รายการที่เลือก (${nf(u)} ชิ้น)`:'ยังไม่ได้เลือกรายการ'}</button>`}
 function pendH(){const L=SX.pl=pendList();
  if(!L.length)return `<div class="card"><h3>⏳ ยอดขายรอตัดสต็อก</h3><div class="mut">ไม่มีรายการรอตัด ✅</div></div>`;
@@ -2425,7 +2489,7 @@ function chartH(A){const T=A.filter(x=>x.c=='ok'||x.c=='hi'||x.c=='lo');if(!T.le
   return `<div class="sxsub">${t} <small class="mut">${L.length} รายการ · ${s}${L.length>20?' · แสดง 20 อันดับแรก':''}${S.length>5?' · เลื่อนไปทางขวาเพื่อดูเพิ่ม →':''}</small></div><div class="vgs">${S.map(x=>`<div class="vg"><span class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</span><div class="vb"><div><em>${nf(x.wp)}</em><i style="--h:${ht(x.wp)}"></i></div><div><em>${nf(x.exp)}</em><i class="s" style="--h:${ht(x.exp)}"></i></div></div><b title="${esc(x.n)}">${esc(x.n)}</b></div>`).join('')}</div>`};
  return `<div class="card"><h3>📊 เทียบยอด เว็บ vs SAP</h3>
  <div class="sxlg"><span><i></i>เว็บ${hasP?' (หลังหักยอดรอตัด)':''}</span><span><i class="s"></i>SAP (ปรับวันที่แล้ว)</span></div>
- <div class="cg"><div class="dn"><div class="dnr" style="background:conic-gradient(#22c55e 0 ${a}%,#ef4444 ${a}% ${b}%,#f59e0b ${b}% 100%)"><div><b>${pct}%</b><small>ตรง SAP</small></div></div>
+ <div class="cg"><div class="dnw"><div class="dnr" style="background:conic-gradient(#22c55e 0 ${a}%,#ef4444 ${a}% ${b}%,#f59e0b ${b}% 100%)"><div><b>${pct}%</b><small>ตรง SAP</small></div></div>
   <div class="dnl"><span><i style="background:#22c55e"></i>ตรง <b>${n('ok')}</b></span><span><i style="background:#ef4444"></i>เว็บมากกว่า <b>${n('hi')}</b></span><span><i style="background:#f59e0b"></i>เว็บน้อยกว่า <b>${n('lo')}</b></span></div></div>
   <div><div class="tc"><div><em>${nf(tw)}</em><i style="--h:${Math.max(4,Math.round(tw/mx*120))}"></i><span>เว็บ</span></div><div><em>${nf(ts)}</em><i class="s" style="--h:${Math.max(4,Math.round(ts/mx*120))}"></i><span>SAP</span></div></div>
   <div class="mut" style="text-align:center;font-size:12.5px;margin-top:6px">รวม ${N} รายการที่ติดตาม · ต่างกัน ${nf(r3(Math.abs(tw-ts)))} ชิ้น</div></div></div>
@@ -2466,6 +2530,119 @@ window.sxAdjAll=async b=>{const L=SX.cmp.filter(x=>x.c=='hi'||x.c=='lo');if(!L.l
  const addU=r3(L.filter(x=>x.w<x.tg).reduce((a,x)=>a+x.tg-x.w,0)),cutU=r3(L.filter(x=>x.w>x.tg).reduce((a,x)=>a+x.w-x.tg,0));
  const v=await ask({t:`ปรับ ${L.length} รายการให้เท่า SAP?`,b:`ลดยอด ${L.length-up} รายการ (−${nf(cutU)} ชิ้น) · เพิ่มยอด ${up} รายการ (+${nf(addU)} ชิ้น)<br><small>ลด = ตัดล็อตที่หมดอายุก่อน · เพิ่ม = ล็อต “ไม่ระบุวันหมดอายุ”<br>ทุกการปรับมีประวัติ และล็อตที่ถูกตัดหมดกู้คืนได้จากถังขยะ</small>`,ok:'ปรับทั้งหมด',danger:1});if(v!='ok')return;
  W(b,()=>doAdj(L.slice(0,500)))}
+/* ===== v3: ยอดสุทธิ (SAP ตั้งต้น − ยอดขายหลังวันที่ SAP) + ประวัติความเคลื่อนไหวพร้อมเวลา + ส่งออก Excel/PDF ===== */
+async function loadLedger(q){SX.led=await api(q?{action:'ledgerGet',_q:1}:{action:'ledgerGet'})}
+function netData(){const S0=SX.sap;if(!S0||!S0.meta)return null;
+ const pend=S0.pend||{},aft=S0.after||{},web={},has={};
+ D.entries.forEach(e=>{web[e.barcode]=r3((web[e.barcode]||0)+e.qty);has[e.barcode]=1});
+ const sap={};(S0.rows||[]).forEach(r=>{sap[r[0]]={n:r[2],g:r[3],q:r[4]}});
+ const out=[];new Set([...Object.keys(sap),...Object.keys(has)]).forEach(b=>{
+  const s=sap[b],w=web[b]||0,p=pend[b]||0,a=aft[b]||0,wp=Math.max(0,r3(w-p)),inWeb=(b in has)||(b in D.db);
+  if(s){const net=r3(s.q-a),diff=inWeb?r3(wp-Math.max(0,net)):null;
+   out.push({b,n:D.db[b]||s.n,g:s.g||'',s:s.q,a,net,w,p,wp,diff,c:!inWeb?'out':diff==0?'ok':'bad'})}
+  else if(w>0)out.push({b,n:D.db[b]||b,g:'',s:null,a:0,net:wp,w,p,wp,diff:null,c:'nosap'})});
+ return out}
+function netView(){const A=netData();if(!A)return null;const q=(SX.nq||'').trim().toLowerCase(),f=SX.nf;
+ let L=A.filter(x=>f=='has'?x.net>0:f=='zero'?x.net<=0:f=='diff'?x.c=='bad':f=='out'?x.c=='out':f=='nosap'?x.c=='nosap':true).filter(x=>!q||(x.n+' '+x.b).toLowerCase().includes(q));
+ L.sort(SX.ns=='net'?(a,b)=>b.net-a.net:SX.ns=='low'?(a,b)=>a.net-b.net:(a,b)=>String(a.n).localeCompare(String(b.n),'th'));return{A,L}}
+const stTxt=x=>x.c=='ok'?'ตรงกับเว็บ':x.c=='bad'?'เว็บต่าง '+(x.diff>0?'+':'')+nf(x.diff):x.c=='out'?'ไม่อยู่ในเว็บ':'ไม่มีใน SAP';
+function netRow(x){const cl=x.net<0?'neg':x.net==0?'z':'';
+ const w=x.c=='out'?'<span class="nt-o">ไม่อยู่ในเว็บ</span>':`<b>${nf(x.wp)}</b>${x.c=='bad'?`<em class="${x.diff>0?'hi':'lo'}">${x.diff>0?'+':''}${nf(x.diff)}</em>`:''}`;
+ return `<div class="nt"><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)}<span class="mm"> · SAP ${x.s==null?'-':nf(x.s)}${x.a?' − ขาย '+nf(x.a):''}</span></small></div><div class="hm">${x.s==null?'-':nf(x.s)}</div><div class="hm ${x.a?'sold':''}">${x.a?'−'+nf(x.a):'0'}</div><div class="nn ${cl}">${nf(x.net)}</div><div class="nw">${w}</div></div>`}
+function netListH(){const V=netView();if(!V)return'';const L=V.L,show=L.slice(0,300);
+ return `<div class="mut" style="font-size:13px;margin:4px 0 6px">พบ <b>${nf(L.length)}</b> รายการ${L.length>300?' · แสดง 300 แรก (ส่งออกได้ครบทุกรายการ)':''}</div>`+
+ `<div class="nt nth"><div>สินค้า</div><div class="hm">SAP ตั้งต้น</div><div class="hm">ขายหลัง SAP</div><div class="nn" style="background:none;color:inherit">สุทธิ</div><div class="nw">เว็บ</div></div>`+
+ (show.length?show.map(netRow).join(''):'<div class="mut" style="padding:14px 0">ไม่มีรายการ</div>')}
+/* --- ประวัติเคลื่อนไหว --- */
+const kindOf=a=>/^เพิ่ม|^กู้คืน/.test(a)?'in':/^แก้/.test(a)?'edit':/^ลบ/.test(a)?'del':/SAP|^ปรับตาม/.test(a)?'sap':'sale';
+const KIC={in:'➕',edit:'✏️',del:'🗑️',sale:'🛒',sap:'🧾'};
+function tlAll(){const L=SX.led;if(!L)return null;
+ const a=L.rows.concat(L.sap.map(s=>({ts:s.ts,t:s.t,dev:s.dev,act:'อัปโหลด SAP',tab:'',b:'',n:s.file||'ไฟล์ SAP',q:s.n,due:'',claim:'',note:s.note})));
+ a.sort((x,y)=>y.ts-x.ts);return a}
+function tlView(){const A=tlAll();if(!A)return null;const q=(SX.lq||'').trim().toLowerCase(),f=SX.lf;
+ return{A,L:A.filter(x=>f=='all'||kindOf(x.act)==f).filter(x=>!q||[x.n,x.b,x.act,x.note,x.dev].join(' ').toLowerCase().includes(q))}}
+const dayK=ts=>{if(!ts)return'';const d=new Date(ts);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const dayL=k=>{if(!k)return'ไม่ทราบเวลา';return k==dayK(Date.now())?'วันนี้':k==dayK(Date.now()-864e5)?'เมื่อวาน':ds(k)};
+const hhmm=ts=>{if(!ts)return'--:--';const d=new Date(ts);return pad(d.getHours())+':'+pad(d.getMinutes())};
+function tlQty(x){const a=x.act,q=x.q;if(q===''||q==null)return'';
+ if(/^เพิ่ม/.test(a))return `<div class="tlq in">+${nf(q)}</div>`;
+ if(/^ลบ/.test(a))return `<div class="tlq del">−${nf(q)}</div>`;
+ if(/^แก้ไข|^ขาย|^ปรับตาม|^กู้คืน/.test(a))return `<div class="tlq">${nf(q)}<small>คงเหลือล็อต</small></div>`;
+ if(a=='อัปโหลด SAP')return `<div class="tlq">${nf(q)}<small>รายการ</small></div>`;return''}
+function tlRow(x){const k=kindOf(x.act);
+ return `<div class="tli k-${k}" title="${esc(x.t)}"><div class="tlt">${hhmm(x.ts)}</div><div class="tlic">${KIC[k]}</div><div class="sxn"><b>${esc(x.n||x.b||'-')}</b><small><span class="tla">${esc(x.act)}</span>${x.b?esc(x.b):''}${x.due?' · หมดอายุ '+ds(x.due):''}${x.note?' · '+esc(x.note):''}</small><small class="tlw">โดย ${esc(x.dev||'-')}${x.tab?' · แท็บ '+esc(x.tab):''}</small></div>${tlQty(x)}</div>`}
+function tlListH(){const V=tlView();if(!V)return'<div class="mut" style="padding:10px 0">กำลังโหลดประวัติ…</div>';
+ const L=V.L,sh=L.slice(0,SX.lm);let cur='x',h='';
+ sh.forEach(x=>{const k=dayK(x.ts);if(k!==cur){cur=k;h+=`<div class="tld">${dayL(k)}</div>`}h+=tlRow(x)});
+ return (h||'<div class="mut" style="padding:10px 0">ไม่มีรายการ</div>')+(L.length>sh.length?`<button class="btn alt sm" style="margin:12px auto 0;display:block" onclick="sxLmore()">แสดงเพิ่ม (เหลือ ${nf(L.length-sh.length)})</button>`:'')}
+/* --- หน้า ยอดสุทธิ --- */
+function netH(){const S0=SX.sap;if(!S0)return'<div class="card mut">กำลังโหลด…</div>';
+ if(!S0.meta)return '<div class="card"><h3>📦 ยอดสุทธิ</h3><div class="mut">ยังไม่มียอด SAP ตั้งต้นของสาขานี้ · ไปแท็บ “นำเข้า” → ข้อ 2 อัปโหลดไฟล์ SAP ก่อน แล้วระบบจะคำนวณยอดสุทธิให้ (SAP − ยอดขายหลังวันที่ SAP นับถึง)</div></div>'+tlCardH();
+ const V=netView(),A=V.A,M=S0.meta,pos=A.filter(x=>x.net>0),neg=A.filter(x=>x.net<0).length,
+  tot=r3(A.reduce((a,x)=>a+Math.max(0,x.net),0)),sapT=r3(A.reduce((a,x)=>a+(x.s||0),0)),aftT=r3(A.reduce((a,x)=>a+x.a,0)),webT=r3(A.reduce((a,x)=>a+x.wp,0)),
+  lastSale=SX.list&&SX.list.batches&&SX.list.batches[0]?SX.list.batches[0].to:'',up=SX.led&&SX.led.sap&&SX.led.sap[0]?SX.led.sap[0].t.slice(0,16):'';
+ const chip=(k,t,n)=>`<button class="tab ${SX.nf==k?'on':''}" onclick="sxNf('${k}')">${t} <small>${n}</small></button>`;
+ return `<div class="card"><div class="nhd"><h3>📦 ยอดสต็อกสุทธิ ณ ปัจจุบัน</h3><div class="nxb"><button class="btn alt sm fit" onclick="sxNetXlsx(this)">📗 Excel</button><button class="btn alt sm fit" onclick="sxNetPdf()">📄 PDF</button></div></div>
+ <div class="nk"><div class="nkm"><i>ยอดสุทธิรวม</i><b>${nf(tot)} ชิ้น</b><small>${nf(pos.length)} รายการที่มีของ${neg?` · ⚠️ ติดลบ ${neg}`:''}</small></div>
+ <div><i>SAP ตั้งต้น</i><b>${nf(sapT)}</b><small>นับถึง ${ds(M.asOf)}${up?'<br>อัปเดต '+esc(up):''}</small></div>
+ <div><i>ขายหลัง SAP</i><b style="color:#b45309">−${nf(aftT)}</b><small>${lastSale?'ขายล่าสุด '+ds(lastSale):'ยังไม่มียอดขาย'}</small></div>
+ <div><i>เว็บ (หลังหักรอตัด)</i><b>${nf(webT)}</b><small>${r3(webT-tot)==0?'ตรงกับยอดสุทธิ':'ต่าง '+(webT>tot?'+':'')+nf(r3(webT-tot))}</small></div></div>
+ <div class="nfx"><b>สูตร:</b> ยอดสุทธิ = <b>ยอด SAP ล่าสุด</b> (อัปโหลดทุกวันเพื่ออัปเดตยอดตั้งต้น) − <b>ยอดขายที่เกิดหลังวันที่ SAP นับถึง</b> · อัปโหลด SAP ใหม่เมื่อไร ยอดตั้งต้นและวันที่นับถึงจะเลื่อนตามอัตโนมัติ</div></div>
+ <div class="card"><h3>รายการสินค้า</h3>
+ <div class="tabs">${chip('all','ทั้งหมด',A.length)}${chip('has','มีของ',pos.length)}${chip('zero','หมด/ติดลบ',A.filter(x=>x.net<=0).length)}${chip('diff','ไม่ตรงเว็บ',A.filter(x=>x.c=='bad').length)}${chip('out','ไม่อยู่ในเว็บ',A.filter(x=>x.c=='out').length)}${chip('nosap','ไม่มีใน SAP',A.filter(x=>x.c=='nosap').length)}</div>
+ <div class="sxtb" style="margin-top:10px"><div class="srch"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด" value="${esc(SX.nq)}" oninput="sxNq(this.value)"></div><select onchange="sxNs(this.value)"><option value="name" ${SX.ns=='name'?'selected':''}>เรียงตามชื่อ</option><option value="net" ${SX.ns=='net'?'selected':''}>สุทธิ มาก→น้อย</option><option value="low" ${SX.ns=='low'?'selected':''}>สุทธิ น้อย→มาก</option></select></div>
+ <div id="netL">${netListH()}</div></div>`+tlCardH()}
+function tlCardH(){const V=tlView(),A=V?V.A:[],n=k=>A.filter(x=>kindOf(x.act)==k).length,
+ chip=(k,t,c)=>`<button class="tab ${SX.lf==k?'on':''}" onclick="sxLf('${k}')">${t} <small>${c}</small></button>`,sp=(SX.led&&SX.led.sap||[]).slice(0,5);
+ return `<div class="card"><h3>🕒 ประวัติความเคลื่อนไหว <small class="mut">เพิ่ม · แก้ไข · ลบ · ตัดสต็อก · SAP พร้อมเวลา</small></h3>
+ ${sp.length?`<div class="sph">${sp.map(s=>`<span>🧾 SAP ${esc(s.t.slice(0,16))} · ${esc((s.note.match(/ถึง (\d{4}-\d{2}-\d{2})/)||[])[1]?'นับถึง '+ds(s.note.match(/ถึง (\d{4}-\d{2}-\d{2})/)[1]):'')} · ${nf(s.n)} รายการ</span>`).join('')}</div>`:''}
+ <div class="tabs" style="margin-top:10px">${chip('all','ทั้งหมด',A.length)}${chip('in','➕ เพิ่ม/กู้คืน',n('in'))}${chip('edit','✏️ แก้ไข',n('edit'))}${chip('del','🗑️ ลบ',n('del'))}${chip('sale','🛒 ขาย/ตัดสต็อก',n('sale'))}${chip('sap','🧾 SAP',n('sap'))}</div>
+ <div class="srch" style="margin:10px 0"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด / ผู้ทำรายการ" value="${esc(SX.lq)}" oninput="sxLq(this.value)"></div>
+ <div id="tlL">${tlListH()}</div>${SX.led&&SX.led.total>SX.led.rows.length?`<div class="mut" style="font-size:12.5px;margin-top:8px">แสดงย้อนหลัง ${nf(SX.led.rows.length)} จาก ${nf(SX.led.total)} รายการ · ดูครบทุกรายการได้ในชีท _ประวัติ</div>`:''}</div>`}
+window.sxNf=k=>{SX.nf=k;draw()};
+window.sxNq=v=>{SX.nq=v;const e=$('netL');if(e)e.innerHTML=netListH()};
+window.sxNs=v=>{SX.ns=v;const e=$('netL');if(e)e.innerHTML=netListH()};
+window.sxLf=k=>{SX.lf=k;SX.lm=80;draw()};
+window.sxLq=v=>{SX.lq=v;SX.lm=80;const e=$('tlL');if(e)e.innerHTML=tlListH()};
+window.sxLmore=()=>{SX.lm+=120;const e=$('tlL');if(e)e.innerHTML=tlListH()};
+/* --- ส่งออก --- */
+const stamp=()=>{const d=new Date();return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'_'+pad(d.getHours())+pad(d.getMinutes())};
+const nowTxt=()=>{const d=new Date();return fd(d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()))+' '+pad(d.getHours())+':'+pad(d.getMinutes())};
+const FLT={all:'ทั้งหมด',has:'มีของ',zero:'หมด/ติดลบ',diff:'ไม่ตรงเว็บ',out:'ไม่อยู่ในเว็บ',nosap:'ไม่มีใน SAP'};
+function netSummary(V){const A=V.A,M=SX.sap.meta;return{tot:r3(A.reduce((a,x)=>a+Math.max(0,x.net),0)),sapT:r3(A.reduce((a,x)=>a+(x.s||0),0)),aftT:r3(A.reduce((a,x)=>a+x.a,0)),webT:r3(A.reduce((a,x)=>a+x.wp,0)),asOf:M.asOf,up:SX.led&&SX.led.sap&&SX.led.sap[0]?SX.led.sap[0].t:''}}
+window.sxNetXlsx=b=>W(b,async()=>{const V=netView();if(!V){toast('ยังไม่มียอด SAP');return}
+ try{await loadX()}catch(e){toast('โหลดตัวสร้าง Excel ไม่ได้ (ต้องต่อเน็ต)');return}
+ if(!SX.led)try{await loadLedger(1)}catch(e){}
+ const sm=netSummary(V),wb=XLSX.utils.book_new();
+ const r1=[['รายงานยอดสต็อกสุทธิ',BRN||''],['จัดทำเมื่อ',nowTxt()],['SAP ตั้งต้น นับถึงวันที่',ds(sm.asOf)],['ตัวกรอง',FLT[SX.nf]+(SX.nq?' · ค้นหา “'+SX.nq+'”':'')],['ยอดสุทธิรวม (ชิ้น)',sm.tot],['SAP ตั้งต้นรวม',sm.sapT],['ขายหลัง SAP รวม',sm.aftT],['เว็บ (หลังหักรอตัด) รวม',sm.webT],[],
+  ['บาร์โค้ด','ชื่อสินค้า','กลุ่มสินค้า','SAP ตั้งต้น','ขายหลัง SAP','ยอดสุทธิ','เว็บ (ล็อตรวม)','เว็บ (หลังหักรอตัด)','เว็บ − สุทธิ','สถานะ']]
+  .concat(V.L.map(x=>[String(x.b),x.n,x.g,x.s==null?'':x.s,x.a,x.net,x.w,x.wp,x.diff==null?'':x.diff,stTxt(x)]));
+ const w1=XLSX.utils.aoa_to_sheet(r1);w1['!cols']=[{wch:18},{wch:44},{wch:16},{wch:12},{wch:12},{wch:12},{wch:14},{wch:18},{wch:12},{wch:18}];XLSX.utils.book_append_sheet(wb,w1,'ยอดสุทธิ');
+ const T=tlView();if(T){const r2=[['เวลา','การกระทำ','สินค้า','บาร์โค้ด','จำนวน','วันหมดอายุ','รายละเอียด','ผู้ทำรายการ','แท็บ']].concat(T.L.slice(0,5000).map(x=>[x.t,x.act,x.n,String(x.b),x.q,x.due||'',x.note,x.dev,x.tab]));
+  const w2=XLSX.utils.aoa_to_sheet(r2);w2['!cols']=[{wch:19},{wch:18},{wch:40},{wch:18},{wch:9},{wch:12},{wch:50},{wch:16},{wch:12}];XLSX.utils.book_append_sheet(wb,w2,'ประวัติเคลื่อนไหว')}
+ const sp=(SX.led&&SX.led.sap)||[];if(sp.length){const w3=XLSX.utils.aoa_to_sheet([['อัปโหลดเมื่อ','ไฟล์','จำนวนรายการ','รายละเอียด','ผู้ทำรายการ']].concat(sp.map(s=>[s.t,s.file,s.n,s.note,s.dev])));w3['!cols']=[{wch:19},{wch:34},{wch:12},{wch:60},{wch:16}];XLSX.utils.book_append_sheet(wb,w3,'ประวัติ SAP')}
+ XLSX.writeFile(wb,'stock_net_'+stamp()+'.xlsx');toast('ส่งออก Excel แล้ว ('+V.L.length+' รายการ)')});
+function printHtml(title,body){const f=document.createElement('iframe');f.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0';document.body.appendChild(f);
+ const d=f.contentWindow.document;d.open();
+ d.write(`<!doctype html><html lang="th"><head><meta charset="utf-8"><title>${esc(title)}</title><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet"><style>
+@page{size:A4;margin:12mm 10mm}*{box-sizing:border-box}body{font-family:Prompt,"IBM Plex Sans Thai","Noto Sans Thai",Tahoma,sans-serif;font-size:11px;color:#1c2240;margin:0}
+h1{font-size:19px;margin:0 0 2px}h2{font-size:14px;margin:18px 0 6px}.sub{color:#5b6585;font-size:11.5px;margin-bottom:10px}
+.k{display:flex;gap:8px;margin:8px 0 4px}.k div{flex:1;border:1px solid #d9deee;border-radius:8px;padding:7px 9px}.k i{display:block;font-style:normal;font-size:10px;color:#5b6585}.k b{font-size:16px}.k .m{background:#eef0ff;border-color:#b9bff5}
+table{width:100%;border-collapse:collapse}thead{display:table-header-group}th{background:#eceeff;text-align:left;padding:5px 6px;font-size:10.5px;border:1px solid #d9deee}td{padding:4px 6px;border:1px solid #e3e7f4;vertical-align:top}tr{page-break-inside:avoid}
+.n{text-align:right;white-space:nowrap}.net{font-weight:700;background:#f1fbf4}.neg{background:#fde8e8;color:#b91c1c}.mut{color:#6f7a99;font-size:10px}.ft{margin-top:10px;color:#6f7a99;font-size:10px}
+</style></head><body>${body}</body></html>`);d.close();
+ let done=0;const go=()=>{if(done)return;done=1;try{f.contentWindow.focus();f.contentWindow.print()}catch(e){toast('เปิดหน้าพิมพ์ไม่ได้ ลองใช้ปุ่ม Excel แทน')}setTimeout(()=>f.remove(),90000)};
+ Promise.race([(d.fonts&&d.fonts.ready)||Promise.resolve(),new Promise(r=>setTimeout(r,2500))]).then(()=>setTimeout(go,200))}
+window.sxNetPdf=()=>{const V=netView();if(!V){toast('ยังไม่มียอด SAP');return}const sm=netSummary(V),T=tlView(),mv=T?T.L.slice(0,150):[];
+ const rows=V.L.map(x=>`<tr><td>${esc(x.n)}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.s==null?'-':nf(x.s)}</td><td class="n">${x.a?'−'+nf(x.a):'0'}</td><td class="n net ${x.net<0?'neg':''}">${nf(x.net)}</td><td class="n">${x.c=='out'?'-':nf(x.wp)}</td><td>${esc(stTxt(x))}</td></tr>`).join('');
+ const mrows=mv.map(x=>`<tr><td style="white-space:nowrap">${esc(x.t.slice(0,16))}</td><td>${esc(x.act)}</td><td>${esc(x.n||'-')}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.q===''||x.q==null?'':nf(x.q)}</td><td>${esc(x.note||'')}${x.due?' · หมดอายุ '+ds(x.due):''}</td><td>${esc(x.dev||'')}</td></tr>`).join('');
+ printHtml('ยอดสต็อกสุทธิ '+(BRN||''),`<h1>รายงานยอดสต็อกสุทธิ · ${esc(BRN||'')}</h1><div class="sub">จัดทำเมื่อ ${nowTxt()} · SAP ตั้งต้นนับถึง ${ds(sm.asOf)}${sm.up?' (อัปโหลด '+esc(sm.up.slice(0,16))+')':''} · ตัวกรอง: ${FLT[SX.nf]}${SX.nq?' “'+esc(SX.nq)+'”':''} · ${nf(V.L.length)} รายการ</div>
+ <div class="k"><div class="m"><i>ยอดสุทธิรวม</i><b>${nf(sm.tot)} ชิ้น</b></div><div><i>SAP ตั้งต้น</i><b>${nf(sm.sapT)}</b></div><div><i>ขายหลัง SAP</i><b>−${nf(sm.aftT)}</b></div><div><i>เว็บ (หลังหักรอตัด)</i><b>${nf(sm.webT)}</b></div></div>
+ <div class="sub">ยอดสุทธิ = ยอด SAP ล่าสุด − ยอดขายที่เกิดหลังวันที่ SAP นับถึง</div>
+ <table><thead><tr><th>สินค้า / บาร์โค้ด</th><th class="n">SAP ตั้งต้น</th><th class="n">ขายหลัง SAP</th><th class="n">ยอดสุทธิ</th><th class="n">เว็บ</th><th>สถานะ</th></tr></thead><tbody>${rows||'<tr><td colspan="6">ไม่มีรายการ</td></tr>'}</tbody></table>
+ ${mrows?`<h2>ประวัติความเคลื่อนไหวล่าสุด (${mv.length} รายการ)</h2><table><thead><tr><th>เวลา</th><th>การกระทำ</th><th>สินค้า</th><th class="n">จำนวน</th><th>รายละเอียด</th><th>ผู้ทำ</th></tr></thead><tbody>${mrows}</tbody></table>`:''}
+ <div class="ft">สร้างโดยระบบสต็อก · ${nowTxt()}</div>`)};
+
 window.sxSapFromRows=sapFromRows;window.sxParseSales=parseSales;
 })();
 </script>
