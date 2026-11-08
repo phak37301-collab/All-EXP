@@ -1443,10 +1443,13 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .vcol button.on{background:color-mix(in srgb,var(--ac) 12%,transparent)}#sales .vcol button.on i{background:linear-gradient(180deg,var(--ac2),var(--ac))}
 #sales .vcol button:disabled{cursor:default}#sales .vcol button:disabled i{background:var(--ln)}
 #sales .vcol span{font-size:12px;line-height:1.15;text-align:center;font-weight:600}#sales .vcol span small{display:block;font-size:9.5px;font-weight:400;opacity:.75}
-#sales .hr{display:grid;grid-template-columns:30px minmax(0,1.3fr) minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 10px;margin:0 -10px;border-radius:14px;border-bottom:1px solid var(--ln);background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 10%,transparent) var(--w),transparent var(--w))}
+#sales .hr{display:grid;grid-template-columns:30px minmax(0,1.3fr) minmax(0,1fr) 84px;gap:12px;align-items:center;padding:12px 10px;margin:0 -10px;border-bottom:1px solid var(--ln)}
 #sales .hr:last-child{border-bottom:0}
-#sales .hm{min-width:0}#sales .hsp{display:flex;gap:2px;align-items:flex-end;height:34px}
-#sales .hsp u{flex:1;min-width:2px;max-width:9px;height:calc(var(--h)*1%);min-height:2px;text-decoration:none;background:color-mix(in srgb,var(--ac) 32%,#fff);border-radius:2px 2px 0 0}
+#sales .hm{min-width:0}#sales .hsp{display:flex;gap:2px;align-items:flex-end;height:30px;margin-top:6px}
+#sales .hbar{height:14px;border-radius:99px;background:var(--tint);border:1px solid color-mix(in srgb,var(--ac) 22%,var(--ln));overflow:hidden}#sales .hbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+#sales .hrh{display:grid;grid-template-columns:30px minmax(0,1.3fr) minmax(0,1fr) 84px;gap:12px;padding:4px 10px 8px;margin:0 -10px;border-bottom:2px solid var(--ln);font-size:12px;color:var(--mut);font-weight:600}#sales .hrh span:last-child{text-align:center}
+@media(max-width:640px){#sales .hrh{display:none}}
+#sales .hsp u{flex:1;min-width:2px;max-width:16px;height:calc(var(--h)*1%);min-height:2px;text-decoration:none;background:color-mix(in srgb,var(--ac) 32%,#fff);border-radius:2px 2px 0 0}
 #sales .hsp u.on{background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .hsp u.z{background:var(--ln)}
 #sales .hm small{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}#sales .hm small b{color:var(--ink)}
 #sales .hq2{min-width:72px;text-align:center;background:var(--card);border:1.5px solid color-mix(in srgb,var(--ac) 28%,#fff);border-radius:16px;padding:6px 10px;box-shadow:0 4px 12px color-mix(in srgb,var(--ac) 14%,transparent)}
@@ -1455,7 +1458,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .hr.t2 .hq2{background:linear-gradient(135deg,#f1f5f9,#cbd5e1);border-color:transparent}#sales .hr.t2 .hq2 b,#sales .hr.t2 .hq2 i{color:#334155}
 #sales .hr.t3 .hq2{background:linear-gradient(135deg,#fed7aa,#fdba74);border-color:transparent}#sales .hr.t3 .hq2 b,#sales .hr.t3 .hq2 i{color:#7c2d12}
 #sales .hr .sxrk{font-size:18px}
-@media(max-width:640px){#sales .hr{grid-template-columns:26px minmax(0,1fr) auto;gap:8px 10px}#sales .hm{grid-column:2/4;order:5}}
+@media(max-width:640px){#sales .hr{grid-template-columns:26px minmax(0,1fr) 72px;gap:8px 10px}#sales .hm{grid-column:2/4;order:5}}
 #sales .cg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:center;margin:6px 0 10px}
 @media(max-width:640px){#sales .cg{grid-template-columns:1fr}}
 #sales .dn{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -1463,12 +1466,12 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .dnr>div{width:86px;height:86px;border-radius:50%;background:var(--card);display:grid;place-content:center;text-align:center;line-height:1.1}
 #sales .dnr b{font-size:26px;font-weight:800}#sales .dnr small{font-size:11px;color:var(--mut)}
 #sales .dnl{display:grid;gap:6px;font-size:13px;color:var(--mut)}#sales .dnl i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}#sales .dnl b{color:var(--ink)}
-#sales .tc{display:flex;gap:18px;justify-content:center;align-items:flex-end;height:176px}
-#sales .tc>div{flex:1;max-width:96px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+#sales .tc{display:flex;gap:40px;justify-content:center;align-items:flex-end;height:176px}
+#sales .tc>div{flex:1;max-width:130px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
 #sales .tc em{font-style:normal;font-weight:800;font-size:16px}#sales .tc i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .tc i.s{background:#0d9488}
 #sales .tc span{font-size:12.5px;color:var(--mut);font-weight:600}
 #sales .vgs{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 4px}
-#sales .vg{flex:1 0 88px;max-width:150px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 4px;border-radius:14px;background:var(--tint)}
+#sales .vg{flex:1 0 112px;max-width:none;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 4px;border-radius:14px;background:var(--tint)}
 #sales .vb{display:flex;gap:6px;align-items:flex-end;height:152px;width:100%;justify-content:center}
 #sales .vb>div{flex:1;max-width:36px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:2px}
 #sales .vb em{font-style:normal;font-size:11px;font-weight:700}#sales .vb i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--ac2),var(--ac))}#sales .vb i.s{background:#0d9488}
@@ -2343,9 +2346,10 @@ const ld=d=>{if(!d)return'';const s=String(d),y=+s.slice(0,4);return y>2400?(y-5
 function colsH(rng,T,sel,fn){const mx=Math.max(1,...rng.map(d=>T[d]||0));
  return `<div class="vcol">${rng.map(d=>{const v=T[d]||0;return `<button ${v?'':'disabled'} class="${d==sel?'on':''}" onclick="${fn}('${d}')" title="${ds(d)} · ${nf(v)} ชิ้น"><em>${v?nf(v):''}</em><i style="--h:${v?Math.max(4,Math.round(v/mx*104)):2}"></i><span>${+d.slice(8)}<small>${wd(d)}</small></span></button>`}).join('')}</div>`}
 const chipsOf=x=>x.lots.map(l=>`<span class="sxc ${l.l<=0?'z':''}">${l.d?ds(l.d):'ไม่ระบุวันหมดอายุ'} ${l.l<=0?'🏁 หมดล็อต':'เหลือ '+l.l}</span>`).join('')+(x.s=='รอตัด'?'<span class="sxc p">⏳ รอตัด</span>':x.s=='ปรับตาม SAP'?'<span class="sxc">↔ ปรับตาม SAP</span>':/ไม่อยู่ในเว็บ/.test(x.note)?'<span class="sxc">ไม่อยู่ในเว็บ</span>':/ขายเกิน/.test(x.note)?`<span class="sxc w">${esc(x.note)}</span>`:/ไม่ตัด/.test(x.note)?'<span class="sxc">ไม่ตัดสต็อก</span>':'');
-function hrow(o){const s=o.ser||{},rng=o.rng,smx=Math.max(1,...rng.map(d=>s[d]||0)),tot=r3(rng.reduce((a,d)=>a+(s[d]||0),0)),nd=rng.filter(d=>s[d]).length,
- spark=rng.map(d=>`<u class="${s[d]?(d==o.sel?'on':''):'z'}" title="${ds(d)} · ${nf(s[d]||0)}" style="--h:${s[d]?Math.max(14,s[d]/smx*100):0}"></u>`).join(''),md=['🥇','🥈','🥉'][o.i];
- return `<div class="hr ${o.i<3?'t'+(o.i+1):''}" style="--w:${Math.max(3,o.q/o.mx*100)}%"><span class="sxrk">${md||o.i+1}</span><div class="sxn"><b>${esc(o.n)}</b><small>${esc(o.b)}${o.sub?' · '+o.sub:''}</small>${o.chips?`<div class="sxcs">${o.chips}</div>`:''}</div><div class="hm"><div class="hsp">${spark}</div><small>${o.noTot?'':`เดือนนี้ <b>${nf(tot)}</b> ชิ้น · `}ขาย <b>${nd}</b> วัน</small></div><div class="hq2"><b>${nf(o.q)}</b><i>ชิ้น</i></div></div>`}
+function hrow(o){const s=o.ser||{},rng=o.rng,smx=Math.max(1,...rng.map(d=>s[d]||0)),tot=r3(rng.reduce((a,d)=>a+(s[d]||0),0)),nd=rng.filter(d=>s[d]).length,pct=Math.max(2,Math.round(o.q/o.mx*100)),
+ spark=o.multi?`<div class="hsp" title="ยอดขายสินค้านี้รายวัน">${rng.map(d=>`<u class="${s[d]?(d==o.sel?'on':''):'z'}" title="${ds(d)} · ${nf(s[d]||0)} ชิ้น" style="--h:${s[d]?Math.max(14,s[d]/smx*100):0}"></u>`).join('')}</div>`:'',md=['🥇','🥈','🥉'][o.i];
+ return `<div class="hr ${o.i<3?'t'+(o.i+1):''}"><span class="sxrk">${md||o.i+1}</span><div class="sxn"><b>${esc(o.n)}</b><small>${esc(o.b)}${o.sub?' · '+o.sub:''}</small>${o.chips?`<div class="sxcs">${o.chips}</div>`:''}</div><div class="hm"><div class="hbar" title="${pct}% ของอันดับ 1"><i style="width:${pct}%"></i></div><small>${pct}% ของอันดับ 1 · ${o.noTot?'':`เดือนนี้ <b>${nf(tot)}</b> ชิ้น · `}ขาย <b>${nd}</b> วัน</small>${spark}</div><div class="hq2"><b>${nf(o.q)}</b><i>ชิ้น</i></div></div>`}
+const hrh='<div class="hrh"><span></span><span>สินค้า</span><span>เทียบกับสินค้าขายดีอันดับ 1</span><span>จำนวนที่ขาย</span></div>';
 function hisH(){const L=SX.list;if(!L)return'<div class="card mut">กำลังโหลด…</div>';
  if(!L.months.length)return'<div class="card mut">ยังไม่มีประวัติยอดขาย · ไปที่แท็บ “นำเข้า” เพื่อนำเข้าไฟล์ยอดขาย</div>';
  const q=SX.hq.trim().toLowerCase(),all=L.rows.map(a=>({d:a[0],b:a[1],n:a[2],q:a[3],p:a[4],t:a[5],dd:a[6],lots:jp(a[7]).map(l=>({...l,d:ld(l.d)})),note:a[9]||'',s:a[10]})),
@@ -2360,13 +2364,13 @@ function hisH(){const L=SX.list;if(!L)return'<div class="card mut">กำลั�
   h+=`<div class="hsh"><div class="hq"><i>ขายวัน${SX.day?wd(SX.day):''}ที่ ${ds(SX.day)}${q?' · เฉพาะที่ค้นหา':''}</i><b>${nf(cq)}</b><small>ชิ้น${!q&&dk.length>1?` · ${dv>=0?'▲':'▼'} ${Math.abs(dv)}% เทียบค่าเฉลี่ย ${nf(Math.round(avg))}/วัน`:''}</small></div>
    <div class="hk"><div><b>${cur.length}</b><i>รายการสินค้า</i></div><div><b>${mny(cm)}</b><i>ยอดเงิน</i></div><div><b ${pn?'style="color:#d97706"':''}>${pn}</b><i>รอตัดสต็อก</i></div></div></div>
    <div class="card"><h3>📊 ยอดขายรายวัน · ${mLabel(L.month)} <small class="mut">แตะแท่งเพื่อดูรายวัน</small></h3>${colsH(rng,dT,SX.day,'sxDay')}</div>
-   <div class="card"><h3>🛍️ สินค้าที่ขาย <small class="mut">${cur.length} รายการ · เรียงจากขายมากสุด</small></h3>${cur.length?cur.map((x,i)=>hrow({i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:SX.day,chips:chipsOf(x)})).join(''):'<div class="mut">ไม่มีรายการ</div>'}</div>`}
+   <div class="card"><h3>🛍️ สินค้าที่ขาย <small class="mut">${cur.length} รายการ · เรียงจากขายมากสุด</small></h3>${cur.length?hrh+cur.map((x,i)=>hrow({multi:dk.length>1,i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:SX.day,chips:chipsOf(x)})).join(''):'<div class="mut">ไม่มีรายการ</div>'}</div>`}
  else{const it={},so=[];rows.forEach(x=>{const o=it[x.b]||(it[x.b]={b:x.b,n:x.n,q:0,d:new Set(),nw:0});o.q=r3(o.q+x.q);o.d.add(x.d);if(/ไม่อยู่ในเว็บ/.test(x.note))o.nw=1;x.lots.forEach(l=>{if(l.l<=0)so.push({n:x.n,day:x.d,d:l.d})})});
   const top=Object.values(it).sort((a,b)=>b.q-a.q).slice(0,100),mx=Math.max(1,...top.map(x=>x.q)),bd=dk.reduce((a,d)=>dT[d]>dT[a]?d:a,dk[0]);
   h+=`<div class="hsh"><div class="hq"><i>ยอดขายรวม ${mLabel(L.month)}${q?' · เฉพาะที่ค้นหา':''}</i><b>${nf(sq)}</b><small>ชิ้น · เฉลี่ย ${nf(Math.round(avg))}/วัน · ขาย ${dk.length} วัน</small></div>
    <div class="hk"><div><b>${Object.keys(it).length}</b><i>สินค้า</i></div><div><b>${mny(sm)}</b><i>ยอดเงิน</i></div><div><b>${bd?+bd.slice(8):'-'}</b><i>วันขายดีสุด${bd?' · '+nf(dT[bd])+' ชิ้น':''}</i></div></div></div>
    <div class="card"><h3>📊 ยอดขายรายวัน <small class="mut">แตะแท่งเพื่อดูรายละเอียดวันนั้น</small></h3>${colsH(rng,dT,'','sxPickDay')}</div>
-   <div class="card"><h3>🏆 สินค้าขายดี <small class="mut">เรียงตามจำนวนชิ้น</small></h3>${top.map((x,i)=>hrow({i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:'',noTot:1,chips:x.nw?'<span class="sxc">ไม่อยู่ในเว็บ</span>':''})).join('')||'<div class="mut">ไม่มีรายการ</div>'}</div>`;
+   <div class="card"><h3>🏆 สินค้าขายดี <small class="mut">เรียงตามจำนวนชิ้น</small></h3>${hrh}${top.map((x,i)=>hrow({multi:dk.length>1,i,n:x.n,b:x.b,q:x.q,mx,ser:ser[x.b],rng,sel:'',noTot:1,chips:x.nw?'<span class="sxc">ไม่อยู่ในเว็บ</span>':''})).join('')||'<div class="mut">ไม่มีรายการ</div>'}</div>`;
   if(so.length)h+=`<div class="card"><h3>🏁 ล็อตที่ขายหมดในเดือนนี้ <small class="mut">${so.length} ล็อต</small></h3>${so.sort((a,b)=>b.day<a.day?-1:1).map(x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ล็อต ${x.d?ds(x.d):'ไม่ระบุวันหมดอายุ'} · หมดเมื่อ ${ds(x.day)}</small></div>`).join('')}</div>`}
  return h}
 window.sxPickDay=d=>{SX.day=d;SX.mode='day';draw()};
@@ -2417,8 +2421,8 @@ window.sxApply1=async i=>{const x=SX.cmp[i];if(!x||!(x.p>0))return;
 function chartH(A){const T=A.filter(x=>x.c=='ok'||x.c=='hi'||x.c=='lo');if(!T.length)return'';
  const n=c=>T.filter(x=>x.c==c).length,N=T.length,tw=r3(T.reduce((a,x)=>a+x.wp,0)),ts=r3(T.reduce((a,x)=>a+x.exp,0)),mx=Math.max(1,tw,ts),hasP=T.some(x=>x.p>0),pct=Math.round(n('ok')/N*100),a=n('ok')/N*100,b=a+n('hi')/N*100;
  const hi=T.filter(x=>x.c=='hi').sort((p,q)=>q.diff-p.diff),lo=T.filter(x=>x.c=='lo').sort((p,q)=>p.diff-q.diff);
- const grp=(L,t,s)=>{if(!L.length)return'';const S=L.slice(0,6),m=Math.max(1,...S.map(x=>Math.max(x.wp,x.exp))),ht=v=>Math.max(v>0?4:0,Math.round(v/m*104));
-  return `<div class="sxsub">${t} <small class="mut">${L.length} รายการ · ${s}${L.length>6?' · แสดง 6 อันดับแรก':''}</small></div><div class="vgs">${S.map(x=>`<div class="vg"><span class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</span><div class="vb"><div><em>${nf(x.wp)}</em><i style="--h:${ht(x.wp)}"></i></div><div><em>${nf(x.exp)}</em><i class="s" style="--h:${ht(x.exp)}"></i></div></div><b title="${esc(x.n)}">${esc(x.n)}</b></div>`).join('')}</div>`};
+ const grp=(L,t,s)=>{if(!L.length)return'';const S=L.slice(0,20),m=Math.max(1,...S.map(x=>Math.max(x.wp,x.exp))),ht=v=>Math.max(v>0?4:0,Math.round(v/m*104));
+  return `<div class="sxsub">${t} <small class="mut">${L.length} รายการ · ${s}${L.length>20?' · แสดง 20 อันดับแรก':''}${S.length>5?' · เลื่อนไปทางขวาเพื่อดูเพิ่ม →':''}</small></div><div class="vgs">${S.map(x=>`<div class="vg"><span class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</span><div class="vb"><div><em>${nf(x.wp)}</em><i style="--h:${ht(x.wp)}"></i></div><div><em>${nf(x.exp)}</em><i class="s" style="--h:${ht(x.exp)}"></i></div></div><b title="${esc(x.n)}">${esc(x.n)}</b></div>`).join('')}</div>`};
  return `<div class="card"><h3>📊 เทียบยอด เว็บ vs SAP</h3>
  <div class="sxlg"><span><i></i>เว็บ${hasP?' (หลังหักยอดรอตัด)':''}</span><span><i class="s"></i>SAP (ปรับวันที่แล้ว)</span></div>
  <div class="cg"><div class="dn"><div class="dnr" style="background:conic-gradient(#22c55e 0 ${a}%,#ef4444 ${a}% ${b}%,#f59e0b ${b}% 100%)"><div><b>${pct}%</b><small>ตรง SAP</small></div></div>
