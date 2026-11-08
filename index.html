@@ -1354,13 +1354,34 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  #appTop .atC{justify-content:center;padding:6px 8px;font-size:13px}
  #appTop .atC b{font-size:20px}
 }
+
+/* ===== ยอดขาย & เทียบ SAP ===== */
+#sales .sxr{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln)}#sales .sxr:last-child{border-bottom:0}
+#sales .sxn{flex:1;min-width:0}#sales .sxn b{display:block;font-weight:600;overflow-wrap:anywhere;line-height:1.3}#sales .sxn small{color:var(--mut);font-size:12px;overflow-wrap:anywhere}
+#sales .sxv{text-align:center;min-width:46px}#sales .sxv i{display:block;font-style:normal;font-size:11px;color:var(--mut)}#sales .sxv b{font-size:16px;font-weight:700}
+#sales .sxd{min-width:48px;text-align:center;font-weight:700;border-radius:10px;padding:5px 8px;font-size:14px}
+#sales .sxd.ok{background:#dcfce7;color:#166534}#sales .sxd.hi{background:#fee2e2;color:#b91c1c}#sales .sxd.lo{background:#fef3c7;color:#92400e}#sales .sxd.z{background:var(--tint);color:var(--mut);font-weight:500;font-size:12px}
+#sales .sxrk{width:22px;text-align:center;color:var(--mut);font-size:13px}
+#sales .sxcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+#sales .sxc{display:inline-block;padding:2px 9px;border-radius:99px;background:var(--tint);color:var(--ink);font-size:12px;font-weight:500}#sales .sxc.z{background:#e2e8f0;color:#475569}#sales .sxc.w{background:#fee2e2;color:#b91c1c}
+#sales .sxg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0}#sales .sxg>div{background:var(--tint);border-radius:14px;padding:10px 6px;text-align:center}
+#sales .sxg b{display:block;font-size:19px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}#sales .sxg i{display:block;font-style:normal;font-size:11px;color:var(--mut);margin-top:2px}
+#sales .sxb{background:var(--tint);border-radius:14px;padding:12px 14px;margin:12px 0;line-height:1.5}#sales .sxb.ok{background:#dcfce7;color:#14532d}
+#sales .sxck{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-weight:500}#sales .sxck input{width:auto;flex:none;margin-top:4px}
+#sales .sxd2{background:var(--tint);border-radius:14px;padding:10px 14px;margin:8px 0}#sales .sxd2 summary{cursor:pointer;font-weight:500}
+#sales .sxl{padding:6px 0;border-bottom:1px dashed var(--ln)}#sales .sxl:last-child{border:0}#sales .sxl b{display:block;font-weight:600;overflow-wrap:anywhere}#sales .sxl small{color:var(--mut);font-size:12px}
+#sales .tab small{opacity:.75;margin-left:2px}
+#sales .sxbar{display:flex;gap:3px;align-items:flex-end;height:150px;overflow-x:auto;padding-bottom:2px}#sales .sxbar button{flex:1;min-width:14px;height:100%;border:0;background:none;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;cursor:pointer;padding:0;color:var(--mut);font-size:10px}
+#sales .sxbar button i{display:block;width:100%;height:var(--h);background:var(--ac);border-radius:5px 5px 2px 2px;min-height:4px}
+#sales input[type=file]{width:100%;padding:12px;border:2px dashed var(--ln);border-radius:14px;background:var(--tint);font:inherit}
+@media(max-width:520px){#sales .sxg b{font-size:16px}#sales .sxv{min-width:38px}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
 <button class="bell fs" id="belS" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button><div id="prn"></div><button id="navTab" onclick="navTog()" title="แสดงเมนู" aria-label="แสดงเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
 <div id="shell"><nav id="nav"><div class="navin"><button class="lgb" id="lgb" onclick="bmenu()" aria-label="เมนูสาขา">B</button>
- <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>เพิ่มสินค้า</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button><button data-p="set" class="nset" title="ตั้งค่า"><svg class="i" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>ตั้งค่า</span></button><button class="ncl" onclick="navTog()" title="ซ่อนเมนู" aria-label="ซ่อนเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div></nav>
+ <button data-p="add" title="เพิ่มสินค้า"><svg class="i" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>เพิ่มสินค้า</span></button><button data-p="sales" title="ยอดขาย &amp; เทียบ SAP"><svg class="i" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2zM8.5 8h7M8.5 12h7"/></svg><span>ยอดขาย</span></button><button data-p="stat" title="สถิติและรายงาน"><svg class="i" viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg><span>สถิติ</span></button><button data-p="list" class="on" title="รายการ"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><span>รายการ</span></button><button data-p="set" class="nset" title="ตั้งค่า"><svg class="i" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>ตั้งค่า</span></button><button class="ncl" onclick="navTog()" title="ซ่อนเมนู" aria-label="ซ่อนเมนู"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div></nav>
 <div id="main">
 <header id="appTop"><button class="bell fl" id="belF" onclick="bellTap()" aria-label="แจ้งเตือน"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></svg><b class="bn">0</b></button>
 <div class="atTrack" aria-hidden="true"><span class="dg d1" onclick="bark(this)"><i><img src="Logo.gif" alt="" draggable="false" onerror="this.replaceWith('🐈')"></i></span><span class="dg d2" onclick="bark(this)"><i>🐈‍⬛</i></span><span class="dg d3" onclick="bark(this)"><i>🐱</i></span><span class="dg d4" onclick="bark(this)"><i>🐈</i></span></div>
@@ -1388,6 +1409,8 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
  <div class="acts" id="qacts"><button type="button" class="qTab" id="qTab" onclick="qSlide()" aria-label="เปิด/ซ่อนปุ่มลัด สแกน ถัดไป บันทึก"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="btn alt big" id="qscan" onclick="scan('add')" aria-label="สแกน"><i>📷</i><span class="s">สแกน</span></button><button class="btn big" id="qnow" onclick="W(this,saveAll)"><i>💾</i><span class="f">บันทึกชิ้นนี้เลย</span><span class="s">บันทึก</span></button><button class="btn alt big" id="qadd" onclick="queue()"><i>＋</i><span class="f">เพิ่มชิ้นถัดไป</span><span class="s">ถัดไป</span></button></div>
  <div class="mut hint" id="qhint" style="text-align:center">💾 บันทึกชิ้นนี้ลงชีททันที · ＋ เพิ่มชิ้นถัดไป = พักไว้ในคิวก่อน แล้วบันทึกรวมทีเดียว</div></div>
  <div class="card qcard e0" id="qcard"><h3>🧾 คิวรอบันทึก <small id="qn"></small></h3><div id="ql"></div><button class="btn big" id="qs" onclick="W(this,saveAll)">บันทึกทั้งหมดเข้าชีต</button></div></div></section>
+<section id="sales" class="hide"><div class="ph"><h1>ยอดขาย &amp; เทียบ SAP</h1><div class="mut">นำเข้ายอดขาย → ตัดสต็อกตามล็อต → เทียบกับ SAP → ปรับยอดให้ตรง</div></div>
+<div class="tabs" id="sxTabs"></div><div id="sxBody"></div></section>
 <section id="stat" class="hide"><div class="ph"><h1>สถิติและรายงาน</h1><div class="mut">แตะการ์ด แท่งกราฟ หรือแถวสินค้า เพื่อดูรายการข้างใน</div></div>
 <div id="bn" class="hide"><b id="bn1"></b><i id="bn2"></i><i id="bnA"></i></div>
 <div class="kp2" id="kp2"></div>
@@ -1509,11 +1532,11 @@ addEventListener('unhandledrejection',e=>errNote('หน้าเว็บ (JS)'
 let WSEQ=0; // นับทุกครั้งที่เราเขียน (เพิ่ม/แก้/ลบ) ใช้ทิ้งผลโหลดเก่าที่เริ่มก่อนแล้วมาถึงทีหลัง
 async function api(b){
  if(!BR||!CODE){openBr();throw new Error('เลือกสาขาและใส่รหัสก่อน')}
- const wr=/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action);if(wr)WSEQ++;let r;
+ const wr=/^(add|update|delete|deleteMany|restore|dbset|salesImport|salesUndo|sapAdjust)$/.test(b.action);if(wr)WSEQ++;let r;
  const ce=ERQ.slice(),body={branch:BR,code:CODE,dev:DEV,who:getWho(),...b};if(ce.length)body.cerr=ce.map(x=>({...x,age:Date.now()-x.t})); // แนบข้อผิดพลาดที่ค้างอยู่ในเครื่อง ให้แอดมินเห็นในประวัติ
  try{r=await post(body);if(ce.length&&r&&!r.auth){ERQ.splice(0,ce.length);saveErq()}}finally{if(wr)WSEQ++}
  if(!r.ok){if(r.auth){CODE='';localStorage.removeItem('code');openBr()}throw new Error(r.error)}
- if(r.v&&/^(add|update|delete|deleteMany|restore|dbset)$/.test(b.action))D.v=r.v;return r}
+ if(r.v&&/^(add|update|delete|deleteMany|restore|dbset|salesImport|salesUndo|sapAdjust)$/.test(b.action))D.v=r.v;return r}
 let PK='',PN2='',PIN='',PTXT=0,BL=[],PBUSY=0;
 async function openBr(){
  PK='';$('lgA').classList.remove('hide');$('lgB').classList.add('hide');if(!$('lg').open)$('lg').showModal();
@@ -1997,7 +2020,7 @@ async function svBr(el){const c=el.closest('[data-k]'),pin0=c.querySelector('.bc
 async function unlockBr(el){const c=el.closest('[data-k]'),r=await adm('adminUnlock',{key:c.dataset.k});if(!r.ok)return toast(r.error);toast('ปลดล็อกแล้ว ใส่ PIN ได้ใหม่ทันที')}
 async function dlBr(el){const c=el.closest('[data-k]');if(!c.dataset.k)return c.remove();if(!await ask({t:'ลบสาขานี้?',b:'ข้อมูลในชีตจะไม่ถูกลบ แต่สาขานี้จะเข้าใช้งานไม่ได้อีก',ok:'ลบสาขา',danger:1}))return;const r=await adm('adminDel',{key:c.dataset.k});if(!r.ok)return toast(r.error);drawAdm(r.list)}
 async function admPw(){const r=await adm('adminPw',{newAdmin:$('npw').value});if(!r.ok)return toast(r.error);AD=$('npw').value;$('adm').value=AD;$('npw').value='';toast('เปลี่ยนรหัสแอดมินแล้ว')}
-let CUR='list';function go(p){CUR=p;document.body.classList.toggle('pgadd',p=='add');scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
+let CUR='list';function go(p){CUR=p;document.body.classList.toggle('pgadd',p=='add');scrollTo(0,0);setTimeout(qLbl,0);if(p=='set')drawSet();if(p=='sales'&&window.sxOpen)sxOpen();document.querySelectorAll('#nav button[data-p]').forEach(x=>x.classList.toggle('on',x.dataset.p==p));['list','add','stat','sales','set'].forEach(k=>$(k).classList.toggle('hide',k!=p))}
 document.querySelectorAll('#nav button[data-p]').forEach(b=>b.onclick=()=>go(b.dataset.p));
 // เมนูข้าง: พับเก็บ/เปิด (จอคอม จำค่าไว้) · มือถือ: เลื่อนลงซ่อนแถบล่าง เลื่อนขึ้นโผล่กลับ
 function navTog(){const h=document.documentElement;h.classList.add('navanim');const c=h.classList.toggle('navc');try{localStorage.setItem('navc',c?'1':'0')}catch(e){}}
@@ -2060,6 +2083,183 @@ BR&&CODE?load(1):(BR||0,drawAll(),BR||toast('ยังไม่ได้เล�
  const og=window.go;window.go=function(p){const x=og.apply(this,arguments);try{r.classList.remove('sc');r.classList.toggle('c',CUR=='add');r.querySelectorAll('[data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p==CUR))}catch(e){}return x};
  document.addEventListener('click',e=>{if(!e.target.closest('#rail'))r.classList.remove('sc')});
  try{r.classList.toggle('c',CUR=='add');r.querySelectorAll('[data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p==CUR))}catch(e){}
+})();
+
+/* ===== ยอดขาย & เทียบ SAP ===== */
+(function(){
+const SX=window.SX={tab:'imp',mode:'day',month:'',day:'',list:null,sap:null,cf:'bad',q:'',hq:'',plan:null,rows:null,deduct:true,done:null,sapRows:null,sapSkip:0,sapMeta:null,cmp:[],br:''};
+const r3=x=>Math.round((+x||0)*1000)/1000,nf=n=>(+n||0).toLocaleString('en-US',{maximumFractionDigits:2}),mny=n=>'฿'+nf(n),ds=s=>s?fd(s):'-',pad=n=>('0'+n).slice(-2);
+const jp=s=>{try{return s?JSON.parse(s):[]}catch(e){return[]}};
+const mLabel=m=>{const p=m.split('-'),n=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];return n[+p[1]-1]+' '+(S.be?+p[0]+543:p[0])};
+
+/* ---------- อ่านไฟล์ ---------- */
+function csvParse(t){t=t.replace(/^\uFEFF/,'');const R=[];let r=[],c='',q=0;
+ for(let i=0;i<t.length;i++){const ch=t[i];
+  if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=0}else c+=ch}
+  else if(ch=='"')q=1;else if(ch==','){r.push(c);c=''}
+  else if(ch=='\n'||ch=='\r'){if(ch=='\r'&&t[i+1]=='\n')i++;r.push(c);c='';R.push(r);r=[]}else c+=ch}
+ if(c!==''||r.length){r.push(c);R.push(r)}return R}
+function thDate(s){const m=String(s||'').trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(!m)return'';let y=+m[3];if(y>2400)y-=543;return y+'-'+pad(m[2])+'-'+pad(m[1])}
+function parseSales(text){const R=csvParse(text),h=R.findIndex(r=>String(r[0]).trim().toUpperCase()=='SKU');
+ if(h<0)throw new Error('ไม่ใช่ไฟล์ยอดขาย (ไม่พบหัวตาราง SKU)');
+ const H=R[h].map(x=>String(x).trim()),ix=n=>H.indexOf(n),iS=ix('SKU'),iT=ix('Title'),iTy=ix('Type'),iSt=ix('Station'),iD=ix('Date'),iQ=ix('Qty'),iP=ix('PPU'),iTo=ix('Total');
+ if([iS,iD,iQ].some(i=>i<0))throw new Error('ไฟล์ขาดคอลัมน์ SKU / Date / Qty');
+ const out=[];
+ R.slice(h+1).forEach(r=>{const b=String(r[iS]||'').trim(),q=parseFloat(r[iQ]),d=thDate(r[iD]);
+  if(!/^\S{4,}$/.test(b)||!isFinite(q)||!d)return;if(iTy>=0&&r[iTy]&&!/item/i.test(r[iTy]))return;
+  out.push({date:d,barcode:b,name:String(r[iT]||'').trim(),qty:q,ppu:parseFloat(r[iP])||0,total:parseFloat(r[iTo])||0,station:iSt>=0?String(r[iSt]||'').trim():''})});
+ if(!out.length)throw new Error('ไม่พบรายการขายในไฟล์');return out}
+function sapFromRows(R){const h=R.findIndex(r=>r.some(c=>/^barcode/i.test(String(c).trim())));
+ if(h<0)throw new Error('ไม่พบคอลัมน์ Barcode ในไฟล์ SAP');
+ const H=R[h].map(x=>String(x).trim()),iB=H.findIndex(x=>/^barcode/i.test(x)),iM=H.indexOf('Material'),iN=H.indexOf('Material description'),iG=H.indexOf('Material Group Description');
+ let iQ=H.indexOf('Base Unit');iQ=(iQ>=0&&/^unrestr/i.test(H[iQ+1]||''))?iQ+1:H.map((x,i)=>/^unrestr/i.test(x)?i:-1).filter(i=>i>=0).pop();
+ if(iQ==null||iQ<0)throw new Error('ไม่พบคอลัมน์ยอดคงเหลือ (Unrestr.) ในไฟล์ SAP');
+ const rows=[];let skip=0,sci=0;
+ R.slice(h+1).forEach(r=>{const b=String(r[iB]==null?'':r[iB]).trim();if(!b){if(String(r[iM]||'').trim())skip++;return}
+  if(/e\+/i.test(b))sci++;
+  rows.push({barcode:b,material:iM>=0?String(r[iM]||'').trim():'',name:iN>=0?String(r[iN]||'').trim():'',group:iG>=0?String(r[iG]||'').trim():'',qty:parseFloat(String(r[iQ]||'0').replace(/,/g,''))||0})});
+ if(!rows.length)throw new Error('ไม่พบรายการสินค้าในไฟล์ SAP');
+ if(sci)throw new Error('บาร์โค้ดในไฟล์ถูกแปลงเป็นเลขวิทยาศาสตร์ (E+) กรุณา export ใหม่ให้บาร์โค้ดเป็นข้อความ');
+ return{rows,skip}}
+function loadX(){return window.XLSX?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=ok;s.onerror=()=>no(new Error('โหลดตัวอ่าน Excel ไม่สำเร็จ (ต้องต่ออินเทอร์เน็ต) · หรือบันทึกไฟล์ SAP เป็น .csv แล้วเลือกใหม่'));document.head.appendChild(s)})}
+async function readSap(f){let R;
+ if(/\.csv$/i.test(f.name))R=csvParse(await f.text());
+ else{await loadX();const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});R=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:false,defval:''})}
+ return sapFromRows(R)}
+function exportInfo(f){const m=f.name.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})?/);let y,mo,d,h,mi;
+ if(m&&+m[1]>2000&&+m[1]<2100&&+m[2]<13&&+m[3]<32&&+m[4]<24){[y,mo,d,h,mi]=[+m[1],+m[2],+m[3],+m[4],+m[5]]}
+ else{const t=new Date(f.lastModified||Date.now());[y,mo,d,h,mi]=[t.getFullYear(),t.getMonth()+1,t.getDate(),t.getHours(),t.getMinutes()]}
+ const day=new Date(y,mo-1,d);if(h<6)day.setDate(day.getDate()-1); // ส่งออกตอนเช้ามืด = ยังไม่รวมยอดขายของวันนี้
+ return{exportAt:y+'-'+pad(mo)+'-'+pad(d)+' '+pad(h)+':'+pad(mi),asOf:day.getFullYear()+'-'+pad(day.getMonth()+1)+'-'+pad(day.getDate())}}
+
+/* ---------- โครงหน้า ---------- */
+function tabsH(){return[['imp','📥 นำเข้า'],['his','📅 ประวัติขาย'],['cmp','⚖️ เทียบ SAP']].map(([k,t])=>`<button class="tab ${SX.tab==k?'on':''}" onclick="sxTab('${k}')">${t}</button>`).join('')}
+function draw(){const a=$('sxTabs'),b=$('sxBody');if(!a)return;a.innerHTML=tabsH();
+ b.innerHTML=SX.tab=='imp'?impH():SX.tab=='his'?hisH():cmpH()}
+window.sxOpen=()=>{if(SX.br!=BR){Object.assign(SX,{br:BR,list:null,sap:null,plan:null,rows:null,done:null,sapRows:null,month:'',day:''})}sxTab(SX.tab)};
+window.sxTab=async k=>{SX.tab=k;draw();
+ try{if(k=='his')await loadHis(SX.month);else if(k=='cmp')await loadSap();else{await Promise.all([loadHis(SX.month,1),loadSap(1)])}}catch(e){toast(e.message)}
+ if(SX.tab==k)draw()}
+async function loadHis(m,q){const r=await api(q?{action:'salesList',month:m||'',_q:1}:{action:'salesList',month:m||''});SX.list=r;SX.month=r.month;
+ const ds2=[...new Set(r.rows.map(a=>a[0]))].sort();if(!SX.day||SX.day.slice(0,7)!=r.month||ds2.indexOf(SX.day)<0)SX.day=ds2[ds2.length-1]||''}
+async function loadSap(q){SX.sap=await api(q?{action:'sapGet',_q:1}:{action:'sapGet'})}
+
+/* ---------- 1) นำเข้า ---------- */
+function impH(){const m=SX.sap&&SX.sap.meta;
+ return `<div class="card"><h3>📥 1) ยอดขายรายวัน <small class="mut">(ไฟล์ DailySale .csv)</small></h3>
+ <div class="mut" style="margin-bottom:10px">เลือกไฟล์ → ระบบ<b>จำลองให้ดูก่อน</b> ยังไม่ตัดสต็อกจนกว่าจะกดยืนยัน · นำเข้าไฟล์เดิมซ้ำได้ ไม่ตัดซ้ำ · ตัดล็อตที่หมดอายุก่อนเป็นอันดับแรก</div>
+ <input type="file" id="sxF" accept=".csv,text/csv" onchange="sxPickSales(this)"><div id="sxPlan">${planH()}</div></div>
+ <div class="card"><h3>🧾 2) ยอดสต็อก SAP <small class="mut">(ไฟล์ EXPORT .xlsx)</small></h3>
+ <div class="mut" style="margin-bottom:10px">${m?`ล่าสุด: ${esc(m.file||'-')} · ${m.n} รายการ<br>ส่งออก ${esc(m.exportAt||'-')} · SAP รวมยอดขายถึง ${ds(m.asOf)}`:'ยังไม่เคยอัปโหลดยอด SAP ของสาขานี้'}</div>
+ <input type="file" id="sxS" accept=".xlsx,.xls,.csv" onchange="sxPickSap(this)"><div id="sxSp">${sapPvH()}</div></div>
+ ${batchH()}`}
+function planH(){const P=SX.plan;if(SX.done)return doneH();if(!P)return'';
+ const s=P.sum,it=P.items.filter(x=>x.st!='less'),ds0=[...new Set(SX.rows.map(x=>x.date))].sort(),tot=SX.rows.reduce((a,x)=>a+x.total,0),st=SX.rows[0]&&SX.rows[0].station;
+ const sh=it.filter(x=>x.short>0),nw=it.filter(x=>!x.tracked),dn=it.filter(x=>x.tracked&&x.took>0).length;
+ const lst=(a,f)=>a.slice(0,30).map(f).join('')+(a.length>30?`<div class="mut">…และอีก ${a.length-30}</div>`:'');
+ let h=`<div class="sxb"><b>${SX.rows.length}</b> บรรทัด · วันที่ ${ds0.length>1?ds(ds0[0])+' – '+ds(ds0[ds0.length-1]):ds(ds0[0])} · ยอดเงิน <b>${mny(tot)}</b>${st?`<br><small class="mut">เครื่องขาย: ${esc(st)}</small>`:''}</div>`;
+ if(!s.rows)return h+`<div class="sxb ok">✅ ไฟล์นี้นำเข้าไปแล้วทั้งหมด (ซ้ำ ${s.dup} รายการ) ไม่มีอะไรต้องทำ</div>`;
+ h+=`<label class="sxck"><input type="checkbox" ${SX.deduct?'checked':''} onchange="sxDed(this)"> ตัดสต็อกในเว็บตามยอดขาย <small class="mut">(ถ้าเอาออก = บันทึกประวัติขายอย่างเดียว)</small></label>
+ <div class="sxg"><div><b>${s.rows}</b><i>รายการใหม่</i></div><div><b>${nf(s.units)}</b><i>ชิ้นที่ขาย</i></div><div><b>${SX.deduct?nf(s.deducted):0}</b><i>ชิ้นที่ตัดจริง</i></div>${s.dup?`<div><b>${s.dup}</b><i>ซ้ำ (ข้าม)</i></div>`:''}</div>`;
+ if(SX.deduct&&s.soldOut.length)h+=`<details class="sxd2" open><summary>🏁 ขายหมดล็อต <b>${s.soldOut.length}</b> ล็อต (จะย้ายลงถังขยะ)</summary>${lst(s.soldOut,x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ล็อต ${x.d?ds(x.d):'ไม่ระบุวันหมดอายุ'}</small></div>`)}</details>`;
+ if(SX.deduct&&sh.length)h+=`<details class="sxd2"><summary>⚠️ ขายเกินสต็อกในเว็บ <b>${sh.length}</b> รายการ</summary>${lst(sh,x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ขาย ${x.q} · เว็บมี ${x.took} · เกิน ${x.short}</small></div>`)}<div class="mut">เว็บตัดได้เท่าที่มี ส่วนที่เกินให้ตรวจว่าลืมลงล็อตหรือไม่</div></details>`;
+ if(nw.length)h+=`<details class="sxd2"><summary>🧦 ไม่อยู่ในเว็บ <b>${nw.length}</b> รายการ</summary>${lst(nw,x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ขาย ${x.q}</small></div>`)}<div class="mut">บันทึกในประวัติขายและเทียบ SAP ได้ แต่ไม่ตัดสต็อกเว็บ</div></details>`;
+ if(s.less)h+=`<div class="mut" style="margin:8px 0">ℹ️ ${s.less} รายการมียอดน้อยกว่าที่เคยนำเข้าไว้ → ข้าม (ไม่ย้อนตัดคืนอัตโนมัติ)</div>`;
+ return h+`<button class="btn big" style="width:100%;margin-top:12px" onclick="sxGo(this)">ยืนยันนำเข้า ${s.rows} รายการ${SX.deduct?' และตัดสต็อก':''}</button>`}
+function doneH(){const s=SX.done;return `<div class="sxb ok">✅ นำเข้าแล้ว <b>${s.rows}</b> รายการ · ตัดสต็อกจริง <b>${nf(s.deducted)}</b> ชิ้น${s.soldOut.length?` · 🏁 หมดล็อต ${s.soldOut.length} ล็อต`:''}${s.notWeb?` · ไม่อยู่ในเว็บ ${s.notWeb}`:''}${s.short?` · ⚠️ ขายเกินสต็อก ${s.short}`:''}</div><div class="mut">ไปแท็บ “เทียบ SAP” เพื่อเช็กว่ายอดตรงกันไหม</div>`}
+window.sxPickSales=async inp=>{const f=inp.files[0];if(!f)return;SX.done=null;SX.plan=null;
+ try{SX.rows=parseSales(await f.text());await dry()}catch(e){SX.rows=null;toast(e.message)}$('sxPlan').innerHTML=planH()}
+async function dry(){SX.plan=await api({action:'salesImport',rows:SX.rows,dry:true,deduct:SX.deduct})}
+window.sxDed=async c=>{SX.deduct=c.checked;try{await dry()}catch(e){toast(e.message)}$('sxPlan').innerHTML=planH()}
+window.sxGo=b=>W(b,async()=>{const s=SX.plan.sum;
+ const v=await ask({t:'ยืนยันนำเข้ายอดขาย?',b:`${s.rows} รายการ · ${nf(s.units)} ชิ้น<br>`+(SX.deduct?`จะตัดสต็อกในเว็บ ${nf(s.deducted)} ชิ้น (ล็อตที่หมดอายุก่อนตัดก่อน)${s.soldOut.length?`<br>ขายหมด ${s.soldOut.length} ล็อต`:''}`:'บันทึกประวัติอย่างเดียว ไม่ตัดสต็อก')+'<br><small>ผิดพลาดแล้วกด “ยกเลิก” ที่ชุดนำเข้าได้</small>',ok:'นำเข้า'});
+ if(v!='ok')return;
+ const r=await api({action:'salesImport',rows:SX.rows,deduct:SX.deduct,batch:SX.plan.batch});
+ SX.done=r.sum;SX.rows=null;SX.plan=null;try{$('sxF').value=''}catch(e){}
+ toast('นำเข้าแล้ว '+r.sum.rows+' รายการ');await load();await loadHis(SX.month,1);draw()})
+function sapPvH(){const R=SX.sapRows,M=SX.sapMeta;if(!R)return'';
+ return `<div class="sxb">พบ <b>${R.length}</b> รายการ${SX.sapSkip?` · ข้าม ${SX.sapSkip} (ไม่มีบาร์โค้ด)`:''}<br><small class="mut">เวลาส่งออกจาก SAP: ${esc(M.exportAt)}</small></div>
+ <label>SAP รวมยอดขายถึงวันที่ <small class="mut">(ขายหลังวันนี้ ระบบจะหักออกจากยอด SAP ก่อนเทียบ)</small></label><input type="date" value="${M.asOf}" onchange="SX.sapMeta.asOf=this.value">
+ <button class="btn big" style="width:100%;margin-top:10px" onclick="sxUpSap(this)">อัปโหลดยอด SAP</button>`}
+window.sxPickSap=async inp=>{const f=inp.files[0];if(!f)return;SX.sapRows=null;
+ try{const r=await readSap(f);SX.sapRows=r.rows;SX.sapSkip=r.skip;SX.sapMeta={...exportInfo(f),file:f.name}}catch(e){toast(e.message)}$('sxSp').innerHTML=sapPvH()}
+window.sxUpSap=b=>W(b,async()=>{const M=SX.sapMeta;if(!/^\d{4}-\d{2}-\d{2}$/.test(M.asOf))return toast('ใส่วันที่ที่ SAP รวมยอดขายถึง');
+ await api({action:'sapImport',rows:SX.sapRows,asOf:M.asOf,exportAt:M.exportAt,file:M.file});
+ SX.sapRows=null;try{$('sxS').value=''}catch(e){}toast('อัปโหลด SAP แล้ว');SX.tab='cmp';await loadSap();draw()})
+function batchH(){const B=SX.list&&SX.list.batches||[];if(!B.length)return'';
+ return `<div class="card"><h3>🕘 การนำเข้าล่าสุด</h3>${B.map(x=>`<div class="sxr"><div class="sxn"><b>${ds(x.from)}${x.to!=x.from?' – '+ds(x.to):''}</b><small>${x.n} รายการ · ขาย ${nf(x.q)} · ตัดจริง ${nf(x.dd)} ชิ้น${x.who?' · '+esc(x.who):''}</small></div><button class="btn del mini" onclick="sxUndo('${esc(x.batch)}')">↩ ยกเลิก</button></div>`).join('')}<div class="mut" style="margin-top:8px">ยกเลิก = คืนจำนวนกลับล็อตเดิม (ล็อตที่หมดไปจะสร้างกลับให้)</div></div>`}
+window.sxUndo=async b=>{const v=await ask({t:'ยกเลิกชุดนำเข้านี้?',b:'คืนจำนวนที่ตัดไปกลับเข้าล็อตเดิม และลบประวัติขายของชุดนี้ออก',ok:'ยกเลิกชุดนี้',danger:1});if(v!='ok')return;
+ try{const r=await api({action:'salesUndo',batch:b});toast('ยกเลิกแล้ว คืนสต็อก '+nf(r.back)+' ชิ้น');await load();await loadHis(SX.month,1);draw()}catch(e){toast(e.message)}}
+
+/* ---------- 2) ประวัติขาย ---------- */
+function hisH(){const L=SX.list;if(!L)return'<div class="card mut">กำลังโหลด…</div>';
+ if(!L.months.length)return'<div class="card mut">ยังไม่มีประวัติยอดขาย · ไปที่แท็บ “นำเข้า” เพื่อนำเข้าไฟล์ยอดขาย</div>';
+ const q=SX.hq.trim().toLowerCase(),rows=L.rows.map(a=>({d:a[0],b:a[1],n:a[2],q:a[3],p:a[4],t:a[5],dd:a[6],lots:jp(a[7]),note:a[9]})).filter(x=>!q||(x.n+' '+x.b).toLowerCase().includes(q));
+ let h=`<div class="row" style="margin-bottom:10px"><select onchange="sxMonth(this.value)">${L.months.map(m=>`<option value="${m.m}" ${m.m==L.month?'selected':''}>${mLabel(m.m)} · ${mny(m.t)}</option>`).join('')}</select><button class="btn alt fit" onclick="sxCsv()">CSV</button></div>
+ <div class="tabs"><button class="tab ${SX.mode=='day'?'on':''}" onclick="sxMode('day')">รายวัน</button><button class="tab ${SX.mode=='mon'?'on':''}" onclick="sxMode('mon')">รายเดือน</button></div>
+ <div class="srch" style="margin-bottom:10px"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด" value="${esc(SX.hq)}" oninput="sxHq(this.value)"></div>`;
+ const kp=(a)=>`<div class="sxg"><div><b>${mny(a.reduce((s,x)=>s+x.t,0))}</b><i>ยอดเงิน</i></div><div><b>${nf(a.reduce((s,x)=>s+x.q,0))}</b><i>ชิ้น</i></div><div><b>${new Set(a.map(x=>x.b)).size}</b><i>สินค้า</i></div><div><b>${new Set(a.map(x=>x.d)).size}</b><i>วัน</i></div></div>`;
+ if(SX.mode=='day'){const days=[...new Set(L.rows.map(a=>a[0]))].sort().reverse(),tt={};L.rows.forEach(a=>tt[a[0]]=(tt[a[0]]||0)+a[5]);
+  const cur=rows.filter(x=>x.d==SX.day).sort((a,b)=>b.q-a.q);
+  h+=`<div class="tabs">${days.map(d=>`<button class="tab ${d==SX.day?'on':''}" onclick="sxDay('${d}')">${+d.slice(8)}<small> ${nf(tt[d])}</small></button>`).join('')}</div>${kp(cur)}<div class="card">${cur.length?cur.map(itemH).join(''):'<div class="mut">ไม่มีรายการ</div>'}</div>`}
+ else{const days={},it={};rows.forEach(x=>{days[x.d]=(days[x.d]||0)+x.t;const o=it[x.b]||(it[x.b]={b:x.b,n:x.n,q:0,t:0,d:new Set(),nw:0});o.q+=x.q;o.t+=x.t;o.d.add(x.d);if(/ไม่อยู่ในเว็บ/.test(x.note))o.nw=1});
+  const dk=Object.keys(days).sort(),mx=Math.max(1,...dk.map(d=>days[d])),so=[];rows.forEach(x=>x.lots.forEach(l=>{if(l.l<=0)so.push({n:x.n,day:x.d,d:l.d})}));
+  h+=kp(rows)+`<div class="card"><h3>ยอดขายรายวัน</h3><div class="sxbar">${dk.map(d=>`<button style="--h:${Math.max(4,days[d]/mx*100)}%" onclick="sxDay('${d}');sxMode('day')" title="${ds(d)} ${mny(days[d])}"><i></i><span>${+d.slice(8)}</span></button>`).join('')}</div></div>
+  <div class="card"><h3>สินค้าขายดี</h3>${Object.values(it).sort((a,b)=>b.q-a.q).slice(0,100).map((x,i)=>`<div class="sxr"><span class="sxrk">${i+1}</span><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)} · ขาย ${x.d.size} วัน${x.nw?' · <span class="sxc">ไม่อยู่ในเว็บ</span>':''}</small></div><div class="sxv"><i>ชิ้น</i><b>${nf(x.q)}</b></div><div class="sxv"><i>฿</i><b>${nf(x.t)}</b></div></div>`).join('')||'<div class="mut">ไม่มีรายการ</div>'}</div>`;
+  if(so.length)h+=`<div class="card"><h3>🏁 ล็อตที่ขายหมดในเดือนนี้ <small class="mut">${so.length} ล็อต</small></h3>${so.sort((a,b)=>b.day<a.day?-1:1).map(x=>`<div class="sxl"><b>${esc(x.n)}</b><small>ล็อต ${x.d?ds(x.d):'ไม่ระบุวันหมดอายุ'} · หมดเมื่อ ${ds(x.day)}</small></div>`).join('')}</div>`}
+ return h}
+function itemH(x){const lots=x.lots.map(l=>`<span class="sxc ${l.l<=0?'z':''}">${l.d?ds(l.d):'ไม่ระบุวันหมดอายุ'} ${l.l<=0?'🏁 หมดล็อต':'เหลือ '+l.l}</span>`).join(''),
+ nt=/ไม่อยู่ในเว็บ/.test(x.note)?'<span class="sxc">ไม่อยู่ในเว็บ</span>':/ขายเกิน/.test(x.note)?`<span class="sxc w">${esc(x.note)}</span>`:/ไม่ตัด/.test(x.note)?'<span class="sxc">ไม่ตัดสต็อก</span>':'';
+ return `<div class="sxr"><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)}</small><div class="sxcs">${lots}${nt}</div></div><div class="sxv"><i>ขาย</i><b>${nf(x.q)}</b></div><div class="sxv"><i>฿</i><b>${nf(x.t)}</b></div></div>`}
+window.sxMonth=async m=>{try{await loadHis(m)}catch(e){toast(e.message)}draw()};
+window.sxMode=m=>{SX.mode=m;draw()};window.sxDay=d=>{SX.day=d;draw()};
+window.sxHq=v=>{SX.hq=v;const p=document.activeElement,s=p&&p.selectionStart;draw();const i=document.querySelector('#sxBody .srch input');if(i){i.focus();try{i.setSelectionRange(s,s)}catch(e){}}};
+window.sxCsv=()=>{const L=SX.list;if(!L||!L.rows.length)return toast('ไม่มีข้อมูล');const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
+ const t='\uFEFF'+['วันที่,บาร์โค้ด,สินค้า,จำนวน,ราคา/หน่วย,ยอดเงิน,ตัดสต็อกจริง,หมายเหตุ'].concat(L.rows.map(a=>[a[0],'="'+a[1]+'"',q(a[2]),a[3],a[4],a[5],a[6],q(a[9])].join(','))).join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='ยอดขาย_'+L.month+'.csv';a.click()}
+
+/* ---------- 3) เทียบ SAP ---------- */
+function cmpData(){const S0=SX.sap;if(!S0||!S0.meta)return[];
+ const web={},has={};D.entries.forEach(e=>{web[e.barcode]=r3((web[e.barcode]||0)+e.qty);has[e.barcode]=1});
+ const sap={};S0.rows.forEach(r=>sap[r[0]]={b:r[0],n:r[2],q:r[4]});
+ const out=[];new Set([...Object.keys(sap),...Object.keys(has)]).forEach(b=>{const s=sap[b],w=web[b]||0,inWeb=(b in has)||(b in D.db);
+  if(s){if(!inWeb){out.push({b,n:s.n,s:s.q,w:0,c:'out'});return}
+   const aft=S0.after[b]||0,exp=Math.max(0,r3(s.q-aft)),diff=r3(w-exp);
+   out.push({b,n:D.db[b]||s.n,s:s.q,aft,exp,w,diff,tg:exp,c:diff==0?'ok':diff>0?'hi':'lo'})}
+  else if(w>0)out.push({b,n:D.db[b]||b,w,c:'nosap'})});
+ return out}
+function lotsH(b){const L=D.entries.filter(e=>e.barcode==b&&e.qty>0).sort(byDue);return L.length?`<div class="sxcs">${L.slice(0,6).map(e=>`<span class="sxc ${days(e.due)<=0&&e.due?'w':''}">${e.due?ds(e.due):'ไม่ระบุวันหมดอายุ'} ×${e.qty}</span>`).join('')}${L.length>6?`<span class="sxc">+${L.length-6}</span>`:''}</div>`:'<div class="sxcs"><span class="sxc z">🏁 ไม่เหลือล็อตในเว็บ</span></div>'}
+function cmpH(){const S0=SX.sap;if(!S0)return'<div class="card mut">กำลังโหลด…</div>';
+ if(!S0.meta)return'<div class="card"><h3>ยังไม่มียอด SAP</h3><div class="mut">ไปแท็บ “นำเข้า” → ข้อ 2 เพื่ออัปโหลดไฟล์ SAP ก่อน</div></div>';
+ const A=SX.cmp=cmpData(),M=S0.meta,cnt=c=>A.filter(x=>x.c==c).length,tr=cnt('ok')+cnt('hi')+cnt('lo'),aq=Object.values(S0.after).reduce((a,b)=>a+b,0);
+ const f=SX.cf,q=SX.q.trim().toLowerCase();
+ let L=A.filter(x=>f=='bad'?(x.c=='hi'||x.c=='lo'):f=='trk'?(x.c=='ok'||x.c=='hi'||x.c=='lo'):x.c==f).filter(x=>!q||(x.n+' '+x.b).toLowerCase().includes(q));
+ L.sort((a,b)=>f=='bad'?Math.abs(b.diff)-Math.abs(a.diff):String(a.n).localeCompare(String(b.n),'th'));
+ const bad=A.filter(x=>x.c=='hi'||x.c=='lo');
+ const chip=(k,t,n)=>`<button class="tab ${f==k?'on':''}" onclick="sxCf('${k}')">${t} <small>${n}</small></button>`;
+ return `<div class="card"><div class="sxg"><div><b>${tr?Math.round(cnt('ok')/tr*100):0}%</b><i>ตรงกับ SAP</i></div><div><b>${cnt('ok')}</b><i>ตรง</i></div><div><b style="color:#d6336c">${bad.length}</b><i>ไม่ตรง</i></div><div><b>${cnt('out')}</b><i>ไม่อยู่ในเว็บ</i></div></div>
+ <div class="mut" style="margin-top:8px;font-size:13px">SAP ส่งออก ${esc(M.exportAt||'-')} · รวมยอดขายถึง ${ds(M.asOf)}${aq?`<br>ยอดที่คาดหวัง = SAP − ขายหลังวันนั้น (${nf(aq)} ชิ้น)`:''}</div></div>
+ <div class="tabs">${chip('bad','⚠️ ไม่ตรง',bad.length)}${chip('ok','✅ ตรง',cnt('ok'))}${chip('trk','ทั้งหมดที่ติดตาม',tr)}${chip('out','🧦 ไม่อยู่ในเว็บ',cnt('out'))}${chip('nosap','ไม่พบใน SAP',cnt('nosap'))}</div>
+ <div class="srch" style="margin-bottom:10px"><input placeholder="ค้นหาชื่อสินค้า / บาร์โค้ด" value="${esc(SX.q)}" oninput="sxQ(this.value)"></div>
+ ${f=='bad'&&bad.length?`<button class="btn big" style="width:100%;margin-bottom:12px" onclick="sxAdjAll(this)">ปรับทุกรายการที่ไม่ตรงให้เท่า SAP (${bad.length})</button>`:''}
+ ${f=='out'?'<div class="mut" style="margin-bottom:8px">สินค้าที่มีใน SAP แต่ไม่อยู่ฐานข้อมูลเว็บ (เช่น ถุงเท้า) · ไม่ต้องตามล็อต ถ้าอยากติดตามให้เพิ่มในหน้า “เพิ่มสินค้า”</div>':''}
+ <div class="card">${L.length?L.slice(0,300).map(rowH).join('')+(L.length>300?`<div class="mut" style="margin-top:8px">แสดง 300 จาก ${L.length} · ใช้ช่องค้นหาเพื่อกรอง</div>`:''):'<div class="mut">'+(f=='bad'?'🎉 ไม่มีรายการที่ไม่ตรง':'ไม่มีรายการ')+'</div>'}</div>`}
+function rowH(x){const i=SX.cmp.indexOf(x),nm=esc(x.n);
+ if(x.c=='out')return `<div class="sxr"><div class="sxn"><b>${nm}</b><small>${esc(x.b)}</small></div><div class="sxv"><i>SAP</i><b>${nf(x.s)}</b></div></div>`;
+ if(x.c=='nosap')return `<div class="sxr"><div class="sxn"><b>${nm}</b><small>${esc(x.b)}</small>${lotsH(x.b)}</div><div class="sxv"><i>เว็บ</i><b>${nf(x.w)}</b></div><div class="sxd z">ไม่มีใน SAP</div></div>`;
+ return `<div class="sxr"><div class="sxn"><b>${nm}</b><small>${esc(x.b)}${x.aft?` · ขายหลัง SAP −${nf(x.aft)}`:''}${x.s<0?' · SAP ติดลบ':''}</small>${lotsH(x.b)}</div><div class="sxv"><i>เว็บ</i><b>${nf(x.w)}</b></div><div class="sxv"><i>SAP</i><b>${nf(x.exp)}</b></div><div class="sxd ${x.c}">${x.diff>0?'+':''}${nf(x.diff)}</div>${x.c!='ok'?`<button class="btn alt mini" onclick="sxAdj(${i})">ปรับ</button>`:''}</div>`}
+window.sxCf=k=>{SX.cf=k;draw()};
+window.sxQ=v=>{SX.q=v;const p=document.activeElement,s=p&&p.selectionStart;draw();const i=document.querySelector('#sxBody .srch input');if(i){i.focus();try{i.setSelectionRange(s,s)}catch(e){}}};
+const how=r=>r.w>r.tg?'ลดตามล็อตที่หมดอายุก่อน (ล็อตที่เหลือ 0 จะย้ายลงถังขยะ)':'เพิ่มเป็นล็อต “ไม่ระบุวันหมดอายุ” (ไม่ทราบวันหมดอายุของส่วนที่เพิ่ม)';
+async function doAdj(L){const r=await api({action:'sapAdjust',items:L.map(x=>({barcode:x.b,target:x.tg,was:x.w,name:x.n}))}),sk=r.res.filter(x=>x.skip=='changed').length;
+ toast('ปรับแล้ว '+r.done+' รายการ'+(sk?' · ข้าม '+sk+' (มีคนแก้ระหว่างนี้ ลองใหม่)':''),4000);await load();draw()}
+window.sxAdj=async i=>{const r=SX.cmp[i];if(!r)return;
+ const v=await ask({t:'ปรับยอดให้เท่า SAP?',b:`<b>${esc(r.n)}</b><br>เว็บ ${nf(r.w)} → ${nf(r.tg)} ชิ้น<br><small>${how(r)}</small>`,ok:'ปรับเลย'});if(v!='ok')return;
+ try{await doAdj([r])}catch(e){toast(e.message)}}
+window.sxAdjAll=async b=>{const L=SX.cmp.filter(x=>x.c=='hi'||x.c=='lo');if(!L.length)return;const up=L.filter(x=>x.w<x.tg).length;
+ const v=await ask({t:`ปรับ ${L.length} รายการให้เท่า SAP?`,b:`ลดยอด ${L.length-up} รายการ · เพิ่มยอด ${up} รายการ<br><small>ลด = ตัดล็อตที่หมดอายุก่อน · เพิ่ม = ล็อต “ไม่ระบุวันหมดอายุ”<br>ทุกการปรับมีประวัติ และล็อตที่ถูกตัดหมดกู้คืนได้จากถังขยะ</small>`,ok:'ปรับทั้งหมด',danger:1});if(v!='ok')return;
+ W(b,()=>doAdj(L.slice(0,500)))}
+window.sxSapFromRows=sapFromRows;window.sxParseSales=parseSales;
 })();
 </script>
 </body>
