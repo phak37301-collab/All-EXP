@@ -1541,6 +1541,37 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .tlq.in{color:#16a34a}#sales .tlq.del{color:#dc2626}
 #sales .sph{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
 #sales .sph span{font-size:12.5px;padding:4px 10px;border-radius:99px;background:color-mix(in srgb,#0d9488 12%,#fff);color:#0f766e}
+
+/* ===== v4: รายงาน PDF/พิมพ์ — สีสันสดใส (หัวกระดาษไล่สี · การ์ดสรุปสี · หัวตารางสี · แถวสลับสี) ===== */
+#prn .rp .rh{padding:12px 16px!important;margin:0 0 12px!important;border:0!important;border-radius:3mm;background:linear-gradient(135deg,#3730a3,#7c3aed)!important;align-items:center}
+#prn .rp h1{color:#fff!important;font-size:22px;margin:0 0 5px}
+#prn .rp .rmeta,#prn .rp .mp{color:#e4e6ff!important}#prn .rp .mp b{color:#fff!important}
+#prn .rp .rbr{background:rgba(255,255,255,.18)!important;border:1.5px solid rgba(255,255,255,.55)!important;border-radius:3mm;padding:6px 14px!important;min-width:30mm;text-align:center!important}
+#prn .rp .rbr span{color:#e0e3ff!important}#prn .rp .rbr b{color:#fff!important}
+#prn .rp .rts{gap:8px!important;border:0!important;border-radius:0!important;overflow:visible!important}
+#prn .rp .rt{background:var(--p)!important;border:1.5px solid var(--b)!important;border-radius:3mm!important;padding:8px 4px 7px!important}
+#prn .rp .rt b{color:var(--t)!important;font-size:24px}#prn .rp .rt span{color:#3a4160!important;font-weight:500}
+#prn .rp .rt.hot{background:var(--s)!important;border-color:var(--s)!important}#prn .rp .rt.hot b,#prn .rp .rt.hot span{color:#fff!important}
+#prn .rp .rhl{border:0!important;border-left:6px solid #e5484d!important;border-radius:0 3mm 3mm 0!important;padding:8px 12px!important;background:linear-gradient(90deg,#ffe0e3,#fff4f5)!important}
+#prn .rp .rhl i{display:grid!important}
+#prn .rp .rhl.ok{border-left-color:#2fa16b!important;background:linear-gradient(90deg,#d6f4e4,#f2fbf6)!important}
+#prn .rp .rs{padding:6px 12px!important;background:var(--s)!important;border:0!important;border-radius:2.4mm 2.4mm 0 0!important}
+#prn .rp .rs b,#prn .rp .rs i{color:#fff!important}#prn .rp .rs b::before{background:#fff!important}
+#prn .rp .lv3 .rs b,#prn .rp .lv3 .rs i{color:#4a4500!important}#prn .rp .lv3 .rs b::before{background:#4a4500!important}
+#prn .rp .rtb{border-collapse:separate!important;border-spacing:0}
+#prn .rp .rtb th{background:var(--p)!important;color:var(--t)!important;font-weight:700!important;border-bottom:1.5px solid var(--b)!important}
+#prn .rp .rtb td{background:#fff!important;border-bottom:1px solid color-mix(in srgb,var(--b) 40%,#fff)!important}
+#prn .rp .rtb th:first-child,#prn .rp .rtb td:first-child{border-left:1px solid var(--b)!important}#prn .rp .rtb th:last-child,#prn .rp .rtb td:last-child{border-right:1px solid var(--b)!important}
+#prn .rp .rtb tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--p) 38%,#fff)!important}
+#prn .rp .rtb tr.hot td{background:color-mix(in srgb,var(--p) 72%,#fff)!important}
+#prn .rp .rtb tr.ov td{background:#e3e7fb!important}
+#prn .rp .qt{display:inline-block!important;min-width:10mm;padding:1px 9px!important;border-radius:99px;background:#ede9fe!important;border:1px solid #c4b5fd!important;color:#4c1d95!important;font-weight:800!important}
+#prn .rp .dt,#prn .rp tr.hot .dt,#prn .rp tr.ov .dt{display:inline-block;padding:1px 9px!important;border-radius:5px;background:#fff!important;border:1px solid var(--b)!important;color:var(--t)!important;font-weight:600!important}
+#prn .rp .dd{background:var(--p)!important;border:1.5px solid var(--s)!important;color:var(--t)!important;font-weight:800!important}
+#prn .rp tr.hot .dd{background:var(--s)!important;color:#fff!important}
+#prn .rp tr.ov .dd{background:#2732c2!important;border-color:#2732c2!important;color:#fff!important}
+#prn .rp .cm{background:#d9f4ef!important;border:1px solid #8fd6c9!important;color:#0f5f54!important;font-weight:600}
+#prn .rp .rf{background:#eef0ff!important;border:1px dashed #a5acf0!important;border-radius:2.4mm!important;padding:6px 10px!important;color:#4b52a8!important;text-align:center!important}
 </style>
 </head>
 <body>
@@ -1834,9 +1865,37 @@ const repRows=()=>{const g=group(+$('f2').value);return RSEL.size?g.filter(e=>RS
 const dstr=()=>new Date().toISOString().slice(0,10);
 function csv(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
  dl([['บาร์โค้ด','ชื่อสินค้า','จำนวน','วันหมดอายุ','เหลือ(วัน)','สถานะ','สถานะเคลม']].concat(g.map(e=>{const d=days(e.due);return[bcx(e.barcode),e.item,e.qty,fd(e.due),isNaN(d)?'':d,NM()[lv(d)],e.claim||'-']})),'รายงานสต็อก_')}
+/* ===== v4: ไฟล์ Excel แบบมีสี (SpreadsheetML: หลายชีต · หัวตารางสี · แถวสลับสี · ป้ายสถานะสี) ===== */
+function ssBook(sheets){
+ const X=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'),
+  hx=c=>/^#[0-9a-f]{3}$/i.test(c)?'#'+[...c.slice(1)].map(x=>x+x).join(''):c,
+  ST={title:['#3730a3','#ffffff',1,17,'Left',0],sub:['#eef0ff','#4b5270',0,10,'Left',0],
+   kl:['#e0e7ff','#3730a3',1,11,'Left','#c7cbf5'],kv:['#eef0ff','#1c2240',1,14,'Center','#c7cbf5','#,##0.##'],kvm:['#4f46e5','#ffffff',1,15,'Center','#4338ca','#,##0.##'],
+   head:['#4f46e5','#ffffff',1,11,'Center','#4338ca'],
+   t0:['#ffffff','#1c2240',0,11,'Left','#dfe3f2'],t1:['#f3f4ff','#1c2240',0,11,'Left','#dfe3f2'],
+   n0:['#ffffff','#1c2240',0,11,'Center','#dfe3f2','#,##0.##'],n1:['#f3f4ff','#1c2240',0,11,'Center','#dfe3f2','#,##0.##'],
+   g:['#dcfce7','#166534',1,12,'Center','#bbf7d0','#,##0.##'],z:['#e5e7eb','#4b5563',1,12,'Center','#d1d5db','#,##0.##'],r:['#fee2e2','#b91c1c',1,12,'Center','#fecaca','#,##0.##'],
+   a:['#fef3c7','#92400e',1,11,'Center','#fde68a','#,##0.##'],foot:['#f2f4fb','#6b7390',0,10,'Left',0]},
+  reg={},ids=[],sid=s=>{if(!s)return't0';if(typeof s=='string')return s;const k=s.join('|');if(!reg[k]){reg[k]='d'+ids.length;ids.push([reg[k],s])}return reg[k]},
+  sty=(id,a)=>`<Style ss:ID="${id}"><Alignment ss:Horizontal="${a[4]}" ss:Vertical="Center" ss:WrapText="1"/>${a[5]?`<Borders>${['Bottom','Top','Left','Right'].map(p=>`<Border ss:Position="${p}" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="${hx(a[5])}"/>`).join('')}</Borders>`:''}<Font ss:FontName="Tahoma" ss:Size="${a[3]}" ss:Color="${hx(a[1])}"${a[2]?' ss:Bold="1"':''}/><Interior ss:Color="${hx(a[0])}" ss:Pattern="Solid"/>${a[6]?`<NumberFormat ss:Format="${a[6]}"/>`:''}</Style>`;
+ const body=sheets.map(sh=>{const rows=sh.rows.map(r=>{const o=Array.isArray(r)?{c:r}:r;
+   return `<Row${o.h?` ss:Height="${o.h}"`:''}>`+o.c.map(c=>{const d=(c&&typeof c=='object'&&!Array.isArray(c))?c:{v:c},v=d.v,id=sid(d.s||(typeof v=='number'?'n0':'t0')),m=d.m?` ss:MergeAcross="${d.m}"`:'';
+    if(v===''||v==null)return `<Cell ss:StyleID="${id}"${m}/>`;
+    return `<Cell ss:StyleID="${id}"${m}><Data ss:Type="${typeof v=='number'&&isFinite(v)?'Number':'String'}">${X(v)}</Data></Cell>`}).join('')+'</Row>'}).join('');
+  const fz=sh.freeze?`<FreezePanes/><FrozenNoSplit/><SplitHorizontal>${sh.freeze}</SplitHorizontal><TopRowBottomPane>${sh.freeze}</TopRowBottomPane><ActivePane>2</ActivePane><Panes><Pane><Number>3</Number></Pane><Pane><Number>2</Number></Pane></Panes>`:'';
+  return `<Worksheet ss:Name="${X(sh.name).slice(0,31)}"><Table>${sh.cols.map(w=>`<Column ss:Width="${Math.round(w*5.6)}"/>`).join('')}${rows}</Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">${fz}</WorksheetOptions></Worksheet>`}).join('');
+ const styles=Object.keys(ST).map(k=>sty(k,ST[k])).join('')+ids.map(([id,a])=>sty(id,a)).join('');
+ return new Blob(['<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Styles><Style ss:ID="Default" ss:Name="Normal"><Font ss:FontName="Tahoma" ss:Size="11"/></Style>'+styles+'</Styles>'+body+'</Workbook>'],{type:'application/vnd.ms-excel'})}
 function xls(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้ส่งออก');
- const rows=g.map(e=>{const d=days(e.due),l=lv(d);return `<tr><td style="mso-number-format:'\\@'">${esc(e.barcode)}</td><td>${esc(e.item)}</td><td>${e.qty}</td><td>${fd(e.due)}</td><td>${isNaN(d)?'':d}</td><td style="background:${COL[l]};color:${TX[l]}">${NM()[l]}</td><td>${esc(e.claim||'-')}</td></tr>`}).join('');
- out(new Blob(['\ufeff<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table border="1"><tr><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>เหลือ(วัน)</th><th>สถานะ</th><th>สถานะเคลม</th></tr>'+rows+'</table></body></html>'],{type:'application/vnd.ms-excel'}),'รายงานสต็อก_'+dstr()+'.xls')}
+ const tot=g.reduce((a,e)=>a+e.qty,0),urg=g.filter(e=>lv(days(e.due))<=1).length,st=$('f2').selectedOptions[0].text,now=new Date(),
+  tm=fd(now.getFullYear()+'-'+('0'+(now.getMonth()+1)).slice(-2)+'-'+('0'+now.getDate()).slice(-2))+' '+('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
+ const rows=[{h:30,c:[{v:'รายงานสินค้าใกล้หมดอายุ · '+(BRN||'-'),s:'title',m:6}]},{h:20,c:[{v:'สถานะ: '+st+' · ออกรายงานเมื่อ '+tm,s:'sub',m:6}]},
+  [{v:'รายการทั้งหมด',s:'kl'},{v:g.length,s:'kvm'}],[{v:'จำนวนรวม (ชิ้น)',s:'kl'},{v:tot,s:'kv'}],[{v:'ด่วน (ภายใน '+TH[0]+' วัน)',s:'kl'},{v:urg,s:urg?'r':'g'}],[''],
+  {h:24,c:['บาร์โค้ด','ชื่อสินค้า','จำนวน','วันหมดอายุ','เหลือ (วัน)','สถานะ','สถานะเคลม'].map(v=>({v,s:'head'}))}];
+ g.forEach((e,i)=>{const d=days(e.due),l=lv(d),z=i%2,c=[COL[l],TX[l],1,11,'Center','#ffffff'];
+  rows.push([{v:String(e.barcode),s:z?'t1':'t0'},{v:e.item||'-',s:z?'t1':'t0'},{v:e.qty,s:z?'n1':'n0'},{v:fd(e.due),s:z?'n1':'n0'},{v:isNaN(d)?'':d,s:c},{v:NM()[l],s:c},{v:e.claim||'-',s:z?'t1':'t0'}])});
+ rows.push([''],[{v:'รวม '+g.length+' รายการ · '+tot+' ชิ้น',s:'foot',m:6}]);
+ out(ssBook([{name:'รายงานสต็อก',cols:[20,44,11,14,12,20,18],rows,freeze:7}]),'รายงานสต็อก_'+dstr()+'.xls')}
 function printRep(){const g=repRows();if(!g.length)return toast('ไม่มีรายการให้พิมพ์');
  if(inApp())toast('ถ้าไม่เด้งหน้าพิมพ์ ให้เปิดลิงก์ด้วย Chrome/Safari',5000);
  const st=$('f2').selectedOptions[0].text+(RSEL.size?' · เลือกเฉพาะ '+g.length+' รายการ':''),tot=g.reduce((a,e)=>a+e.qty,0),now=new Date(),loc='th-TH'+(S.be?'':'-u-ca-gregory'),
@@ -2611,37 +2670,53 @@ const nowTxt=()=>{const d=new Date();return fd(d.getFullYear()+'-'+pad(d.getMont
 const FLT={all:'ทั้งหมด',has:'มีของ',zero:'หมด/ติดลบ',diff:'ไม่ตรงเว็บ',out:'ไม่อยู่ในเว็บ',nosap:'ไม่มีใน SAP'};
 function netSummary(V){const A=V.A,M=SX.sap.meta;return{tot:r3(A.reduce((a,x)=>a+Math.max(0,x.net),0)),sapT:r3(A.reduce((a,x)=>a+(x.s||0),0)),aftT:r3(A.reduce((a,x)=>a+x.a,0)),webT:r3(A.reduce((a,x)=>a+x.wp,0)),asOf:M.asOf,up:SX.led&&SX.led.sap&&SX.led.sap[0]?SX.led.sap[0].t:''}}
 window.sxNetXlsx=b=>W(b,async()=>{const V=netView();if(!V){toast('ยังไม่มียอด SAP');return}
- try{await loadX()}catch(e){toast('โหลดตัวสร้าง Excel ไม่ได้ (ต้องต่อเน็ต)');return}
  if(!SX.led)try{await loadLedger(1)}catch(e){}
- const sm=netSummary(V),wb=XLSX.utils.book_new();
- const r1=[['รายงานยอดสต็อกสุทธิ',BRN||''],['จัดทำเมื่อ',nowTxt()],['SAP ตั้งต้น นับถึงวันที่',ds(sm.asOf)],['ตัวกรอง',FLT[SX.nf]+(SX.nq?' · ค้นหา “'+SX.nq+'”':'')],['ยอดสุทธิรวม (ชิ้น)',sm.tot],['SAP ตั้งต้นรวม',sm.sapT],['ขายหลัง SAP รวม',sm.aftT],['เว็บ (หลังหักรอตัด) รวม',sm.webT],[],
-  ['บาร์โค้ด','ชื่อสินค้า','กลุ่มสินค้า','SAP ตั้งต้น','ขายหลัง SAP','ยอดสุทธิ','เว็บ (ล็อตรวม)','เว็บ (หลังหักรอตัด)','เว็บ − สุทธิ','สถานะ']]
-  .concat(V.L.map(x=>[String(x.b),x.n,x.g,x.s==null?'':x.s,x.a,x.net,x.w,x.wp,x.diff==null?'':x.diff,stTxt(x)]));
- const w1=XLSX.utils.aoa_to_sheet(r1);w1['!cols']=[{wch:18},{wch:44},{wch:16},{wch:12},{wch:12},{wch:12},{wch:14},{wch:18},{wch:12},{wch:18}];XLSX.utils.book_append_sheet(wb,w1,'ยอดสุทธิ');
- const T=tlView();if(T){const r2=[['เวลา','การกระทำ','สินค้า','บาร์โค้ด','จำนวน','วันหมดอายุ','รายละเอียด','ผู้ทำรายการ','แท็บ']].concat(T.L.slice(0,5000).map(x=>[x.t,x.act,x.n,String(x.b),x.q,x.due||'',x.note,x.dev,x.tab]));
-  const w2=XLSX.utils.aoa_to_sheet(r2);w2['!cols']=[{wch:19},{wch:18},{wch:40},{wch:18},{wch:9},{wch:12},{wch:50},{wch:16},{wch:12}];XLSX.utils.book_append_sheet(wb,w2,'ประวัติเคลื่อนไหว')}
- const sp=(SX.led&&SX.led.sap)||[];if(sp.length){const w3=XLSX.utils.aoa_to_sheet([['อัปโหลดเมื่อ','ไฟล์','จำนวนรายการ','รายละเอียด','ผู้ทำรายการ']].concat(sp.map(s=>[s.t,s.file,s.n,s.note,s.dev])));w3['!cols']=[{wch:19},{wch:34},{wch:12},{wch:60},{wch:16}];XLSX.utils.book_append_sheet(wb,w3,'ประวัติ SAP')}
- XLSX.writeFile(wb,'stock_net_'+stamp()+'.xlsx');toast('ส่งออก Excel แล้ว ('+V.L.length+' รายการ)')});
+ const sm=netSummary(V),H=a=>a.map(v=>({v,s:'head'})),z=i=>i%2;
+ const stS=x=>x.c=='ok'?['#dcfce7','#166534',1,11,'Center','#bbf7d0']:x.c=='bad'?['#fef3c7','#92400e',1,11,'Center','#fde68a']:x.c=='out'?['#e5e7eb','#4b5563',1,11,'Center','#d1d5db']:['#dbeafe','#1e40af',1,11,'Center','#bfdbfe'];
+ const r1=[{h:30,c:[{v:'รายงานยอดสต็อกสุทธิ · '+(BRN||'-'),s:'title',m:9}]},{h:20,c:[{v:'จัดทำเมื่อ '+nowTxt()+' · SAP ตั้งต้นนับถึง '+ds(sm.asOf)+(sm.up?' (อัปโหลด '+sm.up.slice(0,16)+')':'')+' · ตัวกรอง: '+FLT[SX.nf]+(SX.nq?' “'+SX.nq+'”':''),s:'sub',m:9}]},
+  [{v:'ยอดสุทธิรวม (ชิ้น)',s:'kl'},{v:sm.tot,s:'kvm'}],[{v:'SAP ตั้งต้นรวม',s:'kl'},{v:sm.sapT,s:'kv'}],[{v:'ขายหลัง SAP รวม',s:'kl'},{v:sm.aftT,s:'kv'}],[{v:'เว็บ (หลังหักรอตัด)',s:'kl'},{v:sm.webT,s:'kv'}],[''],
+  {h:34,c:H(['บาร์โค้ด','ชื่อสินค้า','กลุ่มสินค้า','SAP ตั้งต้น','ขายหลัง SAP','ยอดสุทธิ','เว็บ (ล็อตรวม)','เว็บ (หลังหักรอตัด)','เว็บ − สุทธิ','สถานะ'])}];
+ V.L.forEach((x,i)=>{const t=z(i)?'t1':'t0',n=z(i)?'n1':'n0';
+  r1.push([{v:String(x.b),s:t},{v:x.n,s:t},{v:x.g,s:t},{v:x.s==null?'':x.s,s:n},{v:x.a?-x.a:0,s:x.a?['#fef3c7','#92400e',0,11,'Center','#dfe3f2','#,##0.##']:n},{v:x.net,s:x.net<0?'r':x.net==0?'z':'g'},{v:x.w,s:n},{v:x.wp,s:n},{v:x.diff==null?'':x.diff,s:x.diff?(x.diff>0?'r':'a'):n},{v:stTxt(x),s:stS(x)}])});
+ r1.push([''],[{v:'ยอดสุทธิ = ยอด SAP ล่าสุด − ยอดขายที่เกิดหลังวันที่ SAP นับถึง',s:'foot',m:9}]);
+ const sheets=[{name:'ยอดสุทธิ',cols:[18,42,16,13,13,13,14,18,13,18],rows:r1,freeze:8}];
+ const KS={in:['#dcfce7','#166534'],edit:['#dbeafe','#1e40af'],del:['#fee2e2','#b91c1c'],sale:['#fef3c7','#92400e'],sap:['#ccfbf1','#0f766e']},T=tlView();
+ if(T){const r2=[{h:28,c:[{v:'ประวัติความเคลื่อนไหว · '+(BRN||'-'),s:'title',m:8}]},{h:24,c:H(['เวลา','การกระทำ','สินค้า','บาร์โค้ด','จำนวน','วันหมดอายุ','รายละเอียด','ผู้ทำรายการ','แท็บ'])}];
+  T.L.slice(0,5000).forEach((x,i)=>{const t=z(i)?'t1':'t0',k=KS[kindOf(x.act)];r2.push([{v:x.t,s:t},{v:x.act,s:[k[0],k[1],1,11,'Center','#ffffff']},{v:x.n,s:t},{v:String(x.b),s:t},{v:x.q===''?'':x.q,s:z(i)?'n1':'n0'},{v:x.due?ds(x.due):'',s:z(i)?'n1':'n0'},{v:x.note,s:t},{v:x.dev,s:t},{v:x.tab,s:t}])});
+  sheets.push({name:'ประวัติเคลื่อนไหว',cols:[19,18,38,18,10,13,52,16,12],rows:r2,freeze:2})}
+ const sp=(SX.led&&SX.led.sap)||[];
+ if(sp.length){const r3s=[{h:28,c:[{v:'ประวัติการอัปโหลด SAP',s:'title',m:4}]},{h:24,c:H(['อัปโหลดเมื่อ','ไฟล์','จำนวนรายการ','รายละเอียด','ผู้ทำรายการ'])}];
+  sp.forEach((s,i)=>{const t=z(i)?'t1':'t0';r3s.push([{v:s.t,s:t},{v:s.file,s:t},{v:s.n,s:z(i)?'n1':'n0'},{v:s.note,s:t},{v:s.dev,s:t}])});
+  sheets.push({name:'ประวัติ SAP',cols:[19,34,14,62,16],rows:r3s,freeze:2})}
+ out(ssBook(sheets),'ยอดสต็อกสุทธิ_'+stamp()+'.xls');toast('ส่งออก Excel แล้ว ('+V.L.length+' รายการ)')});
 function printHtml(title,body){const f=document.createElement('iframe');f.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0';document.body.appendChild(f);
  const d=f.contentWindow.document;d.open();
  d.write(`<!doctype html><html lang="th"><head><meta charset="utf-8"><title>${esc(title)}</title><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet"><style>
-@page{size:A4;margin:12mm 10mm}*{box-sizing:border-box}body{font-family:Prompt,"IBM Plex Sans Thai","Noto Sans Thai",Tahoma,sans-serif;font-size:11px;color:#1c2240;margin:0}
-h1{font-size:19px;margin:0 0 2px}h2{font-size:14px;margin:18px 0 6px}.sub{color:#5b6585;font-size:11.5px;margin-bottom:10px}
-.k{display:flex;gap:8px;margin:8px 0 4px}.k div{flex:1;border:1px solid #d9deee;border-radius:8px;padding:7px 9px}.k i{display:block;font-style:normal;font-size:10px;color:#5b6585}.k b{font-size:16px}.k .m{background:#eef0ff;border-color:#b9bff5}
-table{width:100%;border-collapse:collapse}thead{display:table-header-group}th{background:#eceeff;text-align:left;padding:5px 6px;font-size:10.5px;border:1px solid #d9deee}td{padding:4px 6px;border:1px solid #e3e7f4;vertical-align:top}tr{page-break-inside:avoid}
-.n{text-align:right;white-space:nowrap}.net{font-weight:700;background:#f1fbf4}.neg{background:#fde8e8;color:#b91c1c}.mut{color:#6f7a99;font-size:10px}.ft{margin-top:10px;color:#6f7a99;font-size:10px}
+@page{size:A4;margin:11mm 9mm}*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-family:Prompt,"IBM Plex Sans Thai","Noto Sans Thai",Tahoma,sans-serif;font-size:11px;color:#1c2240;margin:0}
+.hd{background:linear-gradient(135deg,#3730a3,#7c3aed);color:#fff;border-radius:12px;padding:13px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hd h1{font-size:20px;margin:0 0 3px;color:#fff}.hd .sub{color:#e4e6ff;font-size:10.5px;line-height:1.5}.hd .br{flex:none;text-align:center;padding:6px 16px;border-radius:10px;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.5)}.hd .br span{display:block;font-size:9.5px;color:#e0e3ff}.hd .br b{font-size:22px}
+h2{font-size:13.5px;margin:18px 0 6px;padding:5px 12px;border-radius:8px;background:#ede9fe;color:#4c1d95;border-left:6px solid #7c3aed}.fm{color:#5b6585;font-size:10.5px;margin:2px 0 6px}
+.k{display:flex;gap:8px;margin:8px 0 6px}.k div{flex:1;border:1.5px solid #d9deee;border-radius:10px;padding:8px 10px}.k i{display:block;font-style:normal;font-size:10px;opacity:.85}.k b{font-size:18px}
+.k .m{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-color:#4f46e5;color:#fff}.k .s{background:#e0f2fe;border-color:#7dd3fc;color:#075985}.k .a{background:#fef3c7;border-color:#fcd34d;color:#92400e}.k .w{background:#dcfce7;border-color:#86efac;color:#166534}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1.5px solid #c7cbf5;border-radius:8px;overflow:hidden}thead{display:table-header-group}
+th{background:#4f46e5;color:#fff;text-align:left;padding:6px 7px;font-size:10.5px;font-weight:600}td{padding:5px 7px;border-bottom:1px solid #e3e7f4;vertical-align:middle}tbody tr:nth-child(even) td{background:#f4f5ff}tr{page-break-inside:avoid}
+.n{text-align:center;white-space:nowrap}th.n{text-align:center}.mut{color:#6f7a99;font-size:9.5px}
+.c{display:inline-block;min-width:34px;padding:1px 9px;border-radius:99px;font-weight:700;text-align:center}.c.g{background:#dcfce7;color:#166534;border:1px solid #86efac;font-size:13px}.c.z{background:#e5e7eb;color:#4b5563;border:1px solid #d1d5db;font-size:13px}.c.r{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;font-size:13px}.c.a{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.t{display:inline-block;padding:1px 9px;border-radius:99px;font-size:9.5px;font-weight:600}.t.ok{background:#dcfce7;color:#166534}.t.bad{background:#fef3c7;color:#92400e}.t.out{background:#e5e7eb;color:#4b5563}.t.nosap{background:#dbeafe;color:#1e40af}
+.t.in{background:#dcfce7;color:#166534}.t.edit{background:#dbeafe;color:#1e40af}.t.del{background:#fee2e2;color:#b91c1c}.t.sale{background:#fef3c7;color:#92400e}.t.sap{background:#ccfbf1;color:#0f766e}
+.ft{margin-top:10px;padding:6px 10px;border-radius:8px;background:#f2f4fb;border:1px dashed #c9d0ea;color:#6f7a99;font-size:10px;text-align:center}
 </style></head><body>${body}</body></html>`);d.close();
  let done=0;const go=()=>{if(done)return;done=1;try{f.contentWindow.focus();f.contentWindow.print()}catch(e){toast('เปิดหน้าพิมพ์ไม่ได้ ลองใช้ปุ่ม Excel แทน')}setTimeout(()=>f.remove(),90000)};
  Promise.race([(d.fonts&&d.fonts.ready)||Promise.resolve(),new Promise(r=>setTimeout(r,2500))]).then(()=>setTimeout(go,200))}
 window.sxNetPdf=()=>{const V=netView();if(!V){toast('ยังไม่มียอด SAP');return}const sm=netSummary(V),T=tlView(),mv=T?T.L.slice(0,150):[];
- const rows=V.L.map(x=>`<tr><td>${esc(x.n)}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.s==null?'-':nf(x.s)}</td><td class="n">${x.a?'−'+nf(x.a):'0'}</td><td class="n net ${x.net<0?'neg':''}">${nf(x.net)}</td><td class="n">${x.c=='out'?'-':nf(x.wp)}</td><td>${esc(stTxt(x))}</td></tr>`).join('');
- const mrows=mv.map(x=>`<tr><td style="white-space:nowrap">${esc(x.t.slice(0,16))}</td><td>${esc(x.act)}</td><td>${esc(x.n||'-')}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.q===''||x.q==null?'':nf(x.q)}</td><td>${esc(x.note||'')}${x.due?' · หมดอายุ '+ds(x.due):''}</td><td>${esc(x.dev||'')}</td></tr>`).join('');
- printHtml('ยอดสต็อกสุทธิ '+(BRN||''),`<h1>รายงานยอดสต็อกสุทธิ · ${esc(BRN||'')}</h1><div class="sub">จัดทำเมื่อ ${nowTxt()} · SAP ตั้งต้นนับถึง ${ds(sm.asOf)}${sm.up?' (อัปโหลด '+esc(sm.up.slice(0,16))+')':''} · ตัวกรอง: ${FLT[SX.nf]}${SX.nq?' “'+esc(SX.nq)+'”':''} · ${nf(V.L.length)} รายการ</div>
- <div class="k"><div class="m"><i>ยอดสุทธิรวม</i><b>${nf(sm.tot)} ชิ้น</b></div><div><i>SAP ตั้งต้น</i><b>${nf(sm.sapT)}</b></div><div><i>ขายหลัง SAP</i><b>−${nf(sm.aftT)}</b></div><div><i>เว็บ (หลังหักรอตัด)</i><b>${nf(sm.webT)}</b></div></div>
- <div class="sub">ยอดสุทธิ = ยอด SAP ล่าสุด − ยอดขายที่เกิดหลังวันที่ SAP นับถึง</div>
- <table><thead><tr><th>สินค้า / บาร์โค้ด</th><th class="n">SAP ตั้งต้น</th><th class="n">ขายหลัง SAP</th><th class="n">ยอดสุทธิ</th><th class="n">เว็บ</th><th>สถานะ</th></tr></thead><tbody>${rows||'<tr><td colspan="6">ไม่มีรายการ</td></tr>'}</tbody></table>
- ${mrows?`<h2>ประวัติความเคลื่อนไหวล่าสุด (${mv.length} รายการ)</h2><table><thead><tr><th>เวลา</th><th>การกระทำ</th><th>สินค้า</th><th class="n">จำนวน</th><th>รายละเอียด</th><th>ผู้ทำ</th></tr></thead><tbody>${mrows}</tbody></table>`:''}
- <div class="ft">สร้างโดยระบบสต็อก · ${nowTxt()}</div>`)};
+ const rows=V.L.map(x=>`<tr><td>${esc(x.n)}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.s==null?'-':nf(x.s)}</td><td class="n">${x.a?'−'+nf(x.a):'0'}</td><td class="n"><span class="c ${x.net<0?'r':x.net==0?'z':'g'}">${nf(x.net)}</span></td><td class="n">${x.c=='out'?'-':nf(x.wp)}</td><td class="n"><span class="t ${x.c}">${esc(stTxt(x))}</span></td></tr>`).join('');
+ const mrows=mv.map(x=>`<tr><td style="white-space:nowrap">${esc(x.t.slice(0,16))}</td><td><span class="t ${kindOf(x.act)}">${esc(x.act)}</span></td><td>${esc(x.n||'-')}<div class="mut">${esc(x.b)}</div></td><td class="n">${x.q===''||x.q==null?'':nf(x.q)}</td><td>${esc(x.note||'')}${x.due?' · หมดอายุ '+ds(x.due):''}</td><td>${esc(x.dev||'')}</td></tr>`).join('');
+ printHtml('ยอดสต็อกสุทธิ '+(BRN||''),`<div class="hd"><div><h1>รายงานยอดสต็อกสุทธิ</h1><div class="sub">จัดทำเมื่อ ${nowTxt()} · SAP ตั้งต้นนับถึง ${ds(sm.asOf)}${sm.up?' (อัปโหลด '+esc(sm.up.slice(0,16))+')':''}<br>ตัวกรอง: ${FLT[SX.nf]}${SX.nq?' “'+esc(SX.nq)+'”':''} · ${nf(V.L.length)} รายการ</div></div><div class="br"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div>
+ <div class="k"><div class="m"><i>ยอดสุทธิรวม</i><b>${nf(sm.tot)} ชิ้น</b></div><div class="s"><i>SAP ตั้งต้น</i><b>${nf(sm.sapT)}</b></div><div class="a"><i>ขายหลัง SAP</i><b>−${nf(sm.aftT)}</b></div><div class="w"><i>เว็บ (หลังหักรอตัด)</i><b>${nf(sm.webT)}</b></div></div>
+ <div class="fm">ยอดสุทธิ = ยอด SAP ล่าสุด − ยอดขายที่เกิดหลังวันที่ SAP นับถึง</div>
+ <table><thead><tr><th>สินค้า / บาร์โค้ด</th><th class="n">SAP ตั้งต้น</th><th class="n">ขายหลัง SAP</th><th class="n">ยอดสุทธิ</th><th class="n">เว็บ</th><th class="n">สถานะ</th></tr></thead><tbody>${rows||'<tr><td colspan="6">ไม่มีรายการ</td></tr>'}</tbody></table>
+ ${mrows?`<h2>🕒 ประวัติความเคลื่อนไหวล่าสุด (${mv.length} รายการ)</h2><table><thead><tr><th>เวลา</th><th>การกระทำ</th><th>สินค้า</th><th class="n">จำนวน</th><th>รายละเอียด</th><th>ผู้ทำ</th></tr></thead><tbody>${mrows}</tbody></table>`:''}
+ <div class="ft">สร้างโดยระบบสต็อก · สาขา ${esc(BRN||'-')} · ${nowTxt()}</div>`)};
 
 window.sxSapFromRows=sapFromRows;window.sxParseSales=parseSales;
 })();
