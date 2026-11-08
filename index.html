@@ -1437,7 +1437,7 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .hk b{font-size:22px;font-weight:700;overflow-wrap:anywhere}#sales .hk i{font-style:normal;font-size:11.5px;color:var(--mut);margin-top:2px}
 @media(max-width:640px){#sales .hsh{grid-template-columns:1fr}#sales .hq b{font-size:40px}#sales .hk b{font-size:18px}}
 #sales .vcol{display:flex;gap:4px;align-items:flex-end;overflow-x:auto;padding:4px 2px 2px}
-#sales .vcol button{flex:1 0 26px;max-width:56px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;cursor:pointer;padding:4px 0;border-radius:10px;color:var(--mut);font:inherit}
+#sales .vcol button{flex:1 0 26px;max-width:none;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;cursor:pointer;padding:4px 0;border-radius:10px;color:var(--mut);font:inherit}
 #sales .vcol em{font-style:normal;font-size:11px;font-weight:700;color:var(--ink);min-height:14px}
 #sales .vcol i{display:block;width:100%;height:calc(var(--h)*1px);border-radius:6px 6px 2px 2px;background:color-mix(in srgb,var(--ac) 38%,#fff)}
 #sales .vcol button.on{background:color-mix(in srgb,var(--ac) 12%,transparent)}#sales .vcol button.on i{background:linear-gradient(180deg,var(--ac2),var(--ac))}
@@ -1457,6 +1457,12 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #sales .vcol button.on em{color:var(--pk2)}
 #sales .vcol button:not(:disabled):not(.on):hover i{background:color-mix(in srgb,var(--ac) 60%,#fff)}
 #sales input[type=date]{min-width:0}
+#sales #sxPL{max-height:none;overflow:visible;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+#sales #sxPL .sxs,#sales #sxPL .sxs:last-child{border:1px solid var(--ln);background:var(--card);border-radius:16px;padding:12px;box-shadow:0 2px 8px #3b4a9a0d}
+#sales #sxPL .sxs:hover{background:var(--tint)}
+#sales #sxPL .sxs input:checked+.sxk~.sxn b{color:var(--ink)}
+#sales #sxPL .sxs .pmid{display:none}#sales #sxPL .sxs .wm{display:inline}
+@media(max-width:700px){#sales #sxPL{grid-template-columns:1fr}}
 #sales .sxpg{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0}#sales .sxpg span{font-size:13px;text-align:center}#sales .sxpg button:disabled{opacity:.4}
 
 #sales .hm small{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}#sales .hm small b{color:var(--ink)}
@@ -2558,13 +2564,17 @@ function lotsH(b){const L=D.entries.filter(e=>e.barcode==b&&e.qty>0).sort(byDue)
 function pendList(){const P=(SX.sap&&SX.sap.pend)||{};return Object.keys(P).filter(b=>P[b]>0).map(b=>({b,n:nameOf(b),p:r3(P[b]),w:r3(D.entries.filter(e=>e.barcode==b).reduce((a,e)=>a+e.qty,0))})).sort((a,b)=>b.p-a.p)}
 function pRow(x,i){const on=!SX.pdes[x.b],aft=Math.max(0,r3(x.w-x.p)),over=x.p>x.w;return `<label class="sxs pr ${on?'':'off'}"><input type="checkbox" ${on?'checked':''} onchange="sxPt(${i},this)"><i class="sxk"></i><div class="sxn"><b>${esc(x.n)}</b><small>${esc(x.b)}<span class="wm"> · เว็บมี ${nf(x.w)} → เหลือ ${nf(aft)} ชิ้น</span></small>${over?`<div class="sxcs"><span class="sxc w">ขายเกินสต็อกในเว็บ ${nf(r3(x.p-x.w))}</span></div>`:''}</div><div class="pmid"><span>เว็บมี <b>${nf(x.w)}</b></span><em>→</em><span class="${over?'ov':''}">เหลือ <b>${nf(aft)}</b></span></div><div class="pq"><i>ขาย</i><b>${nf(x.p)}</b></div></label>`}
 function pBtn(){const L=(SX.pl||[]).filter(x=>!SX.pdes[x.b]),u=r3(L.reduce((a,x)=>a+x.p,0));return `<button class="btn big" onclick="sxApplySel(this)" ${L.length?'':'disabled'}>${L.length?`ตัดสต็อก ${L.length} รายการที่เลือก (${nf(u)} ชิ้น)`:'ยังไม่ได้เลือกรายการ'}</button>`}
+function pendPage(L){const PG=50,np=Math.ceil(L.length/PG);SX.pgp=Math.min(Math.max(0,SX.pgp||0),Math.max(0,np-1));const a=SX.pgp*PG,
+ pg=np>1?`<div class="sxpg" style="grid-column:1/-1"><button class="btn alt sm fit" onclick="sxPPg(-1)" ${SX.pgp?'':'disabled'}>‹ ก่อนหน้า</button><span class="mut">หน้า ${SX.pgp+1}/${np} · ${a+1}–${Math.min(a+PG,L.length)} จาก ${L.length}</span><button class="btn alt sm fit" onclick="sxPPg(1)" ${SX.pgp<np-1?'':'disabled'}>ถัดไป ›</button></div>`:'';
+ return pg+L.slice(a,a+PG).map((x,j)=>pRow(x,a+j)).join('')+pg}
+window.sxPPg=d=>{SX.pgp=(SX.pgp||0)+d;const l=$('sxPL');if(l){l.innerHTML=pendPage(SX.pl||[]);l.scrollIntoView({block:'start',behavior:'smooth'})}};
 function pendH(){const L=SX.pl=pendList();
  if(!L.length)return `<div class="card"><h3>⏳ ยอดขายรอตัดสต็อก</h3><div class="mut">ไม่มีรายการรอตัด ✅</div></div>`;
  const tot=r3(L.reduce((a,x)=>a+x.p,0));
  return `<div class="card"><h3>⏳ ยอดขายรอตัดสต็อก <small class="mut">${L.length} รายการ · ${nf(tot)} ชิ้น</small></h3>
  <div class="mut" style="margin-bottom:10px">บันทึกยอดขายไว้แล้วแต่ยังไม่หักสต็อกในเว็บ · ติ๊กรายการที่จะตัด (ตัดล็อตที่หมดอายุก่อน) หรือจะใช้ “ปรับตาม SAP” ด้านล่างแทนก็ได้</div>
  <div class="sxtb"><button class="btn alt sm fit" onclick="sxPAll(1)">เลือกทั้งหมด</button><button class="btn alt sm fit" onclick="sxPAll(0)">ไม่เลือก</button></div>
- <div class="sxls" id="sxPL">${L.slice(0,300).map(pRow).join('')}${L.length>300?`<div class="mut" style="margin-top:8px">แสดง 300 จาก ${L.length}</div>`:''}</div><div id="sxPB">${pBtn()}</div></div>`}
+ <div class="sxls" id="sxPL">${pendPage(L)}</div><div id="sxPB">${pBtn()}</div></div>`}
 window.sxPt=(i,el)=>{const x=SX.pl[i];if(!x)return;if(el.checked)delete SX.pdes[x.b];else SX.pdes[x.b]=1;el.closest('label').classList.toggle('off',!el.checked);$('sxPB').innerHTML=pBtn()};
 window.sxPAll=on=>{(SX.pl||[]).forEach(x=>{if(on)delete SX.pdes[x.b];else SX.pdes[x.b]=1});draw()};
 async function doApply(bcs){const r=await api({action:'salesApply',barcodes:bcs});
