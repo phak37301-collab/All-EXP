@@ -247,7 +247,7 @@ dialog.lgd{padding:0!important;width:min(92vw,380px)}
 .alstrip{display:block;width:100%;text-align:left;border:0;border-radius:16px;padding:13px 16px;margin-bottom:14px;background:#fdecee;color:#9b1c31;font:600 14px "IBM Plex Sans Thai",sans-serif;cursor:pointer}.alstrip.hide{display:none}
 .ai{flex-wrap:wrap;cursor:default}.ai:hover{background:none}.ai .ax{flex-basis:100%;display:flex;gap:8px;padding:2px 0 6px 66px}
 #prn{display:none}
-@media print{body.prnm #shell,body.prnm #toast,body.prnm #bar,body.prnm dialog,body.prnm .bell{display:none!important}body.prnm #prn{display:block}body.prnm{background:#fff}#prn{-webkit-print-color-adjust:exact;print-color-adjust:exact}#prn h1{font-size:20px;margin:0 0 4px}#prn .pm{color:#555;font-size:12px;margin-bottom:10px}#prn table{font-size:11px;width:100%;border-collapse:collapse}#prn th,#prn td{border:1px solid #bbb;padding:4px 6px}#prn tr{page-break-inside:avoid}#prn th{background:#eee}}
+@media print{body.prnm>*:not(#prn),body.prnm #shell,body.prnm #toast,body.prnm #bar,body.prnm dialog,body.prnm .bell,body.prnm #rail,body.prnm #qacts,body.prnm #camF,body.prnm #navTab,body.prnm #nav,body.prnm #appTop,body.prnm #ldr{display:none!important}body.prnm #prn{display:block}body.prnm{background:#fff}#prn{-webkit-print-color-adjust:exact;print-color-adjust:exact}#prn h1{font-size:20px;margin:0 0 4px}#prn .pm{color:#555;font-size:12px;margin-bottom:10px}#prn table{font-size:11px;width:100%;border-collapse:collapse}#prn th,#prn td{border:1px solid #bbb;padding:4px 6px}#prn tr{page-break-inside:avoid}#prn th{background:#eee}}
 
 /* ===== UI v6: colorful / compact list / centered scan / quick save ===== */
 :root{--ac:#5b5bf0;--ac2:#8b5cf6;--s1:#4338ca;--s2:#7c3aed;--tint:#eef0ff;--ink:#1c2240;--mut:#6f7a99;--ln:#e6e9f5}
@@ -1593,6 +1593,46 @@ button,input,select,label,summary,.chip,.chipb,.ib,.ib2,.pad button{touch-action
 #prn .rp tr.ov .dd{background:#2732c2!important;border-color:#2732c2!important;color:#fff!important}
 #prn .rp .cm{background:#d9f4ef!important;border:1px solid #8fd6c9!important;color:#0f5f54!important;font-weight:600}
 #prn .rp .rf{background:#eef0ff!important;border:1px dashed #a5acf0!important;border-radius:2.4mm!important;padding:6px 10px!important;color:#4b52a8!important;text-align:center!important}
+
+/* ===== v5: รายงานพิมพ์ สไตล์ Apple (ขาว · เทาอ่อน · สีเฉพาะที่สื่อความหมาย) ===== */
+#prn .ap{font:12px/1.4 Prompt,"IBM Plex Sans Thai",-apple-system,sans-serif;color:#1d1d1f;padding:0 3mm;text-align:left}
+#prn .ap *{box-sizing:border-box}
+#prn .atop{display:flex;justify-content:space-between;align-items:center;padding-bottom:3mm;border-bottom:1px solid #d2d2d7;font-size:11px;color:#6e6e73}
+#prn .abr{display:inline-flex;align-items:center;gap:2.5mm;background:#0071e3;color:#fff;border-radius:99px;padding:1.2mm 1.6mm 1.2mm 4mm;font-size:11px;font-weight:500}
+#prn .abr b{background:#fff;color:#0071e3;border-radius:99px;padding:0 4mm;font-size:16px;font-weight:700;letter-spacing:.5px;line-height:1.5}
+#prn .ahd{margin:8mm 0 7mm}
+#prn .ahd small{display:block;font-size:13px;font-weight:600;color:#bf4800}
+#prn .ahd h1{font-size:34px;line-height:1.15;margin:1mm 0 0;font-weight:600;letter-spacing:-1.2px;color:#1d1d1f}
+#prn .ahd p{margin:2.5mm 0 0;font-size:15px;color:#6e6e73}
+#prn .aks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2.6mm;margin-bottom:2mm}
+#prn .ak{background:var(--bg);border-radius:5mm;padding:4mm 4mm 3.6mm;min-width:0;break-inside:avoid}
+#prn .ak .at{display:flex;align-items:center;gap:1.6mm;font-size:10.5px;font-weight:600;color:var(--c)}
+#prn .ak .at i{flex:none;width:2.1mm;height:2.1mm;border-radius:50%;background:var(--c)}
+#prn .ak b{display:block;font-size:28px;line-height:1.05;font-weight:600;letter-spacing:-1.2px;margin-top:2.6mm;color:#1d1d1f}
+#prn .ak span{display:block;font-size:10px;color:#515154;margin-top:1.4mm}
+#prn .asec{margin-top:7mm}
+#prn .ash{display:flex;align-items:baseline;justify-content:space-between;margin:0 1mm 2.5mm;break-after:avoid}
+#prn .ash b{display:flex;align-items:center;gap:2.6mm;font-size:18px;font-weight:600;letter-spacing:-.4px}
+#prn .ash b i{flex:none;width:3mm;height:3mm;border-radius:50%;background:var(--c)}
+#prn .ash span{font-size:11px;color:#6e6e73}
+#prn .atb{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;background:#f5f5f7;font-size:12px}
+#prn .atb th{background:#f5f5f7;color:#6e6e73;font-weight:500;font-size:10px;text-align:right;padding:3mm 3mm 2mm;border:0;border-bottom:1px solid #d9d9de}
+#prn .atb td{padding:2.4mm 3mm;border:0;border-bottom:1px solid #d9d9de;text-align:right;vertical-align:middle;background:#f5f5f7}
+#prn .atb th:first-child,#prn .atb td:first-child{text-align:left;padding-left:5mm}
+#prn .atb th:last-child,#prn .atb td:last-child{padding-right:5mm}
+#prn .atb th:first-child{border-top-left-radius:5mm}#prn .atb th:last-child{border-top-right-radius:5mm}
+#prn .atb tbody tr:last-child td{border-bottom:0}
+#prn .atb tbody tr:last-child td:first-child{border-bottom-left-radius:5mm}#prn .atb tbody tr:last-child td:last-child{border-bottom-right-radius:5mm}
+#prn .atb thead{display:table-header-group}#prn .atb tr{break-inside:avoid;page-break-inside:avoid}
+#prn .an{font-weight:500;font-size:12.5px;line-height:1.3;overflow-wrap:anywhere}
+#prn .an small{display:block;margin-top:.6mm;font-size:9.5px;font-weight:400;letter-spacing:.3px;color:#6e6e73}
+#prn .aq{font-size:9.5px;color:#6e6e73;white-space:nowrap}#prn .aq b{font-size:17px;font-weight:600;letter-spacing:-.4px;color:#1d1d1f}
+#prn .ad{color:#424245;font-size:11.5px;white-space:nowrap}
+#prn .ar{font-weight:600;font-size:11.5px;color:var(--t);white-space:nowrap}
+#prn .ar i{display:inline-block;width:2.2mm;height:2.2mm;border-radius:50%;background:var(--c);margin-right:1.6mm;vertical-align:middle}
+#prn .ar.ov{font-weight:700}
+#prn .ac{font-size:10.5px;color:#424245;text-align:left!important}
+#prn .aft{margin-top:8mm;padding-top:3mm;border-top:1px solid #d2d2d7;font-size:10px;color:#86868b}
 </style>
 </head>
 <body>
@@ -1924,14 +1964,12 @@ function printRep(){const g=repRows();if(!g.length)return toast('ไม่มี
  const by=[0,1,2,3,4,5].map(l=>g.filter(e=>lv(days(e.due))==l)),qs=a=>a.reduce((s,e)=>s+e.qty,0),f0=x=>x.toLocaleString('th-TH'),cl=e=>e.claim&&e.claim!='-'?e.claim:'',hasCl=g.some(e=>cl(e));
  const urg=by[0].length+by[1].length,urgQ=qs(by[0])+qs(by[1]),near=g.find(e=>lv(days(e.due))<=1);
  const dd=d=>isNaN(d)?'-':d<0?'เกิน '+(-d)+' วัน':d==0?'วันนี้':d+' วัน';
- const tile=(v,l,c,hot)=>`<div class="rt ${c}${hot?' hot':''}"><b>${v}</b><span>${l}</span></div>`;
- // คอลัมน์: บาร์โค้ด · สินค้า · จำนวน · วันหมดอายุ · คงเหลือ (+ เคลม เฉพาะเมื่อมีข้อมูลเคลม)
- const wd=hasCl?['44%','10%','16%','17%','13%']:['50%','12%','19%','19%'];
- const lg=[0,1,2,3,4,5].filter(l=>by[l].length).map(l=>`<span class="lv${l}"><i></i>${NM()[l]} <b>${by[l].length}</b></span>`).join('');
- const sec=l=>!by[l].length?'':`<section class="rsec lv${l}"><div class="rs${l<2?' hot':''}"><b>${NM()[l]}</b><i>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</i></div><table class="rtb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>สินค้า</th><th>จำนวน (ชิ้น)</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map((e,n)=>{const d=days(e.due);return `<tr${l<2||d<0?` class="${l<2?'hot':''}${d<0?' ov':''}"`:''}><td class="rnm">${esc(e.item||'-')}<small class="rbc">${esc(e.barcode)}</small></td><td><span class="qt">${e.qty}</span></td><td><span class="dt">${fd(e.due)}</span></td><td><span class="dd">${dd(d)}</span></td>${hasCl?`<td>${cl(e)?`<span class="cm">${esc(cl(e))}</span>`:''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
- const ban=urg?`<div class="rhl bad"><i>!</i><div><b>ต้องจัดการด่วน ${f0(urg)} รายการ · ${f0(urgQ)} ชิ้น</b><span>ใกล้สุด: ${esc(near.item||near.barcode)} · ${dd(days(near.due))} (${fd(near.due)})</span></div></div>`:`<div class="rhl ok"><i>✓</i><div><b>ไม่มีสินค้าที่ต้องจัดการด่วน</b><span>ไม่มีสินค้าหมดอายุหรือใกล้หมดอายุภายใน ${TH[0]} วัน</span></div></div>`;
+ const LV=[['#ff3b30','#b3000f'],['#ff3b30','#d70015'],['#ff9500','#b25000'],['#ffcc00','#8a6a00'],['#34c759','#1d7a35'],['#8e8e93','#515154']];
+ const kc=(t,c,bg,v,sub)=>`<div class="ak" style="--c:${c};--bg:${bg}"><div class="at"><i></i>${t}</div><b>${v}</b><span>${sub}</span></div>`;
+ const wd=hasCl?['38%','12%','17%','18%','15%']:['46%','14%','20%','20%'];
+ const sec=l=>!by[l].length?'':`<section class="asec" style="--c:${LV[l][0]};--t:${LV[l][1]}"><div class="ash"><b><i></i>${NM()[l]}</b><span>${by[l].length} รายการ · ${f0(qs(by[l]))} ชิ้น</span></div><table class="atb"><colgroup>${wd.map(w=>`<col style="width:${w}">`).join('')}</colgroup><thead><tr><th>สินค้า</th><th>จำนวน</th><th>วันหมดอายุ</th><th>คงเหลือ</th>${hasCl?'<th>เคลม</th>':''}</tr></thead><tbody>${by[l].map(e=>{const d=days(e.due);return `<tr><td class="an">${esc(e.item||'-')}<small>${esc(e.barcode)}</small></td><td class="aq"><b>${e.qty}</b> ชิ้น</td><td class="ad">${fd(e.due)}</td><td class="ar${d<0?' ov':''}"><i></i>${dd(d)}</td>${hasCl?`<td class="ac">${cl(e)?esc(cl(e)):''}</td>`:''}</tr>`}).join('')}</tbody></table></section>`;
  const sp='<tr><td><i class="sp"></i></td></tr>';
- $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="rp"><div class="rh"><div class="rl"><h1>รายงานสินค้าใกล้หมดอายุ</h1><div class="rmeta"><span class="mp st">สถานะ <b>${esc(st)}</b></span><span class="mp dtm">ออกรายงานเมื่อ <b>${dt}</b></span></div></div><div class="rbr"><span>สาขา</span><b>${esc(BRN||'-')}</b></div></div><div class="rts">${tile(f0(g.length),'รายการทั้งหมด','tA')}${tile(f0(tot),'จำนวนรวม (ชิ้น)','tB')}${tile(f0(urg),'ด่วน ภายใน '+TH[0]+' วัน','lv1',1)}${tile(f0(by[0].length),'หมดอายุ / ตัดเบิก','lv0',by[0].length>0)}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="rf">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
+ $('prn').innerHTML=`<table class="pgw"><thead>${sp}</thead><tfoot>${sp}</tfoot><tbody><tr><td><div class="ap"><div class="atop"><span>${dt}</span><span class="abr">สาขา<b>${esc(BRN||'-')}</b></span></div><div class="ahd"><small>รายงานสต็อก</small><h1>รายงานสินค้าใกล้หมดอายุ</h1><p>สถานะ: ${esc(st)} · ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</p></div><div class="aks">${kc('ทั้งหมด','#0066cc','#e6f1ff',f0(g.length),'รายการ')}${kc('จำนวนรวม','#8944ab','#f3eafb',f0(tot),'ชิ้น')}${kc('หมดอายุ / ด่วน','#d70015','#ffe9e7',f0(urg),'ภายใน '+TH[0]+' วัน')}${kc('ใกล้หมด','#b25000','#fff0dc',f0(by[2].length),'ภายใน '+TH[1]+' วัน')}${kc('ปกติ','#1d7a35','#e5f6ea',f0(by[4].length),'มากกว่า '+TH[2]+' วัน')}</div>${[0,1,2,3,4,5].map(sec).join('')}<div class="aft">สาขา ${esc(BRN||'-')} · รวม ${f0(g.length)} รายการ · ${f0(tot)} ชิ้น</div></div></td></tr></tbody></table>`;
  let ps=document.getElementById('prPg');if(!ps){ps=document.createElement('style');ps.id='prPg';document.head.appendChild(ps)}
  ps.textContent='@page{@bottom-left{content:"สาขา '+String(BRN||'-').replace(/["\\\n\r<>{}]/g,'')+' · รายงานสินค้าใกล้หมดอายุ";font:9.5px Prompt,sans-serif;color:#6b7390}}';
  document.body.classList.add('prnm');setTimeout(()=>window.print(),80)}
